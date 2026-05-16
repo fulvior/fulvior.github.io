@@ -23,9 +23,9 @@ I am a Marie Skłodowska-Curie Doctoral Candidate within the framework of Marie 
 
 My current work focuses on:
 
-- Federated learning
-- Edge AI
-- Reinforcement learning
+- Text in Econometrics
+- Spatial Matrices
+- Financial Markets
 
 ---
 
