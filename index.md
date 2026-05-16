@@ -15,7 +15,7 @@ title: Home
 
 # About {#about}
 
-I am a researcher interested in machine learning and distributed systems.
+I am a Marie Skłodowska-Curie Doctoral Candidate within the framework of Marie Skłodowska-Curie Actions at Babes-Bolyai University.
 
 ---
 
