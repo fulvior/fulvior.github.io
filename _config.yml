@@ -1,3 +1,8 @@
 theme: jekyll-theme-minimal
+
 title: Fulvio Raddi
-description: My personal website
+logo: /assets/profile.jpg
+description: >
+  PhD Student / Researcher / Engineer
+
+show_downloads: false
