@@ -59,4 +59,4 @@ Teaching assistant for ML.
 
 # Contact {#contact}
 
-Email: your@email.com
+Email: fulvio.raddi@econ.ubbcluj.ro
