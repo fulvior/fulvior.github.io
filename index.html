@@ -1,0 +1,540 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Fulvio Raddi — Economist</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;1,400&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --ink: #1a1814;
+    --ink-muted: #5a554e;
+    --ink-faint: #9a9590;
+    --paper: #f7f4ee;
+    --paper-warm: #ede9e0;
+    --accent: #2c4a6e;
+    --accent-light: #d4e0ed;
+    --rule: #c8c2b6;
+    --serif: 'EB Garamond', Georgia, serif;
+    --mono: 'DM Mono', monospace;
+  }
+
+  html { font-size: 18px; scroll-behavior: smooth; }
+
+  body {
+    font-family: var(--serif);
+    background: var(--paper);
+    color: var(--ink);
+    line-height: 1.75;
+    min-height: 100vh;
+  }
+
+  /* ── Header ── */
+  header {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: var(--paper);
+    border-bottom: 1px solid var(--rule);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0.75rem 3rem;
+    gap: 1.5rem;
+  }
+
+  .header-name {
+    font-size: 1rem;
+    font-weight: 500;
+    letter-spacing: 0.01em;
+    white-space: nowrap;
+    cursor: pointer;
+    text-decoration: none;
+    color: var(--ink);
+  }
+
+  .header-email {
+    font-family: var(--mono);
+    font-size: 0.7rem;
+    color: var(--ink-muted);
+    text-decoration: none;
+    letter-spacing: 0.02em;
+    border: 1px solid var(--rule);
+    padding: 0.25rem 0.75rem;
+    border-radius: 2rem;
+    transition: background 0.15s, color 0.15s;
+    white-space: nowrap;
+  }
+
+  .header-email:hover { background: var(--accent); color: #fff; border-color: var(--accent); }
+
+  nav {
+    display: flex;
+    gap: 0.15rem;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  nav a {
+    font-family: var(--mono);
+    font-size: 0.65rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--ink-muted);
+    text-decoration: none;
+    padding: 0.3rem 0.65rem;
+    border-radius: 3px;
+    transition: color 0.15s, background 0.15s;
+  }
+
+  nav a:hover, nav a.active { color: var(--accent); background: var(--accent-light); }
+
+  /* ── Pages ── */
+  .page { display: none; animation: fadein 0.25s ease; }
+  .page.active { display: block; }
+
+  @keyframes fadein { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: none; } }
+
+  /* ── Home ── */
+  .home-layout {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 5rem 2rem 6rem;
+  }
+
+  .home-eyebrow {
+    font-family: var(--mono);
+    font-size: 0.65rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+    margin-bottom: 1.5rem;
+  }
+
+  .home-name {
+    font-size: 3.2rem;
+    font-weight: 400;
+    font-style: italic;
+    line-height: 1.15;
+    margin-bottom: 0.5rem;
+    color: var(--ink);
+  }
+
+  .home-title {
+    font-family: var(--mono);
+    font-size: 0.75rem;
+    color: var(--ink-muted);
+    letter-spacing: 0.05em;
+    margin-bottom: 2.5rem;
+  }
+
+  .home-rule {
+    border: none;
+    border-top: 1px solid var(--rule);
+    margin-bottom: 2.5rem;
+  }
+
+  .home-bio {
+    font-size: 1.1rem;
+    color: var(--ink);
+    max-width: 56ch;
+  }
+
+  .home-bio p + p { margin-top: 1rem; }
+
+  .home-links {
+    display: flex;
+    gap: 1rem;
+    margin-top: 3rem;
+    flex-wrap: wrap;
+  }
+
+  .btn {
+    font-family: var(--mono);
+    font-size: 0.68rem;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    padding: 0.6rem 1.2rem;
+    border-radius: 3px;
+    text-decoration: none;
+    transition: 0.15s;
+    cursor: pointer;
+    border: none;
+    display: inline-block;
+  }
+
+  .btn-primary { background: var(--accent); color: #fff; }
+  .btn-primary:hover { background: #1d3550; }
+  .btn-ghost { background: transparent; color: var(--ink-muted); border: 1px solid var(--rule); }
+  .btn-ghost:hover { border-color: var(--accent); color: var(--accent); }
+
+  /* ── Inner pages ── */
+  .inner {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 4rem 2rem 6rem;
+  }
+
+  .page-label {
+    font-family: var(--mono);
+    font-size: 0.62rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+    margin-bottom: 0.75rem;
+  }
+
+  .page-title {
+    font-size: 2.4rem;
+    font-weight: 400;
+    font-style: italic;
+    margin-bottom: 0.25rem;
+  }
+
+  .page-rule {
+    border: none;
+    border-top: 1px solid var(--rule);
+    margin: 2rem 0 2.5rem;
+  }
+
+  .section-body { font-size: 1rem; color: var(--ink); }
+  .section-body p { margin-bottom: 1rem; }
+
+  /* Research */
+  .research-areas {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    gap: 1px;
+    background: var(--rule);
+    border: 1px solid var(--rule);
+    margin: 2rem 0;
+  }
+
+  .research-area {
+    background: var(--paper);
+    padding: 1.5rem 1.25rem;
+  }
+
+  .research-area-num {
+    font-family: var(--mono);
+    font-size: 0.6rem;
+    color: var(--ink-faint);
+    margin-bottom: 0.5rem;
+    letter-spacing: 0.1em;
+  }
+
+  .research-area-name {
+    font-size: 1rem;
+    font-weight: 500;
+  }
+
+  /* Publications */
+  .pub-year {
+    font-family: var(--mono);
+    font-size: 0.65rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+    margin: 2.5rem 0 1rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid var(--rule);
+  }
+
+  .pub-item {
+    padding: 1.25rem 0;
+    border-bottom: 1px solid var(--paper-warm);
+  }
+
+  .pub-title {
+    font-size: 1.05rem;
+    font-weight: 500;
+    margin-bottom: 0.25rem;
+  }
+
+  .pub-venue {
+    font-size: 0.85rem;
+    color: var(--ink-muted);
+    font-style: italic;
+  }
+
+  /* Projects */
+  .project-card {
+    border: 1px solid var(--rule);
+    padding: 1.5rem 1.5rem 1.25rem;
+    margin-bottom: 1.25rem;
+    background: var(--paper);
+    position: relative;
+  }
+
+  .project-card::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 3px;
+    background: var(--accent);
+  }
+
+  .project-title { font-size: 1.05rem; font-weight: 500; margin-bottom: 0.4rem; }
+  .project-desc { font-size: 0.9rem; color: var(--ink-muted); }
+
+  /* Teaching */
+  .teaching-item {
+    display: flex;
+    align-items: baseline;
+    gap: 1.5rem;
+    padding: 1rem 0;
+    border-bottom: 1px solid var(--paper-warm);
+  }
+
+  .teaching-term {
+    font-family: var(--mono);
+    font-size: 0.65rem;
+    color: var(--ink-faint);
+    white-space: nowrap;
+    min-width: 80px;
+  }
+
+  .teaching-course { font-size: 0.95rem; }
+
+  /* CV */
+  .cv-download {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.75rem;
+    background: var(--ink);
+    color: var(--paper);
+    padding: 1rem 2rem;
+    text-decoration: none;
+    font-family: var(--mono);
+    font-size: 0.72rem;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    border-radius: 3px;
+    transition: background 0.15s;
+    margin: 1.5rem 0;
+  }
+
+  .cv-download:hover { background: var(--accent); }
+
+  /* Contact */
+  .contact-grid {
+    display: grid;
+    gap: 1px;
+    background: var(--rule);
+    border: 1px solid var(--rule);
+    margin-top: 1.5rem;
+  }
+
+  .contact-row {
+    display: grid;
+    grid-template-columns: 120px 1fr;
+    background: var(--paper);
+  }
+
+  .contact-label {
+    font-family: var(--mono);
+    font-size: 0.65rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+    padding: 1rem 1.25rem;
+    border-right: 1px solid var(--rule);
+    display: flex;
+    align-items: center;
+  }
+
+  .contact-value {
+    font-size: 0.9rem;
+    padding: 1rem 1.25rem;
+    display: flex;
+    align-items: center;
+  }
+
+  .contact-value a {
+    color: var(--accent);
+    text-decoration: none;
+    font-family: var(--mono);
+    font-size: 0.8rem;
+  }
+
+  .contact-value a:hover { text-decoration: underline; }
+
+  /* Responsive */
+  @media (max-width: 640px) {
+    header { padding: 0.75rem 1rem; flex-wrap: wrap; gap: 0.5rem; }
+    .home-name { font-size: 2.2rem; }
+    .inner, .home-layout { padding: 2.5rem 1.25rem 4rem; }
+    .contact-row { grid-template-columns: 90px 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <a class="header-name" onclick="showPage('home')" href="#">Fulvio Raddi</a>
+  <nav>
+    <a href="#" onclick="showPage('about'); return false;" id="nav-about">About</a>
+    <a href="#" onclick="showPage('research'); return false;" id="nav-research">Research</a>
+    <a href="#" onclick="showPage('publications'); return false;" id="nav-publications">Publications</a>
+    <a href="#" onclick="showPage('projects'); return false;" id="nav-projects">Projects</a>
+    <a href="#" onclick="showPage('teaching'); return false;" id="nav-teaching">Teaching</a>
+    <a href="#" onclick="showPage('cv'); return false;" id="nav-cv">CV</a>
+    <a href="#" onclick="showPage('contact'); return false;" id="nav-contact">Contact</a>
+  </nav>
+  <a class="header-email" href="mailto:fulvio.raddi@econ.ubbcluj.ro">fulvio.raddi@econ.ubbcluj.ro</a>
+</header>
+
+<!-- HOME -->
+<div id="page-home" class="page active">
+  <div class="home-layout">
+    <p class="home-eyebrow">Marie Skłodowska-Curie Doctoral Candidate</p>
+    <h1 class="home-name">Fulvio Raddi</h1>
+    <p class="home-title">Babeș-Bolyai University · Cluj-Napoca</p>
+    <hr class="home-rule">
+    <div class="home-bio">
+      <p>I am a Marie Skłodowska-Curie Doctoral Candidate within the framework of Marie Skłodowska-Curie Actions at Babeș-Bolyai University.</p>
+      <p>My work sits at the intersection of text-based econometrics, spatial analysis, and financial markets.</p>
+    </div>
+    <div class="home-links">
+      <a class="btn btn-primary" href="#" onclick="showPage('research'); return false;">View research</a>
+      <a class="btn btn-ghost" href="#" onclick="showPage('publications'); return false;">Publications</a>
+      <a class="btn btn-ghost" href="assets/cv.pdf">Download CV</a>
+    </div>
+  </div>
+</div>
+
+<!-- ABOUT -->
+<div id="page-about" class="page">
+  <div class="inner">
+    <p class="page-label">About</p>
+    <h2 class="page-title">Background</h2>
+    <hr class="page-rule">
+    <div class="section-body">
+      <p>I am a Marie Skłodowska-Curie Doctoral Candidate within the framework of Marie Skłodowska-Curie Actions at Babeș-Bolyai University.</p>
+      <p>My doctoral research is supported by the European Union's Horizon programme, allowing me to engage with a network of researchers across Europe and beyond.</p>
+    </div>
+  </div>
+</div>
+
+<!-- RESEARCH -->
+<div id="page-research" class="page">
+  <div class="inner">
+    <p class="page-label">Research</p>
+    <h2 class="page-title">Current work</h2>
+    <hr class="page-rule">
+    <div class="section-body">
+      <p>My research focuses on methodological and applied questions in quantitative economics.</p>
+    </div>
+    <div class="research-areas">
+      <div class="research-area">
+        <p class="research-area-num">01</p>
+        <p class="research-area-name">Text in Econometrics</p>
+      </div>
+      <div class="research-area">
+        <p class="research-area-num">02</p>
+        <p class="research-area-name">Spatial Matrices</p>
+      </div>
+      <div class="research-area">
+        <p class="research-area-num">03</p>
+        <p class="research-area-name">Financial Markets</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- PUBLICATIONS -->
+<div id="page-publications" class="page">
+  <div class="inner">
+    <p class="page-label">Publications</p>
+    <h2 class="page-title">Work</h2>
+    <hr class="page-rule">
+    <p class="pub-year">2026</p>
+    <div class="pub-item">
+      <p class="pub-title">My Awesome Paper</p>
+      <p class="pub-venue">Conference XYZ, 2026.</p>
+    </div>
+  </div>
+</div>
+
+<!-- PROJECTS -->
+<div id="page-projects" class="page">
+  <div class="inner">
+    <p class="page-label">Projects</p>
+    <h2 class="page-title">Projects</h2>
+    <hr class="page-rule">
+    <div class="project-card">
+      <p class="project-title">Project title</p>
+      <p class="project-desc">Description of this project and its aims.</p>
+    </div>
+  </div>
+</div>
+
+<!-- TEACHING -->
+<div id="page-teaching" class="page">
+  <div class="inner">
+    <p class="page-label">Teaching</p>
+    <h2 class="page-title">Teaching</h2>
+    <hr class="page-rule">
+    <div class="teaching-item">
+      <span class="teaching-term">Current</span>
+      <span class="teaching-course">Teaching assistant for Machine Learning</span>
+    </div>
+  </div>
+</div>
+
+<!-- CV -->
+<div id="page-cv" class="page">
+  <div class="inner">
+    <p class="page-label">Curriculum Vitae</p>
+    <h2 class="page-title">CV</h2>
+    <hr class="page-rule">
+    <p class="section-body">Download the latest version of my curriculum vitae.</p>
+    <a class="cv-download" href="assets/cv.pdf">
+      ↓ &nbsp;Download CV (PDF)
+    </a>
+  </div>
+</div>
+
+<!-- CONTACT -->
+<div id="page-contact" class="page">
+  <div class="inner">
+    <p class="page-label">Contact</p>
+    <h2 class="page-title">Get in touch</h2>
+    <hr class="page-rule">
+    <div class="contact-grid">
+      <div class="contact-row">
+        <span class="contact-label">Email</span>
+        <span class="contact-value">
+          <a href="mailto:fulvio.raddi@econ.ubbcluj.ro">fulvio.raddi@econ.ubbcluj.ro</a>
+        </span>
+      </div>
+      <div class="contact-row">
+        <span class="contact-label">Affiliation</span>
+        <span class="contact-value">Babeș-Bolyai University</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  function showPage(id) {
+    document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+    document.querySelectorAll('nav a').forEach(a => a.classList.remove('active'));
+    const page = document.getElementById('page-' + id);
+    if (page) page.classList.add('active');
+    const nav = document.getElementById('nav-' + id);
+    if (nav) nav.classList.add('active');
+    window.scrollTo({ top: 0, behavior: 'instant' });
+  }
+  document.querySelector('.header-name').addEventListener('click', function(e) {
+    e.preventDefault();
+    showPage('home');
+  });
+</script>
+</body>
+</html>
