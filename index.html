@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Fulvio Raddi</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;1,400&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;1,400;1,500&family=DM+Mono:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
@@ -15,8 +15,11 @@
     --ink-faint: #9a9590;
     --paper: #f7f4ee;
     --paper-warm: #ede9e0;
+    --paper-deep: #e4dfd4;
     --accent: #2c4a6e;
     --accent-light: #d4e0ed;
+    --accent-warm: #7a3e2a;
+    --accent-warm-light: #f0e4de;
     --rule: #c8c2b6;
     --serif: 'EB Garamond', Georgia, serif;
     --mono: 'DM Mono', monospace;
@@ -80,12 +83,12 @@
 
   nav a {
     font-family: var(--mono);
-    font-size: 0.65rem;
+    font-size: 0.62rem;
     letter-spacing: 0.08em;
     text-transform: uppercase;
     color: var(--ink-muted);
     text-decoration: none;
-    padding: 0.3rem 0.65rem;
+    padding: 0.3rem 0.6rem;
     border-radius: 3px;
     transition: color 0.15s, background 0.15s;
   }
@@ -203,14 +206,43 @@
   .section-body { font-size: 1rem; color: var(--ink); }
   .section-body p { margin-bottom: 1rem; }
 
-  /* Research */
+  /* ── Research tabs ── */
+  .tab-bar {
+    display: flex;
+    gap: 0;
+    border-bottom: 1px solid var(--rule);
+    margin-bottom: 2.5rem;
+  }
+
+  .tab-btn {
+    font-family: var(--mono);
+    font-size: 0.62rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+    background: none;
+    border: none;
+    border-bottom: 2px solid transparent;
+    padding: 0.6rem 1.1rem;
+    cursor: pointer;
+    transition: color 0.15s, border-color 0.15s;
+    margin-bottom: -1px;
+  }
+
+  .tab-btn:hover { color: var(--ink-muted); }
+  .tab-btn.active { color: var(--accent); border-bottom-color: var(--accent); }
+
+  .tab-panel { display: none; }
+  .tab-panel.active { display: block; animation: fadein 0.2s ease; }
+
+  /* Research areas */
   .research-areas {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
     gap: 1px;
     background: var(--rule);
     border: 1px solid var(--rule);
-    margin: 2rem 0;
+    margin: 0 0 2rem;
   }
 
   .research-area {
@@ -231,7 +263,28 @@
     font-weight: 500;
   }
 
-  /* Giving Back */
+  /* Conferences */
+  .conf-item {
+    padding: 1.1rem 0;
+    border-bottom: 1px solid var(--paper-warm);
+    display: flex;
+    gap: 1.5rem;
+    align-items: baseline;
+  }
+
+  .conf-year {
+    font-family: var(--mono);
+    font-size: 0.65rem;
+    color: var(--ink-faint);
+    white-space: nowrap;
+    min-width: 48px;
+  }
+
+  .conf-body {}
+  .conf-name { font-size: 0.95rem; font-weight: 500; }
+  .conf-detail { font-size: 0.85rem; color: var(--ink-muted); font-style: italic; }
+
+  /* Publications */
   .pub-year {
     font-family: var(--mono);
     font-size: 0.65rem;
@@ -248,19 +301,64 @@
     border-bottom: 1px solid var(--paper-warm);
   }
 
-  .pub-title {
-    font-size: 1.05rem;
-    font-weight: 500;
-    margin-bottom: 0.25rem;
-  }
+  .pub-title { font-size: 1.05rem; font-weight: 500; margin-bottom: 0.25rem; }
+  .pub-venue { font-size: 0.85rem; color: var(--ink-muted); font-style: italic; }
 
-  .pub-venue {
-    font-size: 0.85rem;
-    color: var(--ink-muted);
+  /* ── Giving Back ── */
+  .pullquote {
+    border-left: 3px solid var(--accent);
+    margin: 2rem 0;
+    padding: 0.5rem 0 0.5rem 1.5rem;
+    font-size: 1.15rem;
     font-style: italic;
+    color: var(--ink-muted);
+    line-height: 1.6;
   }
 
-  /* Projects */
+  .pullquote cite {
+    display: block;
+    font-family: var(--mono);
+    font-size: 0.62rem;
+    font-style: normal;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+    margin-top: 0.6rem;
+  }
+
+  .giving-initiative {
+    border: 1px solid var(--rule);
+    padding: 1.75rem 1.5rem 1.5rem;
+    margin: 2rem 0;
+    position: relative;
+    background: var(--paper);
+  }
+
+  .giving-initiative::before {
+    content: '';
+    position: absolute;
+    left: 0; top: 0; bottom: 0;
+    width: 3px;
+    background: var(--accent-warm);
+  }
+
+  .initiative-tag {
+    font-family: var(--mono);
+    font-size: 0.58rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--accent-warm);
+    background: var(--accent-warm-light);
+    display: inline-block;
+    padding: 0.2rem 0.6rem;
+    border-radius: 2px;
+    margin-bottom: 0.75rem;
+  }
+
+  .initiative-title { font-size: 1.1rem; font-weight: 500; margin-bottom: 0.5rem; }
+  .initiative-body { font-size: 0.95rem; color: var(--ink-muted); }
+
+  /* ── Projects ── */
   .project-card {
     border: 1px solid var(--rule);
     padding: 1.5rem 1.5rem 1.25rem;
@@ -272,9 +370,7 @@
   .project-card::before {
     content: '';
     position: absolute;
-    left: 0;
-    top: 0;
-    bottom: 0;
+    left: 0; top: 0; bottom: 0;
     width: 3px;
     background: var(--accent);
   }
@@ -282,7 +378,7 @@
   .project-title { font-size: 1.05rem; font-weight: 500; margin-bottom: 0.4rem; }
   .project-desc { font-size: 0.9rem; color: var(--ink-muted); }
 
-  /* Teaching */
+  /* ── Teaching ── */
   .teaching-item {
     display: flex;
     align-items: baseline;
@@ -301,7 +397,7 @@
 
   .teaching-course { font-size: 0.95rem; }
 
-  /* CV */
+  /* ── CV ── */
   .cv-download {
     display: inline-flex;
     align-items: center;
@@ -321,7 +417,7 @@
 
   .cv-download:hover { background: var(--accent); }
 
-  /* Contact */
+  /* ── Contact ── */
   .contact-grid {
     display: grid;
     gap: 1px;
@@ -364,12 +460,89 @@
 
   .contact-value a:hover { text-decoration: underline; }
 
-  /* Responsive */
+  /* ── Books ── */
+  .books-section-label {
+    font-family: var(--mono);
+    font-size: 0.6rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+    margin: 2.5rem 0 1rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid var(--rule);
+  }
+
+  .book-card {
+    display: flex;
+    gap: 1.25rem;
+    padding: 1.25rem 0;
+    border-bottom: 1px solid var(--paper-warm);
+    align-items: flex-start;
+  }
+
+  .book-spine {
+    flex-shrink: 0;
+    width: 36px;
+    height: 52px;
+    border-radius: 2px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--mono);
+    font-size: 0.5rem;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    writing-mode: vertical-rl;
+    text-orientation: mixed;
+    color: rgba(255,255,255,0.8);
+  }
+
+  .book-spine-academic { background: var(--accent); }
+  .book-spine-general  { background: #4a6e2c; }
+  .book-spine-reading  { background: var(--accent-warm); }
+
+  .book-meta {}
+  .book-title { font-size: 1rem; font-weight: 500; margin-bottom: 0.15rem; }
+  .book-author { font-family: var(--mono); font-size: 0.62rem; letter-spacing: 0.06em; color: var(--ink-faint); margin-bottom: 0.35rem; }
+  .book-note { font-size: 0.88rem; color: var(--ink-muted); font-style: italic; }
+
+  .reading-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    font-family: var(--mono);
+    font-size: 0.58rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--accent-warm);
+    background: var(--accent-warm-light);
+    padding: 0.2rem 0.55rem;
+    border-radius: 2px;
+    margin-bottom: 0.4rem;
+  }
+
+  .reading-badge::before {
+    content: '';
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--accent-warm);
+    animation: pulse 1.8s ease-in-out infinite;
+  }
+
+  @keyframes pulse {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.4; transform: scale(0.7); }
+  }
+
+  /* ── Responsive ── */
   @media (max-width: 640px) {
     header { padding: 0.75rem 1rem; flex-wrap: wrap; gap: 0.5rem; }
     .home-name { font-size: 2.2rem; }
     .inner, .home-layout { padding: 2.5rem 1.25rem 4rem; }
     .contact-row { grid-template-columns: 90px 1fr; }
+    .tab-btn { padding: 0.5rem 0.65rem; font-size: 0.58rem; }
   }
 </style>
 </head>
@@ -380,9 +553,10 @@
   <nav>
     <a href="#" onclick="showPage('about'); return false;" id="nav-about">About</a>
     <a href="#" onclick="showPage('research'); return false;" id="nav-research">Research</a>
-    <a href="#" onclick="showPage('publications'); return false;" id="nav-publications">Publications</a>
+    <a href="#" onclick="showPage('giving'); return false;" id="nav-giving">Giving Back</a>
     <a href="#" onclick="showPage('projects'); return false;" id="nav-projects">Projects</a>
     <a href="#" onclick="showPage('teaching'); return false;" id="nav-teaching">Teaching</a>
+    <a href="#" onclick="showPage('books'); return false;" id="nav-books">Books</a>
     <a href="#" onclick="showPage('cv'); return false;" id="nav-cv">CV</a>
     <a href="#" onclick="showPage('contact'); return false;" id="nav-contact">Contact</a>
   </nav>
@@ -402,7 +576,7 @@
     </div>
     <div class="home-links">
       <a class="btn btn-primary" href="#" onclick="showPage('research'); return false;">View research</a>
-      <a class="btn btn-ghost" href="#" onclick="showPage('publications'); return false;">Publications</a>
+      <a class="btn btn-ghost" href="#" onclick="showPage('giving'); return false;">Giving Back</a>
       <a class="btn btn-ghost" href="assets/cv.pdf">Download CV</a>
     </div>
   </div>
@@ -427,37 +601,98 @@
     <p class="page-label">Research</p>
     <h2 class="page-title">Current work</h2>
     <hr class="page-rule">
-    <div class="section-body">
-      <p>My research focuses on methodological and applied questions in quantitative economics.</p>
+
+    <div class="tab-bar">
+      <button class="tab-btn active" onclick="showTab('topics', this)">Topics</button>
+      <button class="tab-btn" onclick="showTab('conferences', this)">Conferences</button>
+      <button class="tab-btn" onclick="showTab('publications', this)">Publications</button>
     </div>
-    <div class="research-areas">
-      <div class="research-area">
-        <p class="research-area-num">01</p>
-        <p class="research-area-name">Text in Econometrics</p>
+
+    <!-- Topics -->
+    <div id="tab-topics" class="tab-panel active">
+      <div class="section-body">
+        <p>My research focuses on methodological and applied questions in quantitative economics, bridging natural language processing with econometric theory and financial applications.</p>
       </div>
-      <div class="research-area">
-        <p class="research-area-num">02</p>
-        <p class="research-area-name">Spatial Matrices</p>
-      </div>
-      <div class="research-area">
-        <p class="research-area-num">03</p>
-        <p class="research-area-name">Financial Markets</p>
+      <div class="research-areas">
+        <div class="research-area">
+          <p class="research-area-num">01</p>
+          <p class="research-area-name">Text in Econometrics</p>
+        </div>
+        <div class="research-area">
+          <p class="research-area-num">02</p>
+          <p class="research-area-name">Spatial Matrices</p>
+        </div>
+        <div class="research-area">
+          <p class="research-area-num">03</p>
+          <p class="research-area-name">Financial Markets</p>
+        </div>
       </div>
     </div>
+
+    <!-- Conferences -->
+    <div id="tab-conferences" class="tab-panel">
+      <div class="conf-item">
+        <span class="conf-year">2026</span>
+        <div class="conf-body">
+          <p class="conf-name">Conference XYZ</p>
+          <p class="conf-detail">Presentation title · Location, Month 2026</p>
+        </div>
+      </div>
+      <div class="conf-item">
+        <span class="conf-year">2025</span>
+        <div class="conf-body">
+          <p class="conf-name">Conference ABC</p>
+          <p class="conf-detail">Presentation title · Location, Month 2025</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Publications -->
+    <div id="tab-publications" class="tab-panel">
+      <p class="pub-year">2026</p>
+      <div class="pub-item">
+        <p class="pub-title">My Awesome Paper</p>
+        <p class="pub-venue">Conference XYZ, 2026.</p>
+      </div>
+    </div>
+
   </div>
 </div>
 
-<!-- Giving Back -->
-<div id="page-publications" class="page">
+<!-- GIVING BACK -->
+<div id="page-giving" class="page">
   <div class="inner">
-    <p class="page-label">"By far, the best investment you can make is in yourself", Warren Buffet</p>
+    <p class="page-label">Giving Back</p>
     <h2 class="page-title">I was lucky</h2>
     <hr class="page-rule">
-    <p class="pub-year">2026</p>
-    <div class="pub-item">
-      <p class="pub-title">My Awesome Paper</p>
-      <p class="pub-venue">Conference XYZ, 2026.</p>
+
+    <div class="section-body">
+      <p>Early in my life I understood something that not everyone gets to see in time: education is the only true social elevator. It does not care where you come from. It opens doors that nothing else can.</p>
+      <p>I was lucky enough to grasp this early, and to have people around me who confirmed it. But luck is not a system — and the Italian situation makes this painfully clear.</p>
     </div>
+
+    <blockquote class="pullquote">
+      "The best investment you can make is in yourself."
+      <cite>— Warren Buffett</cite>
+    </blockquote>
+
+    <div class="section-body">
+      <p>Italy has one of the lowest rates of university graduation in Europe, and social mobility has been stalling for decades. Too many students — especially in the South — never encounter a convincing reason to believe that studying changes lives. Nobody around them has shown them that it can.</p>
+      <p>I try, in small ways, to be that example for someone else.</p>
+    </div>
+
+    <div class="giving-initiative">
+      <span class="initiative-tag">Initiative</span>
+      <p class="initiative-title">Christmas in STEM</p>
+      <p class="initiative-body">
+        Occasionally, I return to my former high school during the Christmas period to talk with students about how STEM subjects shape the world around us — from the algorithms that recommend their music to the models that price the risk behind their parents' mortgage. The goal is not recruitment. It is simply to make the invisible visible: to show that mathematics, statistics, and programming are not abstract exercises but genuine instruments of understanding and power.
+      </p>
+    </div>
+
+    <div class="section-body" style="margin-top: 1.5rem;">
+      <p>I believe these conversations matter most when they happen early, before students have already closed doors in their own minds. If you are a teacher or school coordinator in Italy and would like to organise something similar, feel free to reach out.</p>
+    </div>
+
   </div>
 </div>
 
@@ -487,6 +722,84 @@
   </div>
 </div>
 
+<!-- BOOKS -->
+<div id="page-books" class="page">
+  <div class="inner">
+    <p class="page-label">Reading</p>
+    <h2 class="page-title">Books</h2>
+    <hr class="page-rule">
+
+    <div class="section-body">
+      <p>Books I return to, recommend without hesitation, or am working through right now. Divided loosely into academic reading and everything else — though the boundary is always blurry.</p>
+    </div>
+
+    <!-- Currently reading -->
+    <p class="books-section-label">Currently reading</p>
+
+    <div class="book-card">
+      <div class="book-spine book-spine-reading">Now</div>
+      <div class="book-meta">
+        <div class="reading-badge">Reading now</div>
+        <p class="book-title">Book Title</p>
+        <p class="book-author">Author Name · Year</p>
+        <p class="book-note">A brief note on why you're reading it or what you're getting from it.</p>
+      </div>
+    </div>
+
+    <!-- Academic -->
+    <p class="books-section-label">Academic</p>
+
+    <div class="book-card">
+      <div class="book-spine book-spine-academic">Acad</div>
+      <div class="book-meta">
+        <p class="book-title">Mostly Harmless Econometrics</p>
+        <p class="book-author">Angrist & Pischke · 2009</p>
+        <p class="book-note">The clearest introduction to causal inference for applied economists. Required reading before touching any regression.</p>
+      </div>
+    </div>
+
+    <div class="book-card">
+      <div class="book-spine book-spine-academic">Acad</div>
+      <div class="book-meta">
+        <p class="book-title">The Elements of Statistical Learning</p>
+        <p class="book-author">Hastie, Tibshirani & Friedman · 2009</p>
+        <p class="book-note">Dense but rewarding. The canonical reference bridging statistics and machine learning.</p>
+      </div>
+    </div>
+
+    <div class="book-card">
+      <div class="book-spine book-spine-academic">Acad</div>
+      <div class="book-meta">
+        <p class="book-title">Speech and Language Processing</p>
+        <p class="book-author">Jurafsky & Martin · 3rd ed.</p>
+        <p class="book-note">The standard NLP textbook, freely available online. Invaluable for anyone working with text data in social science.</p>
+      </div>
+    </div>
+
+    <!-- Non-academic -->
+    <p class="books-section-label">Beyond academia</p>
+
+    <div class="book-card">
+      <div class="book-spine book-spine-general">Read</div>
+      <div class="book-meta">
+        <p class="book-title">Book Title</p>
+        <p class="book-author">Author Name · Year</p>
+        <p class="book-note">A sentence on why this one stayed with you.</p>
+      </div>
+    </div>
+
+    <div class="book-card">
+      <div class="book-spine book-spine-general">Read</div>
+      <div class="book-meta">
+        <p class="book-title">Book Title</p>
+        <p class="book-author">Author Name · Year</p>
+        <p class="book-note">A sentence on why this one stayed with you.</p>
+      </div>
+    </div>
+
+  </div>
+</div>
+
 <!-- CV -->
 <div id="page-cv" class="page">
   <div class="inner">
@@ -494,9 +807,7 @@
     <h2 class="page-title">CV</h2>
     <hr class="page-rule">
     <p class="section-body">Download the latest version of my curriculum vitae.</p>
-    <a class="cv-download" href="assets/cv.pdf">
-      ↓ &nbsp;Download CV (PDF)
-    </a>
+    <a class="cv-download" href="assets/cv.pdf">↓ &nbsp;Download CV (PDF)</a>
   </div>
 </div>
 
@@ -531,6 +842,15 @@
     if (nav) nav.classList.add('active');
     window.scrollTo({ top: 0, behavior: 'instant' });
   }
+
+  function showTab(id, btn) {
+    // deactivate all panels in this page
+    btn.closest('.inner').querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+    btn.closest('.tab-bar').querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+    document.getElementById('tab-' + id).classList.add('active');
+    btn.classList.add('active');
+  }
+
   document.querySelector('.header-name').addEventListener('click', function(e) {
     e.preventDefault();
     showPage('home');
