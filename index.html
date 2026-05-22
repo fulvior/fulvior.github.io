@@ -460,54 +460,162 @@
 
   .contact-value a:hover { text-decoration: underline; }
 
-  /* ── Books ── */
-  .books-section-label {
+  /* ── Books: library layout ── */
+  .booktab { display: none; }
+  .booktab.active { display: block; animation: fadein 0.2s ease; }
+
+  .lib-layout {
+    display: grid;
+    grid-template-columns: 178px 1fr;
+    gap: 0;
+    border: 1px solid var(--rule);
+    margin-top: 0;
+    min-height: 520px;
+  }
+
+  /* Sidebar */
+  .lib-nav {
+    border-right: 1px solid var(--rule);
+    background: var(--paper-warm);
+    padding: 1.25rem 0 1.5rem;
+    position: sticky;
+    top: 56px;
+    align-self: start;
+    max-height: calc(100vh - 80px);
+    overflow-y: auto;
+  }
+
+  .lib-nav-group { margin-bottom: 0.25rem; }
+
+  .lib-nav-group-label {
     font-family: var(--mono);
-    font-size: 0.6rem;
+    font-size: 0.55rem;
     letter-spacing: 0.14em;
     text-transform: uppercase;
     color: var(--ink-faint);
-    margin: 2.5rem 0 1rem;
-    padding-bottom: 0.5rem;
-    border-bottom: 1px solid var(--rule);
+    padding: 0.75rem 1rem 0.3rem;
+    display: block;
   }
 
-  .book-card {
+  .lib-nav-item {
     display: flex;
-    gap: 1.25rem;
-    padding: 1.25rem 0;
-    border-bottom: 1px solid var(--paper-warm);
-    align-items: flex-start;
-  }
-
-  .book-spine {
-    flex-shrink: 0;
-    width: 36px;
-    height: 52px;
-    border-radius: 2px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    align-items: baseline;
+    gap: 0.5rem;
     font-family: var(--mono);
-    font-size: 0.5rem;
-    font-weight: 500;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    writing-mode: vertical-rl;
-    text-orientation: mixed;
-    color: rgba(255,255,255,0.8);
+    font-size: 0.62rem;
+    color: var(--ink-muted);
+    text-decoration: none;
+    padding: 0.38rem 1rem;
+    letter-spacing: 0.02em;
+    transition: background 0.12s, color 0.12s;
+    border-left: 2px solid transparent;
+    line-height: 1.4;
   }
 
-  .book-spine-academic { background: var(--accent); }
-  .book-spine-general  { background: #4a6e2c; }
-  .book-spine-reading  { background: var(--accent-warm); }
+  .lib-nav-item:hover { color: var(--ink); background: var(--paper-deep); }
+  .lib-nav-item.active {
+    color: var(--accent);
+    background: var(--accent-light);
+    border-left-color: var(--accent);
+  }
 
-  .book-meta {}
-  .book-title { font-size: 1rem; font-weight: 500; margin-bottom: 0.15rem; }
-  .book-author { font-family: var(--mono); font-size: 0.62rem; letter-spacing: 0.06em; color: var(--ink-faint); margin-bottom: 0.35rem; }
-  .book-note { font-size: 0.88rem; color: var(--ink-muted); font-style: italic; }
+  .lib-nav-num {
+    font-family: var(--mono);
+    font-size: 0.55rem;
+    color: var(--ink-faint);
+    min-width: 18px;
+    flex-shrink: 0;
+  }
 
-  .reading-badge {
+  .lib-nav-item.active .lib-nav-num { color: var(--accent); opacity: 0.7; }
+
+  /* Shelf */
+  .lib-shelf { padding: 1.75rem 1.75rem 2rem; }
+
+  .shelf { display: none; animation: fadein 0.18s ease; }
+  .shelf.active { display: block; }
+
+  .shelf-label {
+    font-size: 1rem;
+    font-weight: 500;
+    margin-bottom: 1.5rem;
+    color: var(--ink);
+    display: flex;
+    align-items: baseline;
+    gap: 0.65rem;
+  }
+
+  .shelf-num {
+    font-family: var(--mono);
+    font-size: 0.6rem;
+    color: var(--ink-faint);
+    letter-spacing: 0.1em;
+    background: var(--paper-warm);
+    padding: 0.15rem 0.4rem;
+    border-radius: 2px;
+  }
+
+  .lib-book {
+    padding: 1rem 0;
+    border-bottom: 1px solid var(--paper-warm);
+  }
+
+  .lib-book:last-child { border-bottom: none; }
+
+  .lib-book-head { margin-bottom: 0.35rem; }
+  .lib-book-title { font-size: 0.97rem; font-weight: 500; color: var(--ink); }
+  .lib-book-author {
+    font-family: var(--mono);
+    font-size: 0.6rem;
+    letter-spacing: 0.06em;
+    color: var(--ink-faint);
+    margin-top: 0.15rem;
+  }
+  .lib-book-note { font-size: 0.88rem; color: var(--ink-muted); font-style: italic; line-height: 1.6; }
+
+  /* Beyond academia */
+  .general-reading-now {
+    border: 1px solid var(--rule);
+    border-left: 3px solid var(--accent-warm);
+    padding: 1.25rem 1.5rem;
+    margin-top: 1.5rem;
+    background: var(--paper);
+  }
+
+  .gen-list { display: flex; flex-direction: column; gap: 0; }
+
+  .gen-item {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 0.75rem;
+    padding: 0.85rem 0;
+    border-bottom: 1px solid var(--paper-warm);
+    align-items: baseline;
+  }
+
+  .gen-item-left {}
+  .gen-item-title { font-size: 0.95rem; font-weight: 500; color: var(--ink); }
+  .gen-item-author { font-family: var(--mono); font-size: 0.6rem; color: var(--ink-faint); letter-spacing: 0.04em; margin-top: 0.1rem; }
+  .gen-item-note { font-size: 0.85rem; color: var(--ink-muted); font-style: italic; margin-top: 0.25rem; line-height: 1.5; }
+  .gen-item-tag {
+    font-family: var(--mono);
+    font-size: 0.55rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 0.18rem 0.5rem;
+    border-radius: 2px;
+    white-space: nowrap;
+    align-self: start;
+    margin-top: 0.15rem;
+  }
+
+  .tag-essay   { background: #e8eef4; color: #3a5a7a; }
+  .tag-novel   { background: #eef4e8; color: #3a5a2a; }
+  .tag-history { background: #f4ece8; color: #7a3a2a; }
+  .tag-science { background: #f0eaf4; color: #5a3a7a; }
+  .tag-bio     { background: #f4f0e0; color: #6a5a20; }
+
+  /* Responsive */
     display: inline-flex;
     align-items: center;
     gap: 0.35rem;
@@ -607,13 +715,23 @@
     line-height: 1.5;
   }
 
-  /* ── Responsive ── */
+  /* Responsive */
   @media (max-width: 640px) {
     header { padding: 0.75rem 1rem; flex-wrap: wrap; gap: 0.5rem; }
     .home-name { font-size: 2.2rem; }
     .inner, .home-layout { padding: 2.5rem 1.25rem 4rem; }
     .contact-row { grid-template-columns: 90px 1fr; }
     .tab-btn { padding: 0.5rem 0.65rem; font-size: 0.58rem; }
+    .lib-layout { grid-template-columns: 1fr; }
+    .lib-nav {
+      position: static;
+      border-right: none;
+      border-bottom: 1px solid var(--rule);
+      max-height: 200px;
+      overflow-y: auto;
+      padding: 0.75rem 0;
+    }
+    .lib-shelf { padding: 1.25rem 1rem 1.5rem; }
   }
 </style>
 </head>
@@ -818,72 +936,430 @@
     <hr class="page-rule">
 
     <div class="section-body">
-      <p>Books I return to, recommend without hesitation, or am working through right now. Divided loosely into academic reading and everything else — though the boundary is always blurry.</p>
+      <p>An annotated library — not exhaustive, but honest. Books I have read closely, returned to, or consider essential entry points into their field.</p>
     </div>
 
-    <!-- Currently reading -->
-    <p class="books-section-label">Currently reading</p>
+    <!-- Top-level tabs -->
+    <div class="tab-bar" style="margin-top:1.5rem;">
+      <button class="tab-btn active" onclick="showBookTab('academic', this)">Academic</button>
+      <button class="tab-btn" onclick="showBookTab('general', this)">Beyond academia</button>
+    </div>
 
-    <div class="book-card">
-      <div class="book-spine book-spine-reading">Now</div>
-      <div class="book-meta">
-        <div class="reading-badge">Reading now</div>
-        <p class="book-title">Book Title</p>
-        <p class="book-author">Author Name · Year</p>
-        <p class="book-note">A brief note on why you're reading it or what you're getting from it.</p>
+    <!-- ══ ACADEMIC ══ -->
+    <div id="booktab-academic" class="booktab active">
+      <div class="lib-layout">
+
+        <!-- Sidebar -->
+        <nav class="lib-nav" id="lib-nav">
+          <div class="lib-nav-group">
+            <p class="lib-nav-group-label">Mathematics</p>
+            <a class="lib-nav-item active" onclick="showShelf('math-01',this)" href="#">
+              <span class="lib-nav-num">01</span> Logic &amp; Foundations
+            </a>
+            <a class="lib-nav-item" onclick="showShelf('math-02',this)" href="#">
+              <span class="lib-nav-num">02</span> Linear Algebra
+            </a>
+            <a class="lib-nav-item" onclick="showShelf('math-03',this)" href="#">
+              <span class="lib-nav-num">03</span> Real Analysis
+            </a>
+            <a class="lib-nav-item" onclick="showShelf('math-04',this)" href="#">
+              <span class="lib-nav-num">04</span> Topology
+            </a>
+            <a class="lib-nav-item" onclick="showShelf('math-05',this)" href="#">
+              <span class="lib-nav-num">05</span> Measure Theory
+            </a>
+            <a class="lib-nav-item" onclick="showShelf('math-06',this)" href="#">
+              <span class="lib-nav-num">06</span> Functional Analysis
+            </a>
+            <a class="lib-nav-item" onclick="showShelf('math-07',this)" href="#">
+              <span class="lib-nav-num">07</span> Differential Equations
+            </a>
+            <a class="lib-nav-item" onclick="showShelf('math-08',this)" href="#">
+              <span class="lib-nav-num">08</span> Numerical Methods
+            </a>
+            <a class="lib-nav-item" onclick="showShelf('math-09',this)" href="#">
+              <span class="lib-nav-num">09</span> Optimization
+            </a>
+          </div>
+          <div class="lib-nav-group">
+            <p class="lib-nav-group-label">Statistics</p>
+            <a class="lib-nav-item" onclick="showShelf('stat-theory',this)" href="#">
+              <span class="lib-nav-num">—</span> Theory
+            </a>
+            <a class="lib-nav-item" onclick="showShelf('stat-applied',this)" href="#">
+              <span class="lib-nav-num">—</span> Applied &amp; ML
+            </a>
+          </div>
+          <div class="lib-nav-group">
+            <p class="lib-nav-group-label">Econometrics</p>
+            <a class="lib-nav-item" onclick="showShelf('eco-core',this)" href="#">
+              <span class="lib-nav-num">—</span> Core texts
+            </a>
+            <a class="lib-nav-item" onclick="showShelf('eco-causal',this)" href="#">
+              <span class="lib-nav-num">—</span> Causal inference
+            </a>
+            <a class="lib-nav-item" onclick="showShelf('eco-text',this)" href="#">
+              <span class="lib-nav-num">—</span> Text &amp; Spatial
+            </a>
+          </div>
+        </nav>
+
+        <!-- Shelf -->
+        <div class="lib-shelf" id="lib-shelf">
+
+          <!-- 01 Logic -->
+          <div class="shelf" id="shelf-math-01">
+            <p class="shelf-label"><span class="shelf-num">01</span> Logic &amp; Foundations</p>
+            <div class="lib-book">
+              <div class="lib-book-head">
+                <p class="lib-book-title">Introduction to Mathematical Logic</p>
+                <p class="lib-book-author">Elliott Mendelson · 1964</p>
+              </div>
+              <p class="lib-book-note">The standard entry point into propositional and predicate calculus. Rigorous and self-contained — a good companion before tackling proof theory or model theory.</p>
+            </div>
+            <div class="lib-book">
+              <div class="lib-book-head">
+                <p class="lib-book-title">Naive Set Theory</p>
+                <p class="lib-book-author">Paul Halmos · 1960</p>
+              </div>
+              <p class="lib-book-note">Deceptively titled. Halmos writes with exceptional clarity, and this slim volume remains the best way to build genuine intuition about sets before ZFC formalism.</p>
+            </div>
+            <div class="lib-book">
+              <div class="lib-book-head">
+                <p class="lib-book-title">Gödel, Escher, Bach</p>
+                <p class="lib-book-author">Douglas Hofstadter · 1979</p>
+              </div>
+              <p class="lib-book-note">Not a textbook, but essential background. The most vivid exposition of incompleteness, self-reference, and the limits of formal systems ever written.</p>
+            </div>
+          </div>
+
+          <!-- 02 Linear Algebra -->
+          <div class="shelf" id="shelf-math-02">
+            <p class="shelf-label"><span class="shelf-num">02</span> Linear Algebra</p>
+            <div class="lib-book">
+              <div class="lib-book-head">
+                <p class="lib-book-title">Linear Algebra Done Right</p>
+                <p class="lib-book-author">Sheldon Axler · 1995</p>
+              </div>
+              <p class="lib-book-note">Takes the radical step of building the theory without determinants until the very end. The result is a cleaner, more conceptual understanding — the right book for a second pass.</p>
+            </div>
+            <div class="lib-book">
+              <div class="lib-book-head">
+                <p class="lib-book-title">Matrix Analysis</p>
+                <p class="lib-book-author">Horn &amp; Johnson · 1985</p>
+              </div>
+              <p class="lib-book-note">The definitive reference for anyone working with matrix theory beyond the introductory level. Indispensable for spatial econometrics and spectral methods.</p>
+            </div>
+            <div class="lib-book">
+              <div class="lib-book-head">
+                <p class="lib-book-title">Introduction to Linear Algebra</p>
+                <p class="lib-book-author">Gilbert Strang · 4th ed.</p>
+              </div>
+              <p class="lib-book-note">The most pedagogically generous linear algebra text I know. Strang makes you see the geometry behind every algebraic fact. Complemented by his freely available MIT lectures.</p>
+            </div>
+          </div>
+
+          <!-- 03 Real Analysis -->
+          <div class="shelf" id="shelf-math-03">
+            <p class="shelf-label"><span class="shelf-num">03</span> Real Analysis</p>
+            <div class="lib-book">
+              <div class="lib-book-head">
+                <p class="lib-book-title">Principles of Mathematical Analysis</p>
+                <p class="lib-book-author">Walter Rudin · 1953</p>
+              </div>
+              <p class="lib-book-note">"Baby Rudin" — brutal to learn from the first time, unforgettable the second. The concision is intentional; every sentence carries load. A rite of passage.</p>
+            </div>
+            <div class="lib-book">
+              <div class="lib-book-head">
+                <p class="lib-book-title">Understanding Analysis</p>
+                <p class="lib-book-author">Stephen Abbott · 2001</p>
+              </div>
+              <p class="lib-book-note">The book Rudin should have been for a first encounter. Abbott always motivates before he proves, and the exposition is among the best in mathematical pedagogy.</p>
+            </div>
+          </div>
+
+          <!-- 04 Topology -->
+          <div class="shelf" id="shelf-math-04">
+            <p class="shelf-label"><span class="shelf-num">04</span> Topology</p>
+            <div class="lib-book">
+              <div class="lib-book-head">
+                <p class="lib-book-title">Topology</p>
+                <p class="lib-book-author">James Munkres · 2nd ed.</p>
+              </div>
+              <p class="lib-book-note">The standard graduate text, and deservedly so. Munkres writes with unusual care; the problem sets are excellent. Covers point-set topology fully before moving to algebraic topology.</p>
+            </div>
+            <div class="lib-book">
+              <div class="lib-book-head">
+                <p class="lib-book-title">Introduction to Metric and Topological Spaces</p>
+                <p class="lib-book-author">Wilson Sutherland · 1975</p>
+              </div>
+              <p class="lib-book-note">A gentler entry point for those coming from analysis. The transition from metric to topological spaces is handled with real care.</p>
+            </div>
+          </div>
+
+          <!-- 05 Measure Theory -->
+          <div class="shelf" id="shelf-math-05">
+            <p class="shelf-label"><span class="shelf-num">05</span> Measure Theory</p>
+            <div class="lib-book">
+              <div class="lib-book-head">
+                <p class="lib-book-title">Real and Complex Analysis</p>
+                <p class="lib-book-author">Walter Rudin · 1966</p>
+              </div>
+              <p class="lib-book-note">"Big Rudin." The chapters on measure and integration are a masterpiece of compression. Non-negotiable if you want a serious foundation for probability theory.</p>
+            </div>
+            <div class="lib-book">
+              <div class="lib-book-head">
+                <p class="lib-book-title">Measure Theory and Integration</p>
+                <p class="lib-book-author">G. de Barra · 1981</p>
+              </div>
+              <p class="lib-book-note">A more accessible companion to Rudin. The exposition of the Lebesgue integral is especially clear, and the exercises build intuition well.</p>
+            </div>
+            <div class="lib-book">
+              <div class="lib-book-head">
+                <p class="lib-book-title">Probability and Measure</p>
+                <p class="lib-book-author">Patrick Billingsley · 1979</p>
+              </div>
+              <p class="lib-book-note">The bridge between measure theory and probability. Billingsley's treatment of weak convergence and characteristic functions is the foundation you need for asymptotic econometrics.</p>
+            </div>
+          </div>
+
+          <!-- 06 Functional Analysis -->
+          <div class="shelf" id="shelf-math-06">
+            <p class="shelf-label"><span class="shelf-num">06</span> Functional Analysis</p>
+            <div class="lib-book">
+              <div class="lib-book-head">
+                <p class="lib-book-title">Introductory Functional Analysis with Applications</p>
+                <p class="lib-book-author">Erwin Kreyszig · 1978</p>
+              </div>
+              <p class="lib-book-note">The most user-friendly door into functional analysis. Kreyszig never sacrifices rigour for accessibility, but he always explains why things matter before proving them.</p>
+            </div>
+            <div class="lib-book">
+              <div class="lib-book-head">
+                <p class="lib-book-title">Functional Analysis</p>
+                <p class="lib-book-author">Walter Rudin · 1973</p>
+              </div>
+              <p class="lib-book-note">For those who have survived the first two Rudins. The treatment of distributions, Fourier analysis, and operator theory here has no equal at this level of concision.</p>
+            </div>
+          </div>
+
+          <!-- 07 Differential Equations -->
+          <div class="shelf" id="shelf-math-07">
+            <p class="shelf-label"><span class="shelf-num">07</span> Differential Equations</p>
+            <div class="lib-book">
+              <div class="lib-book-head">
+                <p class="lib-book-title">Ordinary Differential Equations</p>
+                <p class="lib-book-author">Vladimir Arnold · 1978</p>
+              </div>
+              <p class="lib-book-note">Arnold approaches ODEs as a geometer, not an analyst. The emphasis on phase flows and qualitative behaviour is exactly the perspective economists applying dynamic systems need.</p>
+            </div>
+            <div class="lib-book">
+              <div class="lib-book-head">
+                <p class="lib-book-title">Differential Equations, Dynamical Systems, and an Introduction to Chaos</p>
+                <p class="lib-book-author">Hirsch, Smale &amp; Devaney · 2004</p>
+              </div>
+              <p class="lib-book-note">The standard graduate text for dynamical systems. The treatment of linear systems, stability, and bifurcation theory is thorough and well-motivated.</p>
+            </div>
+          </div>
+
+          <!-- 08 Numerical Methods -->
+          <div class="shelf" id="shelf-math-08">
+            <p class="shelf-label"><span class="shelf-num">08</span> Numerical Methods</p>
+            <div class="lib-book">
+              <div class="lib-book-head">
+                <p class="lib-book-title">Numerical Linear Algebra</p>
+                <p class="lib-book-author">Trefethen &amp; Bau · 1997</p>
+              </div>
+              <p class="lib-book-note">A remarkable book: rigorous yet remarkably readable. The lectures on SVD, QR, and iterative methods make you understand what computation actually does to matrices.</p>
+            </div>
+            <div class="lib-book">
+              <div class="lib-book-head">
+                <p class="lib-book-title">Numerical Methods for Scientists and Engineers</p>
+                <p class="lib-book-author">Hamming · 1962</p>
+              </div>
+              <p class="lib-book-note">Old but not outdated. Hamming's philosophy of numerical computation — "the purpose of computing is insight, not numbers" — belongs on every quantitative researcher's wall.</p>
+            </div>
+          </div>
+
+          <!-- 09 Optimization -->
+          <div class="shelf" id="shelf-math-09">
+            <p class="shelf-label"><span class="shelf-num">09</span> Optimization</p>
+            <div class="lib-book">
+              <div class="lib-book-head">
+                <p class="lib-book-title">Convex Optimization</p>
+                <p class="lib-book-author">Boyd &amp; Vandenberghe · 2004</p>
+              </div>
+              <p class="lib-book-note">Freely available online. The gold standard reference for convex analysis and optimization algorithms. Every chapter in Part II is directly applicable to estimation problems in econometrics and ML.</p>
+            </div>
+            <div class="lib-book">
+              <div class="lib-book-head">
+                <p class="lib-book-title">Nonlinear Programming</p>
+                <p class="lib-book-author">Dimitri Bertsekas · 2nd ed.</p>
+              </div>
+              <p class="lib-book-note">The most complete treatment of constrained optimization I have found. The chapters on Lagrangian duality and the KKT conditions are essential for understanding modern estimators.</p>
+            </div>
+            <div class="lib-book">
+              <div class="lib-book-head">
+                <p class="lib-book-title">Mathematics for Economists</p>
+                <p class="lib-book-author">Simon &amp; Blume · 1994</p>
+              </div>
+              <p class="lib-book-note">The reliable undergraduate companion that ties calculus, linear algebra, and constrained optimisation together in an economics context. A useful anchor before moving to more abstract treatments.</p>
+            </div>
+          </div>
+
+          <!-- Statistics: Theory -->
+          <div class="shelf" id="shelf-stat-theory">
+            <p class="shelf-label">Statistics — Theory</p>
+            <div class="lib-book">
+              <div class="lib-book-head">
+                <p class="lib-book-title">Statistical Inference</p>
+                <p class="lib-book-author">Casella &amp; Berger · 2nd ed.</p>
+              </div>
+              <p class="lib-book-note">The standard graduate reference for classical inference. The treatment of sufficiency, completeness, and the Cramér-Rao bound is impeccable. Invaluable as a desk reference.</p>
+            </div>
+            <div class="lib-book">
+              <div class="lib-book-head">
+                <p class="lib-book-title">Asymptotic Statistics</p>
+                <p class="lib-book-author">Aad van der Vaart · 1998</p>
+              </div>
+              <p class="lib-book-note">Dense, exact, and beautiful. The chapters on empirical processes and the delta method are the backbone of modern econometric asymptotics. Not for the faint-hearted.</p>
+            </div>
+            <div class="lib-book">
+              <div class="lib-book-head">
+                <p class="lib-book-title">Testing Statistical Hypotheses</p>
+                <p class="lib-book-author">Lehmann &amp; Romano · 3rd ed.</p>
+              </div>
+              <p class="lib-book-note">The definitive treatment of hypothesis testing from a decision-theoretic perspective. The UMP and UMPU results here clarify what most applied texts leave vague.</p>
+            </div>
+          </div>
+
+          <!-- Statistics: Applied & ML -->
+          <div class="shelf" id="shelf-stat-applied">
+            <p class="shelf-label">Statistics — Applied &amp; Machine Learning</p>
+            <div class="lib-book">
+              <div class="lib-book-head">
+                <p class="lib-book-title">The Elements of Statistical Learning</p>
+                <p class="lib-book-author">Hastie, Tibshirani &amp; Friedman · 2009</p>
+              </div>
+              <p class="lib-book-note">The canonical bridge between statistics and machine learning. Dense but enormously rewarding. The chapters on regularisation, trees, and ensemble methods remain the best in the literature.</p>
+            </div>
+            <div class="lib-book">
+              <div class="lib-book-head">
+                <p class="lib-book-title">An Introduction to Statistical Learning</p>
+                <p class="lib-book-author">James, Witten, Hastie &amp; Tibshirani · 2013</p>
+              </div>
+              <p class="lib-book-note">The accessible companion to ESL — the right first book for students coming from economics who want to engage seriously with ML methods.</p>
+            </div>
+            <div class="lib-book">
+              <div class="lib-book-head">
+                <p class="lib-book-title">Pattern Recognition and Machine Learning</p>
+                <p class="lib-book-author">Christopher Bishop · 2006</p>
+              </div>
+              <p class="lib-book-note">The probabilistic perspective on machine learning — Bayesian inference, graphical models, and kernel methods treated with real depth. A reference I return to repeatedly.</p>
+            </div>
+          </div>
+
+          <!-- Econometrics: Core -->
+          <div class="shelf" id="shelf-eco-core">
+            <p class="shelf-label">Econometrics — Core texts</p>
+            <div class="lib-book">
+              <div class="lib-book-head">
+                <p class="lib-book-title">Econometric Analysis</p>
+                <p class="lib-book-author">William Greene · 8th ed.</p>
+              </div>
+              <p class="lib-book-note">The encyclopaedic reference. Not a book you read cover to cover, but one you keep within arm's reach. Every classical and semi-classical estimator is here, with derivations.</p>
+            </div>
+            <div class="lib-book">
+              <div class="lib-book-head">
+                <p class="lib-book-title">Econometric Theory and Methods</p>
+                <p class="lib-book-author">Davidson &amp; MacKinnon · 2004</p>
+              </div>
+              <p class="lib-book-note">More modern and methodologically self-aware than Greene. The treatment of bootstrap methods and simulation-based inference is particularly strong.</p>
+            </div>
+            <div class="lib-book">
+              <div class="lib-book-head">
+                <p class="lib-book-title">A Course in Econometrics</p>
+                <p class="lib-book-author">Arthur Goldberger · 1991</p>
+              </div>
+              <p class="lib-book-note">Understated and brilliant. Goldberger teaches you to think clearly about what a regression is actually doing — the best foundation for anyone who will later go beyond OLS.</p>
+            </div>
+          </div>
+
+          <!-- Econometrics: Causal -->
+          <div class="shelf" id="shelf-eco-causal">
+            <p class="shelf-label">Econometrics — Causal inference</p>
+            <div class="lib-book">
+              <div class="lib-book-head">
+                <p class="lib-book-title">Mostly Harmless Econometrics</p>
+                <p class="lib-book-author">Angrist &amp; Pischke · 2009</p>
+              </div>
+              <p class="lib-book-note">The book that made causal inference approachable for a generation of economists. The IV and RDD chapters in particular deserve to be read slowly.</p>
+            </div>
+            <div class="lib-book">
+              <div class="lib-book-head">
+                <p class="lib-book-title">Causal Inference: The Mixtape</p>
+                <p class="lib-book-author">Scott Cunningham · 2021</p>
+              </div>
+              <p class="lib-book-note">Freely available online. Cunningham writes with personality and the code examples are integrated seamlessly. The treatment of DiD and synthetic control is especially current.</p>
+            </div>
+            <div class="lib-book">
+              <div class="lib-book-head">
+                <p class="lib-book-title">Causality</p>
+                <p class="lib-book-author">Judea Pearl · 2000</p>
+              </div>
+              <p class="lib-book-note">The foundational text on structural causal models and do-calculus. Not an easy read, but it fundamentally reframes what identification means — a perspective every econometrician should encounter.</p>
+            </div>
+          </div>
+
+          <!-- Econometrics: Text & Spatial -->
+          <div class="shelf" id="shelf-eco-text">
+            <p class="shelf-label">Econometrics — Text &amp; Spatial</p>
+            <div class="lib-book">
+              <div class="lib-book-head">
+                <p class="lib-book-title">Speech and Language Processing</p>
+                <p class="lib-book-author">Jurafsky &amp; Martin · 3rd ed. (online)</p>
+              </div>
+              <p class="lib-book-note">The standard NLP reference, freely available and continuously updated. The chapters on language models and word vectors are essential background for text-based econometrics.</p>
+            </div>
+            <div class="lib-book">
+              <div class="lib-book-head">
+                <p class="lib-book-title">Introduction to Spatial Econometrics</p>
+                <p class="lib-book-author">LeSage &amp; Pace · 2009</p>
+              </div>
+              <p class="lib-book-note">The clearest treatment of spatial weight matrices, SAR models, and Bayesian spatial estimation. The construction and properties of W are handled more carefully here than anywhere else.</p>
+            </div>
+            <div class="lib-book">
+              <div class="lib-book-head">
+                <p class="lib-book-title">Spatial Econometrics: Methods and Models</p>
+                <p class="lib-book-author">Luc Anselin · 1988</p>
+              </div>
+              <p class="lib-book-note">The founding text of the field. Some notation has dated, but the conceptual architecture — how to think about spatial dependence as a modelling problem — remains indispensable.</p>
+            </div>
+          </div>
+
+        </div><!-- /lib-shelf -->
+      </div><!-- /lib-layout -->
+    </div><!-- /booktab-academic -->
+
+    <!-- ══ BEYOND ACADEMIA ══ -->
+    <div id="booktab-general" class="booktab">
+
+      <!-- Currently reading -->
+      <div class="general-reading-now">
+        <span class="reading-badge">Reading now</span>
+        <p class="lib-book-title" style="font-size:1.05rem;margin-bottom:0.2rem;">Book Title</p>
+        <p class="lib-book-author">Author Name · Year</p>
+        <p class="lib-book-note" style="margin-top:0.4rem;">A brief note on why you're reading it or what you're getting from it.</p>
       </div>
-    </div>
 
-    <!-- Academic -->
-    <p class="books-section-label">Academic</p>
+      <!-- Archive -->
+      <p class="books-section-label" style="margin-top:2rem;">Archive</p>
+      <p class="section-body" style="font-size:0.88rem;margin-bottom:1.25rem;color:var(--ink-muted);">A non-exhaustive list. Books I consider relevant — in no particular order.</p>
 
-    <div class="book-card">
-      <div class="book-spine book-spine-academic">Acad</div>
-      <div class="book-meta">
-        <p class="book-title">Mostly Harmless Econometrics</p>
-        <p class="book-author">Angrist & Pischke · 2009</p>
-        <p class="book-note">The clearest introduction to causal inference for applied economists. Required reading before touching any regression.</p>
+      <div class="gen-list" id="gen-list">
+        <!-- items rendered by JS -->
       </div>
-    </div>
 
-    <div class="book-card">
-      <div class="book-spine book-spine-academic">Acad</div>
-      <div class="book-meta">
-        <p class="book-title">The Elements of Statistical Learning</p>
-        <p class="book-author">Hastie, Tibshirani & Friedman · 2009</p>
-        <p class="book-note">Dense but rewarding. The canonical reference bridging statistics and machine learning.</p>
-      </div>
-    </div>
-
-    <div class="book-card">
-      <div class="book-spine book-spine-academic">Acad</div>
-      <div class="book-meta">
-        <p class="book-title">Speech and Language Processing</p>
-        <p class="book-author">Jurafsky & Martin · 3rd ed.</p>
-        <p class="book-note">The standard NLP textbook, freely available online. Invaluable for anyone working with text data in social science.</p>
-      </div>
-    </div>
-
-    <!-- Non-academic -->
-    <p class="books-section-label">Beyond academia</p>
-
-    <div class="book-card">
-      <div class="book-spine book-spine-general">Read</div>
-      <div class="book-meta">
-        <p class="book-title">Book Title</p>
-        <p class="book-author">Author Name · Year</p>
-        <p class="book-note">A sentence on why this one stayed with you.</p>
-      </div>
-    </div>
-
-    <div class="book-card">
-      <div class="book-spine book-spine-general">Read</div>
-      <div class="book-meta">
-        <p class="book-title">Book Title</p>
-        <p class="book-author">Author Name · Year</p>
-        <p class="book-note">A sentence on why this one stayed with you.</p>
-      </div>
-    </div>
+    </div><!-- /booktab-general -->
 
   </div>
 </div>
@@ -1056,6 +1532,74 @@
       ${avgLine}${bars}
     </svg>`;
   }
+
+
+  // ── Books: general list ──
+  const GENERAL_BOOKS = [
+    { title: "The Structure of Scientific Revolutions", author: "Thomas Kuhn · 1962", note: "How science actually changes. Essential reading before claiming any research is 'paradigm-shifting'.", tag: "essay" },
+    { title: "Against Method", author: "Paul Feyerabend · 1975", note: "A provocative assault on the idea of a universal scientific method. Useful for keeping methodological humility.", tag: "essay" },
+    { title: "The Black Swan", author: "Nassim Taleb · 2007", note: "Infuriating and important in equal measure. Tail risk and epistemic arrogance in financial modelling, argued with great force.", tag: "essay" },
+    { title: "How to Lie with Statistics", author: "Darrell Huff · 1954", note: "A short, witty, and still entirely relevant guide to statistical sleight of hand. Recommended to every student before their first data course.", tag: "essay" },
+    { title: "The Sleepwalkers", author: "Arthur Koestler · 1959", note: "A history of cosmology from Babylonian astronomy to Kepler. Koestler shows how great science is never a clean logical process.", tag: "history" },
+    { title: "Surely You're Joking, Mr. Feynman!", author: "Richard Feynman · 1985", note: "Anecdotes from a physicist who cared deeply about understanding rather than credentialism. A model of intellectual curiosity.", tag: "bio" },
+    { title: "A Mathematician's Apology", author: "G. H. Hardy · 1940", note: "A meditation on mathematical beauty and the life of the mind. Poignant and honest — Hardy knew his best work was behind him.", tag: "essay" },
+    { title: "The Remains of the Day", author: "Kazuo Ishiguro · 1989", note: "About dignity, self-deception, and the cost of subordinating yourself to a system. I think about this book often.", tag: "novel" },
+    { title: "If This Is a Man", author: "Primo Levi · 1947", note: "Levi writes about Auschwitz with the precision of a chemist and the humanity of a poet. One of the most important books written in the twentieth century.", tag: "bio" },
+    { title: "The Periodic Table", author: "Primo Levi · 1975", note: "Part memoir, part chemistry. Each chapter is named for an element; together they trace a life. The model for writing about science as a human practice.", tag: "bio" },
+    { title: "Thinking, Fast and Slow", author: "Daniel Kahneman · 2011", note: "The most accessible summary of behavioral economics and cognitive bias. The sections on statistical intuition failures are directly relevant to how we misread data.", tag: "science" },
+    { title: "Antifragile", author: "Nassim Taleb · 2012", note: "More disciplined than The Black Swan. The concept of antifragility — systems that gain from disorder — is a genuinely useful lens for thinking about institutions and models.", tag: "essay" },
+    { title: "The Hitchhiker's Guide to the Galaxy", author: "Douglas Adams · 1979", note: "The best argument I know for not taking yourself too seriously. Revisited whenever I feel overburdened by importance.", tag: "novel" },
+  ];
+
+  const TAG_LABELS = { essay:"Essay/Non-fiction", novel:"Novel", history:"History", science:"Science", bio:"Biography/Memoir" };
+
+  function renderGeneralBooks() {
+    const el = document.getElementById('gen-list');
+    if (!el || el.children.length > 0) return;
+    GENERAL_BOOKS.forEach(b => {
+      const div = document.createElement('div');
+      div.className = 'gen-item';
+      div.innerHTML = `<div class="gen-item-left">
+        <p class="gen-item-title">${b.title}</p>
+        <p class="gen-item-author">${b.author}</p>
+        <p class="gen-item-note">${b.note}</p>
+      </div>
+      <span class="gen-item-tag tag-${b.tag}">${TAG_LABELS[b.tag]}</span>`;
+      el.appendChild(div);
+    });
+  }
+
+  function showBookTab(id, btn) {
+    document.querySelectorAll('.booktab').forEach(t => t.classList.remove('active'));
+    btn.closest('.tab-bar').querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+    document.getElementById('booktab-' + id).classList.add('active');
+    btn.classList.add('active');
+    if (id === 'general') renderGeneralBooks();
+  }
+
+  function showShelf(id, link) {
+    document.querySelectorAll('.shelf').forEach(s => s.classList.remove('active'));
+    document.querySelectorAll('.lib-nav-item').forEach(a => a.classList.remove('active'));
+    const shelf = document.getElementById('shelf-' + id);
+    if (shelf) shelf.classList.add('active');
+    if (link) { link.classList.add('active'); link.blur(); }
+    return false;
+  }
+
+  // Initialise first shelf when books page loads
+  const _origShowPage = showPage;
+  showPage = function(id) {
+    _origShowPage(id);
+    if (id === 'books') {
+      setTimeout(() => {
+        if (!document.querySelector('.shelf.active')) {
+          const first = document.getElementById('shelf-math-01');
+          if (first) first.classList.add('active');
+        }
+      }, 20);
+    }
+    if (id === 'giving') setTimeout(() => renderChart(ATTAINMENT, EU_AVG_ATT, '%'), 50);
+  };
 
   document.querySelector('.header-name').addEventListener('click', function(e) {
     e.preventDefault();
