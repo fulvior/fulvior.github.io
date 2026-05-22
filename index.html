@@ -536,6 +536,77 @@
     50% { opacity: 0.4; transform: scale(0.7); }
   }
 
+  /* ── Chart ── */
+  .chart-wrapper {
+    margin: 2rem 0 1.5rem;
+    border: 1px solid var(--rule);
+    background: var(--paper);
+    padding: 1.5rem 1.5rem 1rem;
+  }
+
+  .chart-header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 1rem;
+    flex-wrap: wrap;
+    margin-bottom: 1.25rem;
+  }
+
+  .chart-toggle {
+    display: flex;
+    gap: 2px;
+    background: var(--paper-warm);
+    border: 1px solid var(--rule);
+    border-radius: 3px;
+    padding: 2px;
+  }
+
+  .chart-toggle-btn {
+    font-family: var(--mono);
+    font-size: 0.58rem;
+    letter-spacing: 0.07em;
+    text-transform: uppercase;
+    background: none;
+    border: none;
+    padding: 0.3rem 0.75rem;
+    border-radius: 2px;
+    cursor: pointer;
+    color: var(--ink-faint);
+    transition: background 0.15s, color 0.15s;
+  }
+
+  .chart-toggle-btn.active {
+    background: var(--paper);
+    color: var(--accent);
+    box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+  }
+
+  .chart-subtitle {
+    font-family: var(--mono);
+    font-size: 0.6rem;
+    color: var(--ink-faint);
+    letter-spacing: 0.06em;
+    padding-top: 0.4rem;
+    text-align: right;
+    max-width: 280px;
+    line-height: 1.5;
+  }
+
+  .chart-area {
+    width: 100%;
+    overflow: hidden;
+  }
+
+  .chart-source {
+    font-family: var(--mono);
+    font-size: 0.55rem;
+    color: var(--ink-faint);
+    letter-spacing: 0.04em;
+    margin-top: 0.75rem;
+    line-height: 1.5;
+  }
+
   /* ── Responsive ── */
   @media (max-width: 640px) {
     header { padding: 0.75rem 1rem; flex-wrap: wrap; gap: 0.5rem; }
@@ -679,6 +750,23 @@
     <div class="section-body">
       <p>Italy has one of the lowest rates of university graduation in Europe, and social mobility has been stalling for decades. Too many students — especially in the South — never encounter a convincing reason to believe that studying changes lives. Nobody around them has shown them that it can.</p>
       <p>I try, in small ways, to be that example for someone else.</p>
+    </div>
+
+    <!-- DATA VIZ -->
+    <div class="chart-wrapper">
+      <div class="chart-header">
+        <div class="chart-toggle">
+          <button class="chart-toggle-btn active" id="btn-attainment" onclick="switchChart('attainment')">Tertiary attainment</button>
+          <button class="chart-toggle-btn" id="btn-stem" onclick="switchChart('stem')">STEM graduates</button>
+        </div>
+        <p class="chart-subtitle" id="chart-subtitle">Share of 25–34 year-olds with a tertiary degree, EU countries, 2024</p>
+      </div>
+      <div class="chart-area" id="chart-area"></div>
+      <p class="chart-source">Source: Eurostat (edat_lfse_03; educ_uoe_grad04). STEM = science, mathematics, computing, engineering, manufacturing & construction.</p>
+    </div>
+
+    <div class="section-body" style="margin-top:0.5rem;">
+      <p>The picture is stark. In 2024, only 31.6% of Italians aged 25–34 held a university degree — second-to-last in the EU, ahead only of Romania. The EU average stands at 44.2%. On STEM specifically, Italy produces around 19 graduates per 1,000 young people, while countries like Finland and Ireland produce more than 28. The gap is not narrowing fast enough.</p>
     </div>
 
     <div class="giving-initiative">
@@ -833,6 +921,72 @@
 </div>
 
 <script>
+  // ── Chart data (Eurostat) ──
+  const ATTAINMENT = [
+    { c: "IE", name: "Ireland",     v: 65.2 },
+    { c: "LU", name: "Luxembourg",  v: 63.8 },
+    { c: "CY", name: "Cyprus",      v: 60.1 },
+    { c: "BE", name: "Belgium",     v: 50.9 },
+    { c: "NL", name: "Netherlands", v: 54.8 },
+    { c: "PL", name: "Poland",      v: 48.1 },
+    { c: "LT", name: "Lithuania",   v: 56.2 },
+    { c: "EE", name: "Estonia",     v: 45.3 },
+    { c: "EL", name: "Greece",      v: 44.4 },
+    { c: "LV", name: "Latvia",      v: 44.3 },
+    { c: "FI", name: "Finland",     v: 43.2 },
+    { c: "SI", name: "Slovenia",    v: 43.2 },
+    { c: "PT", name: "Portugal",    v: 41.9 },
+    { c: "DE", name: "Germany",     v: 39.8 },
+    { c: "FR", name: "France",      v: 49.6 },
+    { c: "DK", name: "Denmark",     v: 52.3 },
+    { c: "SE", name: "Sweden",      v: 51.8 },
+    { c: "AT", name: "Austria",     v: 43.5 },
+    { c: "SK", name: "Slovakia",    v: 36.4 },
+    { c: "CZ", name: "Czechia",     v: 35.0 },
+    { c: "HU", name: "Hungary",     v: 34.1 },
+    { c: "HR", name: "Croatia",     v: 36.8 },
+    { c: "BG", name: "Bulgaria",    v: 37.6 },
+    { c: "MT", name: "Malta",       v: 38.5 },
+    { c: "ES", name: "Spain",       v: 50.2 },
+    { c: "IT", name: "Italy",       v: 31.6, highlight: true },
+    { c: "RO", name: "Romania",     v: 23.2, last: true },
+  ].sort((a, b) => b.v - a.v);
+
+  // STEM graduates per 1,000 young people aged 20-34 (Eurostat educ_uoe_grad04, ~2022/23)
+  const STEM = [
+    { c: "FR", name: "France",      v: 20.1 },
+    { c: "FI", name: "Finland",     v: 28.5 },
+    { c: "IE", name: "Ireland",     v: 28.2 },
+    { c: "DE", name: "Germany",     v: 25.6 },
+    { c: "SE", name: "Sweden",      v: 24.8 },
+    { c: "PT", name: "Portugal",    v: 23.1 },
+    { c: "CZ", name: "Czechia",     v: 22.7 },
+    { c: "AT", name: "Austria",     v: 22.3 },
+    { c: "EL", name: "Greece",      v: 21.8 },
+    { c: "ES", name: "Spain",       v: 21.4 },
+    { c: "PL", name: "Poland",      v: 20.9 },
+    { c: "NL", name: "Netherlands", v: 20.7 },
+    { c: "SK", name: "Slovakia",    v: 20.2 },
+    { c: "BE", name: "Belgium",     v: 19.5 },
+    { c: "DK", name: "Denmark",     v: 24.1 },
+    { c: "BG", name: "Bulgaria",    v: 18.8 },
+    { c: "HR", name: "Croatia",     v: 18.4 },
+    { c: "EE", name: "Estonia",     v: 18.1 },
+    { c: "HU", name: "Hungary",     v: 17.8 },
+    { c: "LV", name: "Latvia",      v: 17.5 },
+    { c: "LT", name: "Lithuania",   v: 17.2 },
+    { c: "SI", name: "Slovenia",    v: 17.0 },
+    { c: "MT", name: "Malta",       v: 16.9 },
+    { c: "LU", name: "Luxembourg",  v: 16.4 },
+    { c: "CY", name: "Cyprus",      v: 15.8 },
+    { c: "IT", name: "Italy",       v: 19.0, highlight: true },
+    { c: "RO", name: "Romania",     v: 14.3, last: true },
+  ].sort((a, b) => b.v - a.v);
+
+  const EU_AVG_ATT  = 44.2;
+  const EU_AVG_STEM = 22.4;
+
+  // ── Page navigation ──
   function showPage(id) {
     document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
     document.querySelectorAll('nav a').forEach(a => a.classList.remove('active'));
@@ -841,20 +995,73 @@
     const nav = document.getElementById('nav-' + id);
     if (nav) nav.classList.add('active');
     window.scrollTo({ top: 0, behavior: 'instant' });
+    if (id === 'giving') setTimeout(() => renderChart(ATTAINMENT, EU_AVG_ATT, '%'), 50);
   }
 
   function showTab(id, btn) {
-    // deactivate all panels in this page
     btn.closest('.inner').querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
     btn.closest('.tab-bar').querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
     document.getElementById('tab-' + id).classList.add('active');
     btn.classList.add('active');
   }
 
+  // ── Chart ──
+  function switchChart(type) {
+    document.getElementById('btn-attainment').classList.toggle('active', type === 'attainment');
+    document.getElementById('btn-stem').classList.toggle('active', type === 'stem');
+    document.getElementById('chart-subtitle').textContent = type === 'attainment'
+      ? 'Share of 25–34 year-olds with a tertiary degree, EU countries, 2024'
+      : 'STEM tertiary graduates per 1,000 young people (20–34), EU countries, 2022/23';
+    renderChart(
+      type === 'attainment' ? ATTAINMENT : STEM,
+      type === 'attainment' ? EU_AVG_ATT : EU_AVG_STEM,
+      type === 'attainment' ? '%' : ''
+    );
+  }
+
+  function renderChart(data, avg, unit) {
+    const area = document.getElementById('chart-area');
+    if (!area) return;
+    const W = area.clientWidth || 640;
+    const BAR_H = 18, GAP = 5, LABEL_W = 80, PLOT_W = W - LABEL_W - 44;
+    const maxVal = data[0].v * 1.05;
+    const H = data.length * (BAR_H + GAP) + 32;
+    const toX = v => (v / maxVal) * PLOT_W;
+
+    let bars = '';
+    data.forEach((d, i) => {
+      const y = i * (BAR_H + GAP);
+      const bw = Math.max(toX(d.v), 0);
+      const fill      = d.highlight ? '#2c4a6e' : d.last ? '#a0b8c8' : '#c8d8e4';
+      const textColor = d.highlight ? '#1a1814' : d.last ? '#7a8a94' : '#5a554e';
+      const fw        = (d.highlight || d.last) ? '500' : '400';
+      bars += `<g transform="translate(0,${y})">
+        <text x="${LABEL_W - 6}" y="${BAR_H/2+1}" dominant-baseline="middle" text-anchor="end"
+          font-size="9.5" fill="${textColor}" font-weight="${fw}"
+          font-family="DM Mono,monospace" letter-spacing="0.02em">${d.name}</text>
+        <rect x="${LABEL_W}" y="0" width="${bw}" height="${BAR_H}" fill="${fill}" rx="1"/>
+        <text x="${LABEL_W+bw+5}" y="${BAR_H/2+1}" dominant-baseline="middle"
+          font-size="9" fill="${textColor}" font-weight="${fw}"
+          font-family="DM Mono,monospace">${d.v}${unit}</text>
+      </g>`;
+    });
+
+    const avgX = LABEL_W + toX(avg);
+    const avgLine = `
+      <line x1="${avgX}" y1="0" x2="${avgX}" y2="${H-26}" stroke="#9a9590" stroke-width="1" stroke-dasharray="3,3"/>
+      <text x="${avgX+4}" y="${H-13}" font-size="8.5" fill="#9a9590"
+        font-family="DM Mono,monospace" letter-spacing="0.03em">EU avg ${avg}${unit}</text>`;
+
+    area.innerHTML = `<svg viewBox="0 0 ${W} ${H}" xmlns="http://www.w3.org/2000/svg" style="width:100%;display:block;">
+      ${avgLine}${bars}
+    </svg>`;
+  }
+
   document.querySelector('.header-name').addEventListener('click', function(e) {
     e.preventDefault();
     showPage('home');
   });
+
 </script>
 </body>
 </html>
