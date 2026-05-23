@@ -48,7 +48,33 @@
   @keyframes fadein { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: none; } }
 
   /* ── Home ── */
-  .home-layout { max-width: 720px; margin: 0 auto; padding: 5rem 2rem 6rem; }
+  .home-layout {
+    max-width: 860px; margin: 0 auto; padding: 5rem 2rem 6rem;
+    display: grid; grid-template-columns: 220px 1fr; gap: 4rem; align-items: start;
+  }
+  .home-photo-col { display: flex; flex-direction: column; align-items: center; padding-top: 0.5rem; }
+  .home-photo-frame {
+    width: 200px; height: 240px;
+    border: 1px solid var(--rule);
+    background: var(--paper-warm);
+    overflow: hidden;
+    position: relative;
+    flex-shrink: 0;
+  }
+  .home-photo-frame img {
+    width: 100%; height: 100%; object-fit: cover; object-position: center top;
+    display: block;
+  }
+  .home-photo-placeholder {
+    width: 100%; height: 100%;
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    gap: 0.5rem; color: var(--ink-faint);
+  }
+  .home-photo-placeholder svg { opacity: 0.35; }
+  .home-photo-placeholder span { font-family: var(--mono); font-size: 0.55rem; letter-spacing: 0.1em; text-transform: uppercase; opacity: 0.6; }
+  .home-photo-caption { font-family: var(--mono); font-size: 0.58rem; color: var(--ink-faint); letter-spacing: 0.06em; margin-top: 0.75rem; text-align: center; line-height: 1.6; }
+
+  .home-content-col {}
   .home-eyebrow { font-family: var(--mono); font-size: 0.65rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--ink-faint); margin-bottom: 1.5rem; }
   .home-name { font-size: 3.2rem; font-weight: 400; font-style: italic; line-height: 1.15; margin-bottom: 0.5rem; color: var(--ink); }
   .home-title { font-family: var(--mono); font-size: 0.75rem; color: var(--ink-muted); letter-spacing: 0.05em; margin-bottom: 2.5rem; }
@@ -184,6 +210,11 @@
   .tag-bio     { background: #f4f0e0; color: #6a5a20; }
 
   /* ── Responsive ── */
+  @media (max-width: 760px) {
+    .home-layout { grid-template-columns: 1fr; gap: 2.5rem; }
+    .home-photo-col { flex-direction: row; align-items: flex-start; gap: 1.25rem; }
+    .home-photo-frame { width: 100px; height: 120px; }
+  }
   @media (max-width: 640px) {
     header { padding: 0.75rem 1rem; flex-wrap: wrap; gap: 0.5rem; }
     .home-name { font-size: 2.2rem; }
@@ -216,19 +247,41 @@
 <!-- HOME -->
 <div id="page-home" class="page active">
   <div class="home-layout">
-    <p class="home-eyebrow">Marie Skłodowska-Curie Doctoral Candidate</p>
-    <h1 class="home-name">Fulvio Raddi</h1>
-    <p class="home-title">Babeș-Bolyai University · Cluj-Napoca</p>
-    <hr class="home-rule">
-    <div class="home-bio">
-      <p>I am a Marie Skłodowska-Curie Doctoral Candidate within the framework of Marie Skłodowska-Curie Actions at Babeș-Bolyai University.</p>
-      <p>My work sits at the intersection of text-based econometrics, spatial analysis, and financial markets.</p>
+
+    <!-- Left: photo -->
+    <div class="home-photo-col">
+      <div class="home-photo-frame" id="photo-frame">
+        <!-- Replace the src below with your actual photo path, e.g. src="assets/photo.jpg" -->
+        <img src="assets/photo.jpg" alt="Fulvio Raddi"
+             onerror="this.style.display='none'; document.getElementById('photo-placeholder').style.display='flex';">
+        <div class="home-photo-placeholder" id="photo-placeholder" style="display:none;">
+          <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="20" cy="15" r="8" stroke="#9a9590" stroke-width="1.5"/>
+            <path d="M4 36c0-8.837 7.163-16 16-16s16 7.163 16 16" stroke="#9a9590" stroke-width="1.5" stroke-linecap="round"/>
+          </svg>
+          <span>photo.jpg</span>
+        </div>
+      </div>
+      <p class="home-photo-caption">Cluj-Napoca<br>2024</p>
     </div>
-    <div class="home-links">
-      <a class="btn btn-primary" href="#" onclick="showPage('research'); return false;">View research</a>
-      <a class="btn btn-ghost" href="#" onclick="showPage('giving'); return false;">Giving Back</a>
-      <a class="btn btn-ghost" href="assets/cv.pdf">Download CV</a>
+
+    <!-- Right: content -->
+    <div class="home-content-col">
+      <p class="home-eyebrow">Marie Skłodowska-Curie Doctoral Candidate</p>
+      <h1 class="home-name">Fulvio Raddi</h1>
+      <p class="home-title">Babeș-Bolyai University · Cluj-Napoca</p>
+      <hr class="home-rule">
+      <div class="home-bio">
+        <p>I am a Marie Skłodowska-Curie Doctoral Candidate within the framework of Marie Skłodowska-Curie Actions at Babeș-Bolyai University.</p>
+        <p>My work sits at the intersection of text-based econometrics, spatial analysis, and financial markets.</p>
+      </div>
+      <div class="home-links">
+        <a class="btn btn-primary" href="#" onclick="showPage('research'); return false;">View research</a>
+        <a class="btn btn-ghost" href="#" onclick="showPage('giving'); return false;">Giving Back</a>
+        <a class="btn btn-ghost" href="assets/cv.pdf">Download CV</a>
+      </div>
     </div>
+
   </div>
 </div>
 
@@ -326,13 +379,11 @@
             <p class="lib-nav-group-label">Mathematics</p>
             <a class="lib-nav-item active" onclick="showShelf('math-01',this)" href="#"><span class="lib-nav-num">01</span> Logic &amp; Foundations</a>
             <a class="lib-nav-item" onclick="showShelf('math-02',this)" href="#"><span class="lib-nav-num">02</span> Algebra</a>
-            <a class="lib-nav-item" onclick="showShelf('math-03',this)" href="#"><span class="lib-nav-num">03</span> Geometry</a>
-            <a class="lib-nav-item" onclick="showShelf('math-04',this)" href="#"><span class="lib-nav-num">04</span> Topology</a>
-            <a class="lib-nav-item" onclick="showShelf('math-05',this)" href="#"><span class="lib-nav-num">05</span> Math. Analysis</a>
-            <a class="lib-nav-item" onclick="showShelf('math-06',this)" href="#"><span class="lib-nav-num">06</span> Functional Analysis</a>
-            <a class="lib-nav-item" onclick="showShelf('math-07',this)" href="#"><span class="lib-nav-num">07</span> Dynamical Systems</a>
-            <a class="lib-nav-item" onclick="showShelf('math-08',this)" href="#"><span class="lib-nav-num">08</span> Numerical Methods</a>
-            <a class="lib-nav-item" onclick="showShelf('math-09',this)" href="#"><span class="lib-nav-num">09</span> Optimization</a>
+            <a class="lib-nav-item" onclick="showShelf('math-03',this)" href="#"><span class="lib-nav-num">03</span> Geometry &amp; Topology</a>
+            <a class="lib-nav-item" onclick="showShelf('math-04',this)" href="#"><span class="lib-nav-num">04</span> Mathematical Analysis</a>
+            <a class="lib-nav-item" onclick="showShelf('math-05',this)" href="#"><span class="lib-nav-num">05</span> Dynamical Systems</a>
+            <a class="lib-nav-item" onclick="showShelf('math-06',this)" href="#"><span class="lib-nav-num">06</span> Numerical Methods</a>
+            <a class="lib-nav-item" onclick="showShelf('math-07',this)" href="#"><span class="lib-nav-num">07</span> Optimization</a>
           </div>
           <div class="lib-nav-group">
             <p class="lib-nav-group-label">Statistics</p>
@@ -379,18 +430,14 @@
             </div>
           </div>
 
-          <!-- 03 Geometry -->
+          <!-- 03 Geometry & Topology (merged) -->
           <div class="shelf" id="shelf-math-03">
-            <p class="shelf-label"><span class="shelf-num">03</span> Geometry</p>
+            <p class="shelf-label"><span class="shelf-num">03</span> Geometry &amp; Topology</p>
+
             <div class="lib-book">
               <div class="lib-book-head"><p class="lib-book-title">Lezioni di Geometria, Vol. 1</p><p class="lib-book-author">Rosa Esposito, Assunta Russo · 1996</p></div>
               <p class="lib-book-note">My first geometry book. Only in Italian, but it shaped how I think about mathematical space. Some debts are owed to very specific volumes.</p>
             </div>
-          </div>
-
-          <!-- 04 Topology -->
-          <div class="shelf" id="shelf-math-04">
-            <p class="shelf-label"><span class="shelf-num">04</span> Topology</p>
             <div class="lib-book">
               <div class="lib-book-head"><p class="lib-book-title">Topology</p><p class="lib-book-author">James Munkres · 2nd ed.</p></div>
               <p class="lib-book-note">The standard graduate text, and deservedly so. Munkres writes with unusual care; the problem sets are excellent. Covers point-set topology fully before moving to algebraic topology.</p>
@@ -401,9 +448,10 @@
             </div>
           </div>
 
-          <!-- 05 Mathematical Analysis -->
-          <div class="shelf" id="shelf-math-05">
-            <p class="shelf-label"><span class="shelf-num">05</span> Mathematical Analysis</p>
+          <!-- 04 Mathematical Analysis (merged with Functional Analysis) -->
+          <div class="shelf" id="shelf-math-04">
+            <p class="shelf-label"><span class="shelf-num">04</span> Mathematical Analysis</p>
+
             <div class="lib-book">
               <div class="lib-book-head"><p class="lib-book-title">Real and Complex Analysis</p><p class="lib-book-author">Walter Rudin · 1966</p></div>
               <p class="lib-book-note">"Big Rudin." The chapters on measure and integration are a masterpiece of compression. Non-negotiable if you want a serious foundation for probability theory.</p>
@@ -416,11 +464,6 @@
               <div class="lib-book-head"><p class="lib-book-title">Probability and Measure</p><p class="lib-book-author">Patrick Billingsley · 1979</p></div>
               <p class="lib-book-note">The bridge between measure theory and probability. Billingsley's treatment of weak convergence and characteristic functions is the foundation you need for asymptotic econometrics.</p>
             </div>
-          </div>
-
-          <!-- 06 Functional Analysis -->
-          <div class="shelf" id="shelf-math-06">
-            <p class="shelf-label"><span class="shelf-num">06</span> Functional Analysis</p>
             <div class="lib-book">
               <div class="lib-book-head"><p class="lib-book-title">Introductory Functional Analysis with Applications</p><p class="lib-book-author">Erwin Kreyszig · 1978</p></div>
               <p class="lib-book-note">The most user-friendly door into functional analysis. Kreyszig never sacrifices rigour for accessibility, but he always explains why things matter before proving them.</p>
@@ -431,9 +474,9 @@
             </div>
           </div>
 
-          <!-- 07 Dynamical Systems -->
-          <div class="shelf" id="shelf-math-07">
-            <p class="shelf-label"><span class="shelf-num">07</span> Dynamical Systems</p>
+          <!-- 05 Dynamical Systems (was 07) -->
+          <div class="shelf" id="shelf-math-05">
+            <p class="shelf-label"><span class="shelf-num">05</span> Dynamical Systems</p>
             <div class="lib-book">
               <div class="lib-book-head"><p class="lib-book-title">Ordinary Differential Equations</p><p class="lib-book-author">Vladimir Arnold · 1978</p></div>
               <p class="lib-book-note">Arnold approaches ODEs as a geometer, not an analyst. The emphasis on phase flows and qualitative behaviour is exactly the perspective economists applying dynamic systems need.</p>
@@ -444,9 +487,9 @@
             </div>
           </div>
 
-          <!-- 08 Numerical Methods -->
-          <div class="shelf" id="shelf-math-08">
-            <p class="shelf-label"><span class="shelf-num">08</span> Numerical Methods</p>
+          <!-- 06 Numerical Methods (was 08) -->
+          <div class="shelf" id="shelf-math-06">
+            <p class="shelf-label"><span class="shelf-num">06</span> Numerical Methods</p>
             <div class="lib-book">
               <div class="lib-book-head"><p class="lib-book-title">Numerical Linear Algebra</p><p class="lib-book-author">Trefethen &amp; Bau · 1997</p></div>
               <p class="lib-book-note">A remarkable book: rigorous yet remarkably readable. The lectures on SVD, QR, and iterative methods make you understand what computation actually does to matrices.</p>
@@ -457,9 +500,9 @@
             </div>
           </div>
 
-          <!-- 09 Optimization -->
-          <div class="shelf" id="shelf-math-09">
-            <p class="shelf-label"><span class="shelf-num">09</span> Optimization</p>
+          <!-- 07 Optimization (was 09) -->
+          <div class="shelf" id="shelf-math-07">
+            <p class="shelf-label"><span class="shelf-num">07</span> Optimization</p>
             <div class="lib-book">
               <div class="lib-book-head"><p class="lib-book-title">Convex Optimization</p><p class="lib-book-author">Boyd &amp; Vandenberghe · 2004</p></div>
               <p class="lib-book-note">Freely available online. The gold standard for convex analysis and optimization algorithms. Every chapter in Part II is directly applicable to estimation problems in econometrics and ML.</p>
@@ -741,6 +784,18 @@
     e.preventDefault(); showPage('home');
   });
 
+  // ── Photo fallback: if img fails to load, show placeholder ──
+  window.addEventListener('DOMContentLoaded', () => {
+    const img = document.querySelector('.home-photo-frame img');
+    const ph  = document.getElementById('photo-placeholder');
+    if (img && ph) {
+      if (!img.complete || img.naturalWidth === 0) {
+        img.style.display = 'none';
+        ph.style.display  = 'flex';
+      }
+    }
+  });
+
   // ── Chart ──
   function switchChart(type) {
     document.getElementById('btn-attainment').classList.toggle('active', type === 'attainment');
@@ -790,6 +845,7 @@
     { title:"Against Method", author:"Paul Feyerabend · 1975", note:"A provocative assault on the idea of a universal scientific method. Useful for keeping methodological humility.", tag:"essay" },
     { title:"The Black Swan", author:"Nassim Taleb · 2007", note:"Infuriating and important in equal measure. Tail risk and epistemic arrogance in financial modelling, argued with great force.", tag:"essay" },
     { title:"How to Lie with Statistics", author:"Darrell Huff · 1954", note:"A short, witty, and still entirely relevant guide to statistical sleight of hand. Recommended to every student before their first data course.", tag:"essay" },
+    { title:"The Art of Doing Science and Engineering", author:"Richard W. Hamming · 1997", note:"Hamming's lecture-turned-book on how to have a significant career in science and engineering. Less about technique than about attitude: learning to learn, choosing the right problems, and thinking for yourself. Essential reading for any doctoral student.", tag:"essay" },
     { title:"The Sleepwalkers", author:"Arthur Koestler · 1959", note:"A history of cosmology from Babylonian astronomy to Kepler. Koestler shows how great science is never a clean logical process.", tag:"history" },
     { title:"Surely You're Joking, Mr. Feynman!", author:"Richard Feynman · 1985", note:"Anecdotes from a physicist who cared deeply about understanding rather than credentialism. A model of intellectual curiosity.", tag:"bio" },
     { title:"A Mathematician's Apology", author:"G. H. Hardy · 1940", note:"A meditation on mathematical beauty and the life of the mind. Poignant and honest — Hardy knew his best work was behind him.", tag:"essay" },
