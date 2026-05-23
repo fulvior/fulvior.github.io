@@ -26,696 +26,164 @@
   }
 
   html { font-size: 18px; scroll-behavior: smooth; }
-
-  body {
-    font-family: var(--serif);
-    background: var(--paper);
-    color: var(--ink);
-    line-height: 1.75;
-    min-height: 100vh;
-  }
+  body { font-family: var(--serif); background: var(--paper); color: var(--ink); line-height: 1.75; min-height: 100vh; }
 
   /* ── Header ── */
   header {
-    position: sticky;
-    top: 0;
-    z-index: 100;
-    background: var(--paper);
-    border-bottom: 1px solid var(--rule);
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 0.75rem 3rem;
-    gap: 1.5rem;
+    position: sticky; top: 0; z-index: 100;
+    background: var(--paper); border-bottom: 1px solid var(--rule);
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 0.75rem 3rem; gap: 1.5rem;
   }
-
-  .header-name {
-    font-size: 1rem;
-    font-weight: 500;
-    letter-spacing: 0.01em;
-    white-space: nowrap;
-    cursor: pointer;
-    text-decoration: none;
-    color: var(--ink);
-  }
-
-  .header-email {
-    font-family: var(--mono);
-    font-size: 0.7rem;
-    color: var(--ink-muted);
-    text-decoration: none;
-    letter-spacing: 0.02em;
-    border: 1px solid var(--rule);
-    padding: 0.25rem 0.75rem;
-    border-radius: 2rem;
-    transition: background 0.15s, color 0.15s;
-    white-space: nowrap;
-  }
-
+  .header-name { font-size: 1rem; font-weight: 500; letter-spacing: 0.01em; white-space: nowrap; cursor: pointer; text-decoration: none; color: var(--ink); }
+  .header-email { font-family: var(--mono); font-size: 0.7rem; color: var(--ink-muted); text-decoration: none; letter-spacing: 0.02em; border: 1px solid var(--rule); padding: 0.25rem 0.75rem; border-radius: 2rem; transition: background 0.15s, color 0.15s; white-space: nowrap; }
   .header-email:hover { background: var(--accent); color: #fff; border-color: var(--accent); }
-
-  nav {
-    display: flex;
-    gap: 0.15rem;
-    flex-wrap: wrap;
-    justify-content: center;
-  }
-
-  nav a {
-    font-family: var(--mono);
-    font-size: 0.62rem;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    color: var(--ink-muted);
-    text-decoration: none;
-    padding: 0.3rem 0.6rem;
-    border-radius: 3px;
-    transition: color 0.15s, background 0.15s;
-  }
-
+  nav { display: flex; gap: 0.15rem; flex-wrap: wrap; justify-content: center; }
+  nav a { font-family: var(--mono); font-size: 0.62rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--ink-muted); text-decoration: none; padding: 0.3rem 0.6rem; border-radius: 3px; transition: color 0.15s, background 0.15s; }
   nav a:hover, nav a.active { color: var(--accent); background: var(--accent-light); }
 
   /* ── Pages ── */
   .page { display: none; animation: fadein 0.25s ease; }
   .page.active { display: block; }
-
   @keyframes fadein { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: none; } }
 
   /* ── Home ── */
-  .home-layout {
-    max-width: 720px;
-    margin: 0 auto;
-    padding: 5rem 2rem 6rem;
-  }
-
-  .home-eyebrow {
-    font-family: var(--mono);
-    font-size: 0.65rem;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    color: var(--ink-faint);
-    margin-bottom: 1.5rem;
-  }
-
-  .home-name {
-    font-size: 3.2rem;
-    font-weight: 400;
-    font-style: italic;
-    line-height: 1.15;
-    margin-bottom: 0.5rem;
-    color: var(--ink);
-  }
-
-  .home-title {
-    font-family: var(--mono);
-    font-size: 0.75rem;
-    color: var(--ink-muted);
-    letter-spacing: 0.05em;
-    margin-bottom: 2.5rem;
-  }
-
-  .home-rule {
-    border: none;
-    border-top: 1px solid var(--rule);
-    margin-bottom: 2.5rem;
-  }
-
-  .home-bio {
-    font-size: 1.1rem;
-    color: var(--ink);
-    max-width: 56ch;
-  }
-
+  .home-layout { max-width: 720px; margin: 0 auto; padding: 5rem 2rem 6rem; }
+  .home-eyebrow { font-family: var(--mono); font-size: 0.65rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--ink-faint); margin-bottom: 1.5rem; }
+  .home-name { font-size: 3.2rem; font-weight: 400; font-style: italic; line-height: 1.15; margin-bottom: 0.5rem; color: var(--ink); }
+  .home-title { font-family: var(--mono); font-size: 0.75rem; color: var(--ink-muted); letter-spacing: 0.05em; margin-bottom: 2.5rem; }
+  .home-rule { border: none; border-top: 1px solid var(--rule); margin-bottom: 2.5rem; }
+  .home-bio { font-size: 1.1rem; color: var(--ink); max-width: 56ch; }
   .home-bio p + p { margin-top: 1rem; }
-
-  .home-links {
-    display: flex;
-    gap: 1rem;
-    margin-top: 3rem;
-    flex-wrap: wrap;
-  }
-
-  .btn {
-    font-family: var(--mono);
-    font-size: 0.68rem;
-    letter-spacing: 0.06em;
-    text-transform: uppercase;
-    padding: 0.6rem 1.2rem;
-    border-radius: 3px;
-    text-decoration: none;
-    transition: 0.15s;
-    cursor: pointer;
-    border: none;
-    display: inline-block;
-  }
-
+  .home-links { display: flex; gap: 1rem; margin-top: 3rem; flex-wrap: wrap; }
+  .btn { font-family: var(--mono); font-size: 0.68rem; letter-spacing: 0.06em; text-transform: uppercase; padding: 0.6rem 1.2rem; border-radius: 3px; text-decoration: none; transition: 0.15s; cursor: pointer; border: none; display: inline-block; }
   .btn-primary { background: var(--accent); color: #fff; }
   .btn-primary:hover { background: #1d3550; }
   .btn-ghost { background: transparent; color: var(--ink-muted); border: 1px solid var(--rule); }
   .btn-ghost:hover { border-color: var(--accent); color: var(--accent); }
 
   /* ── Inner pages ── */
-  .inner {
-    max-width: 720px;
-    margin: 0 auto;
-    padding: 4rem 2rem 6rem;
-  }
-
-  .page-label {
-    font-family: var(--mono);
-    font-size: 0.62rem;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    color: var(--ink-faint);
-    margin-bottom: 0.75rem;
-  }
-
-  .page-title {
-    font-size: 2.4rem;
-    font-weight: 400;
-    font-style: italic;
-    margin-bottom: 0.25rem;
-  }
-
-  .page-rule {
-    border: none;
-    border-top: 1px solid var(--rule);
-    margin: 2rem 0 2.5rem;
-  }
-
+  .inner { max-width: 720px; margin: 0 auto; padding: 4rem 2rem 6rem; }
+  .page-label { font-family: var(--mono); font-size: 0.62rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--ink-faint); margin-bottom: 0.75rem; }
+  .page-title { font-size: 2.4rem; font-weight: 400; font-style: italic; margin-bottom: 0.25rem; }
+  .page-rule { border: none; border-top: 1px solid var(--rule); margin: 2rem 0 2.5rem; }
   .section-body { font-size: 1rem; color: var(--ink); }
   .section-body p { margin-bottom: 1rem; }
 
-  /* ── Research tabs ── */
-  .tab-bar {
-    display: flex;
-    gap: 0;
-    border-bottom: 1px solid var(--rule);
-    margin-bottom: 2.5rem;
-  }
-
-  .tab-btn {
-    font-family: var(--mono);
-    font-size: 0.62rem;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    color: var(--ink-faint);
-    background: none;
-    border: none;
-    border-bottom: 2px solid transparent;
-    padding: 0.6rem 1.1rem;
-    cursor: pointer;
-    transition: color 0.15s, border-color 0.15s;
-    margin-bottom: -1px;
-  }
-
+  /* ── Tabs ── */
+  .tab-bar { display: flex; gap: 0; border-bottom: 1px solid var(--rule); margin-bottom: 2.5rem; }
+  .tab-btn { font-family: var(--mono); font-size: 0.62rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--ink-faint); background: none; border: none; border-bottom: 2px solid transparent; padding: 0.6rem 1.1rem; cursor: pointer; transition: color 0.15s, border-color 0.15s; margin-bottom: -1px; }
   .tab-btn:hover { color: var(--ink-muted); }
   .tab-btn.active { color: var(--accent); border-bottom-color: var(--accent); }
-
   .tab-panel { display: none; }
   .tab-panel.active { display: block; animation: fadein 0.2s ease; }
 
-  /* Research areas */
-  .research-areas {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
-    gap: 1px;
-    background: var(--rule);
-    border: 1px solid var(--rule);
-    margin: 0 0 2rem;
-  }
-
-  .research-area {
-    background: var(--paper);
-    padding: 1.5rem 1.25rem;
-  }
-
-  .research-area-num {
-    font-family: var(--mono);
-    font-size: 0.6rem;
-    color: var(--ink-faint);
-    margin-bottom: 0.5rem;
-    letter-spacing: 0.1em;
-  }
-
-  .research-area-name {
-    font-size: 1rem;
-    font-weight: 500;
-  }
+  /* Research */
+  .research-areas { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 1px; background: var(--rule); border: 1px solid var(--rule); margin: 0 0 2rem; }
+  .research-area { background: var(--paper); padding: 1.5rem 1.25rem; }
+  .research-area-num { font-family: var(--mono); font-size: 0.6rem; color: var(--ink-faint); margin-bottom: 0.5rem; letter-spacing: 0.1em; }
+  .research-area-name { font-size: 1rem; font-weight: 500; }
 
   /* Conferences */
-  .conf-item {
-    padding: 1.1rem 0;
-    border-bottom: 1px solid var(--paper-warm);
-    display: flex;
-    gap: 1.5rem;
-    align-items: baseline;
-  }
-
-  .conf-year {
-    font-family: var(--mono);
-    font-size: 0.65rem;
-    color: var(--ink-faint);
-    white-space: nowrap;
-    min-width: 48px;
-  }
-
-  .conf-body {}
+  .conf-item { padding: 1.1rem 0; border-bottom: 1px solid var(--paper-warm); display: flex; gap: 1.5rem; align-items: baseline; }
+  .conf-year { font-family: var(--mono); font-size: 0.65rem; color: var(--ink-faint); white-space: nowrap; min-width: 48px; }
   .conf-name { font-size: 0.95rem; font-weight: 500; }
   .conf-detail { font-size: 0.85rem; color: var(--ink-muted); font-style: italic; }
 
   /* Publications */
-  .pub-year {
-    font-family: var(--mono);
-    font-size: 0.65rem;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    color: var(--ink-faint);
-    margin: 2.5rem 0 1rem;
-    padding-bottom: 0.5rem;
-    border-bottom: 1px solid var(--rule);
-  }
-
-  .pub-item {
-    padding: 1.25rem 0;
-    border-bottom: 1px solid var(--paper-warm);
-  }
-
+  .pub-year { font-family: var(--mono); font-size: 0.65rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--ink-faint); margin: 2.5rem 0 1rem; padding-bottom: 0.5rem; border-bottom: 1px solid var(--rule); }
+  .pub-item { padding: 1.25rem 0; border-bottom: 1px solid var(--paper-warm); }
   .pub-title { font-size: 1.05rem; font-weight: 500; margin-bottom: 0.25rem; }
   .pub-venue { font-size: 0.85rem; color: var(--ink-muted); font-style: italic; }
 
-  /* ── Giving Back ── */
-  .pullquote {
-    border-left: 3px solid var(--accent);
-    margin: 2rem 0;
-    padding: 0.5rem 0 0.5rem 1.5rem;
-    font-size: 1.15rem;
-    font-style: italic;
-    color: var(--ink-muted);
-    line-height: 1.6;
-  }
-
-  .pullquote cite {
-    display: block;
-    font-family: var(--mono);
-    font-size: 0.62rem;
-    font-style: normal;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    color: var(--ink-faint);
-    margin-top: 0.6rem;
-  }
-
-  .giving-initiative {
-    border: 1px solid var(--rule);
-    padding: 1.75rem 1.5rem 1.5rem;
-    margin: 2rem 0;
-    position: relative;
-    background: var(--paper);
-  }
-
-  .giving-initiative::before {
-    content: '';
-    position: absolute;
-    left: 0; top: 0; bottom: 0;
-    width: 3px;
-    background: var(--accent-warm);
-  }
-
-  .initiative-tag {
-    font-family: var(--mono);
-    font-size: 0.58rem;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    color: var(--accent-warm);
-    background: var(--accent-warm-light);
-    display: inline-block;
-    padding: 0.2rem 0.6rem;
-    border-radius: 2px;
-    margin-bottom: 0.75rem;
-  }
-
-  .initiative-title { font-size: 1.1rem; font-weight: 500; margin-bottom: 0.5rem; }
-  .initiative-body { font-size: 0.95rem; color: var(--ink-muted); }
-
   /* ── Projects ── */
-  .project-card {
-    border: 1px solid var(--rule);
-    padding: 1.5rem 1.5rem 1.25rem;
-    margin-bottom: 1.25rem;
-    background: var(--paper);
-    position: relative;
-  }
-
-  .project-card::before {
-    content: '';
-    position: absolute;
-    left: 0; top: 0; bottom: 0;
-    width: 3px;
-    background: var(--accent);
-  }
-
+  .project-card { border: 1px solid var(--rule); padding: 1.5rem 1.5rem 1.25rem; margin-bottom: 1.25rem; background: var(--paper); position: relative; }
+  .project-card::before { content: ''; position: absolute; left: 0; top: 0; bottom: 0; width: 3px; background: var(--accent); }
   .project-title { font-size: 1.05rem; font-weight: 500; margin-bottom: 0.4rem; }
   .project-desc { font-size: 0.9rem; color: var(--ink-muted); }
 
   /* ── Teaching ── */
-  .teaching-item {
-    display: flex;
-    align-items: baseline;
-    gap: 1.5rem;
-    padding: 1rem 0;
-    border-bottom: 1px solid var(--paper-warm);
-  }
-
-  .teaching-term {
-    font-family: var(--mono);
-    font-size: 0.65rem;
-    color: var(--ink-faint);
-    white-space: nowrap;
-    min-width: 80px;
-  }
-
+  .teaching-item { display: flex; align-items: baseline; gap: 1.5rem; padding: 1rem 0; border-bottom: 1px solid var(--paper-warm); }
+  .teaching-term { font-family: var(--mono); font-size: 0.65rem; color: var(--ink-faint); white-space: nowrap; min-width: 80px; }
   .teaching-course { font-size: 0.95rem; }
 
   /* ── CV ── */
-  .cv-download {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.75rem;
-    background: var(--ink);
-    color: var(--paper);
-    padding: 1rem 2rem;
-    text-decoration: none;
-    font-family: var(--mono);
-    font-size: 0.72rem;
-    letter-spacing: 0.06em;
-    text-transform: uppercase;
-    border-radius: 3px;
-    transition: background 0.15s;
-    margin: 1.5rem 0;
-  }
-
+  .cv-download { display: inline-flex; align-items: center; gap: 0.75rem; background: var(--ink); color: var(--paper); padding: 1rem 2rem; text-decoration: none; font-family: var(--mono); font-size: 0.72rem; letter-spacing: 0.06em; text-transform: uppercase; border-radius: 3px; transition: background 0.15s; margin: 1.5rem 0; }
   .cv-download:hover { background: var(--accent); }
 
   /* ── Contact ── */
-  .contact-grid {
-    display: grid;
-    gap: 1px;
-    background: var(--rule);
-    border: 1px solid var(--rule);
-    margin-top: 1.5rem;
-  }
-
-  .contact-row {
-    display: grid;
-    grid-template-columns: 120px 1fr;
-    background: var(--paper);
-  }
-
-  .contact-label {
-    font-family: var(--mono);
-    font-size: 0.65rem;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    color: var(--ink-faint);
-    padding: 1rem 1.25rem;
-    border-right: 1px solid var(--rule);
-    display: flex;
-    align-items: center;
-  }
-
-  .contact-value {
-    font-size: 0.9rem;
-    padding: 1rem 1.25rem;
-    display: flex;
-    align-items: center;
-  }
-
-  .contact-value a {
-    color: var(--accent);
-    text-decoration: none;
-    font-family: var(--mono);
-    font-size: 0.8rem;
-  }
-
+  .contact-grid { display: grid; gap: 1px; background: var(--rule); border: 1px solid var(--rule); margin-top: 1.5rem; }
+  .contact-row { display: grid; grid-template-columns: 120px 1fr; background: var(--paper); }
+  .contact-label { font-family: var(--mono); font-size: 0.65rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--ink-faint); padding: 1rem 1.25rem; border-right: 1px solid var(--rule); display: flex; align-items: center; }
+  .contact-value { font-size: 0.9rem; padding: 1rem 1.25rem; display: flex; align-items: center; }
+  .contact-value a { color: var(--accent); text-decoration: none; font-family: var(--mono); font-size: 0.8rem; }
   .contact-value a:hover { text-decoration: underline; }
 
-  /* ── Books: library layout ── */
+  /* ── Giving Back ── */
+  .pullquote { border-left: 3px solid var(--accent); margin: 2rem 0; padding: 0.5rem 0 0.5rem 1.5rem; font-size: 1.15rem; font-style: italic; color: var(--ink-muted); line-height: 1.6; }
+  .pullquote cite { display: block; font-family: var(--mono); font-size: 0.62rem; font-style: normal; letter-spacing: 0.08em; text-transform: uppercase; color: var(--ink-faint); margin-top: 0.6rem; }
+  .giving-initiative { border: 1px solid var(--rule); padding: 1.75rem 1.5rem 1.5rem; margin: 2rem 0; position: relative; background: var(--paper); }
+  .giving-initiative::before { content: ''; position: absolute; left: 0; top: 0; bottom: 0; width: 3px; background: var(--accent-warm); }
+  .initiative-tag { font-family: var(--mono); font-size: 0.58rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--accent-warm); background: var(--accent-warm-light); display: inline-block; padding: 0.2rem 0.6rem; border-radius: 2px; margin-bottom: 0.75rem; }
+  .initiative-title { font-size: 1.1rem; font-weight: 500; margin-bottom: 0.5rem; }
+  .initiative-body { font-size: 0.95rem; color: var(--ink-muted); }
+
+  /* ── Chart ── */
+  .chart-wrapper { margin: 2rem 0 1.5rem; border: 1px solid var(--rule); background: var(--paper); padding: 1.5rem 1.5rem 1rem; }
+  .chart-header { display: flex; align-items: flex-start; justify-content: space-between; gap: 1rem; flex-wrap: wrap; margin-bottom: 1.25rem; }
+  .chart-toggle { display: flex; gap: 2px; background: var(--paper-warm); border: 1px solid var(--rule); border-radius: 3px; padding: 2px; }
+  .chart-toggle-btn { font-family: var(--mono); font-size: 0.58rem; letter-spacing: 0.07em; text-transform: uppercase; background: none; border: none; padding: 0.3rem 0.75rem; border-radius: 2px; cursor: pointer; color: var(--ink-faint); transition: background 0.15s, color 0.15s; }
+  .chart-toggle-btn.active { background: var(--paper); color: var(--accent); box-shadow: 0 1px 3px rgba(0,0,0,0.08); }
+  .chart-subtitle { font-family: var(--mono); font-size: 0.6rem; color: var(--ink-faint); letter-spacing: 0.06em; padding-top: 0.4rem; text-align: right; max-width: 280px; line-height: 1.5; }
+  .chart-area { width: 100%; overflow: hidden; }
+  .chart-source { font-family: var(--mono); font-size: 0.55rem; color: var(--ink-faint); letter-spacing: 0.04em; margin-top: 0.75rem; line-height: 1.5; }
+
+  /* ── Books ── */
   .booktab { display: none; }
   .booktab.active { display: block; animation: fadein 0.2s ease; }
+  .lib-layout { display: grid; grid-template-columns: 178px 1fr; gap: 0; border: 1px solid var(--rule); margin-top: 0; min-height: 520px; }
 
-  .lib-layout {
-    display: grid;
-    grid-template-columns: 178px 1fr;
-    gap: 0;
-    border: 1px solid var(--rule);
-    margin-top: 0;
-    min-height: 520px;
-  }
-
-  /* Sidebar */
-  .lib-nav {
-    border-right: 1px solid var(--rule);
-    background: var(--paper-warm);
-    padding: 1.25rem 0 1.5rem;
-    position: sticky;
-    top: 56px;
-    align-self: start;
-    max-height: calc(100vh - 80px);
-    overflow-y: auto;
-  }
-
+  .lib-nav { border-right: 1px solid var(--rule); background: var(--paper-warm); padding: 1.25rem 0 1.5rem; position: sticky; top: 56px; align-self: start; max-height: calc(100vh - 80px); overflow-y: auto; }
   .lib-nav-group { margin-bottom: 0.25rem; }
-
-  .lib-nav-group-label {
-    font-family: var(--mono);
-    font-size: 0.55rem;
-    letter-spacing: 0.14em;
-    text-transform: uppercase;
-    color: var(--ink-faint);
-    padding: 0.75rem 1rem 0.3rem;
-    display: block;
-  }
-
-  .lib-nav-item {
-    display: flex;
-    align-items: baseline;
-    gap: 0.5rem;
-    font-family: var(--mono);
-    font-size: 0.62rem;
-    color: var(--ink-muted);
-    text-decoration: none;
-    padding: 0.38rem 1rem;
-    letter-spacing: 0.02em;
-    transition: background 0.12s, color 0.12s;
-    border-left: 2px solid transparent;
-    line-height: 1.4;
-  }
-
+  .lib-nav-group-label { font-family: var(--mono); font-size: 0.55rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--ink-faint); padding: 0.75rem 1rem 0.3rem; display: block; }
+  .lib-nav-item { display: flex; align-items: baseline; gap: 0.5rem; font-family: var(--mono); font-size: 0.62rem; color: var(--ink-muted); text-decoration: none; padding: 0.38rem 1rem; letter-spacing: 0.02em; transition: background 0.12s, color 0.12s; border-left: 2px solid transparent; line-height: 1.4; }
   .lib-nav-item:hover { color: var(--ink); background: var(--paper-deep); }
-  .lib-nav-item.active {
-    color: var(--accent);
-    background: var(--accent-light);
-    border-left-color: var(--accent);
-  }
-
-  .lib-nav-num {
-    font-family: var(--mono);
-    font-size: 0.55rem;
-    color: var(--ink-faint);
-    min-width: 18px;
-    flex-shrink: 0;
-  }
-
+  .lib-nav-item.active { color: var(--accent); background: var(--accent-light); border-left-color: var(--accent); }
+  .lib-nav-num { font-family: var(--mono); font-size: 0.55rem; color: var(--ink-faint); min-width: 18px; flex-shrink: 0; }
   .lib-nav-item.active .lib-nav-num { color: var(--accent); opacity: 0.7; }
 
-  /* Shelf */
   .lib-shelf { padding: 1.75rem 1.75rem 2rem; }
-
   .shelf { display: none; animation: fadein 0.18s ease; }
   .shelf.active { display: block; }
-
-  .shelf-label {
-    font-size: 1rem;
-    font-weight: 500;
-    margin-bottom: 1.5rem;
-    color: var(--ink);
-    display: flex;
-    align-items: baseline;
-    gap: 0.65rem;
-  }
-
-  .shelf-num {
-    font-family: var(--mono);
-    font-size: 0.6rem;
-    color: var(--ink-faint);
-    letter-spacing: 0.1em;
-    background: var(--paper-warm);
-    padding: 0.15rem 0.4rem;
-    border-radius: 2px;
-  }
-
-  .lib-book {
-    padding: 1rem 0;
-    border-bottom: 1px solid var(--paper-warm);
-  }
-
+  .shelf-label { font-size: 1rem; font-weight: 500; margin-bottom: 1.5rem; color: var(--ink); display: flex; align-items: baseline; gap: 0.65rem; }
+  .shelf-num { font-family: var(--mono); font-size: 0.6rem; color: var(--ink-faint); letter-spacing: 0.1em; background: var(--paper-warm); padding: 0.15rem 0.4rem; border-radius: 2px; }
+  .lib-book { padding: 1rem 0; border-bottom: 1px solid var(--paper-warm); }
   .lib-book:last-child { border-bottom: none; }
-
   .lib-book-head { margin-bottom: 0.35rem; }
   .lib-book-title { font-size: 0.97rem; font-weight: 500; color: var(--ink); }
-  .lib-book-author {
-    font-family: var(--mono);
-    font-size: 0.6rem;
-    letter-spacing: 0.06em;
-    color: var(--ink-faint);
-    margin-top: 0.15rem;
-  }
+  .lib-book-author { font-family: var(--mono); font-size: 0.6rem; letter-spacing: 0.06em; color: var(--ink-faint); margin-top: 0.15rem; }
   .lib-book-note { font-size: 0.88rem; color: var(--ink-muted); font-style: italic; line-height: 1.6; }
 
   /* Beyond academia */
-  .general-reading-now {
-    border: 1px solid var(--rule);
-    border-left: 3px solid var(--accent-warm);
-    padding: 1.25rem 1.5rem;
-    margin-top: 1.5rem;
-    background: var(--paper);
-  }
+  .reading-badge { display: inline-flex; align-items: center; gap: 0.35rem; font-family: var(--mono); font-size: 0.58rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--accent-warm); background: var(--accent-warm-light); padding: 0.2rem 0.55rem; border-radius: 2px; margin-bottom: 0.4rem; }
+  .reading-badge::before { content: ''; width: 6px; height: 6px; border-radius: 50%; background: var(--accent-warm); animation: pulse 1.8s ease-in-out infinite; }
+  @keyframes pulse { 0%, 100% { opacity: 1; transform: scale(1); } 50% { opacity: 0.4; transform: scale(0.7); } }
 
+  .books-section-label { font-family: var(--mono); font-size: 0.6rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--ink-faint); margin: 2.5rem 0 1rem; padding-bottom: 0.5rem; border-bottom: 1px solid var(--rule); }
+  .general-reading-now { border: 1px solid var(--rule); border-left: 3px solid var(--accent-warm); padding: 1.25rem 1.5rem; margin-top: 1.5rem; background: var(--paper); }
   .gen-list { display: flex; flex-direction: column; gap: 0; }
-
-  .gen-item {
-    display: grid;
-    grid-template-columns: 1fr auto;
-    gap: 0.75rem;
-    padding: 0.85rem 0;
-    border-bottom: 1px solid var(--paper-warm);
-    align-items: baseline;
-  }
-
-  .gen-item-left {}
+  .gen-item { display: grid; grid-template-columns: 1fr auto; gap: 0.75rem; padding: 0.85rem 0; border-bottom: 1px solid var(--paper-warm); align-items: baseline; }
   .gen-item-title { font-size: 0.95rem; font-weight: 500; color: var(--ink); }
   .gen-item-author { font-family: var(--mono); font-size: 0.6rem; color: var(--ink-faint); letter-spacing: 0.04em; margin-top: 0.1rem; }
   .gen-item-note { font-size: 0.85rem; color: var(--ink-muted); font-style: italic; margin-top: 0.25rem; line-height: 1.5; }
-  .gen-item-tag {
-    font-family: var(--mono);
-    font-size: 0.55rem;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    padding: 0.18rem 0.5rem;
-    border-radius: 2px;
-    white-space: nowrap;
-    align-self: start;
-    margin-top: 0.15rem;
-  }
-
+  .gen-item-tag { font-family: var(--mono); font-size: 0.55rem; letter-spacing: 0.08em; text-transform: uppercase; padding: 0.18rem 0.5rem; border-radius: 2px; white-space: nowrap; align-self: start; margin-top: 0.15rem; }
   .tag-essay   { background: #e8eef4; color: #3a5a7a; }
   .tag-novel   { background: #eef4e8; color: #3a5a2a; }
   .tag-history { background: #f4ece8; color: #7a3a2a; }
   .tag-science { background: #f0eaf4; color: #5a3a7a; }
   .tag-bio     { background: #f4f0e0; color: #6a5a20; }
 
-  /* Responsive */
-    display: inline-flex;
-    align-items: center;
-    gap: 0.35rem;
-    font-family: var(--mono);
-    font-size: 0.58rem;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    color: var(--accent-warm);
-    background: var(--accent-warm-light);
-    padding: 0.2rem 0.55rem;
-    border-radius: 2px;
-    margin-bottom: 0.4rem;
-  }
-
-  .reading-badge::before {
-    content: '';
-    width: 6px;
-    height: 6px;
-    border-radius: 50%;
-    background: var(--accent-warm);
-    animation: pulse 1.8s ease-in-out infinite;
-  }
-
-  @keyframes pulse {
-    0%, 100% { opacity: 1; transform: scale(1); }
-    50% { opacity: 0.4; transform: scale(0.7); }
-  }
-
-  /* ── Chart ── */
-  .chart-wrapper {
-    margin: 2rem 0 1.5rem;
-    border: 1px solid var(--rule);
-    background: var(--paper);
-    padding: 1.5rem 1.5rem 1rem;
-  }
-
-  .chart-header {
-    display: flex;
-    align-items: flex-start;
-    justify-content: space-between;
-    gap: 1rem;
-    flex-wrap: wrap;
-    margin-bottom: 1.25rem;
-  }
-
-  .chart-toggle {
-    display: flex;
-    gap: 2px;
-    background: var(--paper-warm);
-    border: 1px solid var(--rule);
-    border-radius: 3px;
-    padding: 2px;
-  }
-
-  .chart-toggle-btn {
-    font-family: var(--mono);
-    font-size: 0.58rem;
-    letter-spacing: 0.07em;
-    text-transform: uppercase;
-    background: none;
-    border: none;
-    padding: 0.3rem 0.75rem;
-    border-radius: 2px;
-    cursor: pointer;
-    color: var(--ink-faint);
-    transition: background 0.15s, color 0.15s;
-  }
-
-  .chart-toggle-btn.active {
-    background: var(--paper);
-    color: var(--accent);
-    box-shadow: 0 1px 3px rgba(0,0,0,0.08);
-  }
-
-  .chart-subtitle {
-    font-family: var(--mono);
-    font-size: 0.6rem;
-    color: var(--ink-faint);
-    letter-spacing: 0.06em;
-    padding-top: 0.4rem;
-    text-align: right;
-    max-width: 280px;
-    line-height: 1.5;
-  }
-
-  .chart-area {
-    width: 100%;
-    overflow: hidden;
-  }
-
-  .chart-source {
-    font-family: var(--mono);
-    font-size: 0.55rem;
-    color: var(--ink-faint);
-    letter-spacing: 0.04em;
-    margin-top: 0.75rem;
-    line-height: 1.5;
-  }
-
-  /* Responsive */
+  /* ── Responsive ── */
   @media (max-width: 640px) {
     header { padding: 0.75rem 1rem; flex-wrap: wrap; gap: 0.5rem; }
     .home-name { font-size: 2.2rem; }
@@ -723,14 +191,7 @@
     .contact-row { grid-template-columns: 90px 1fr; }
     .tab-btn { padding: 0.5rem 0.65rem; font-size: 0.58rem; }
     .lib-layout { grid-template-columns: 1fr; }
-    .lib-nav {
-      position: static;
-      border-right: none;
-      border-bottom: 1px solid var(--rule);
-      max-height: 200px;
-      overflow-y: auto;
-      padding: 0.75rem 0;
-    }
+    .lib-nav { position: static; border-right: none; border-bottom: 1px solid var(--rule); max-height: 200px; overflow-y: auto; padding: 0.75rem 0; }
     .lib-shelf { padding: 1.25rem 1rem 1.5rem; }
   }
 </style>
@@ -742,10 +203,10 @@
   <nav>
     <a href="#" onclick="showPage('about'); return false;" id="nav-about">About</a>
     <a href="#" onclick="showPage('research'); return false;" id="nav-research">Research</a>
-    <a href="#" onclick="showPage('giving'); return false;" id="nav-giving">Giving Back</a>
     <a href="#" onclick="showPage('projects'); return false;" id="nav-projects">Projects</a>
     <a href="#" onclick="showPage('teaching'); return false;" id="nav-teaching">Teaching</a>
     <a href="#" onclick="showPage('books'); return false;" id="nav-books">Books</a>
+    <a href="#" onclick="showPage('giving'); return false;" id="nav-giving">Giving Back</a>
     <a href="#" onclick="showPage('cv'); return false;" id="nav-cv">CV</a>
     <a href="#" onclick="showPage('contact'); return false;" id="nav-contact">Contact</a>
   </nav>
@@ -790,115 +251,29 @@
     <p class="page-label">Research</p>
     <h2 class="page-title">Current work</h2>
     <hr class="page-rule">
-
     <div class="tab-bar">
       <button class="tab-btn active" onclick="showTab('topics', this)">Topics</button>
       <button class="tab-btn" onclick="showTab('conferences', this)">Conferences</button>
       <button class="tab-btn" onclick="showTab('publications', this)">Publications</button>
     </div>
-
-    <!-- Topics -->
     <div id="tab-topics" class="tab-panel active">
       <div class="section-body">
         <p>My research focuses on methodological and applied questions in quantitative economics, bridging natural language processing with econometric theory and financial applications.</p>
       </div>
       <div class="research-areas">
-        <div class="research-area">
-          <p class="research-area-num">01</p>
-          <p class="research-area-name">Text in Econometrics</p>
-        </div>
-        <div class="research-area">
-          <p class="research-area-num">02</p>
-          <p class="research-area-name">Spatial Matrices</p>
-        </div>
-        <div class="research-area">
-          <p class="research-area-num">03</p>
-          <p class="research-area-name">Financial Markets</p>
-        </div>
+        <div class="research-area"><p class="research-area-num">01</p><p class="research-area-name">Text in Econometrics</p></div>
+        <div class="research-area"><p class="research-area-num">02</p><p class="research-area-name">Spatial Matrices</p></div>
+        <div class="research-area"><p class="research-area-num">03</p><p class="research-area-name">Financial Markets</p></div>
       </div>
     </div>
-
-    <!-- Conferences -->
     <div id="tab-conferences" class="tab-panel">
-      <div class="conf-item">
-        <span class="conf-year">2026</span>
-        <div class="conf-body">
-          <p class="conf-name">Conference XYZ</p>
-          <p class="conf-detail">Presentation title · Location, Month 2026</p>
-        </div>
-      </div>
-      <div class="conf-item">
-        <span class="conf-year">2025</span>
-        <div class="conf-body">
-          <p class="conf-name">Conference ABC</p>
-          <p class="conf-detail">Presentation title · Location, Month 2025</p>
-        </div>
-      </div>
+      <div class="conf-item"><span class="conf-year">2026</span><div><p class="conf-name">Conference XYZ</p><p class="conf-detail">Presentation title · Location, Month 2026</p></div></div>
+      <div class="conf-item"><span class="conf-year">2025</span><div><p class="conf-name">Conference ABC</p><p class="conf-detail">Presentation title · Location, Month 2025</p></div></div>
     </div>
-
-    <!-- Publications -->
     <div id="tab-publications" class="tab-panel">
       <p class="pub-year">2026</p>
-      <div class="pub-item">
-        <p class="pub-title">My Awesome Paper</p>
-        <p class="pub-venue">Conference XYZ, 2026.</p>
-      </div>
+      <div class="pub-item"><p class="pub-title">My Awesome Paper</p><p class="pub-venue">Conference XYZ, 2026.</p></div>
     </div>
-
-  </div>
-</div>
-
-<!-- GIVING BACK -->
-<div id="page-giving" class="page">
-  <div class="inner">
-    <p class="page-label">Giving Back</p>
-    <h2 class="page-title">I was lucky</h2>
-    <hr class="page-rule">
-
-    <div class="section-body">
-      <p>Early in my life I understood something that not everyone gets to see in time: education is the only true social elevator. It does not care where you come from. It opens doors that nothing else can.</p>
-      <p>I was lucky enough to grasp this early, and to have people around me who confirmed it. But luck is not a system — and the Italian situation makes this painfully clear.</p>
-    </div>
-
-    <blockquote class="pullquote">
-      "The best investment you can make is in yourself."
-      <cite>— Warren Buffett</cite>
-    </blockquote>
-
-    <div class="section-body">
-      <p>Italy has one of the lowest rates of university graduation in Europe, and social mobility has been stalling for decades. Too many students — especially in the South — never encounter a convincing reason to believe that studying changes lives. Nobody around them has shown them that it can.</p>
-      <p>I try, in small ways, to be that example for someone else.</p>
-    </div>
-
-    <!-- DATA VIZ -->
-    <div class="chart-wrapper">
-      <div class="chart-header">
-        <div class="chart-toggle">
-          <button class="chart-toggle-btn active" id="btn-attainment" onclick="switchChart('attainment')">Tertiary attainment</button>
-          <button class="chart-toggle-btn" id="btn-stem" onclick="switchChart('stem')">STEM graduates</button>
-        </div>
-        <p class="chart-subtitle" id="chart-subtitle">Share of 25–34 year-olds with a tertiary degree, EU countries, 2024</p>
-      </div>
-      <div class="chart-area" id="chart-area"></div>
-      <p class="chart-source">Source: Eurostat (edat_lfse_03; educ_uoe_grad04). STEM = science, mathematics, computing, engineering, manufacturing & construction.</p>
-    </div>
-
-    <div class="section-body" style="margin-top:0.5rem;">
-      <p>The picture is stark. In 2024, only 31.6% of Italians aged 25–34 held a university degree — second-to-last in the EU, ahead only of Romania. The EU average stands at 44.2%. On STEM specifically, Italy produces around 19 graduates per 1,000 young people, while countries like Finland and Ireland produce more than 28. The gap is not narrowing fast enough.</p>
-    </div>
-
-    <div class="giving-initiative">
-      <span class="initiative-tag">Initiative</span>
-      <p class="initiative-title">Christmas in STEM</p>
-      <p class="initiative-body">
-        Occasionally, I return to my former high school during the Christmas period to talk with students about how STEM subjects shape the world around us — from the algorithms that recommend their music to the models that price the risk behind their parents' mortgage. The goal is not recruitment. It is simply to make the invisible visible: to show that mathematics, statistics, and programming are not abstract exercises but genuine instruments of understanding and power.
-      </p>
-    </div>
-
-    <div class="section-body" style="margin-top: 1.5rem;">
-      <p>I believe these conversations matter most when they happen early, before students have already closed doors in their own minds. If you are a teacher or school coordinator in Italy and would like to organise something similar, feel free to reach out.</p>
-    </div>
-
   </div>
 </div>
 
@@ -934,91 +309,55 @@
     <p class="page-label">Reading</p>
     <h2 class="page-title">Books</h2>
     <hr class="page-rule">
-
     <div class="section-body">
       <p>An annotated library — not exhaustive, but honest. Books I have read closely, returned to, or consider essential entry points into their field.</p>
     </div>
 
-    <!-- Top-level tabs -->
     <div class="tab-bar" style="margin-top:1.5rem;">
       <button class="tab-btn active" onclick="showBookTab('academic', this)">Academic</button>
       <button class="tab-btn" onclick="showBookTab('general', this)">Beyond academia</button>
     </div>
 
-    <!-- ══ ACADEMIC ══ -->
+    <!-- ACADEMIC -->
     <div id="booktab-academic" class="booktab active">
       <div class="lib-layout">
-
-        <!-- Sidebar -->
         <nav class="lib-nav" id="lib-nav">
           <div class="lib-nav-group">
             <p class="lib-nav-group-label">Mathematics</p>
-            <a class="lib-nav-item active" onclick="showShelf('math-01',this)" href="#">
-              <span class="lib-nav-num">01</span> Logic &amp; Foundations
-            </a>
-            <a class="lib-nav-item" onclick="showShelf('math-02',this)" href="#">
-              <span class="lib-nav-num">02</span> Linear Algebra
-            </a>
-            <a class="lib-nav-item" onclick="showShelf('math-03',this)" href="#">
-              <span class="lib-nav-num">03</span> Real Analysis
-            </a>
-            <a class="lib-nav-item" onclick="showShelf('math-04',this)" href="#">
-              <span class="lib-nav-num">04</span> Topology
-            </a>
-            <a class="lib-nav-item" onclick="showShelf('math-05',this)" href="#">
-              <span class="lib-nav-num">05</span> Measure Theory
-            </a>
-            <a class="lib-nav-item" onclick="showShelf('math-06',this)" href="#">
-              <span class="lib-nav-num">07</span> Differential Equations
-            </a>
-            <a class="lib-nav-item" onclick="showShelf('math-07',this)" href="#">
-              <span class="lib-nav-num">08</span> Numerical Methods
-            </a>
-            <a class="lib-nav-item" onclick="showShelf('math-08',this)" href="#">
-              <span class="lib-nav-num">09</span> Optimization
-            </a>
+            <a class="lib-nav-item active" onclick="showShelf('math-01',this)" href="#"><span class="lib-nav-num">01</span> Logic &amp; Foundations</a>
+            <a class="lib-nav-item" onclick="showShelf('math-02',this)" href="#"><span class="lib-nav-num">02</span> Algebra</a>
+            <a class="lib-nav-item" onclick="showShelf('math-03',this)" href="#"><span class="lib-nav-num">03</span> Geometry</a>
+            <a class="lib-nav-item" onclick="showShelf('math-04',this)" href="#"><span class="lib-nav-num">04</span> Topology</a>
+            <a class="lib-nav-item" onclick="showShelf('math-05',this)" href="#"><span class="lib-nav-num">05</span> Math. Analysis</a>
+            <a class="lib-nav-item" onclick="showShelf('math-06',this)" href="#"><span class="lib-nav-num">06</span> Functional Analysis</a>
+            <a class="lib-nav-item" onclick="showShelf('math-07',this)" href="#"><span class="lib-nav-num">07</span> Dynamical Systems</a>
+            <a class="lib-nav-item" onclick="showShelf('math-08',this)" href="#"><span class="lib-nav-num">08</span> Numerical Methods</a>
+            <a class="lib-nav-item" onclick="showShelf('math-09',this)" href="#"><span class="lib-nav-num">09</span> Optimization</a>
           </div>
           <div class="lib-nav-group">
             <p class="lib-nav-group-label">Statistics</p>
-            <a class="lib-nav-item" onclick="showShelf('stat-theory',this)" href="#">
-              <span class="lib-nav-num">—</span> Theory
-            </a>
-            <a class="lib-nav-item" onclick="showShelf('stat-applied',this)" href="#">
-              <span class="lib-nav-num">—</span> Applied &amp; ML
-            </a>
+            <a class="lib-nav-item" onclick="showShelf('stat-theory',this)" href="#"><span class="lib-nav-num">—</span> Theory</a>
+            <a class="lib-nav-item" onclick="showShelf('stat-applied',this)" href="#"><span class="lib-nav-num">—</span> Applied &amp; ML</a>
           </div>
           <div class="lib-nav-group">
             <p class="lib-nav-group-label">Econometrics</p>
-            <a class="lib-nav-item" onclick="showShelf('eco-core',this)" href="#">
-              <span class="lib-nav-num">—</span> Core texts
-            </a>
-            <a class="lib-nav-item" onclick="showShelf('eco-causal',this)" href="#">
-              <span class="lib-nav-num">—</span> Causal inference
-            </a>
-            <a class="lib-nav-item" onclick="showShelf('eco-text',this)" href="#">
-              <span class="lib-nav-num">—</span> Text &amp; Spatial
-            </a>
+            <a class="lib-nav-item" onclick="showShelf('eco-core',this)" href="#"><span class="lib-nav-num">—</span> Core texts</a>
+            <a class="lib-nav-item" onclick="showShelf('eco-causal',this)" href="#"><span class="lib-nav-num">—</span> Causal inference</a>
+            <a class="lib-nav-item" onclick="showShelf('eco-text',this)" href="#"><span class="lib-nav-num">—</span> Text &amp; Spatial</a>
           </div>
         </nav>
 
-        <!-- Shelf -->
-        <div class="lib-shelf" id="lib-shelf">
+        <div class="lib-shelf">
 
-          <!-- 01 Logic -->
-          <div class="shelf" id="shelf-math-01">
+          <!-- 01 Logic & Foundations -->
+          <div class="shelf active" id="shelf-math-01">
             <p class="shelf-label"><span class="shelf-num">01</span> Logic &amp; Foundations</p>
             <div class="lib-book">
-              <div class="lib-book-head">
-                <p class="lib-book-title">Introduction to Mathematical Logic</p>
-                <p class="lib-book-author">Elliott Mendelson · 1964</p>
-              </div>
+              <div class="lib-book-head"><p class="lib-book-title">Introduction to Mathematical Logic</p><p class="lib-book-author">Elliott Mendelson · 1964</p></div>
               <p class="lib-book-note">The standard entry point into propositional and predicate calculus. Rigorous and self-contained — a good companion before tackling proof theory or model theory.</p>
             </div>
             <div class="lib-book">
-              <div class="lib-book-head">
-                <p class="lib-book-title">Naive Set Theory</p>
-                <p class="lib-book-author">Paul Halmos · 1960</p>
-              </div>
+              <div class="lib-book-head"><p class="lib-book-title">Naive Set Theory</p><p class="lib-book-author">Paul Halmos · 1960</p></div>
               <p class="lib-book-note">Deceptively titled. Halmos writes with exceptional clarity, and this slim volume remains the best way to build genuine intuition about sets before ZFC formalism.</p>
             </div>
           </div>
@@ -1027,51 +366,25 @@
           <div class="shelf" id="shelf-math-02">
             <p class="shelf-label"><span class="shelf-num">02</span> Algebra</p>
             <div class="lib-book">
-              <div class="lib-book-head">
-                <p class="lib-book-title">Algebra</p>
-                <p class="lib-book-author">Michael Artin, Second Edition </p>
-              </div>
-              <p class="lib-book-note">All the algebra that a bachelor'student should know. </p>
+              <div class="lib-book-head"><p class="lib-book-title">Algebra</p><p class="lib-book-author">Michael Artin · 2nd ed.</p></div>
+              <p class="lib-book-note">All the algebra a bachelor's student should know, done with the right level of abstraction. The linear algebra chapters complement the group theory beautifully.</p>
             </div>
             <div class="lib-book">
-              <div class="lib-book-head">
-                <p class="lib-book-title">Matrix Analysis</p>
-                <p class="lib-book-author">Horn &amp; Johnson · 1985</p>
-              </div>
+              <div class="lib-book-head"><p class="lib-book-title">Matrix Analysis</p><p class="lib-book-author">Horn &amp; Johnson · 1985</p></div>
               <p class="lib-book-note">The definitive reference for anyone working with matrix theory beyond the introductory level. Indispensable for spatial econometrics and spectral methods.</p>
             </div>
             <div class="lib-book">
-              <div class="lib-book-head">
-                <p class="lib-book-title">The Theory Of Matrices Vol 1 and Vol 2</p>
-                <p class="lib-book-author">Felix Ruvimovich Gantmacher</p>
-              </div>
-              <p class="lib-book-note">The most pedagogically generous matrix text I know.</p>
+              <div class="lib-book-head"><p class="lib-book-title">The Theory of Matrices, Vol. 1 &amp; 2</p><p class="lib-book-author">Felix R. Gantmacher · 1959</p></div>
+              <p class="lib-book-note">A Soviet classic. The treatment of canonical forms, functions of matrices, and stability theory goes far beyond any modern linear algebra text — essential for advanced applications.</p>
             </div>
           </div>
 
           <!-- 03 Geometry -->
-          <div class="shelf" id="shelf-math-02">
-            <p class="shelf-label"><span class="shelf-num">02</span> Geometry</p>
+          <div class="shelf" id="shelf-math-03">
+            <p class="shelf-label"><span class="shelf-num">03</span> Geometry</p>
             <div class="lib-book">
-              <div class="lib-book-head">
-                <p class="lib-book-title">Lezioni di Geometria (Vol. 1)</p>
-                <p class="lib-book-author">Rosa Esposito, Assunta Russo · 1996</p>
-              </div>
-              <p class="lib-book-note">My first geometry book. Unfortunately only in Italian.  </p>
-            </div>
-            <div class="lib-book">
-              <div class="lib-book-head">
-                <p class="lib-book-title">Matrix Analysis</p>
-                <p class="lib-book-author">Horn &amp; Johnson · 1985</p>
-              </div>
-              <p class="lib-book-note">The definitive reference for anyone working with matrix theory beyond the introductory level. Indispensable for spatial econometrics and spectral methods.</p>
-            </div>
-            <div class="lib-book">
-              <div class="lib-book-head">
-                <p class="lib-book-title">The Theory Of Matrices Vol 1 and Vol 2</p>
-                <p class="lib-book-author">Felix Ruvimovich Gantmacher</p>
-              </div>
-              <p class="lib-book-note">The most pedagogically generous matrix text I know.</p>
+              <div class="lib-book-head"><p class="lib-book-title">Lezioni di Geometria, Vol. 1</p><p class="lib-book-author">Rosa Esposito, Assunta Russo · 1996</p></div>
+              <p class="lib-book-note">My first geometry book. Only in Italian, but it shaped how I think about mathematical space. Some debts are owed to very specific volumes.</p>
             </div>
           </div>
 
@@ -1079,17 +392,11 @@
           <div class="shelf" id="shelf-math-04">
             <p class="shelf-label"><span class="shelf-num">04</span> Topology</p>
             <div class="lib-book">
-              <div class="lib-book-head">
-                <p class="lib-book-title">Topology</p>
-                <p class="lib-book-author">James Munkres · 2nd ed.</p>
-              </div>
+              <div class="lib-book-head"><p class="lib-book-title">Topology</p><p class="lib-book-author">James Munkres · 2nd ed.</p></div>
               <p class="lib-book-note">The standard graduate text, and deservedly so. Munkres writes with unusual care; the problem sets are excellent. Covers point-set topology fully before moving to algebraic topology.</p>
             </div>
             <div class="lib-book">
-              <div class="lib-book-head">
-                <p class="lib-book-title">Introduction to Metric and Topological Spaces</p>
-                <p class="lib-book-author">Wilson Sutherland · 1975</p>
-              </div>
+              <div class="lib-book-head"><p class="lib-book-title">Introduction to Metric and Topological Spaces</p><p class="lib-book-author">Wilson Sutherland · 1975</p></div>
               <p class="lib-book-note">A gentler entry point for those coming from analysis. The transition from metric to topological spaces is handled with real care.</p>
             </div>
           </div>
@@ -1098,89 +405,72 @@
           <div class="shelf" id="shelf-math-05">
             <p class="shelf-label"><span class="shelf-num">05</span> Mathematical Analysis</p>
             <div class="lib-book">
-              <div class="lib-book-head">
-                <p class="lib-book-title">Real and Complex Analysis</p>
-                <p class="lib-book-author">Walter Rudin · 1966</p>
-              </div>
+              <div class="lib-book-head"><p class="lib-book-title">Real and Complex Analysis</p><p class="lib-book-author">Walter Rudin · 1966</p></div>
               <p class="lib-book-note">"Big Rudin." The chapters on measure and integration are a masterpiece of compression. Non-negotiable if you want a serious foundation for probability theory.</p>
             </div>
             <div class="lib-book">
-              <div class="lib-book-head">
-                <p class="lib-book-title">Introductory Real Analysis</p>
-                <p class="lib-book-author">A.N. Kolmogorov, S.V. Fomin · 1975</p>
-              </div>
+              <div class="lib-book-head"><p class="lib-book-title">Introductory Real Analysis</p><p class="lib-book-author">A.N. Kolmogorov &amp; S.V. Fomin · 1975</p></div>
               <p class="lib-book-note">A more accessible companion to Rudin. The exposition of the Lebesgue integral is especially clear, and the exercises build intuition well.</p>
             </div>
             <div class="lib-book">
-              <div class="lib-book-head">
-                <p class="lib-book-title">Probability and Measure</p>
-                <p class="lib-book-author">Patrick Billingsley · 1979</p>
-              </div>
+              <div class="lib-book-head"><p class="lib-book-title">Probability and Measure</p><p class="lib-book-author">Patrick Billingsley · 1979</p></div>
               <p class="lib-book-note">The bridge between measure theory and probability. Billingsley's treatment of weak convergence and characteristic functions is the foundation you need for asymptotic econometrics.</p>
             </div>
           </div>
 
-          <!-- 06 Dynamical Sistems -->
-          <div class="shelf" id="shelf-math-07">
-            <p class="shelf-label"><span class="shelf-num">07</span> Differential Equations</p>
+          <!-- 06 Functional Analysis -->
+          <div class="shelf" id="shelf-math-06">
+            <p class="shelf-label"><span class="shelf-num">06</span> Functional Analysis</p>
             <div class="lib-book">
-              <div class="lib-book-head">
-                <p class="lib-book-title">Ordinary Differential Equations</p>
-                <p class="lib-book-author">Vladimir Arnold · 1978</p>
-              </div>
+              <div class="lib-book-head"><p class="lib-book-title">Introductory Functional Analysis with Applications</p><p class="lib-book-author">Erwin Kreyszig · 1978</p></div>
+              <p class="lib-book-note">The most user-friendly door into functional analysis. Kreyszig never sacrifices rigour for accessibility, but he always explains why things matter before proving them.</p>
+            </div>
+            <div class="lib-book">
+              <div class="lib-book-head"><p class="lib-book-title">Functional Analysis</p><p class="lib-book-author">Walter Rudin · 1973</p></div>
+              <p class="lib-book-note">For those who have survived the first two Rudins. The treatment of distributions, Fourier analysis, and operator theory here has no equal at this level of concision.</p>
+            </div>
+          </div>
+
+          <!-- 07 Dynamical Systems -->
+          <div class="shelf" id="shelf-math-07">
+            <p class="shelf-label"><span class="shelf-num">07</span> Dynamical Systems</p>
+            <div class="lib-book">
+              <div class="lib-book-head"><p class="lib-book-title">Ordinary Differential Equations</p><p class="lib-book-author">Vladimir Arnold · 1978</p></div>
               <p class="lib-book-note">Arnold approaches ODEs as a geometer, not an analyst. The emphasis on phase flows and qualitative behaviour is exactly the perspective economists applying dynamic systems need.</p>
             </div>
             <div class="lib-book">
-              <div class="lib-book-head">
-                <p class="lib-book-title">Nonlinear Dynamics and Chaos, Second Edition</p>
-                <p class="lib-book-author">Steven H. Strogatz</p>
-              </div>
-              <p class="lib-book-note">The standard graduate text for dynamical systems. The treatment of linear systems, stability, and bifurcation theory is thorough and well-motivated.</p>
+              <div class="lib-book-head"><p class="lib-book-title">Nonlinear Dynamics and Chaos</p><p class="lib-book-author">Steven H. Strogatz · 2nd ed.</p></div>
+              <p class="lib-book-note">The most readable graduate text on dynamical systems. The treatment of stability and bifurcation theory is thorough and well-motivated, with applications drawn from across science.</p>
             </div>
           </div>
 
-          <!-- 07 Numerical Methods -->
+          <!-- 08 Numerical Methods -->
           <div class="shelf" id="shelf-math-08">
             <p class="shelf-label"><span class="shelf-num">08</span> Numerical Methods</p>
             <div class="lib-book">
-              <div class="lib-book-head">
-                <p class="lib-book-title">Numerical Linear Algebra</p>
-                <p class="lib-book-author">Trefethen &amp; Bau · 1997</p>
-              </div>
+              <div class="lib-book-head"><p class="lib-book-title">Numerical Linear Algebra</p><p class="lib-book-author">Trefethen &amp; Bau · 1997</p></div>
               <p class="lib-book-note">A remarkable book: rigorous yet remarkably readable. The lectures on SVD, QR, and iterative methods make you understand what computation actually does to matrices.</p>
             </div>
             <div class="lib-book">
-              <div class="lib-book-head">
-                <p class="lib-book-title">Numerical Methods for Scientists and Engineers</p>
-                <p class="lib-book-author">Hamming · 1962</p>
-              </div>
-              <p class="lib-book-note">Old but not outdated. Hamming's philosophy of numerical computation — "the purpose of computing is insight, not numbers" — belongs on every quantitative researcher's wall.</p>
+              <div class="lib-book-head"><p class="lib-book-title">Numerical Methods for Scientists and Engineers</p><p class="lib-book-author">R. W. Hamming · 1962</p></div>
+              <p class="lib-book-note">Old but not outdated. Hamming's philosophy — "the purpose of computing is insight, not numbers" — belongs on every quantitative researcher's wall.</p>
             </div>
           </div>
 
-          <!-- 08 Optimization -->
+          <!-- 09 Optimization -->
           <div class="shelf" id="shelf-math-09">
             <p class="shelf-label"><span class="shelf-num">09</span> Optimization</p>
             <div class="lib-book">
-              <div class="lib-book-head">
-                <p class="lib-book-title">Convex Optimization</p>
-                <p class="lib-book-author">Boyd &amp; Vandenberghe · 2004</p>
-              </div>
-              <p class="lib-book-note">Freely available online. The gold standard reference for convex analysis and optimization algorithms. Every chapter in Part II is directly applicable to estimation problems in econometrics and ML.</p>
+              <div class="lib-book-head"><p class="lib-book-title">Convex Optimization</p><p class="lib-book-author">Boyd &amp; Vandenberghe · 2004</p></div>
+              <p class="lib-book-note">Freely available online. The gold standard for convex analysis and optimization algorithms. Every chapter in Part II is directly applicable to estimation problems in econometrics and ML.</p>
             </div>
             <div class="lib-book">
-              <div class="lib-book-head">
-                <p class="lib-book-title">Nonlinear Programming</p>
-                <p class="lib-book-author">Dimitri Bertsekas · 2nd ed.</p>
-              </div>
+              <div class="lib-book-head"><p class="lib-book-title">Nonlinear Programming</p><p class="lib-book-author">Dimitri Bertsekas · 2nd ed.</p></div>
               <p class="lib-book-note">The most complete treatment of constrained optimization I have found. The chapters on Lagrangian duality and the KKT conditions are essential for understanding modern estimators.</p>
             </div>
             <div class="lib-book">
-              <div class="lib-book-head">
-                <p class="lib-book-title">Linear Programming and Economic Analysis</p>
-                <p class="lib-book-author">Robert Dorfman, Paul A. Samuelson, Robert M. Solow </p>
-              </div>
-              <p class="lib-book-note">The authors start with the diet problem, delving the reader through the most important linear algorithms applied to the economic theory</p>
+              <div class="lib-book-head"><p class="lib-book-title">Linear Programming and Economic Analysis</p><p class="lib-book-author">Dorfman, Samuelson &amp; Solow · 1958</p></div>
+              <p class="lib-book-note">The authors start with the diet problem, leading the reader through the most important linear algorithms applied to economic theory. A beautiful marriage of mathematics and economics.</p>
             </div>
           </div>
 
@@ -1188,24 +478,15 @@
           <div class="shelf" id="shelf-stat-theory">
             <p class="shelf-label">Statistics — Theory</p>
             <div class="lib-book">
-              <div class="lib-book-head">
-                <p class="lib-book-title">Statistical Inference</p>
-                <p class="lib-book-author">Casella &amp; Berger · 2nd ed.</p>
-              </div>
+              <div class="lib-book-head"><p class="lib-book-title">Statistical Inference</p><p class="lib-book-author">Casella &amp; Berger · 2nd ed.</p></div>
               <p class="lib-book-note">Timeless. The treatment of sufficiency, completeness, and the Cramér-Rao bound is impeccable. Invaluable as a desk reference.</p>
             </div>
             <div class="lib-book">
-              <div class="lib-book-head">
-                <p class="lib-book-title">Asymptotic Statistics</p>
-                <p class="lib-book-author">Aad van der Vaart · 1998</p>
-              </div>
+              <div class="lib-book-head"><p class="lib-book-title">Asymptotic Statistics</p><p class="lib-book-author">Aad van der Vaart · 1998</p></div>
               <p class="lib-book-note">Dense, exact, and beautiful. The chapters on empirical processes and the delta method are the backbone of modern econometric asymptotics. Not for the faint-hearted.</p>
             </div>
             <div class="lib-book">
-              <div class="lib-book-head">
-                <p class="lib-book-title">Testing Statistical Hypotheses</p>
-                <p class="lib-book-author">Lehmann &amp; Romano · 3rd ed.</p>
-              </div>
+              <div class="lib-book-head"><p class="lib-book-title">Testing Statistical Hypotheses</p><p class="lib-book-author">Lehmann &amp; Romano · 3rd ed.</p></div>
               <p class="lib-book-note">The definitive treatment of hypothesis testing from a decision-theoretic perspective. The UMP and UMPU results here clarify what most applied texts leave vague.</p>
             </div>
           </div>
@@ -1214,24 +495,15 @@
           <div class="shelf" id="shelf-stat-applied">
             <p class="shelf-label">Statistics — Applied &amp; Machine Learning</p>
             <div class="lib-book">
-              <div class="lib-book-head">
-                <p class="lib-book-title">The Elements of Statistical Learning</p>
-                <p class="lib-book-author">Hastie, Tibshirani &amp; Friedman · 2009</p>
-              </div>
+              <div class="lib-book-head"><p class="lib-book-title">The Elements of Statistical Learning</p><p class="lib-book-author">Hastie, Tibshirani &amp; Friedman · 2009</p></div>
               <p class="lib-book-note">The canonical bridge between statistics and machine learning. Dense but enormously rewarding. The chapters on regularisation, trees, and ensemble methods remain the best in the literature.</p>
             </div>
             <div class="lib-book">
-              <div class="lib-book-head">
-                <p class="lib-book-title">An Introduction to Statistical Learning</p>
-                <p class="lib-book-author">James, Witten, Hastie &amp; Tibshirani · 2013</p>
-              </div>
+              <div class="lib-book-head"><p class="lib-book-title">An Introduction to Statistical Learning</p><p class="lib-book-author">James, Witten, Hastie &amp; Tibshirani · 2013</p></div>
               <p class="lib-book-note">The accessible companion to ESL — the right first book for students coming from economics who want to engage seriously with ML methods.</p>
             </div>
             <div class="lib-book">
-              <div class="lib-book-head">
-                <p class="lib-book-title">Pattern Recognition and Machine Learning</p>
-                <p class="lib-book-author">Christopher Bishop · 2006</p>
-              </div>
+              <div class="lib-book-head"><p class="lib-book-title">Pattern Recognition and Machine Learning</p><p class="lib-book-author">Christopher Bishop · 2006</p></div>
               <p class="lib-book-note">The probabilistic perspective on machine learning — Bayesian inference, graphical models, and kernel methods treated with real depth. A reference I return to repeatedly.</p>
             </div>
           </div>
@@ -1240,25 +512,16 @@
           <div class="shelf" id="shelf-eco-core">
             <p class="shelf-label">Econometrics — Core texts</p>
             <div class="lib-book">
-              <div class="lib-book-head">
-                <p class="lib-book-title">Econometric Analysis</p>
-                <p class="lib-book-author">William Greene · 8th ed.</p>
-              </div>
+              <div class="lib-book-head"><p class="lib-book-title">Econometric Analysis</p><p class="lib-book-author">William Greene · 8th ed.</p></div>
               <p class="lib-book-note">The encyclopaedic reference. Not a book you read cover to cover, but one you keep within arm's reach. Every classical and semi-classical estimator is here, with derivations.</p>
             </div>
             <div class="lib-book">
-              <div class="lib-book-head">
-                <p class="lib-book-title">Econometric Theory and Methods</p>
-                <p class="lib-book-author">Davidson &amp; MacKinnon · 2004</p>
-              </div>
+              <div class="lib-book-head"><p class="lib-book-title">Econometric Theory and Methods</p><p class="lib-book-author">Davidson &amp; MacKinnon · 2004</p></div>
               <p class="lib-book-note">More modern and methodologically self-aware than Greene. The treatment of bootstrap methods and simulation-based inference is particularly strong.</p>
             </div>
             <div class="lib-book">
-              <div class="lib-book-head">
-                <p class="lib-book-title">A Guide to Modern Econometrics</p>
-                <p class="lib-book-author">Marno Verbeek · 5th ed.</p>
-              </div>
-              <p class="lib-book-note">My favourite indtroductory econometrics book. I like its mathematical style</p>
+              <div class="lib-book-head"><p class="lib-book-title">A Guide to Modern Econometrics</p><p class="lib-book-author">Marno Verbeek · 5th ed.</p></div>
+              <p class="lib-book-note">My favourite introductory econometrics text. It strikes an unusually good balance between mathematical precision and applied intuition — the right starting point before moving to Greene or Davidson.</p>
             </div>
           </div>
 
@@ -1266,24 +529,15 @@
           <div class="shelf" id="shelf-eco-causal">
             <p class="shelf-label">Econometrics — Causal inference</p>
             <div class="lib-book">
-              <div class="lib-book-head">
-                <p class="lib-book-title">Mostly Harmless Econometrics</p>
-                <p class="lib-book-author">Angrist &amp; Pischke · 2009</p>
-              </div>
+              <div class="lib-book-head"><p class="lib-book-title">Mostly Harmless Econometrics</p><p class="lib-book-author">Angrist &amp; Pischke · 2009</p></div>
               <p class="lib-book-note">The book that made causal inference approachable for a generation of economists. The IV and RDD chapters in particular deserve to be read slowly.</p>
             </div>
             <div class="lib-book">
-              <div class="lib-book-head">
-                <p class="lib-book-title">Causal Inference: The Mixtape</p>
-                <p class="lib-book-author">Scott Cunningham · 2021</p>
-              </div>
+              <div class="lib-book-head"><p class="lib-book-title">Causal Inference: The Mixtape</p><p class="lib-book-author">Scott Cunningham · 2021</p></div>
               <p class="lib-book-note">Freely available online. Cunningham writes with personality and the code examples are integrated seamlessly. The treatment of DiD and synthetic control is especially current.</p>
             </div>
             <div class="lib-book">
-              <div class="lib-book-head">
-                <p class="lib-book-title">Causality</p>
-                <p class="lib-book-author">Judea Pearl · 2000</p>
-              </div>
+              <div class="lib-book-head"><p class="lib-book-title">Causality</p><p class="lib-book-author">Judea Pearl · 2000</p></div>
               <p class="lib-book-note">The foundational text on structural causal models and do-calculus. Not an easy read, but it fundamentally reframes what identification means — a perspective every econometrician should encounter.</p>
             </div>
           </div>
@@ -1292,24 +546,15 @@
           <div class="shelf" id="shelf-eco-text">
             <p class="shelf-label">Econometrics — Text &amp; Spatial</p>
             <div class="lib-book">
-              <div class="lib-book-head">
-                <p class="lib-book-title">Speech and Language Processing</p>
-                <p class="lib-book-author">Jurafsky &amp; Martin · 3rd ed. (online)</p>
-              </div>
+              <div class="lib-book-head"><p class="lib-book-title">Speech and Language Processing</p><p class="lib-book-author">Jurafsky &amp; Martin · 3rd ed. (online)</p></div>
               <p class="lib-book-note">The standard NLP reference, freely available and continuously updated. The chapters on language models and word vectors are essential background for text-based econometrics.</p>
             </div>
             <div class="lib-book">
-              <div class="lib-book-head">
-                <p class="lib-book-title">Introduction to Spatial Econometrics</p>
-                <p class="lib-book-author">LeSage &amp; Pace · 2009</p>
-              </div>
+              <div class="lib-book-head"><p class="lib-book-title">Introduction to Spatial Econometrics</p><p class="lib-book-author">LeSage &amp; Pace · 2009</p></div>
               <p class="lib-book-note">The clearest treatment of spatial weight matrices, SAR models, and Bayesian spatial estimation. The construction and properties of W are handled more carefully here than anywhere else.</p>
             </div>
             <div class="lib-book">
-              <div class="lib-book-head">
-                <p class="lib-book-title">Spatial Econometrics: Methods and Models</p>
-                <p class="lib-book-author">Luc Anselin · 1988</p>
-              </div>
+              <div class="lib-book-head"><p class="lib-book-title">Spatial Econometrics: Methods and Models</p><p class="lib-book-author">Luc Anselin · 1988</p></div>
               <p class="lib-book-note">The founding text of the field. Some notation has dated, but the conceptual architecture — how to think about spatial dependence as a modelling problem — remains indispensable.</p>
             </div>
           </div>
@@ -1318,27 +563,62 @@
       </div><!-- /lib-layout -->
     </div><!-- /booktab-academic -->
 
-    <!-- ══ BEYOND ACADEMIA ══ -->
+    <!-- BEYOND ACADEMIA -->
     <div id="booktab-general" class="booktab">
-
-      <!-- Currently reading -->
       <div class="general-reading-now">
         <span class="reading-badge">Reading now</span>
-        <p class="lib-book-title" style="font-size:1.05rem;margin-bottom:0.2rem;">Book Title</p>
-        <p class="lib-book-author">Author Name · Year</p>
-        <p class="lib-book-note" style="margin-top:0.4rem;">A brief note on why you're reading it or what you're getting from it.</p>
+        <p class="lib-book-title" style="font-size:1.05rem;margin-bottom:0.2rem;">The Culture Map</p>
+        <p class="lib-book-author">Erin Meyer · 2014</p>
+        <p class="lib-book-note" style="margin-top:0.4rem;">A practical framework for understanding how cultural differences shape communication, trust, and decision-making in international professional contexts. Particularly resonant working across European academic environments.</p>
       </div>
-
-      <!-- Archive -->
       <p class="books-section-label" style="margin-top:2rem;">Archive</p>
       <p class="section-body" style="font-size:0.88rem;margin-bottom:1.25rem;color:var(--ink-muted);">A non-exhaustive list. Books I consider relevant — in no particular order.</p>
+      <div class="gen-list" id="gen-list"></div>
+    </div>
 
-      <div class="gen-list" id="gen-list">
-        <!-- items rendered by JS -->
+  </div>
+</div>
+
+<!-- GIVING BACK -->
+<div id="page-giving" class="page">
+  <div class="inner">
+    <p class="page-label">Giving Back</p>
+    <h2 class="page-title">I was lucky</h2>
+    <hr class="page-rule">
+    <div class="section-body">
+      <p>Early in my life I understood something that not everyone gets to see in time: education is the only true social elevator. It does not care where you come from. It opens doors that nothing else can.</p>
+      <p>I was lucky enough to grasp this early, and to have people around me who confirmed it. But luck is not a system — and the Italian situation makes this painfully clear.</p>
+    </div>
+    <blockquote class="pullquote">
+      "The best investment you can make is in yourself."
+      <cite>— Warren Buffett</cite>
+    </blockquote>
+    <div class="section-body">
+      <p>Italy has one of the lowest rates of university graduation in Europe, and social mobility has been stalling for decades. Too many students — especially in the South — never encounter a convincing reason to believe that studying changes lives. Nobody around them has shown them that it can.</p>
+      <p>I try, in small ways, to be that example for someone else.</p>
+    </div>
+    <div class="chart-wrapper">
+      <div class="chart-header">
+        <div class="chart-toggle">
+          <button class="chart-toggle-btn active" id="btn-attainment" onclick="switchChart('attainment')">Tertiary attainment</button>
+          <button class="chart-toggle-btn" id="btn-stem" onclick="switchChart('stem')">STEM graduates</button>
+        </div>
+        <p class="chart-subtitle" id="chart-subtitle">Share of 25–34 year-olds with a tertiary degree, EU countries, 2024</p>
       </div>
-
-    </div><!-- /booktab-general -->
-
+      <div class="chart-area" id="chart-area"></div>
+      <p class="chart-source">Source: Eurostat (edat_lfse_03; educ_uoe_grad04). STEM = science, mathematics, computing, engineering, manufacturing &amp; construction.</p>
+    </div>
+    <div class="section-body" style="margin-top:0.5rem;">
+      <p>The picture is stark. In 2024, only 31.6% of Italians aged 25–34 held a university degree — second-to-last in the EU, ahead only of Romania. The EU average stands at 44.2%. On STEM specifically, Italy produces around 19 graduates per 1,000 young people, while countries like Finland and Ireland produce more than 28. The gap is not narrowing fast enough.</p>
+    </div>
+    <div class="giving-initiative">
+      <span class="initiative-tag">Initiative</span>
+      <p class="initiative-title">Christmas in STEM</p>
+      <p class="initiative-body">Occasionally, I return to my former high school during the Christmas period to talk with students about how STEM subjects shape the world around us — from the algorithms that recommend their music to the models that price the risk behind their parents' mortgage. The goal is not recruitment. It is simply to make the invisible visible: to show that mathematics, statistics, and programming are not abstract exercises but genuine instruments of understanding and power.</p>
+    </div>
+    <div class="section-body" style="margin-top:1.5rem;">
+      <p>I believe these conversations matter most when they happen early, before students have already closed doors in their own minds. If you are a teacher or school coordinator in Italy and would like to organise something similar, feel free to reach out.</p>
+    </div>
   </div>
 </div>
 
@@ -1362,9 +642,7 @@
     <div class="contact-grid">
       <div class="contact-row">
         <span class="contact-label">Email</span>
-        <span class="contact-value">
-          <a href="mailto:fulvio.raddi@econ.ubbcluj.ro">fulvio.raddi@econ.ubbcluj.ro</a>
-        </span>
+        <span class="contact-value"><a href="mailto:fulvio.raddi@econ.ubbcluj.ro">fulvio.raddi@econ.ubbcluj.ro</a></span>
       </div>
       <div class="contact-row">
         <span class="contact-label">Affiliation</span>
@@ -1375,72 +653,46 @@
 </div>
 
 <script>
-  // ── Chart data (Eurostat) ──
+  // ── Chart data ──
   const ATTAINMENT = [
-    { c: "IE", name: "Ireland",     v: 65.2 },
-    { c: "LU", name: "Luxembourg",  v: 63.8 },
-    { c: "CY", name: "Cyprus",      v: 60.1 },
-    { c: "BE", name: "Belgium",     v: 50.9 },
-    { c: "NL", name: "Netherlands", v: 54.8 },
-    { c: "PL", name: "Poland",      v: 48.1 },
-    { c: "LT", name: "Lithuania",   v: 56.2 },
-    { c: "EE", name: "Estonia",     v: 45.3 },
-    { c: "EL", name: "Greece",      v: 44.4 },
-    { c: "LV", name: "Latvia",      v: 44.3 },
-    { c: "FI", name: "Finland",     v: 43.2 },
-    { c: "SI", name: "Slovenia",    v: 43.2 },
-    { c: "PT", name: "Portugal",    v: 41.9 },
-    { c: "DE", name: "Germany",     v: 39.8 },
-    { c: "FR", name: "France",      v: 49.6 },
-    { c: "DK", name: "Denmark",     v: 52.3 },
-    { c: "SE", name: "Sweden",      v: 51.8 },
-    { c: "AT", name: "Austria",     v: 43.5 },
-    { c: "SK", name: "Slovakia",    v: 36.4 },
-    { c: "CZ", name: "Czechia",     v: 35.0 },
-    { c: "HU", name: "Hungary",     v: 34.1 },
-    { c: "HR", name: "Croatia",     v: 36.8 },
-    { c: "BG", name: "Bulgaria",    v: 37.6 },
-    { c: "MT", name: "Malta",       v: 38.5 },
-    { c: "ES", name: "Spain",       v: 50.2 },
-    { c: "IT", name: "Italy",       v: 31.6, highlight: true },
-    { c: "RO", name: "Romania",     v: 23.2, last: true },
-  ].sort((a, b) => b.v - a.v);
+    { c:"IE", name:"Ireland",     v:65.2 }, { c:"LU", name:"Luxembourg",  v:63.8 },
+    { c:"CY", name:"Cyprus",      v:60.1 }, { c:"LT", name:"Lithuania",   v:56.2 },
+    { c:"NL", name:"Netherlands", v:54.8 }, { c:"DK", name:"Denmark",     v:52.3 },
+    { c:"SE", name:"Sweden",      v:51.8 }, { c:"BE", name:"Belgium",     v:50.9 },
+    { c:"FR", name:"France",      v:49.6 }, { c:"PL", name:"Poland",      v:48.1 },
+    { c:"EE", name:"Estonia",     v:45.3 }, { c:"EL", name:"Greece",      v:44.4 },
+    { c:"LV", name:"Latvia",      v:44.3 }, { c:"AT", name:"Austria",     v:43.5 },
+    { c:"FI", name:"Finland",     v:43.2 }, { c:"SI", name:"Slovenia",    v:43.2 },
+    { c:"PT", name:"Portugal",    v:41.9 }, { c:"DE", name:"Germany",     v:39.8 },
+    { c:"MT", name:"Malta",       v:38.5 }, { c:"BG", name:"Bulgaria",    v:37.6 },
+    { c:"HR", name:"Croatia",     v:36.8 }, { c:"SK", name:"Slovakia",    v:36.4 },
+    { c:"CZ", name:"Czechia",     v:35.0 }, { c:"HU", name:"Hungary",     v:34.1 },
+    { c:"ES", name:"Spain",       v:50.2 },
+    { c:"IT", name:"Italy",       v:31.6, highlight:true },
+    { c:"RO", name:"Romania",     v:23.2, last:true },
+  ].sort((a,b) => b.v - a.v);
 
-  // STEM graduates per 1,000 young people aged 20-34 (Eurostat educ_uoe_grad04, ~2022/23)
   const STEM = [
-    { c: "FR", name: "France",      v: 20.1 },
-    { c: "FI", name: "Finland",     v: 28.5 },
-    { c: "IE", name: "Ireland",     v: 28.2 },
-    { c: "DE", name: "Germany",     v: 25.6 },
-    { c: "SE", name: "Sweden",      v: 24.8 },
-    { c: "PT", name: "Portugal",    v: 23.1 },
-    { c: "CZ", name: "Czechia",     v: 22.7 },
-    { c: "AT", name: "Austria",     v: 22.3 },
-    { c: "EL", name: "Greece",      v: 21.8 },
-    { c: "ES", name: "Spain",       v: 21.4 },
-    { c: "PL", name: "Poland",      v: 20.9 },
-    { c: "NL", name: "Netherlands", v: 20.7 },
-    { c: "SK", name: "Slovakia",    v: 20.2 },
-    { c: "BE", name: "Belgium",     v: 19.5 },
-    { c: "DK", name: "Denmark",     v: 24.1 },
-    { c: "BG", name: "Bulgaria",    v: 18.8 },
-    { c: "HR", name: "Croatia",     v: 18.4 },
-    { c: "EE", name: "Estonia",     v: 18.1 },
-    { c: "HU", name: "Hungary",     v: 17.8 },
-    { c: "LV", name: "Latvia",      v: 17.5 },
-    { c: "LT", name: "Lithuania",   v: 17.2 },
-    { c: "SI", name: "Slovenia",    v: 17.0 },
-    { c: "MT", name: "Malta",       v: 16.9 },
-    { c: "LU", name: "Luxembourg",  v: 16.4 },
-    { c: "CY", name: "Cyprus",      v: 15.8 },
-    { c: "IT", name: "Italy",       v: 19.0, highlight: true },
-    { c: "RO", name: "Romania",     v: 14.3, last: true },
-  ].sort((a, b) => b.v - a.v);
+    { c:"FI", name:"Finland",     v:28.5 }, { c:"IE", name:"Ireland",     v:28.2 },
+    { c:"DK", name:"Denmark",     v:24.1 }, { c:"DE", name:"Germany",     v:25.6 },
+    { c:"SE", name:"Sweden",      v:24.8 }, { c:"PT", name:"Portugal",    v:23.1 },
+    { c:"CZ", name:"Czechia",     v:22.7 }, { c:"AT", name:"Austria",     v:22.3 },
+    { c:"EL", name:"Greece",      v:21.8 }, { c:"ES", name:"Spain",       v:21.4 },
+    { c:"PL", name:"Poland",      v:20.9 }, { c:"NL", name:"Netherlands", v:20.7 },
+    { c:"FR", name:"France",      v:20.1 }, { c:"SK", name:"Slovakia",    v:20.2 },
+    { c:"BE", name:"Belgium",     v:19.5 }, { c:"BG", name:"Bulgaria",    v:18.8 },
+    { c:"HR", name:"Croatia",     v:18.4 }, { c:"EE", name:"Estonia",     v:18.1 },
+    { c:"HU", name:"Hungary",     v:17.8 }, { c:"LV", name:"Latvia",      v:17.5 },
+    { c:"LT", name:"Lithuania",   v:17.2 }, { c:"SI", name:"Slovenia",    v:17.0 },
+    { c:"MT", name:"Malta",       v:16.9 }, { c:"LU", name:"Luxembourg",  v:16.4 },
+    { c:"CY", name:"Cyprus",      v:15.8 },
+    { c:"IT", name:"Italy",       v:19.0, highlight:true },
+    { c:"RO", name:"Romania",     v:14.3, last:true },
+  ].sort((a,b) => b.v - a.v);
 
-  const EU_AVG_ATT  = 44.2;
-  const EU_AVG_STEM = 22.4;
+  const EU_AVG_ATT = 44.2, EU_AVG_STEM = 22.4;
 
-  // ── Page navigation ──
+  // ── Navigation ──
   function showPage(id) {
     document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
     document.querySelectorAll('nav a').forEach(a => a.classList.remove('active'));
@@ -1450,6 +702,15 @@
     if (nav) nav.classList.add('active');
     window.scrollTo({ top: 0, behavior: 'instant' });
     if (id === 'giving') setTimeout(() => renderChart(ATTAINMENT, EU_AVG_ATT, '%'), 50);
+    if (id === 'books') {
+      setTimeout(() => {
+        const active = document.querySelector('.shelf.active');
+        if (!active) {
+          const first = document.getElementById('shelf-math-01');
+          if (first) first.classList.add('active');
+        }
+      }, 20);
+    }
   }
 
   function showTab(id, btn) {
@@ -1458,6 +719,27 @@
     document.getElementById('tab-' + id).classList.add('active');
     btn.classList.add('active');
   }
+
+  function showBookTab(id, btn) {
+    document.querySelectorAll('.booktab').forEach(t => t.classList.remove('active'));
+    btn.closest('.tab-bar').querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+    document.getElementById('booktab-' + id).classList.add('active');
+    btn.classList.add('active');
+    if (id === 'general') renderGeneralBooks();
+  }
+
+  function showShelf(id, link) {
+    document.querySelectorAll('.shelf').forEach(s => s.classList.remove('active'));
+    document.querySelectorAll('.lib-nav-item').forEach(a => a.classList.remove('active'));
+    const shelf = document.getElementById('shelf-' + id);
+    if (shelf) shelf.classList.add('active');
+    if (link) { link.classList.add('active'); link.blur(); }
+    return false;
+  }
+
+  document.querySelector('.header-name').addEventListener('click', function(e) {
+    e.preventDefault(); showPage('home');
+  });
 
   // ── Chart ──
   function switchChart(type) {
@@ -1481,7 +763,6 @@
     const maxVal = data[0].v * 1.05;
     const H = data.length * (BAR_H + GAP) + 32;
     const toX = v => (v / maxVal) * PLOT_W;
-
     let bars = '';
     data.forEach((d, i) => {
       const y = i * (BAR_H + GAP);
@@ -1490,43 +771,34 @@
       const textColor = d.highlight ? '#1a1814' : d.last ? '#7a8a94' : '#5a554e';
       const fw        = (d.highlight || d.last) ? '500' : '400';
       bars += `<g transform="translate(0,${y})">
-        <text x="${LABEL_W - 6}" y="${BAR_H/2+1}" dominant-baseline="middle" text-anchor="end"
-          font-size="9.5" fill="${textColor}" font-weight="${fw}"
-          font-family="DM Mono,monospace" letter-spacing="0.02em">${d.name}</text>
+        <text x="${LABEL_W-6}" y="${BAR_H/2+1}" dominant-baseline="middle" text-anchor="end"
+          font-size="9.5" fill="${textColor}" font-weight="${fw}" font-family="DM Mono,monospace" letter-spacing="0.02em">${d.name}</text>
         <rect x="${LABEL_W}" y="0" width="${bw}" height="${BAR_H}" fill="${fill}" rx="1"/>
         <text x="${LABEL_W+bw+5}" y="${BAR_H/2+1}" dominant-baseline="middle"
-          font-size="9" fill="${textColor}" font-weight="${fw}"
-          font-family="DM Mono,monospace">${d.v}${unit}</text>
+          font-size="9" fill="${textColor}" font-weight="${fw}" font-family="DM Mono,monospace">${d.v}${unit}</text>
       </g>`;
     });
-
     const avgX = LABEL_W + toX(avg);
-    const avgLine = `
-      <line x1="${avgX}" y1="0" x2="${avgX}" y2="${H-26}" stroke="#9a9590" stroke-width="1" stroke-dasharray="3,3"/>
-      <text x="${avgX+4}" y="${H-13}" font-size="8.5" fill="#9a9590"
-        font-family="DM Mono,monospace" letter-spacing="0.03em">EU avg ${avg}${unit}</text>`;
-
-    area.innerHTML = `<svg viewBox="0 0 ${W} ${H}" xmlns="http://www.w3.org/2000/svg" style="width:100%;display:block;">
-      ${avgLine}${bars}
-    </svg>`;
+    const avgLine = `<line x1="${avgX}" y1="0" x2="${avgX}" y2="${H-26}" stroke="#9a9590" stroke-width="1" stroke-dasharray="3,3"/>
+      <text x="${avgX+4}" y="${H-13}" font-size="8.5" fill="#9a9590" font-family="DM Mono,monospace" letter-spacing="0.03em">EU avg ${avg}${unit}</text>`;
+    area.innerHTML = `<svg viewBox="0 0 ${W} ${H}" xmlns="http://www.w3.org/2000/svg" style="width:100%;display:block;">${avgLine}${bars}</svg>`;
   }
 
-
-  // ── Books: general list ──
+  // ── General books ──
   const GENERAL_BOOKS = [
-    { title: "The Structure of Scientific Revolutions", author: "Thomas Kuhn · 1962", note: "How science actually changes. Essential reading before claiming any research is 'paradigm-shifting'.", tag: "essay" },
-    { title: "Against Method", author: "Paul Feyerabend · 1975", note: "A provocative assault on the idea of a universal scientific method. Useful for keeping methodological humility.", tag: "essay" },
-    { title: "The Black Swan", author: "Nassim Taleb · 2007", note: "Infuriating and important in equal measure. Tail risk and epistemic arrogance in financial modelling, argued with great force.", tag: "essay" },
-    { title: "How to Lie with Statistics", author: "Darrell Huff · 1954", note: "A short, witty, and still entirely relevant guide to statistical sleight of hand. Recommended to every student before their first data course.", tag: "essay" },
-    { title: "The Sleepwalkers", author: "Arthur Koestler · 1959", note: "A history of cosmology from Babylonian astronomy to Kepler. Koestler shows how great science is never a clean logical process.", tag: "history" },
-    { title: "Surely You're Joking, Mr. Feynman!", author: "Richard Feynman · 1985", note: "Anecdotes from a physicist who cared deeply about understanding rather than credentialism. A model of intellectual curiosity.", tag: "bio" },
-    { title: "A Mathematician's Apology", author: "G. H. Hardy · 1940", note: "A meditation on mathematical beauty and the life of the mind. Poignant and honest — Hardy knew his best work was behind him.", tag: "essay" },
-    { title: "The Remains of the Day", author: "Kazuo Ishiguro · 1989", note: "About dignity, self-deception, and the cost of subordinating yourself to a system. I think about this book often.", tag: "novel" },
-    { title: "If This Is a Man", author: "Primo Levi · 1947", note: "Levi writes about Auschwitz with the precision of a chemist and the humanity of a poet. One of the most important books written in the twentieth century.", tag: "bio" },
-    { title: "The Periodic Table", author: "Primo Levi · 1975", note: "Part memoir, part chemistry. Each chapter is named for an element; together they trace a life. The model for writing about science as a human practice.", tag: "bio" },
-    { title: "Thinking, Fast and Slow", author: "Daniel Kahneman · 2011", note: "The most accessible summary of behavioral economics and cognitive bias. The sections on statistical intuition failures are directly relevant to how we misread data.", tag: "science" },
-    { title: "Antifragile", author: "Nassim Taleb · 2012", note: "More disciplined than The Black Swan. The concept of antifragility — systems that gain from disorder — is a genuinely useful lens for thinking about institutions and models.", tag: "essay" },
-    { title: "The Hitchhiker's Guide to the Galaxy", author: "Douglas Adams · 1979", note: "The best argument I know for not taking yourself too seriously. Revisited whenever I feel overburdened by importance.", tag: "novel" },
+    { title:"The Structure of Scientific Revolutions", author:"Thomas Kuhn · 1962", note:"How science actually changes. Essential reading before claiming any research is 'paradigm-shifting'.", tag:"essay" },
+    { title:"Against Method", author:"Paul Feyerabend · 1975", note:"A provocative assault on the idea of a universal scientific method. Useful for keeping methodological humility.", tag:"essay" },
+    { title:"The Black Swan", author:"Nassim Taleb · 2007", note:"Infuriating and important in equal measure. Tail risk and epistemic arrogance in financial modelling, argued with great force.", tag:"essay" },
+    { title:"How to Lie with Statistics", author:"Darrell Huff · 1954", note:"A short, witty, and still entirely relevant guide to statistical sleight of hand. Recommended to every student before their first data course.", tag:"essay" },
+    { title:"The Sleepwalkers", author:"Arthur Koestler · 1959", note:"A history of cosmology from Babylonian astronomy to Kepler. Koestler shows how great science is never a clean logical process.", tag:"history" },
+    { title:"Surely You're Joking, Mr. Feynman!", author:"Richard Feynman · 1985", note:"Anecdotes from a physicist who cared deeply about understanding rather than credentialism. A model of intellectual curiosity.", tag:"bio" },
+    { title:"A Mathematician's Apology", author:"G. H. Hardy · 1940", note:"A meditation on mathematical beauty and the life of the mind. Poignant and honest — Hardy knew his best work was behind him.", tag:"essay" },
+    { title:"The Remains of the Day", author:"Kazuo Ishiguro · 1989", note:"About dignity, self-deception, and the cost of subordinating yourself to a system. I think about this book often.", tag:"novel" },
+    { title:"If This Is a Man", author:"Primo Levi · 1947", note:"Levi writes about Auschwitz with the precision of a chemist and the humanity of a poet. One of the most important books written in the twentieth century.", tag:"bio" },
+    { title:"The Periodic Table", author:"Primo Levi · 1975", note:"Part memoir, part chemistry. Each chapter is named for an element; together they trace a life. The model for writing about science as a human practice.", tag:"bio" },
+    { title:"Thinking, Fast and Slow", author:"Daniel Kahneman · 2011", note:"The most accessible summary of behavioral economics and cognitive bias. The sections on statistical intuition failures are directly relevant to how we misread data.", tag:"science" },
+    { title:"Antifragile", author:"Nassim Taleb · 2012", note:"More disciplined than The Black Swan. The concept of antifragility — systems that gain from disorder — is a genuinely useful lens for thinking about institutions and models.", tag:"essay" },
+    { title:"The Hitchhiker's Guide to the Galaxy", author:"Douglas Adams · 1979", note:"The best argument I know for not taking yourself too seriously. Revisited whenever I feel overburdened by importance.", tag:"novel" },
   ];
 
   const TAG_LABELS = { essay:"Essay/Non-fiction", novel:"Novel", history:"History", science:"Science", bio:"Biography/Memoir" };
@@ -1546,44 +818,6 @@
       el.appendChild(div);
     });
   }
-
-  function showBookTab(id, btn) {
-    document.querySelectorAll('.booktab').forEach(t => t.classList.remove('active'));
-    btn.closest('.tab-bar').querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
-    document.getElementById('booktab-' + id).classList.add('active');
-    btn.classList.add('active');
-    if (id === 'general') renderGeneralBooks();
-  }
-
-  function showShelf(id, link) {
-    document.querySelectorAll('.shelf').forEach(s => s.classList.remove('active'));
-    document.querySelectorAll('.lib-nav-item').forEach(a => a.classList.remove('active'));
-    const shelf = document.getElementById('shelf-' + id);
-    if (shelf) shelf.classList.add('active');
-    if (link) { link.classList.add('active'); link.blur(); }
-    return false;
-  }
-
-  // Initialise first shelf when books page loads
-  const _origShowPage = showPage;
-  showPage = function(id) {
-    _origShowPage(id);
-    if (id === 'books') {
-      setTimeout(() => {
-        if (!document.querySelector('.shelf.active')) {
-          const first = document.getElementById('shelf-math-01');
-          if (first) first.classList.add('active');
-        }
-      }, 20);
-    }
-    if (id === 'giving') setTimeout(() => renderChart(ATTAINMENT, EU_AVG_ATT, '%'), 50);
-  };
-
-  document.querySelector('.header-name').addEventListener('click', function(e) {
-    e.preventDefault();
-    showPage('home');
-  });
-
 </script>
 </body>
 </html>
