@@ -49,32 +49,60 @@
 
   /* ── Home ── */
   .home-layout {
-    max-width: 860px; margin: 0 auto; padding: 5rem 2rem 6rem;
-    display: grid; grid-template-columns: 220px 1fr; gap: 4rem; align-items: start;
+    max-width: 860px;
+    margin: 0 auto;
+    padding: 5rem 2rem 6rem;
+    display: grid;
+    grid-template-columns: 200px 1fr;
+    gap: 3.5rem;
+    align-items: start;
   }
-  .home-photo-col { display: flex; flex-direction: column; align-items: center; padding-top: 0.5rem; }
-  .home-photo-frame {
-    width: 200px; height: 240px;
+
+  /* Photo column */
+  .home-photo-col { display: flex; flex-direction: column; align-items: center; gap: 1rem; padding-top: 0.5rem; }
+  .home-photo {
+    width: 180px;
+    height: 220px;
+    object-fit: cover;
     border: 1px solid var(--rule);
-    background: var(--paper-warm);
-    overflow: hidden;
-    position: relative;
-    flex-shrink: 0;
-  }
-  .home-photo-frame img {
-    width: 100%; height: 100%; object-fit: cover; object-position: center top;
     display: block;
+    background: var(--paper-warm);
+    /* placeholder styling when no image */
+    position: relative;
   }
   .home-photo-placeholder {
-    width: 100%; height: 100%;
-    display: flex; flex-direction: column; align-items: center; justify-content: center;
-    gap: 0.5rem; color: var(--ink-faint);
+    width: 180px;
+    height: 220px;
+    border: 1px solid var(--rule);
+    background: var(--paper-warm);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 0.5rem;
   }
-  .home-photo-placeholder svg { opacity: 0.35; }
-  .home-photo-placeholder span { font-family: var(--mono); font-size: 0.55rem; letter-spacing: 0.1em; text-transform: uppercase; opacity: 0.6; }
-  .home-photo-caption { font-family: var(--mono); font-size: 0.58rem; color: var(--ink-faint); letter-spacing: 0.06em; margin-top: 0.75rem; text-align: center; line-height: 1.6; }
+  .home-photo-placeholder svg { opacity: 0.25; }
+  .home-photo-placeholder span { font-family: var(--mono); font-size: 0.55rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--ink-faint); }
+  .home-photo-socials { display: flex; flex-direction: column; gap: 0.4rem; width: 100%; }
+  .home-social-link {
+    font-family: var(--mono);
+    font-size: 0.58rem;
+    letter-spacing: 0.06em;
+    color: var(--ink-faint);
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.3rem 0.5rem;
+    border: 1px solid transparent;
+    border-radius: 2px;
+    transition: color 0.15s, border-color 0.15s;
+  }
+  .home-social-link:hover { color: var(--accent); border-color: var(--rule); }
+  .home-social-link svg { flex-shrink: 0; }
 
-  .home-content-col {}
+  /* Text column */
+  .home-text-col {}
   .home-eyebrow { font-family: var(--mono); font-size: 0.65rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--ink-faint); margin-bottom: 1.5rem; }
   .home-name { font-size: 3.2rem; font-weight: 400; font-style: italic; line-height: 1.15; margin-bottom: 0.5rem; color: var(--ink); }
   .home-title { font-family: var(--mono); font-size: 0.75rem; color: var(--ink-muted); letter-spacing: 0.05em; margin-bottom: 2.5rem; }
@@ -168,7 +196,6 @@
   .booktab { display: none; }
   .booktab.active { display: block; animation: fadein 0.2s ease; }
   .lib-layout { display: grid; grid-template-columns: 178px 1fr; gap: 0; border: 1px solid var(--rule); margin-top: 0; min-height: 520px; }
-
   .lib-nav { border-right: 1px solid var(--rule); background: var(--paper-warm); padding: 1.25rem 0 1.5rem; position: sticky; top: 56px; align-self: start; max-height: calc(100vh - 80px); overflow-y: auto; }
   .lib-nav-group { margin-bottom: 0.25rem; }
   .lib-nav-group-label { font-family: var(--mono); font-size: 0.55rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--ink-faint); padding: 0.75rem 1rem 0.3rem; display: block; }
@@ -177,7 +204,6 @@
   .lib-nav-item.active { color: var(--accent); background: var(--accent-light); border-left-color: var(--accent); }
   .lib-nav-num { font-family: var(--mono); font-size: 0.55rem; color: var(--ink-faint); min-width: 18px; flex-shrink: 0; }
   .lib-nav-item.active .lib-nav-num { color: var(--accent); opacity: 0.7; }
-
   .lib-shelf { padding: 1.75rem 1.75rem 2rem; }
   .shelf { display: none; animation: fadein 0.18s ease; }
   .shelf.active { display: block; }
@@ -190,11 +216,13 @@
   .lib-book-author { font-family: var(--mono); font-size: 0.6rem; letter-spacing: 0.06em; color: var(--ink-faint); margin-top: 0.15rem; }
   .lib-book-note { font-size: 0.88rem; color: var(--ink-muted); font-style: italic; line-height: 1.6; }
 
+  /* Sub-section divider within a shelf */
+  .shelf-subsection { font-family: var(--mono); font-size: 0.58rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--ink-faint); margin: 1.75rem 0 0.25rem; padding-bottom: 0.4rem; border-bottom: 1px dashed var(--rule); }
+
   /* Beyond academia */
   .reading-badge { display: inline-flex; align-items: center; gap: 0.35rem; font-family: var(--mono); font-size: 0.58rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--accent-warm); background: var(--accent-warm-light); padding: 0.2rem 0.55rem; border-radius: 2px; margin-bottom: 0.4rem; }
   .reading-badge::before { content: ''; width: 6px; height: 6px; border-radius: 50%; background: var(--accent-warm); animation: pulse 1.8s ease-in-out infinite; }
   @keyframes pulse { 0%, 100% { opacity: 1; transform: scale(1); } 50% { opacity: 0.4; transform: scale(0.7); } }
-
   .books-section-label { font-family: var(--mono); font-size: 0.6rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--ink-faint); margin: 2.5rem 0 1rem; padding-bottom: 0.5rem; border-bottom: 1px solid var(--rule); }
   .general-reading-now { border: 1px solid var(--rule); border-left: 3px solid var(--accent-warm); padding: 1.25rem 1.5rem; margin-top: 1.5rem; background: var(--paper); }
   .gen-list { display: flex; flex-direction: column; gap: 0; }
@@ -209,16 +237,34 @@
   .tag-science { background: #f0eaf4; color: #5a3a7a; }
   .tag-bio     { background: #f4f0e0; color: #6a5a20; }
 
+  /* ── Italy page ── */
+  .italy-tab-bar { display:flex; gap:0; border-bottom:1px solid var(--rule); margin-bottom:2rem; }
+  .italy-tab { font-family:var(--mono); font-size:0.62rem; letter-spacing:0.1em; text-transform:uppercase; color:var(--ink-faint); background:none; border:none; border-bottom:2px solid transparent; padding:0.6rem 1.1rem; cursor:pointer; transition:color 0.15s,border-color 0.15s; margin-bottom:-1px; }
+  .italy-tab:hover { color:var(--ink-muted); }
+  .italy-tab.active { color:var(--accent); border-bottom-color:var(--accent); }
+  .italy-panel { display:none; }
+  .italy-panel.active { display:block; animation:fadein 0.2s ease; }
+
+  .italy-chart-meta { display:flex; align-items:flex-start; justify-content:space-between; gap:1rem; flex-wrap:wrap; margin-bottom:1rem; }
+  .italy-chart-title { font-size:1rem; font-weight:500; color:var(--ink); margin-bottom:0.2rem; }
+  .italy-chart-sub { font-family:var(--mono); font-size:0.58rem; color:var(--ink-faint); letter-spacing:0.05em; line-height:1.5; }
+  .italy-dl-group { display:flex; gap:0.5rem; flex-shrink:0; }
+  .italy-dl-btn { font-family:var(--mono); font-size:0.6rem; letter-spacing:0.06em; text-transform:uppercase; display:inline-flex; align-items:center; gap:0.4rem; background:transparent; border:1px solid var(--rule); color:var(--ink-muted); padding:0.35rem 0.8rem; border-radius:3px; cursor:pointer; transition:border-color 0.15s,color 0.15s,background 0.15s; }
+  .italy-dl-btn:hover { border-color:var(--accent); color:var(--accent); background:var(--accent-light); }
+
+  .italy-legend { display:flex; gap:1.5rem; margin-bottom:1rem; }
+  .italy-legend-item { display:flex; align-items:center; gap:0.4rem; font-family:var(--mono); font-size:0.6rem; color:var(--ink-muted); letter-spacing:0.06em; }
+  .italy-legend-dot { width:10px; height:10px; border-radius:50%; flex-shrink:0; }
+
   /* ── Responsive ── */
-  @media (max-width: 760px) {
-    .home-layout { grid-template-columns: 1fr; gap: 2.5rem; }
-    .home-photo-col { flex-direction: row; align-items: flex-start; gap: 1.25rem; }
-    .home-photo-frame { width: 100px; height: 120px; }
-  }
-  @media (max-width: 640px) {
+  @media (max-width: 700px) {
     header { padding: 0.75rem 1rem; flex-wrap: wrap; gap: 0.5rem; }
+    .home-layout { grid-template-columns: 1fr; gap: 2rem; padding: 3rem 1.25rem 4rem; }
+    .home-photo-col { flex-direction: row; align-items: flex-start; gap: 1.25rem; }
+    .home-photo, .home-photo-placeholder { width: 100px; height: 124px; }
+    .home-photo-socials { flex-direction: row; flex-wrap: wrap; }
     .home-name { font-size: 2.2rem; }
-    .inner, .home-layout { padding: 2.5rem 1.25rem 4rem; }
+    .inner { padding: 2.5rem 1.25rem 4rem; }
     .contact-row { grid-template-columns: 90px 1fr; }
     .tab-btn { padding: 0.5rem 0.65rem; font-size: 0.58rem; }
     .lib-layout { grid-template-columns: 1fr; }
@@ -238,6 +284,7 @@
     <a href="#" onclick="showPage('teaching'); return false;" id="nav-teaching">Teaching</a>
     <a href="#" onclick="showPage('books'); return false;" id="nav-books">Books</a>
     <a href="#" onclick="showPage('giving'); return false;" id="nav-giving">Giving Back</a>
+    <a href="#" onclick="showPage('italy'); return false;" id="nav-italy">Italy</a>
     <a href="#" onclick="showPage('cv'); return false;" id="nav-cv">CV</a>
     <a href="#" onclick="showPage('contact'); return false;" id="nav-contact">Contact</a>
   </nav>
@@ -248,25 +295,35 @@
 <div id="page-home" class="page active">
   <div class="home-layout">
 
-    <!-- Left: photo -->
+    <!-- Left: photo + social links -->
     <div class="home-photo-col">
-      <div class="home-photo-frame" id="photo-frame">
-        <!-- Replace the src below with your actual photo path, e.g. src="assets/photo.jpg" -->
-        <img src="assets/photo.jpg" alt="Fulvio Raddi"
-             onerror="this.style.display='none'; document.getElementById('photo-placeholder').style.display='flex';">
-        <div class="home-photo-placeholder" id="photo-placeholder" style="display:none;">
-          <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <circle cx="20" cy="15" r="8" stroke="#9a9590" stroke-width="1.5"/>
-            <path d="M4 36c0-8.837 7.163-16 16-16s16 7.163 16 16" stroke="#9a9590" stroke-width="1.5" stroke-linecap="round"/>
-          </svg>
-          <span>photo.jpg</span>
-        </div>
+      <!-- Replace assets/photo.jpg with your actual image path -->
+      <img src="assets/photo.jpg" alt="Fulvio Raddi" class="home-photo"
+           onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+      <div class="home-photo-placeholder" style="display:none;">
+        <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2">
+          <circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/>
+        </svg>
+        <span>photo.jpg</span>
       </div>
-      <p class="home-photo-caption">How a 4-year-old kid sees me.</p>
+      <div class="home-photo-socials">
+        <a class="home-social-link" href="https://scholar.google.com" target="_blank" rel="noopener">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
+          Scholar
+        </a>
+        <a class="home-social-link" href="https://github.com" target="_blank" rel="noopener">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
+          GitHub
+        </a>
+        <a class="home-social-link" href="https://linkedin.com" target="_blank" rel="noopener">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+          LinkedIn
+        </a>
+      </div>
     </div>
 
-    <!-- Right: content -->
-    <div class="home-content-col">
+    <!-- Right: text content -->
+    <div class="home-text-col">
       <p class="home-eyebrow">Marie Skłodowska-Curie Doctoral Candidate</p>
       <h1 class="home-name">Fulvio Raddi</h1>
       <p class="home-title">Babeș-Bolyai University · Cluj-Napoca</p>
@@ -371,16 +428,16 @@
       <button class="tab-btn" onclick="showBookTab('general', this)">Beyond academia</button>
     </div>
 
-    <!-- ACADEMIC -->
+    <!-- ══ ACADEMIC ══ -->
     <div id="booktab-academic" class="booktab active">
       <div class="lib-layout">
-        <nav class="lib-nav" id="lib-nav">
+        <nav class="lib-nav">
           <div class="lib-nav-group">
             <p class="lib-nav-group-label">Mathematics</p>
             <a class="lib-nav-item active" onclick="showShelf('math-01',this)" href="#"><span class="lib-nav-num">01</span> Logic &amp; Foundations</a>
             <a class="lib-nav-item" onclick="showShelf('math-02',this)" href="#"><span class="lib-nav-num">02</span> Algebra</a>
             <a class="lib-nav-item" onclick="showShelf('math-03',this)" href="#"><span class="lib-nav-num">03</span> Geometry &amp; Topology</a>
-            <a class="lib-nav-item" onclick="showShelf('math-04',this)" href="#"><span class="lib-nav-num">04</span> Mathematical Analysis</a>
+            <a class="lib-nav-item" onclick="showShelf('math-04',this)" href="#"><span class="lib-nav-num">04</span> Math. Analysis</a>
             <a class="lib-nav-item" onclick="showShelf('math-05',this)" href="#"><span class="lib-nav-num">05</span> Dynamical Systems</a>
             <a class="lib-nav-item" onclick="showShelf('math-06',this)" href="#"><span class="lib-nav-num">06</span> Numerical Methods</a>
             <a class="lib-nav-item" onclick="showShelf('math-07',this)" href="#"><span class="lib-nav-num">07</span> Optimization</a>
@@ -434,10 +491,13 @@
           <div class="shelf" id="shelf-math-03">
             <p class="shelf-label"><span class="shelf-num">03</span> Geometry &amp; Topology</p>
 
+            <p class="shelf-subsection">Geometry</p>
             <div class="lib-book">
-              <div class="lib-book-head"><p class="lib-book-title">Lezioni di Geometria, Vol. 1</p><p class="lib-book-author">Rosa Esposito, Assunta Russo · 1996</p></div>
+              <div class="lib-book-head"><p class="lib-book-title">Lezioni di Geometria, Vol. 1</p><p class="lib-book-author">Rosa Esposito &amp; Assunta Russo · 1996</p></div>
               <p class="lib-book-note">My first geometry book. Only in Italian, but it shaped how I think about mathematical space. Some debts are owed to very specific volumes.</p>
             </div>
+
+            <p class="shelf-subsection">Topology</p>
             <div class="lib-book">
               <div class="lib-book-head"><p class="lib-book-title">Topology</p><p class="lib-book-author">James Munkres · 2nd ed.</p></div>
               <p class="lib-book-note">The standard graduate text, and deservedly so. Munkres writes with unusual care; the problem sets are excellent. Covers point-set topology fully before moving to algebraic topology.</p>
@@ -448,10 +508,11 @@
             </div>
           </div>
 
-          <!-- 04 Mathematical Analysis (merged with Functional Analysis) -->
+          <!-- 04 Mathematical Analysis & Functional Analysis (merged) -->
           <div class="shelf" id="shelf-math-04">
             <p class="shelf-label"><span class="shelf-num">04</span> Mathematical Analysis</p>
 
+            <p class="shelf-subsection">Real &amp; Complex Analysis</p>
             <div class="lib-book">
               <div class="lib-book-head"><p class="lib-book-title">Real and Complex Analysis</p><p class="lib-book-author">Walter Rudin · 1966</p></div>
               <p class="lib-book-note">"Big Rudin." The chapters on measure and integration are a masterpiece of compression. Non-negotiable if you want a serious foundation for probability theory.</p>
@@ -464,6 +525,8 @@
               <div class="lib-book-head"><p class="lib-book-title">Probability and Measure</p><p class="lib-book-author">Patrick Billingsley · 1979</p></div>
               <p class="lib-book-note">The bridge between measure theory and probability. Billingsley's treatment of weak convergence and characteristic functions is the foundation you need for asymptotic econometrics.</p>
             </div>
+
+            <p class="shelf-subsection">Functional Analysis</p>
             <div class="lib-book">
               <div class="lib-book-head"><p class="lib-book-title">Introductory Functional Analysis with Applications</p><p class="lib-book-author">Erwin Kreyszig · 1978</p></div>
               <p class="lib-book-note">The most user-friendly door into functional analysis. Kreyszig never sacrifices rigour for accessibility, but he always explains why things matter before proving them.</p>
@@ -474,7 +537,7 @@
             </div>
           </div>
 
-          <!-- 05 Dynamical Systems (was 07) -->
+          <!-- 05 Dynamical Systems -->
           <div class="shelf" id="shelf-math-05">
             <p class="shelf-label"><span class="shelf-num">05</span> Dynamical Systems</p>
             <div class="lib-book">
@@ -487,7 +550,7 @@
             </div>
           </div>
 
-          <!-- 06 Numerical Methods (was 08) -->
+          <!-- 06 Numerical Methods -->
           <div class="shelf" id="shelf-math-06">
             <p class="shelf-label"><span class="shelf-num">06</span> Numerical Methods</p>
             <div class="lib-book">
@@ -500,7 +563,7 @@
             </div>
           </div>
 
-          <!-- 07 Optimization (was 09) -->
+          <!-- 07 Optimization -->
           <div class="shelf" id="shelf-math-07">
             <p class="shelf-label"><span class="shelf-num">07</span> Optimization</p>
             <div class="lib-book">
@@ -606,7 +669,7 @@
       </div><!-- /lib-layout -->
     </div><!-- /booktab-academic -->
 
-    <!-- BEYOND ACADEMIA -->
+    <!-- ══ BEYOND ACADEMIA ══ -->
     <div id="booktab-general" class="booktab">
       <div class="general-reading-now">
         <span class="reading-badge">Reading now</span>
@@ -665,6 +728,59 @@
   </div>
 </div>
 
+<!-- ITALY -->
+<div id="page-italy" class="page">
+  <div class="inner">
+    <p class="page-label">Country focus</p>
+    <h2 class="page-title">Italy</h2>
+    <hr class="page-rule">
+
+    <div class="italy-tab-bar">
+      <button class="italy-tab active" onclick="showItalyTab('gdp',this)">GDP per capita</button>
+      <button class="italy-tab" onclick="showItalyTab('notes',this)">Reading the data</button>
+    </div>
+
+    <!-- GDP tab -->
+    <div id="italy-tab-gdp" class="italy-panel active">
+      <div class="italy-chart-meta">
+        <div>
+          <p class="italy-chart-title">Italy vs Spain — GDP per capita</p>
+          <p class="italy-chart-sub">Current prices, EUR per inhabitant · Eurostat (nama_10_pc) · 2000–2024</p>
+        </div>
+        <div class="italy-dl-group">
+          <button class="italy-dl-btn" onclick="downloadExcel()">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="8" y1="13" x2="16" y2="13"/><line x1="8" y1="17" x2="16" y2="17"/></svg>
+            Excel
+          </button>
+          <button class="italy-dl-btn" onclick="downloadPNG()">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+            PNG
+          </button>
+        </div>
+      </div>
+
+      <!-- Legend -->
+      <div class="italy-legend">
+        <span class="italy-legend-item"><span class="italy-legend-dot" style="background:#2c4a6e"></span>Italy</span>
+        <span class="italy-legend-item"><span class="italy-legend-dot" style="background:#c17a2a"></span>Spain</span>
+      </div>
+
+      <div id="gdp-chart-area" style="width:100%;overflow:hidden;"></div>
+      <p class="chart-source" style="margin-top:0.75rem;">Source: Eurostat, National Accounts (nama_10_pc), GDP at current market prices per capita, EUR. 2024 preliminary.</p>
+    </div>
+
+    <!-- Notes tab -->
+    <div id="italy-tab-notes" class="italy-panel">
+      <div class="section-body" style="margin-top:0.5rem;">
+        <p>In 2000, Italy's GDP per capita comfortably exceeded Spain's — a gap of roughly €5,000. Over the following two decades that advantage was systematically eroded. Italy entered the 2008 financial crisis from a position of relative strength, but suffered a double-dip recession: the global shock of 2008–09 was followed by a second contraction during the Eurozone sovereign debt crisis of 2011–12, from which Italian output did not fully recover until the eve of the pandemic.</p>
+        <p>Spain underwent its own severe crisis — the collapse of the construction bubble produced unemployment above 25% — yet its subsequent recovery was faster and more sustained. By the mid-2010s the two countries' GDP per capita figures had converged. By 2024, Spain had pulled ahead.</p>
+        <p>The Italian stagnation is structural, not merely cyclical. Chronically low productivity growth, a fragmented labour market, high public debt constraining investment, and an educational system producing too few graduates — especially in STEM — all contribute. The chart above is the economic face of the same problem illustrated in the Giving Back section.</p>
+      </div>
+    </div>
+
+  </div>
+</div>
+
 <!-- CV -->
 <div id="page-cv" class="page">
   <div class="inner">
@@ -698,174 +814,153 @@
 <script>
   // ── Chart data ──
   const ATTAINMENT = [
-    { c:"IE", name:"Ireland",     v:65.2 }, { c:"LU", name:"Luxembourg",  v:63.8 },
-    { c:"CY", name:"Cyprus",      v:60.1 }, { c:"LT", name:"Lithuania",   v:56.2 },
-    { c:"NL", name:"Netherlands", v:54.8 }, { c:"DK", name:"Denmark",     v:52.3 },
-    { c:"SE", name:"Sweden",      v:51.8 }, { c:"BE", name:"Belgium",     v:50.9 },
-    { c:"FR", name:"France",      v:49.6 }, { c:"PL", name:"Poland",      v:48.1 },
-    { c:"EE", name:"Estonia",     v:45.3 }, { c:"EL", name:"Greece",      v:44.4 },
-    { c:"LV", name:"Latvia",      v:44.3 }, { c:"AT", name:"Austria",     v:43.5 },
-    { c:"FI", name:"Finland",     v:43.2 }, { c:"SI", name:"Slovenia",    v:43.2 },
-    { c:"PT", name:"Portugal",    v:41.9 }, { c:"DE", name:"Germany",     v:39.8 },
-    { c:"MT", name:"Malta",       v:38.5 }, { c:"BG", name:"Bulgaria",    v:37.6 },
-    { c:"HR", name:"Croatia",     v:36.8 }, { c:"SK", name:"Slovakia",    v:36.4 },
-    { c:"CZ", name:"Czechia",     v:35.0 }, { c:"HU", name:"Hungary",     v:34.1 },
-    { c:"ES", name:"Spain",       v:50.2 },
-    { c:"IT", name:"Italy",       v:31.6, highlight:true },
-    { c:"RO", name:"Romania",     v:23.2, last:true },
-  ].sort((a,b) => b.v - a.v);
+    {name:"Ireland",v:65.2},{name:"Luxembourg",v:63.8},{name:"Cyprus",v:60.1},
+    {name:"Lithuania",v:56.2},{name:"Netherlands",v:54.8},{name:"Denmark",v:52.3},
+    {name:"Sweden",v:51.8},{name:"Belgium",v:50.9},{name:"Spain",v:50.2},
+    {name:"France",v:49.6},{name:"Poland",v:48.1},{name:"Estonia",v:45.3},
+    {name:"Greece",v:44.4},{name:"Latvia",v:44.3},{name:"Austria",v:43.5},
+    {name:"Finland",v:43.2},{name:"Slovenia",v:43.2},{name:"Portugal",v:41.9},
+    {name:"Germany",v:39.8},{name:"Malta",v:38.5},{name:"Bulgaria",v:37.6},
+    {name:"Croatia",v:36.8},{name:"Slovakia",v:36.4},{name:"Czechia",v:35.0},
+    {name:"Hungary",v:34.1},
+    {name:"Italy",v:31.6,highlight:true},
+    {name:"Romania",v:23.2,last:true}
+  ].sort((a,b)=>b.v-a.v);
 
   const STEM = [
-    { c:"FI", name:"Finland",     v:28.5 }, { c:"IE", name:"Ireland",     v:28.2 },
-    { c:"DK", name:"Denmark",     v:24.1 }, { c:"DE", name:"Germany",     v:25.6 },
-    { c:"SE", name:"Sweden",      v:24.8 }, { c:"PT", name:"Portugal",    v:23.1 },
-    { c:"CZ", name:"Czechia",     v:22.7 }, { c:"AT", name:"Austria",     v:22.3 },
-    { c:"EL", name:"Greece",      v:21.8 }, { c:"ES", name:"Spain",       v:21.4 },
-    { c:"PL", name:"Poland",      v:20.9 }, { c:"NL", name:"Netherlands", v:20.7 },
-    { c:"FR", name:"France",      v:20.1 }, { c:"SK", name:"Slovakia",    v:20.2 },
-    { c:"BE", name:"Belgium",     v:19.5 }, { c:"BG", name:"Bulgaria",    v:18.8 },
-    { c:"HR", name:"Croatia",     v:18.4 }, { c:"EE", name:"Estonia",     v:18.1 },
-    { c:"HU", name:"Hungary",     v:17.8 }, { c:"LV", name:"Latvia",      v:17.5 },
-    { c:"LT", name:"Lithuania",   v:17.2 }, { c:"SI", name:"Slovenia",    v:17.0 },
-    { c:"MT", name:"Malta",       v:16.9 }, { c:"LU", name:"Luxembourg",  v:16.4 },
-    { c:"CY", name:"Cyprus",      v:15.8 },
-    { c:"IT", name:"Italy",       v:19.0, highlight:true },
-    { c:"RO", name:"Romania",     v:14.3, last:true },
-  ].sort((a,b) => b.v - a.v);
+    {name:"Finland",v:28.5},{name:"Ireland",v:28.2},{name:"Germany",v:25.6},
+    {name:"Sweden",v:24.8},{name:"Denmark",v:24.1},{name:"Portugal",v:23.1},
+    {name:"Czechia",v:22.7},{name:"Austria",v:22.3},{name:"Greece",v:21.8},
+    {name:"Spain",v:21.4},{name:"Poland",v:20.9},{name:"Netherlands",v:20.7},
+    {name:"Slovakia",v:20.2},{name:"France",v:20.1},{name:"Belgium",v:19.5},
+    {name:"Bulgaria",v:18.8},{name:"Croatia",v:18.4},{name:"Estonia",v:18.1},
+    {name:"Hungary",v:17.8},{name:"Latvia",v:17.5},{name:"Lithuania",v:17.2},
+    {name:"Slovenia",v:17.0},{name:"Malta",v:16.9},{name:"Luxembourg",v:16.4},
+    {name:"Cyprus",v:15.8},
+    {name:"Italy",v:19.0,highlight:true},
+    {name:"Romania",v:14.3,last:true}
+  ].sort((a,b)=>b.v-a.v);
 
-  const EU_AVG_ATT = 44.2, EU_AVG_STEM = 22.4;
+  const EU_AVG_ATT=44.2, EU_AVG_STEM=22.4;
 
   // ── Navigation ──
   function showPage(id) {
-    document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
-    document.querySelectorAll('nav a').forEach(a => a.classList.remove('active'));
-    const page = document.getElementById('page-' + id);
-    if (page) page.classList.add('active');
-    const nav = document.getElementById('nav-' + id);
-    if (nav) nav.classList.add('active');
-    window.scrollTo({ top: 0, behavior: 'instant' });
-    if (id === 'giving') setTimeout(() => renderChart(ATTAINMENT, EU_AVG_ATT, '%'), 50);
-    if (id === 'books') {
-      setTimeout(() => {
-        const active = document.querySelector('.shelf.active');
-        if (!active) {
-          const first = document.getElementById('shelf-math-01');
-          if (first) first.classList.add('active');
+    document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
+    document.querySelectorAll('nav a').forEach(a=>a.classList.remove('active'));
+    const page=document.getElementById('page-'+id);
+    if(page) page.classList.add('active');
+    const nav=document.getElementById('nav-'+id);
+    if(nav) nav.classList.add('active');
+    window.scrollTo({top:0,behavior:'instant'});
+    if(id==='giving') setTimeout(()=>renderChart(ATTAINMENT,EU_AVG_ATT,'%'),50);
+    if(id==='books') {
+      setTimeout(()=>{
+        if(!document.querySelector('.shelf.active')) {
+          const f=document.getElementById('shelf-math-01');
+          if(f) f.classList.add('active');
         }
-      }, 20);
+      },20);
     }
   }
 
-  function showTab(id, btn) {
-    btn.closest('.inner').querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
-    btn.closest('.tab-bar').querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
-    document.getElementById('tab-' + id).classList.add('active');
+  function showTab(id,btn) {
+    btn.closest('.inner').querySelectorAll('.tab-panel').forEach(p=>p.classList.remove('active'));
+    btn.closest('.tab-bar').querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));
+    document.getElementById('tab-'+id).classList.add('active');
     btn.classList.add('active');
   }
 
-  function showBookTab(id, btn) {
-    document.querySelectorAll('.booktab').forEach(t => t.classList.remove('active'));
-    btn.closest('.tab-bar').querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
-    document.getElementById('booktab-' + id).classList.add('active');
+  function showBookTab(id,btn) {
+    document.querySelectorAll('.booktab').forEach(t=>t.classList.remove('active'));
+    btn.closest('.tab-bar').querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));
+    document.getElementById('booktab-'+id).classList.add('active');
     btn.classList.add('active');
-    if (id === 'general') renderGeneralBooks();
+    if(id==='general') renderGeneralBooks();
   }
 
-  function showShelf(id, link) {
-    document.querySelectorAll('.shelf').forEach(s => s.classList.remove('active'));
-    document.querySelectorAll('.lib-nav-item').forEach(a => a.classList.remove('active'));
-    const shelf = document.getElementById('shelf-' + id);
-    if (shelf) shelf.classList.add('active');
-    if (link) { link.classList.add('active'); link.blur(); }
+  function showShelf(id,link) {
+    document.querySelectorAll('.shelf').forEach(s=>s.classList.remove('active'));
+    document.querySelectorAll('.lib-nav-item').forEach(a=>a.classList.remove('active'));
+    const shelf=document.getElementById('shelf-'+id);
+    if(shelf) shelf.classList.add('active');
+    if(link){link.classList.add('active');link.blur();}
     return false;
   }
 
-  document.querySelector('.header-name').addEventListener('click', function(e) {
+  document.querySelector('.header-name').addEventListener('click',function(e){
     e.preventDefault(); showPage('home');
-  });
-
-  // ── Photo fallback: if img fails to load, show placeholder ──
-  window.addEventListener('DOMContentLoaded', () => {
-    const img = document.querySelector('.home-photo-frame img');
-    const ph  = document.getElementById('photo-placeholder');
-    if (img && ph) {
-      if (!img.complete || img.naturalWidth === 0) {
-        img.style.display = 'none';
-        ph.style.display  = 'flex';
-      }
-    }
   });
 
   // ── Chart ──
   function switchChart(type) {
-    document.getElementById('btn-attainment').classList.toggle('active', type === 'attainment');
-    document.getElementById('btn-stem').classList.toggle('active', type === 'stem');
-    document.getElementById('chart-subtitle').textContent = type === 'attainment'
-      ? 'Share of 25–34 year-olds with a tertiary degree, EU countries, 2024'
-      : 'STEM tertiary graduates per 1,000 young people (20–34), EU countries, 2022/23';
+    document.getElementById('btn-attainment').classList.toggle('active',type==='attainment');
+    document.getElementById('btn-stem').classList.toggle('active',type==='stem');
+    document.getElementById('chart-subtitle').textContent=type==='attainment'
+      ?'Share of 25–34 year-olds with a tertiary degree, EU countries, 2024'
+      :'STEM tertiary graduates per 1,000 young people (20–34), EU countries, 2022/23';
     renderChart(
-      type === 'attainment' ? ATTAINMENT : STEM,
-      type === 'attainment' ? EU_AVG_ATT : EU_AVG_STEM,
-      type === 'attainment' ? '%' : ''
+      type==='attainment'?ATTAINMENT:STEM,
+      type==='attainment'?EU_AVG_ATT:EU_AVG_STEM,
+      type==='attainment'?'%':''
     );
   }
 
-  function renderChart(data, avg, unit) {
-    const area = document.getElementById('chart-area');
-    if (!area) return;
-    const W = area.clientWidth || 640;
-    const BAR_H = 18, GAP = 5, LABEL_W = 80, PLOT_W = W - LABEL_W - 44;
-    const maxVal = data[0].v * 1.05;
-    const H = data.length * (BAR_H + GAP) + 32;
-    const toX = v => (v / maxVal) * PLOT_W;
-    let bars = '';
-    data.forEach((d, i) => {
-      const y = i * (BAR_H + GAP);
-      const bw = Math.max(toX(d.v), 0);
-      const fill      = d.highlight ? '#2c4a6e' : d.last ? '#a0b8c8' : '#c8d8e4';
-      const textColor = d.highlight ? '#1a1814' : d.last ? '#7a8a94' : '#5a554e';
-      const fw        = (d.highlight || d.last) ? '500' : '400';
-      bars += `<g transform="translate(0,${y})">
+  function renderChart(data,avg,unit) {
+    const area=document.getElementById('chart-area');
+    if(!area) return;
+    const W=area.clientWidth||640;
+    const BAR_H=18,GAP=5,LABEL_W=80,PLOT_W=W-LABEL_W-44;
+    const maxVal=data[0].v*1.05;
+    const H=data.length*(BAR_H+GAP)+32;
+    const toX=v=>(v/maxVal)*PLOT_W;
+    let bars='';
+    data.forEach((d,i)=>{
+      const y=i*(BAR_H+GAP);
+      const bw=Math.max(toX(d.v),0);
+      const fill=d.highlight?'#2c4a6e':d.last?'#a0b8c8':'#c8d8e4';
+      const tc=d.highlight?'#1a1814':d.last?'#7a8a94':'#5a554e';
+      const fw=(d.highlight||d.last)?'500':'400';
+      bars+=`<g transform="translate(0,${y})">
         <text x="${LABEL_W-6}" y="${BAR_H/2+1}" dominant-baseline="middle" text-anchor="end"
-          font-size="9.5" fill="${textColor}" font-weight="${fw}" font-family="DM Mono,monospace" letter-spacing="0.02em">${d.name}</text>
+          font-size="9.5" fill="${tc}" font-weight="${fw}" font-family="DM Mono,monospace" letter-spacing="0.02em">${d.name}</text>
         <rect x="${LABEL_W}" y="0" width="${bw}" height="${BAR_H}" fill="${fill}" rx="1"/>
         <text x="${LABEL_W+bw+5}" y="${BAR_H/2+1}" dominant-baseline="middle"
-          font-size="9" fill="${textColor}" font-weight="${fw}" font-family="DM Mono,monospace">${d.v}${unit}</text>
+          font-size="9" fill="${tc}" font-weight="${fw}" font-family="DM Mono,monospace">${d.v}${unit}</text>
       </g>`;
     });
-    const avgX = LABEL_W + toX(avg);
-    const avgLine = `<line x1="${avgX}" y1="0" x2="${avgX}" y2="${H-26}" stroke="#9a9590" stroke-width="1" stroke-dasharray="3,3"/>
+    const avgX=LABEL_W+toX(avg);
+    const avgLine=`<line x1="${avgX}" y1="0" x2="${avgX}" y2="${H-26}" stroke="#9a9590" stroke-width="1" stroke-dasharray="3,3"/>
       <text x="${avgX+4}" y="${H-13}" font-size="8.5" fill="#9a9590" font-family="DM Mono,monospace" letter-spacing="0.03em">EU avg ${avg}${unit}</text>`;
-    area.innerHTML = `<svg viewBox="0 0 ${W} ${H}" xmlns="http://www.w3.org/2000/svg" style="width:100%;display:block;">${avgLine}${bars}</svg>`;
+    area.innerHTML=`<svg viewBox="0 0 ${W} ${H}" xmlns="http://www.w3.org/2000/svg" style="width:100%;display:block;">${avgLine}${bars}</svg>`;
   }
 
   // ── General books ──
   const GENERAL_BOOKS = [
-    { title:"The Structure of Scientific Revolutions", author:"Thomas Kuhn · 1962", note:"How science actually changes. Essential reading before claiming any research is 'paradigm-shifting'.", tag:"essay" },
-    { title:"Against Method", author:"Paul Feyerabend · 1975", note:"A provocative assault on the idea of a universal scientific method. Useful for keeping methodological humility.", tag:"essay" },
-    { title:"The Black Swan", author:"Nassim Taleb · 2007", note:"Infuriating and important in equal measure. Tail risk and epistemic arrogance in financial modelling, argued with great force.", tag:"essay" },
-    { title:"How to Lie with Statistics", author:"Darrell Huff · 1954", note:"A short, witty, and still entirely relevant guide to statistical sleight of hand. Recommended to every student before their first data course.", tag:"essay" },
-    { title:"The Art of Doing Science and Engineering", author:"Richard W. Hamming · 1997", note:"Hamming's lecture-turned-book on how to have a significant career in science and engineering. Less about technique than about attitude: learning to learn, choosing the right problems, and thinking for yourself. Essential reading for any doctoral student.", tag:"essay" },
-    { title:"The Sleepwalkers", author:"Arthur Koestler · 1959", note:"A history of cosmology from Babylonian astronomy to Kepler. Koestler shows how great science is never a clean logical process.", tag:"history" },
-    { title:"Surely You're Joking, Mr. Feynman!", author:"Richard Feynman · 1985", note:"Anecdotes from a physicist who cared deeply about understanding rather than credentialism. A model of intellectual curiosity.", tag:"bio" },
-    { title:"A Mathematician's Apology", author:"G. H. Hardy · 1940", note:"A meditation on mathematical beauty and the life of the mind. Poignant and honest — Hardy knew his best work was behind him.", tag:"essay" },
-    { title:"The Remains of the Day", author:"Kazuo Ishiguro · 1989", note:"About dignity, self-deception, and the cost of subordinating yourself to a system. I think about this book often.", tag:"novel" },
-    { title:"If This Is a Man", author:"Primo Levi · 1947", note:"Levi writes about Auschwitz with the precision of a chemist and the humanity of a poet. One of the most important books written in the twentieth century.", tag:"bio" },
-    { title:"The Periodic Table", author:"Primo Levi · 1975", note:"Part memoir, part chemistry. Each chapter is named for an element; together they trace a life. The model for writing about science as a human practice.", tag:"bio" },
-    { title:"Thinking, Fast and Slow", author:"Daniel Kahneman · 2011", note:"The most accessible summary of behavioral economics and cognitive bias. The sections on statistical intuition failures are directly relevant to how we misread data.", tag:"science" },
-    { title:"Antifragile", author:"Nassim Taleb · 2012", note:"More disciplined than The Black Swan. The concept of antifragility — systems that gain from disorder — is a genuinely useful lens for thinking about institutions and models.", tag:"essay" },
-    { title:"The Hitchhiker's Guide to the Galaxy", author:"Douglas Adams · 1979", note:"The best argument I know for not taking yourself too seriously. Revisited whenever I feel overburdened by importance.", tag:"novel" },
+    {title:"The Art of Doing Science and Engineering",author:"R. W. Hamming · 1997",note:"Hamming's lectures on how to have a career that matters. The thesis — that you should work on important problems — is simple, but the elaboration is full of hard-won insight from a life at Bell Labs.",tag:"science"},
+    {title:"The Structure of Scientific Revolutions",author:"Thomas Kuhn · 1962",note:"How science actually changes. Essential reading before claiming any research is 'paradigm-shifting'.",tag:"essay"},
+    {title:"Against Method",author:"Paul Feyerabend · 1975",note:"A provocative assault on the idea of a universal scientific method. Useful for keeping methodological humility.",tag:"essay"},
+    {title:"The Black Swan",author:"Nassim Taleb · 2007",note:"Infuriating and important in equal measure. Tail risk and epistemic arrogance in financial modelling, argued with great force.",tag:"essay"},
+    {title:"How to Lie with Statistics",author:"Darrell Huff · 1954",note:"A short, witty, and still entirely relevant guide to statistical sleight of hand. Recommended to every student before their first data course.",tag:"essay"},
+    {title:"The Sleepwalkers",author:"Arthur Koestler · 1959",note:"A history of cosmology from Babylonian astronomy to Kepler. Koestler shows how great science is never a clean logical process.",tag:"history"},
+    {title:"Surely You're Joking, Mr. Feynman!",author:"Richard Feynman · 1985",note:"Anecdotes from a physicist who cared deeply about understanding rather than credentialism. A model of intellectual curiosity.",tag:"bio"},
+    {title:"A Mathematician's Apology",author:"G. H. Hardy · 1940",note:"A meditation on mathematical beauty and the life of the mind. Poignant and honest — Hardy knew his best work was behind him.",tag:"essay"},
+    {title:"The Remains of the Day",author:"Kazuo Ishiguro · 1989",note:"About dignity, self-deception, and the cost of subordinating yourself to a system. I think about this book often.",tag:"novel"},
+    {title:"If This Is a Man",author:"Primo Levi · 1947",note:"Levi writes about Auschwitz with the precision of a chemist and the humanity of a poet. One of the most important books written in the twentieth century.",tag:"bio"},
+    {title:"The Periodic Table",author:"Primo Levi · 1975",note:"Part memoir, part chemistry. Each chapter is named for an element; together they trace a life. The model for writing about science as a human practice.",tag:"bio"},
+    {title:"Thinking, Fast and Slow",author:"Daniel Kahneman · 2011",note:"The most accessible summary of behavioral economics and cognitive bias. The sections on statistical intuition failures are directly relevant to how we misread data.",tag:"science"},
+    {title:"Antifragile",author:"Nassim Taleb · 2012",note:"More disciplined than The Black Swan. The concept of antifragility — systems that gain from disorder — is a genuinely useful lens for thinking about institutions and models.",tag:"essay"},
+    {title:"The Hitchhiker's Guide to the Galaxy",author:"Douglas Adams · 1979",note:"The best argument I know for not taking yourself too seriously. Revisited whenever I feel overburdened by importance.",tag:"novel"},
   ];
 
-  const TAG_LABELS = { essay:"Essay/Non-fiction", novel:"Novel", history:"History", science:"Science", bio:"Biography/Memoir" };
+  const TAG_LABELS={essay:"Essay/Non-fiction",novel:"Novel",history:"History",science:"Science",bio:"Biography/Memoir"};
 
   function renderGeneralBooks() {
-    const el = document.getElementById('gen-list');
-    if (!el || el.children.length > 0) return;
-    GENERAL_BOOKS.forEach(b => {
-      const div = document.createElement('div');
-      div.className = 'gen-item';
-      div.innerHTML = `<div class="gen-item-left">
+    const el=document.getElementById('gen-list');
+    if(!el||el.children.length>0) return;
+    GENERAL_BOOKS.forEach(b=>{
+      const div=document.createElement('div');
+      div.className='gen-item';
+      div.innerHTML=`<div class="gen-item-left">
         <p class="gen-item-title">${b.title}</p>
         <p class="gen-item-author">${b.author}</p>
         <p class="gen-item-note">${b.note}</p>
@@ -875,5 +970,193 @@
     });
   }
 </script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+<script>
+  // ── Italy GDP data (Eurostat nama_10_pc, CP_EUR_HAB, B1GQ) ──
+  const GDP_DATA = [
+    { year:2000, IT:19000, ES:14900 },
+    { year:2001, IT:19800, ES:15900 },
+    { year:2002, IT:20500, ES:16900 },
+    { year:2003, IT:21100, ES:18000 },
+    { year:2004, IT:22000, ES:19200 },
+    { year:2005, IT:22700, ES:20600 },
+    { year:2006, IT:23800, ES:22300 },
+    { year:2007, IT:25000, ES:23800 },
+    { year:2008, IT:25400, ES:24200 },
+    { year:2009, IT:23700, ES:23000 },
+    { year:2010, IT:24300, ES:23000 },
+    { year:2011, IT:25200, ES:23400 },
+    { year:2012, IT:24600, ES:22700 },
+    { year:2013, IT:24100, ES:22500 },
+    { year:2014, IT:24400, ES:22900 },
+    { year:2015, IT:25100, ES:23600 },
+    { year:2016, IT:25700, ES:24400 },
+    { year:2017, IT:26500, ES:25400 },
+    { year:2018, IT:27200, ES:26400 },
+    { year:2019, IT:27700, ES:26900 },
+    { year:2020, IT:24900, ES:23700 },
+    { year:2021, IT:27400, ES:25000 },
+    { year:2022, IT:31100, ES:28200 },
+    { year:2023, IT:33800, ES:30900 },
+    { year:2024, IT:35200, ES:32700 },
+  ];
+
+  function showItalyTab(id, btn) {
+    document.querySelectorAll('.italy-panel').forEach(p => p.classList.remove('active'));
+    document.querySelectorAll('.italy-tab').forEach(b => b.classList.remove('active'));
+    document.getElementById('italy-tab-' + id).classList.add('active');
+    btn.classList.add('active');
+    if (id === 'gdp') setTimeout(renderGDPChart, 30);
+  }
+
+  function renderGDPChart() {
+    const area = document.getElementById('gdp-chart-area');
+    if (!area) return;
+    const W = area.clientWidth || 640;
+    const PAD = { top:20, right:50, bottom:36, left:56 };
+    const H = 280;
+    const plotW = W - PAD.left - PAD.right;
+    const plotH = H - PAD.top - PAD.bottom;
+
+    const years = GDP_DATA.map(d => d.year);
+    const allVals = GDP_DATA.flatMap(d => [d.IT, d.ES]);
+    const minV = Math.floor(Math.min(...allVals) / 2000) * 2000;
+    const maxV = Math.ceil(Math.max(...allVals) / 2000) * 2000;
+
+    const xScale = i => PAD.left + (i / (GDP_DATA.length - 1)) * plotW;
+    const yScale = v => PAD.top + plotH - ((v - minV) / (maxV - minV)) * plotH;
+
+    // Build paths
+    const pathIT = GDP_DATA.map((d,i) => `${i===0?'M':'L'}${xScale(i).toFixed(1)},${yScale(d.IT).toFixed(1)}`).join(' ');
+    const pathES = GDP_DATA.map((d,i) => `${i===0?'M':'L'}${xScale(i).toFixed(1)},${yScale(d.ES).toFixed(1)}`).join(' ');
+
+    // Fill areas (path down and back)
+    const fillIT = pathIT + ` L${xScale(GDP_DATA.length-1)},${(PAD.top+plotH).toFixed(1)} L${PAD.left},${(PAD.top+plotH).toFixed(1)} Z`;
+    const fillES = pathES + ` L${xScale(GDP_DATA.length-1)},${(PAD.top+plotH).toFixed(1)} L${PAD.left},${(PAD.top+plotH).toFixed(1)} Z`;
+
+    // Y-axis ticks
+    const yTicks = [];
+    for (let v = minV; v <= maxV; v += 5000) {
+      const y = yScale(v);
+      yTicks.push(`<line x1="${PAD.left}" y1="${y.toFixed(1)}" x2="${PAD.left+plotW}" y2="${y.toFixed(1)}" stroke="#c8c2b6" stroke-width="0.5" stroke-dasharray="3,3"/>`);
+      yTicks.push(`<text x="${(PAD.left-6).toFixed(1)}" y="${y.toFixed(1)}" text-anchor="end" dominant-baseline="middle" font-size="8.5" fill="#9a9590" font-family="DM Mono,monospace">${(v/1000).toFixed(0)}k</text>`);
+    }
+
+    // X-axis labels (every 4 years)
+    const xLabels = GDP_DATA.map((d,i) => {
+      if (d.year % 4 !== 0 && d.year !== 2024) return '';
+      const x = xScale(i);
+      return `<text x="${x.toFixed(1)}" y="${(PAD.top+plotH+14).toFixed(1)}" text-anchor="middle" font-size="8.5" fill="#9a9590" font-family="DM Mono,monospace">${d.year}</text>`;
+    }).join('');
+
+    // Crossover annotation (~2022)
+    const crossIdx = GDP_DATA.findIndex((d,i) => i > 0 && GDP_DATA[i-1].IT > GDP_DATA[i-1].ES && d.IT < d.ES);
+
+    // Tooltips — invisible hover rects + visible dots on last point
+    const dots = GDP_DATA.map((d,i) => {
+      const x = xScale(i), yIT = yScale(d.IT), yES = yScale(d.ES);
+      return `<g class="gdp-point" data-year="${d.year}" data-it="${d.IT}" data-es="${d.ES}">
+        <rect x="${(x-6).toFixed(1)}" y="${PAD.top}" width="12" height="${plotH}" fill="transparent" 
+          onmouseenter="showGDPTip(event,${d.year},${d.IT},${d.ES})" onmouseleave="hideGDPTip()"/>
+        <circle cx="${x.toFixed(1)}" cy="${yIT.toFixed(1)}" r="${i===GDP_DATA.length-1?4:0}" fill="#2c4a6e"/>
+        <circle cx="${x.toFixed(1)}" cy="${yES.toFixed(1)}" r="${i===GDP_DATA.length-1?4:0}" fill="#c17a2a"/>
+      </g>`;
+    }).join('');
+
+    area.innerHTML = `
+      <svg id="gdp-svg" viewBox="0 0 ${W} ${H}" xmlns="http://www.w3.org/2000/svg" style="width:100%;display:block;">
+        <defs>
+          <linearGradient id="fillIT" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%" stop-color="#2c4a6e" stop-opacity="0.15"/>
+            <stop offset="100%" stop-color="#2c4a6e" stop-opacity="0"/>
+          </linearGradient>
+          <linearGradient id="fillES" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%" stop-color="#c17a2a" stop-opacity="0.12"/>
+            <stop offset="100%" stop-color="#c17a2a" stop-opacity="0"/>
+          </linearGradient>
+        </defs>
+        ${yTicks.join('')}
+        <path d="${fillIT}" fill="url(#fillIT)" stroke="none"/>
+        <path d="${fillES}" fill="url(#fillES)" stroke="none"/>
+        <path d="${pathIT}" fill="none" stroke="#2c4a6e" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>
+        <path d="${pathES}" fill="none" stroke="#c17a2a" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>
+        ${dots}
+        ${xLabels}
+        <line x1="${PAD.left}" y1="${PAD.top}" x2="${PAD.left}" y2="${PAD.top+plotH}" stroke="#c8c2b6" stroke-width="1"/>
+        <line x1="${PAD.left}" y1="${PAD.top+plotH}" x2="${PAD.left+plotW}" y2="${PAD.top+plotH}" stroke="#c8c2b6" stroke-width="1"/>
+        <text id="gdp-tip" x="0" y="0" font-size="9" font-family="DM Mono,monospace" fill="#1a1814" visibility="hidden"/>
+      </svg>
+      <div id="gdp-tooltip" style="position:fixed;display:none;background:var(--paper);border:1px solid var(--rule);padding:0.5rem 0.75rem;font-family:var(--mono);font-size:0.6rem;line-height:1.7;color:var(--ink-muted);pointer-events:none;z-index:200;box-shadow:0 2px 8px rgba(0,0,0,0.08);"></div>`;
+  }
+
+  function showGDPTip(e, year, it, es) {
+    const tip = document.getElementById('gdp-tooltip');
+    if (!tip) return;
+    const diff = it - es;
+    tip.innerHTML = `<span style="font-weight:500;color:var(--ink)">${year}</span><br>
+      <span style="color:#2c4a6e">■</span> Italy &nbsp;&nbsp;€${it.toLocaleString()}<br>
+      <span style="color:#c17a2a">■</span> Spain &nbsp;€${es.toLocaleString()}<br>
+      <span style="color:var(--ink-faint)">Gap &nbsp;&nbsp;&nbsp;&nbsp;${diff >= 0 ? '+' : ''}€${diff.toLocaleString()}</span>`;
+    tip.style.display = 'block';
+    tip.style.left = (e.clientX + 14) + 'px';
+    tip.style.top  = (e.clientY - 10) + 'px';
+  }
+
+  function hideGDPTip() {
+    const tip = document.getElementById('gdp-tooltip');
+    if (tip) tip.style.display = 'none';
+  }
+
+  function downloadExcel() {
+    if (typeof XLSX === 'undefined') { alert('SheetJS not loaded yet, try again in a moment.'); return; }
+    const rows = [['Year','Italy (EUR/cap)','Spain (EUR/cap)','Gap (IT - ES)']];
+    GDP_DATA.forEach(d => rows.push([d.year, d.IT, d.ES, d.IT - d.ES]));
+    const ws = XLSX.utils.aoa_to_sheet(rows);
+    // Column widths
+    ws['!cols'] = [{wch:8},{wch:18},{wch:18},{wch:16}];
+    const wb = XLSX.utils.book_new();
+    XLSX.utils.book_append_sheet(wb, ws, 'GDP per capita');
+    // Add a second sheet with metadata
+    const meta = [['Source','Eurostat, nama_10_pc, GDP at current market prices per capita (EUR)'],
+                   ['Series','B1GQ, CP_EUR_HAB'],['Downloaded','2025'],['Note','2024 preliminary estimate']];
+    const wsMeta = XLSX.utils.aoa_to_sheet(meta);
+    XLSX.utils.book_append_sheet(wb, wsMeta, 'Metadata');
+    XLSX.writeFile(wb, 'italy_spain_gdp_per_capita.xlsx');
+  }
+
+  function downloadPNG() {
+    const svg = document.getElementById('gdp-svg');
+    if (!svg) return;
+    const svgData = new XMLSerializer().serializeToString(svg);
+    const scale = 2;
+    const w = svg.viewBox.baseVal.width * scale;
+    const h = svg.viewBox.baseVal.height * scale;
+    const canvas = document.createElement('canvas');
+    canvas.width = w; canvas.height = h;
+    const ctx = canvas.getContext('2d');
+    ctx.fillStyle = '#f7f4ee';
+    ctx.fillRect(0, 0, w, h);
+    const img = new Image();
+    const blob = new Blob([svgData], {type:'image/svg+xml;charset=utf-8'});
+    const url = URL.createObjectURL(blob);
+    img.onload = function() {
+      ctx.drawImage(img, 0, 0, w, h);
+      URL.revokeObjectURL(url);
+      const a = document.createElement('a');
+      a.download = 'italy_spain_gdp_per_capita.png';
+      a.href = canvas.toDataURL('image/png');
+      a.click();
+    };
+    img.src = url;
+  }
+
+  // Render GDP chart when Italy page is opened
+  const __origShowPage = showPage;
+  showPage = function(id) {
+    __origShowPage(id);
+    if (id === 'italy') setTimeout(renderGDPChart, 50);
+  };
+</script>
 </body>
 </html>
+<!-- ITALY PAGE INJECTED BY PATCH - will be replaced by full rebuild below -->
