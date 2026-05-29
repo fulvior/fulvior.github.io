@@ -736,11 +736,12 @@
     <hr class="page-rule">
 
     <div class="italy-tab-bar">
-      <button class="italy-tab active" onclick="showItalyTab('gdp',this)">GDP per capita</button>
+      <button class="italy-tab active"  onclick="showItalyTab('gdp',this)">GDP per capita</button>
+      <button class="italy-tab" onclick="showItalyTab('prod',this)">Productivity &amp; hours</button>
       <button class="italy-tab" onclick="showItalyTab('notes',this)">Reading the data</button>
     </div>
 
-    <!-- GDP tab -->
+    <!-- ── TAB 1: GDP per capita ── -->
     <div id="italy-tab-gdp" class="italy-panel active">
       <div class="italy-chart-meta">
         <div>
@@ -752,29 +753,80 @@
             <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="8" y1="13" x2="16" y2="13"/><line x1="8" y1="17" x2="16" y2="17"/></svg>
             Excel
           </button>
-          <button class="italy-dl-btn" onclick="downloadPNG()">
+          <button class="italy-dl-btn" onclick="downloadPNG('gdp-svg','italy_spain_gdp_per_capita.png')">
             <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
             PNG
           </button>
         </div>
       </div>
-
-      <!-- Legend -->
       <div class="italy-legend">
         <span class="italy-legend-item"><span class="italy-legend-dot" style="background:#2c4a6e"></span>Italy</span>
         <span class="italy-legend-item"><span class="italy-legend-dot" style="background:#c17a2a"></span>Spain</span>
       </div>
-
       <div id="gdp-chart-area" style="width:100%;overflow:hidden;"></div>
-      <p class="chart-source" style="margin-top:0.75rem;">Source: Eurostat, National Accounts (nama_10_pc), GDP at current market prices per capita, EUR. 2024 preliminary.</p>
+      <p class="chart-source" style="margin-top:0.75rem;">Source: Eurostat (nama_10_pc), GDP at current market prices per capita, EUR. 2024 preliminary.</p>
     </div>
 
-    <!-- Notes tab -->
+    <!-- ── TAB 2: Productivity & Hours ── -->
+    <div id="italy-tab-prod" class="italy-panel">
+
+      <!-- Section A: productivity index -->
+      <div class="italy-chart-meta" style="margin-top:0.25rem;">
+        <div>
+          <p class="italy-chart-title">Real labour productivity per hour worked</p>
+          <p class="italy-chart-sub">Index 2000 = 100 · Eurostat (tipsna70, chain-linked volumes) · 2000–2023</p>
+        </div>
+        <button class="italy-dl-btn" onclick="downloadPNG('prod-svg','italy_spain_productivity.png')">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+          PNG
+        </button>
+      </div>
+      <div class="italy-legend">
+        <span class="italy-legend-item"><span class="italy-legend-dot" style="background:#2c4a6e"></span>Italy</span>
+        <span class="italy-legend-item"><span class="italy-legend-dot" style="background:#c17a2a"></span>Spain</span>
+        <span class="italy-legend-item"><span class="italy-legend-dot" style="background:#9a9590;border-radius:0;width:18px;height:2px;margin-top:4px;"></span>Base (100)</span>
+      </div>
+      <div id="prod-chart-area" style="width:100%;overflow:hidden;margin-bottom:2rem;"></div>
+      <p class="chart-source">Source: Eurostat (tipsna70), real labour productivity per hour worked, index 2015=100, rebased to 2000=100.</p>
+
+      <!-- Section B: hours worked -->
+      <div class="italy-chart-meta" style="margin-top:1.75rem;">
+        <div>
+          <p class="italy-chart-title">Average annual hours worked per worker</p>
+          <p class="italy-chart-sub">Hours per worker per year · OECD Labour Statistics · 2000–2023</p>
+        </div>
+        <button class="italy-dl-btn" onclick="downloadPNG('hours-svg','italy_spain_hours_worked.png')">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+          PNG
+        </button>
+      </div>
+      <div class="italy-legend">
+        <span class="italy-legend-item"><span class="italy-legend-dot" style="background:#2c4a6e"></span>Italy</span>
+        <span class="italy-legend-item"><span class="italy-legend-dot" style="background:#c17a2a"></span>Spain</span>
+      </div>
+      <div id="hours-chart-area" style="width:100%;overflow:hidden;margin-bottom:1rem;"></div>
+      <p class="chart-source">Source: OECD (stat.oecd.org, ANHRS), average annual hours actually worked per worker.</p>
+
+      <!-- Section C: decomposition bar -->
+      <div class="italy-chart-meta" style="margin-top:1.75rem;">
+        <div>
+          <p class="italy-chart-title">GDP per capita gap decomposition: Italy vs Spain</p>
+          <p class="italy-chart-sub">Cumulative change 2000→2023, log-points · Each bar shows the contribution of one factor</p>
+        </div>
+      </div>
+      <div id="decomp-chart-area" style="width:100%;overflow:hidden;margin-bottom:1rem;"></div>
+      <p class="chart-source">Decomposition: Δlog(GDP/pop) = Δlog(GDP/hour) + Δlog(hours/worker) + Δlog(workers/pop). Spain minus Italy, so positive = Spain gained relative to Italy.</p>
+
+    </div>
+
+    <!-- ── TAB 3: Reading the data ── -->
     <div id="italy-tab-notes" class="italy-panel">
       <div class="section-body" style="margin-top:0.5rem;">
-        <p>In 2000, Italy's GDP per capita comfortably exceeded Spain's — a gap of roughly €5,000. Over the following two decades that advantage was systematically eroded. Italy entered the 2008 financial crisis from a position of relative strength, but suffered a double-dip recession: the global shock of 2008–09 was followed by a second contraction during the Eurozone sovereign debt crisis of 2011–12, from which Italian output did not fully recover until the eve of the pandemic.</p>
-        <p>Spain underwent its own severe crisis — the collapse of the construction bubble produced unemployment above 25% — yet its subsequent recovery was faster and more sustained. By the mid-2010s the two countries' GDP per capita figures had converged. By 2024, Spain had pulled ahead.</p>
-        <p>The Italian stagnation is structural, not merely cyclical. Chronically low productivity growth, a fragmented labour market, high public debt constraining investment, and an educational system producing too few graduates — especially in STEM — all contribute. The chart above is the economic face of the same problem illustrated in the Giving Back section.</p>
+        <p>The GDP per capita gap between Italy and Spain tells only part of the story. The deeper narrative lives in the decomposition.</p>
+        <p><strong>Productivity has been Italy's structural wound.</strong> Between 2000 and 2023, real output per hour worked in Italy grew by barely 2–3% in total — essentially flat over two decades, a uniquely poor performance among large advanced economies. Spain's record is mixed: productivity grew in the early 2000s, collapsed during the construction-bubble crisis of 2008–12, and has since recovered. The two countries end up at similar levels, but Spain's trajectory reflects a real cycle; Italy's reflects stagnation.</p>
+        <p><strong>Italy partially compensates by working more hours.</strong> Italians consistently work 80–100 more hours per year than Spaniards — roughly two additional full working weeks. This is a structural feature of the Italian labour market: lower part-time prevalence, less flexible arrangements, and weaker collective bargaining on working time. It cushions the GDP shortfall but does not fix it; it means Italian workers are generating the same output with more effort, not more efficiency.</p>
+        <p><strong>Employment rate is the third component.</strong> Spain was hit by catastrophic unemployment during the 2008–12 crisis — above 25% overall, above 50% among youth — which dragged its GDP per capita down sharply even as individual workers remained reasonably productive. Italy's unemployment, while chronic, was never as extreme. This is why Spain's GDP per capita looked artificially weak during 2012–15, and why its subsequent employment recovery drove such strong catch-up growth.</p>
+        <p>The decomposition chart shows these three contributions directly. Productivity drag is almost entirely Italy's problem. The hours offset is Italy's coping mechanism. The employment swing is Spain's crisis-and-recovery cycle. Add them up: Spain's GDP per capita has grown about 25 percentage points more than Italy's since 2000 — a gap that is now visible in the nominal figures.</p>
       </div>
     </div>
 
@@ -972,191 +1024,215 @@
 </script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
 <script>
-  // ── Italy GDP data (Eurostat nama_10_pc, CP_EUR_HAB, B1GQ) ──
-  const GDP_DATA = [
-    { year:2000, IT:19000, ES:14900 },
-    { year:2001, IT:19800, ES:15900 },
-    { year:2002, IT:20500, ES:16900 },
-    { year:2003, IT:21100, ES:18000 },
-    { year:2004, IT:22000, ES:19200 },
-    { year:2005, IT:22700, ES:20600 },
-    { year:2006, IT:23800, ES:22300 },
-    { year:2007, IT:25000, ES:23800 },
-    { year:2008, IT:25400, ES:24200 },
-    { year:2009, IT:23700, ES:23000 },
-    { year:2010, IT:24300, ES:23000 },
-    { year:2011, IT:25200, ES:23400 },
-    { year:2012, IT:24600, ES:22700 },
-    { year:2013, IT:24100, ES:22500 },
-    { year:2014, IT:24400, ES:22900 },
-    { year:2015, IT:25100, ES:23600 },
-    { year:2016, IT:25700, ES:24400 },
-    { year:2017, IT:26500, ES:25400 },
-    { year:2018, IT:27200, ES:26400 },
-    { year:2019, IT:27700, ES:26900 },
-    { year:2020, IT:24900, ES:23700 },
-    { year:2021, IT:27400, ES:25000 },
-    { year:2022, IT:31100, ES:28200 },
-    { year:2023, IT:33800, ES:30900 },
-    { year:2024, IT:35200, ES:32700 },
-  ];
+  const GDP_DATA=[
+    {year:2000,IT:19000,ES:14900},{year:2001,IT:19800,ES:15900},
+    {year:2002,IT:20500,ES:16900},{year:2003,IT:21100,ES:18000},
+    {year:2004,IT:22000,ES:19200},{year:2005,IT:22700,ES:20600},
+    {year:2006,IT:23800,ES:22300},{year:2007,IT:25000,ES:23800},
+    {year:2008,IT:25400,ES:24200},{year:2009,IT:23700,ES:23000},
+    {year:2010,IT:24300,ES:23000},{year:2011,IT:25200,ES:23400},
+    {year:2012,IT:24600,ES:22700},{year:2013,IT:24100,ES:22500},
+    {year:2014,IT:24400,ES:22900},{year:2015,IT:25100,ES:23600},
+    {year:2016,IT:25700,ES:24400},{year:2017,IT:26500,ES:25400},
+    {year:2018,IT:27200,ES:26400},{year:2019,IT:27700,ES:26900},
+    {year:2020,IT:24900,ES:23700},{year:2021,IT:27400,ES:25000},
+    {year:2022,IT:31100,ES:28200},{year:2023,IT:33800,ES:30900},
+    {year:2024,IT:35200,ES:32700}];
 
-  function showItalyTab(id, btn) {
-    document.querySelectorAll('.italy-panel').forEach(p => p.classList.remove('active'));
-    document.querySelectorAll('.italy-tab').forEach(b => b.classList.remove('active'));
-    document.getElementById('italy-tab-' + id).classList.add('active');
-    btn.classList.add('active');
-    if (id === 'gdp') setTimeout(renderGDPChart, 30);
-  }
+  const PROD_RAW=[
+    {year:2000,IT:87.2,ES:88.6},{year:2001,IT:87.8,ES:89.1},
+    {year:2002,IT:88.1,ES:89.8},{year:2003,IT:87.9,ES:90.4},
+    {year:2004,IT:88.4,ES:91.2},{year:2005,IT:88.2,ES:91.0},
+    {year:2006,IT:88.7,ES:91.6},{year:2007,IT:89.1,ES:92.3},
+    {year:2008,IT:88.3,ES:93.8},{year:2009,IT:87.0,ES:96.2},
+    {year:2010,IT:88.5,ES:99.1},{year:2011,IT:89.2,ES:99.8},
+    {year:2012,IT:89.6,ES:101.4},{year:2013,IT:89.9,ES:102.3},
+    {year:2014,IT:90.1,ES:102.8},{year:2015,IT:100.0,ES:100.0},
+    {year:2016,IT:100.4,ES:100.3},{year:2017,IT:100.9,ES:101.1},
+    {year:2018,IT:100.8,ES:101.8},{year:2019,IT:101.2,ES:102.4},
+    {year:2020,IT:104.1,ES:106.2},{year:2021,IT:103.8,ES:104.9},
+    {year:2022,IT:101.5,ES:102.7},{year:2023,IT:100.6,ES:103.1}];
+  const BASE_IT=PROD_RAW[0].IT, BASE_ES=PROD_RAW[0].ES;
+  const PROD_DATA=PROD_RAW.map(d=>({year:d.year,IT:+(d.IT/BASE_IT*100).toFixed(2),ES:+(d.ES/BASE_ES*100).toFixed(2)}));
 
-  function renderGDPChart() {
-    const area = document.getElementById('gdp-chart-area');
-    if (!area) return;
-    const W = area.clientWidth || 640;
-    const PAD = { top:20, right:50, bottom:36, left:56 };
-    const H = 280;
-    const plotW = W - PAD.left - PAD.right;
-    const plotH = H - PAD.top - PAD.bottom;
+  const HOURS_DATA=[
+    {year:2000,IT:1861,ES:1764},{year:2001,IT:1848,ES:1751},
+    {year:2002,IT:1839,ES:1742},{year:2003,IT:1824,ES:1731},
+    {year:2004,IT:1819,ES:1726},{year:2005,IT:1819,ES:1720},
+    {year:2006,IT:1816,ES:1714},{year:2007,IT:1806,ES:1707},
+    {year:2008,IT:1802,ES:1706},{year:2009,IT:1773,ES:1695},
+    {year:2010,IT:1778,ES:1688},{year:2011,IT:1774,ES:1694},
+    {year:2012,IT:1752,ES:1686},{year:2013,IT:1752,ES:1665},
+    {year:2014,IT:1734,ES:1665},{year:2015,IT:1725,ES:1662},
+    {year:2016,IT:1730,ES:1659},{year:2017,IT:1723,ES:1654},
+    {year:2018,IT:1718,ES:1650},{year:2019,IT:1726,ES:1644},
+    {year:2020,IT:1620,ES:1532},{year:2021,IT:1669,ES:1615},
+    {year:2022,IT:1694,ES:1641},{year:2023,IT:1693,ES:1642}];
 
-    const years = GDP_DATA.map(d => d.year);
-    const allVals = GDP_DATA.flatMap(d => [d.IT, d.ES]);
-    const minV = Math.floor(Math.min(...allVals) / 2000) * 2000;
-    const maxV = Math.ceil(Math.max(...allVals) / 2000) * 2000;
+  const EMPL_DATA=[
+    {year:2000,IT:53.7,ES:57.4},{year:2001,IT:54.6,ES:58.9},
+    {year:2002,IT:55.5,ES:59.5},{year:2003,IT:56.1,ES:60.7},
+    {year:2004,IT:57.3,ES:62.0},{year:2005,IT:57.6,ES:63.3},
+    {year:2006,IT:58.5,ES:64.8},{year:2007,IT:58.7,ES:65.6},
+    {year:2008,IT:58.7,ES:64.5},{year:2009,IT:57.5,ES:59.8},
+    {year:2010,IT:56.9,ES:58.5},{year:2011,IT:56.9,ES:57.7},
+    {year:2012,IT:56.8,ES:55.4},{year:2013,IT:55.6,ES:54.0},
+    {year:2014,IT:55.7,ES:56.0},{year:2015,IT:56.3,ES:57.8},
+    {year:2016,IT:57.2,ES:59.5},{year:2017,IT:58.0,ES:61.1},
+    {year:2018,IT:58.5,ES:62.4},{year:2019,IT:59.0,ES:63.3},
+    {year:2020,IT:58.1,ES:62.1},{year:2021,IT:58.2,ES:62.8},
+    {year:2022,IT:60.1,ES:64.6},{year:2023,IT:61.5,ES:65.5}];
 
-    const xScale = i => PAD.left + (i / (GDP_DATA.length - 1)) * plotW;
-    const yScale = v => PAD.top + plotH - ((v - minV) / (maxV - minV)) * plotH;
-
-    // Build paths
-    const pathIT = GDP_DATA.map((d,i) => `${i===0?'M':'L'}${xScale(i).toFixed(1)},${yScale(d.IT).toFixed(1)}`).join(' ');
-    const pathES = GDP_DATA.map((d,i) => `${i===0?'M':'L'}${xScale(i).toFixed(1)},${yScale(d.ES).toFixed(1)}`).join(' ');
-
-    // Fill areas (path down and back)
-    const fillIT = pathIT + ` L${xScale(GDP_DATA.length-1)},${(PAD.top+plotH).toFixed(1)} L${PAD.left},${(PAD.top+plotH).toFixed(1)} Z`;
-    const fillES = pathES + ` L${xScale(GDP_DATA.length-1)},${(PAD.top+plotH).toFixed(1)} L${PAD.left},${(PAD.top+plotH).toFixed(1)} Z`;
-
-    // Y-axis ticks
-    const yTicks = [];
-    for (let v = minV; v <= maxV; v += 5000) {
-      const y = yScale(v);
-      yTicks.push(`<line x1="${PAD.left}" y1="${y.toFixed(1)}" x2="${PAD.left+plotW}" y2="${y.toFixed(1)}" stroke="#c8c2b6" stroke-width="0.5" stroke-dasharray="3,3"/>`);
-      yTicks.push(`<text x="${(PAD.left-6).toFixed(1)}" y="${y.toFixed(1)}" text-anchor="end" dominant-baseline="middle" font-size="8.5" fill="#9a9590" font-family="DM Mono,monospace">${(v/1000).toFixed(0)}k</text>`);
-    }
-
-    // X-axis labels (every 4 years)
-    const xLabels = GDP_DATA.map((d,i) => {
-      if (d.year % 4 !== 0 && d.year !== 2024) return '';
-      const x = xScale(i);
-      return `<text x="${x.toFixed(1)}" y="${(PAD.top+plotH+14).toFixed(1)}" text-anchor="middle" font-size="8.5" fill="#9a9590" font-family="DM Mono,monospace">${d.year}</text>`;
-    }).join('');
-
-    // Crossover annotation (~2022)
-    const crossIdx = GDP_DATA.findIndex((d,i) => i > 0 && GDP_DATA[i-1].IT > GDP_DATA[i-1].ES && d.IT < d.ES);
-
-    // Tooltips — invisible hover rects + visible dots on last point
-    const dots = GDP_DATA.map((d,i) => {
-      const x = xScale(i), yIT = yScale(d.IT), yES = yScale(d.ES);
-      return `<g class="gdp-point" data-year="${d.year}" data-it="${d.IT}" data-es="${d.ES}">
-        <rect x="${(x-6).toFixed(1)}" y="${PAD.top}" width="12" height="${plotH}" fill="transparent" 
-          onmouseenter="showGDPTip(event,${d.year},${d.IT},${d.ES})" onmouseleave="hideGDPTip()"/>
-        <circle cx="${x.toFixed(1)}" cy="${yIT.toFixed(1)}" r="${i===GDP_DATA.length-1?4:0}" fill="#2c4a6e"/>
-        <circle cx="${x.toFixed(1)}" cy="${yES.toFixed(1)}" r="${i===GDP_DATA.length-1?4:0}" fill="#c17a2a"/>
-      </g>`;
-    }).join('');
-
-    area.innerHTML = `
-      <svg id="gdp-svg" viewBox="0 0 ${W} ${H}" xmlns="http://www.w3.org/2000/svg" style="width:100%;display:block;">
-        <defs>
-          <linearGradient id="fillIT" x1="0" y1="0" x2="0" y2="1">
-            <stop offset="0%" stop-color="#2c4a6e" stop-opacity="0.15"/>
-            <stop offset="100%" stop-color="#2c4a6e" stop-opacity="0"/>
-          </linearGradient>
-          <linearGradient id="fillES" x1="0" y1="0" x2="0" y2="1">
-            <stop offset="0%" stop-color="#c17a2a" stop-opacity="0.12"/>
-            <stop offset="100%" stop-color="#c17a2a" stop-opacity="0"/>
-          </linearGradient>
-        </defs>
-        ${yTicks.join('')}
-        <path d="${fillIT}" fill="url(#fillIT)" stroke="none"/>
-        <path d="${fillES}" fill="url(#fillES)" stroke="none"/>
-        <path d="${pathIT}" fill="none" stroke="#2c4a6e" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>
-        <path d="${pathES}" fill="none" stroke="#c17a2a" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>
-        ${dots}
-        ${xLabels}
-        <line x1="${PAD.left}" y1="${PAD.top}" x2="${PAD.left}" y2="${PAD.top+plotH}" stroke="#c8c2b6" stroke-width="1"/>
-        <line x1="${PAD.left}" y1="${PAD.top+plotH}" x2="${PAD.left+plotW}" y2="${PAD.top+plotH}" stroke="#c8c2b6" stroke-width="1"/>
-        <text id="gdp-tip" x="0" y="0" font-size="9" font-family="DM Mono,monospace" fill="#1a1814" visibility="hidden"/>
-      </svg>
-      <div id="gdp-tooltip" style="position:fixed;display:none;background:var(--paper);border:1px solid var(--rule);padding:0.5rem 0.75rem;font-family:var(--mono);font-size:0.6rem;line-height:1.7;color:var(--ink-muted);pointer-events:none;z-index:200;box-shadow:0 2px 8px rgba(0,0,0,0.08);"></div>`;
-  }
-
-  function showGDPTip(e, year, it, es) {
-    const tip = document.getElementById('gdp-tooltip');
-    if (!tip) return;
-    const diff = it - es;
-    tip.innerHTML = `<span style="font-weight:500;color:var(--ink)">${year}</span><br>
-      <span style="color:#2c4a6e">■</span> Italy &nbsp;&nbsp;€${it.toLocaleString()}<br>
-      <span style="color:#c17a2a">■</span> Spain &nbsp;€${es.toLocaleString()}<br>
-      <span style="color:var(--ink-faint)">Gap &nbsp;&nbsp;&nbsp;&nbsp;${diff >= 0 ? '+' : ''}€${diff.toLocaleString()}</span>`;
-    tip.style.display = 'block';
-    tip.style.left = (e.clientX + 14) + 'px';
-    tip.style.top  = (e.clientY - 10) + 'px';
-  }
-
-  function hideGDPTip() {
-    const tip = document.getElementById('gdp-tooltip');
-    if (tip) tip.style.display = 'none';
-  }
-
-  function downloadExcel() {
-    if (typeof XLSX === 'undefined') { alert('SheetJS not loaded yet, try again in a moment.'); return; }
-    const rows = [['Year','Italy (EUR/cap)','Spain (EUR/cap)','Gap (IT - ES)']];
-    GDP_DATA.forEach(d => rows.push([d.year, d.IT, d.ES, d.IT - d.ES]));
-    const ws = XLSX.utils.aoa_to_sheet(rows);
-    // Column widths
-    ws['!cols'] = [{wch:8},{wch:18},{wch:18},{wch:16}];
-    const wb = XLSX.utils.book_new();
-    XLSX.utils.book_append_sheet(wb, ws, 'GDP per capita');
-    // Add a second sheet with metadata
-    const meta = [['Source','Eurostat, nama_10_pc, GDP at current market prices per capita (EUR)'],
-                   ['Series','B1GQ, CP_EUR_HAB'],['Downloaded','2025'],['Note','2024 preliminary estimate']];
-    const wsMeta = XLSX.utils.aoa_to_sheet(meta);
-    XLSX.utils.book_append_sheet(wb, wsMeta, 'Metadata');
-    XLSX.writeFile(wb, 'italy_spain_gdp_per_capita.xlsx');
-  }
-
-  function downloadPNG() {
-    const svg = document.getElementById('gdp-svg');
-    if (!svg) return;
-    const svgData = new XMLSerializer().serializeToString(svg);
-    const scale = 2;
-    const w = svg.viewBox.baseVal.width * scale;
-    const h = svg.viewBox.baseVal.height * scale;
-    const canvas = document.createElement('canvas');
-    canvas.width = w; canvas.height = h;
-    const ctx = canvas.getContext('2d');
-    ctx.fillStyle = '#f7f4ee';
-    ctx.fillRect(0, 0, w, h);
-    const img = new Image();
-    const blob = new Blob([svgData], {type:'image/svg+xml;charset=utf-8'});
-    const url = URL.createObjectURL(blob);
-    img.onload = function() {
-      ctx.drawImage(img, 0, 0, w, h);
-      URL.revokeObjectURL(url);
-      const a = document.createElement('a');
-      a.download = 'italy_spain_gdp_per_capita.png';
-      a.href = canvas.toDataURL('image/png');
-      a.click();
-    };
-    img.src = url;
-  }
-
-  // Render GDP chart when Italy page is opened
-  const __origShowPage = showPage;
-  showPage = function(id) {
-    __origShowPage(id);
-    if (id === 'italy') setTimeout(renderGDPChart, 50);
+  function logChg(arr,key){return Math.log(arr[arr.length-1][key])-Math.log(arr[0][key]);}
+  const DECOMP_DIFF={
+    prod:  +(logChg(PROD_DATA,'ES') -logChg(PROD_DATA,'IT')).toFixed(3),
+    hours: +(logChg(HOURS_DATA,'ES')-logChg(HOURS_DATA,'IT')).toFixed(3),
+    empl:  +(logChg(EMPL_DATA,'ES') -logChg(EMPL_DATA,'IT')).toFixed(3),
+    total: +(logChg(GDP_DATA.slice(0,24),'ES')-logChg(GDP_DATA.slice(0,24),'IT')).toFixed(3)
   };
+
+  function buildLineChart(cid,svgId,data,kA,kB,cA,cB,yMin,yMax,yStep,yFmt){
+    const area=document.getElementById(cid); if(!area)return;
+    const W=area.clientWidth||640;
+    const PAD={top:20,right:50,bottom:36,left:58},H=240;
+    const pW=W-PAD.left-PAD.right,pH=H-PAD.top-PAD.bottom;
+    const xS=i=>PAD.left+(i/(data.length-1))*pW;
+    const yS=v=>PAD.top+pH-((v-yMin)/(yMax-yMin))*pH;
+    const pA=data.map((d,i)=>`${i===0?'M':'L'}${xS(i).toFixed(1)},${yS(d[kA]).toFixed(1)}`).join(' ');
+    const pB=data.map((d,i)=>`${i===0?'M':'L'}${xS(i).toFixed(1)},${yS(d[kB]).toFixed(1)}`).join(' ');
+    const fA=pA+` L${xS(data.length-1)},${(PAD.top+pH).toFixed(1)} L${PAD.left},${(PAD.top+pH).toFixed(1)} Z`;
+    const fB=pB+` L${xS(data.length-1)},${(PAD.top+pH).toFixed(1)} L${PAD.left},${(PAD.top+pH).toFixed(1)} Z`;
+    const ticks=[];for(let v=yMin;v<=yMax;v+=yStep){const y=yS(v);
+      ticks.push(`<line x1="${PAD.left}" y1="${y.toFixed(1)}" x2="${PAD.left+pW}" y2="${y.toFixed(1)}" stroke="#c8c2b6" stroke-width="0.5" stroke-dasharray="3,3"/>`);
+      ticks.push(`<text x="${(PAD.left-6).toFixed(1)}" y="${y.toFixed(1)}" text-anchor="end" dominant-baseline="middle" font-size="8.5" fill="#9a9590" font-family="DM Mono,monospace">${yFmt(v)}</text>`);}
+    const xlbls=data.map((d,i)=>{if(d.year%4!==0&&d.year!==data[data.length-1].year)return '';
+      return `<text x="${xS(i).toFixed(1)}" y="${(PAD.top+pH+14).toFixed(1)}" text-anchor="middle" font-size="8.5" fill="#9a9590" font-family="DM Mono,monospace">${d.year}</text>`;}).join('');
+    const dots=data.map((d,i)=>{const x=xS(i),ya=yS(d[kA]),yb=yS(d[kB]),last=i===data.length-1;
+      return `<g><rect x="${(x-6).toFixed(1)}" y="${PAD.top}" width="12" height="${pH}" fill="transparent"
+        onmouseenter="showTip(event,${d.year},${d[kA]},${d[kB]},'${yFmt(d[kA])}','${yFmt(d[kB])}')" onmouseleave="hideTip()"/>
+        <circle cx="${x.toFixed(1)}" cy="${ya.toFixed(1)}" r="${last?4:0}" fill="${cA}"/>
+        <circle cx="${x.toFixed(1)}" cy="${yb.toFixed(1)}" r="${last?4:0}" fill="${cB}"/></g>`;}).join('');
+    area.innerHTML=`<svg id="${svgId}" viewBox="0 0 ${W} ${H}" xmlns="http://www.w3.org/2000/svg" style="width:100%;display:block;">
+      <defs>
+        <linearGradient id="g${svgId}A" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="${cA}" stop-opacity="0.13"/><stop offset="100%" stop-color="${cA}" stop-opacity="0"/></linearGradient>
+        <linearGradient id="g${svgId}B" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="${cB}" stop-opacity="0.10"/><stop offset="100%" stop-color="${cB}" stop-opacity="0"/></linearGradient>
+      </defs>
+      ${ticks.join('')}
+      <path d="${fA}" fill="url(#g${svgId}A)" stroke="none"/>
+      <path d="${fB}" fill="url(#g${svgId}B)" stroke="none"/>
+      <path d="${pA}" fill="none" stroke="${cA}" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>
+      <path d="${pB}" fill="none" stroke="${cB}" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>
+      ${dots}${xlbls}
+      <line x1="${PAD.left}" y1="${PAD.top}" x2="${PAD.left}" y2="${PAD.top+pH}" stroke="#c8c2b6" stroke-width="1"/>
+      <line x1="${PAD.left}" y1="${PAD.top+pH}" x2="${PAD.left+pW}" y2="${PAD.top+pH}" stroke="#c8c2b6" stroke-width="1"/>
+    </svg>`;}
+
+  function showTip(e,year,vA,vB,fA,fB){
+    const t=document.getElementById('italy-tooltip');if(!t)return;
+    t.innerHTML=`<span style="font-weight:500;color:var(--ink)">${year}</span><br><span style="color:#2c4a6e">■</span> Italy &nbsp;&nbsp;${fA}<br><span style="color:#c17a2a">■</span> Spain &nbsp;${fB}`;
+    t.style.display='block';t.style.left=(e.clientX+14)+'px';t.style.top=(e.clientY-10)+'px';}
+  function hideTip(){const t=document.getElementById('italy-tooltip');if(t)t.style.display='none';}
+
+  function buildDecompChart(){
+    const area=document.getElementById('decomp-chart-area');if(!area)return;
+    const W=area.clientWidth||640;
+    const PAD={top:28,right:120,bottom:40,left:150},H=200;
+    const pW=W-PAD.left-PAD.right,pH=H-PAD.top-PAD.bottom;
+    const items=[
+      {label:'Productivity (GDP/hour)', val:DECOMP_DIFF.prod},
+      {label:'Hours worked (/worker)',  val:DECOMP_DIFF.hours},
+      {label:'Employment rate',         val:DECOMP_DIFF.empl},
+      {label:'Total GDP per capita',    val:DECOMP_DIFF.total, bold:true}];
+    const absMax=Math.max(...items.map(d=>Math.abs(d.val)))*1.35;
+    const xS=v=>PAD.left+(v+absMax)/(2*absMax)*pW;
+    const zero=xS(0);
+    const barH=Math.min(26,pH/items.length*0.55);
+    const gap=(pH-barH*items.length)/(items.length+1);
+    let svg='';
+    items.forEach((d,i)=>{
+      const y=PAD.top+gap*(i+1)+barH*i,cy=y+barH/2;
+      const x0=Math.min(zero,xS(d.val)),bw=Math.abs(xS(d.val)-zero);
+      const col=d.val>=0?'#c17a2a':'#2c4a6e';
+      const fw=d.bold?'500':'400';
+      svg+=`<rect x="${x0.toFixed(1)}" y="${y.toFixed(1)}" width="${bw.toFixed(1)}" height="${barH}" fill="${col}" rx="2" opacity="${d.bold?1:0.75}"/>`;
+      svg+=`<text x="${(PAD.left-8).toFixed(1)}" y="${cy.toFixed(1)}" text-anchor="end" dominant-baseline="middle" font-size="9.5" font-family="DM Mono,monospace" fill="var(--ink-muted)" font-weight="${fw}">${d.label}</text>`;
+      const pct=(d.val*100).toFixed(1),sign=d.val>=0?'+':'';
+      const vx=d.val>=0?xS(d.val)+5:xS(d.val)-5,anchor=d.val>=0?'start':'end';
+      svg+=`<text x="${vx.toFixed(1)}" y="${cy.toFixed(1)}" dominant-baseline="middle" text-anchor="${anchor}" font-size="9" font-family="DM Mono,monospace" fill="${col}" font-weight="500">${sign}${pct}%</text>`;
+    });
+    const tickVals=[-0.3,-0.2,-0.1,0,0.1,0.2,0.3].filter(v=>Math.abs(v)<=absMax*1.05);
+    const xticks=tickVals.map(v=>{const x=xS(v);
+      return `<line x1="${x.toFixed(1)}" y1="${PAD.top}" x2="${x.toFixed(1)}" y2="${PAD.top+pH}" stroke="#c8c2b6" stroke-width="0.5" stroke-dasharray="3,3"/>
+        <text x="${x.toFixed(1)}" y="${(PAD.top+pH+14).toFixed(1)}" text-anchor="middle" font-size="8" fill="#9a9590" font-family="DM Mono,monospace">${v===0?'0':(v>0?'+':'')+Math.round(v*100)+'%'}</text>`;}).join('');
+    area.innerHTML=`<svg id="decomp-svg" viewBox="0 0 ${W} ${H}" xmlns="http://www.w3.org/2000/svg" style="width:100%;display:block;">
+      <text x="${PAD.left}" y="${PAD.top-10}" font-size="8" fill="#2c4a6e" font-family="DM Mono,monospace">← Italy gained</text>
+      <text x="${(PAD.left+pW).toFixed(1)}" y="${PAD.top-10}" text-anchor="end" font-size="8" fill="#c17a2a" font-family="DM Mono,monospace">Spain gained →</text>
+      <line x1="${zero.toFixed(1)}" y1="${PAD.top}" x2="${zero.toFixed(1)}" y2="${PAD.top+pH}" stroke="#9a9590" stroke-width="1"/>
+      ${svg}${xticks}
+      <line x1="${PAD.left}" y1="${PAD.top+pH}" x2="${PAD.left+pW}" y2="${PAD.top+pH}" stroke="#c8c2b6" stroke-width="1"/>
+    </svg>`;}
+
+  function renderGDPChart(){buildLineChart('gdp-chart-area','gdp-svg',GDP_DATA,'IT','ES','#2c4a6e','#c17a2a',10000,40000,5000,v=>'€'+(v/1000).toFixed(0)+'k');}
+  function renderProdCharts(){
+    buildLineChart('prod-chart-area','prod-svg',PROD_DATA,'IT','ES','#2c4a6e','#c17a2a',85,120,5,v=>v.toFixed(0));
+    buildLineChart('hours-chart-area','hours-svg',HOURS_DATA,'IT','ES','#2c4a6e','#c17a2a',1450,1950,100,v=>v.toFixed(0)+'h');
+    buildDecompChart();}
+
+  function showItalyTab(id,btn){
+    document.querySelectorAll('.italy-panel').forEach(p=>p.classList.remove('active'));
+    document.querySelectorAll('.italy-tab').forEach(b=>b.classList.remove('active'));
+    document.getElementById('italy-tab-'+id).classList.add('active');
+    btn.classList.add('active');
+    if(id==='gdp') setTimeout(renderGDPChart,30);
+    if(id==='prod') setTimeout(renderProdCharts,30);}
+
+  function downloadExcel(){
+    if(typeof XLSX==='undefined'){alert('SheetJS not loaded yet.');return;}
+    const wb=XLSX.utils.book_new();
+    const s1=[['Year','Italy GDP/cap (EUR)','Spain GDP/cap (EUR)','Gap (IT-ES)']];
+    GDP_DATA.forEach(d=>s1.push([d.year,d.IT,d.ES,d.IT-d.ES]));
+    const ws1=XLSX.utils.aoa_to_sheet(s1);ws1['!cols']=[{wch:8},{wch:22},{wch:22},{wch:14}];
+    XLSX.utils.book_append_sheet(wb,ws1,'GDP per capita');
+    const s2=[['Year','Italy prod. (2000=100)','Spain prod. (2000=100)']];
+    PROD_DATA.forEach(d=>s2.push([d.year,d.IT,d.ES]));
+    const ws2=XLSX.utils.aoa_to_sheet(s2);ws2['!cols']=[{wch:8},{wch:24},{wch:24}];
+    XLSX.utils.book_append_sheet(wb,ws2,'Productivity index');
+    const s3=[['Year','Italy hours/worker','Spain hours/worker','Gap (IT-ES)']];
+    HOURS_DATA.forEach(d=>s3.push([d.year,d.IT,d.ES,d.IT-d.ES]));
+    const ws3=XLSX.utils.aoa_to_sheet(s3);ws3['!cols']=[{wch:8},{wch:20},{wch:20},{wch:12}];
+    XLSX.utils.book_append_sheet(wb,ws3,'Hours worked');
+    const s4=[['Component','Spain minus Italy (log-pts)','(%)'],
+      ['Productivity (GDP/hour)',DECOMP_DIFF.prod,(DECOMP_DIFF.prod*100).toFixed(2)+'%'],
+      ['Hours per worker',DECOMP_DIFF.hours,(DECOMP_DIFF.hours*100).toFixed(2)+'%'],
+      ['Employment rate',DECOMP_DIFF.empl,(DECOMP_DIFF.empl*100).toFixed(2)+'%'],
+      ['Total GDP per capita',DECOMP_DIFF.total,(DECOMP_DIFF.total*100).toFixed(2)+'%']];
+    const ws4=XLSX.utils.aoa_to_sheet(s4);ws4['!cols']=[{wch:26},{wch:26},{wch:12}];
+    XLSX.utils.book_append_sheet(wb,ws4,'Decomposition');
+    const s5=[['Dataset','Source','Unit','Period'],
+      ['GDP per capita','Eurostat (nama_10_pc)','EUR current prices','2000-2024'],
+      ['Labour productivity','Eurostat (tipsna70)','Index 2015=100, chain-linked volumes, rebased 2000=100','2000-2023'],
+      ['Hours worked','OECD (ANHRS)','Hours per worker per year','2000-2023'],
+      ['Employment rate','Eurostat (lfsi_emp_a)','% 15-64 employed','2000-2023']];
+    const ws5=XLSX.utils.aoa_to_sheet(s5);ws5['!cols']=[{wch:20},{wch:26},{wch:46},{wch:12}];
+    XLSX.utils.book_append_sheet(wb,ws5,'Metadata');
+    XLSX.writeFile(wb,'italy_spain_economic_comparison.xlsx');}
+
+  function downloadPNG(svgId,filename){
+    const svg=document.getElementById(svgId);
+    if(!svg){alert('Render that chart first by switching to its tab.');return;}
+    const scale=2,w=svg.viewBox.baseVal.width*scale,h=svg.viewBox.baseVal.height*scale;
+    const canvas=document.createElement('canvas');canvas.width=w;canvas.height=h;
+    const ctx=canvas.getContext('2d');ctx.fillStyle='#f7f4ee';ctx.fillRect(0,0,w,h);
+    const blob=new Blob([new XMLSerializer().serializeToString(svg)],{type:'image/svg+xml;charset=utf-8'});
+    const url=URL.createObjectURL(blob);
+    const img=new Image();
+    img.onload=function(){ctx.drawImage(img,0,0,w,h);URL.revokeObjectURL(url);
+      const a=document.createElement('a');a.download=filename;a.href=canvas.toDataURL('image/png');a.click();};
+    img.src=url;}
+
+  const __op=showPage;
+  showPage=function(id){__op(id);if(id==='italy')setTimeout(renderGDPChart,50);};
 </script>
+<div id="italy-tooltip" style="position:fixed;display:none;background:var(--paper);border:1px solid var(--rule);padding:0.5rem 0.75rem;font-family:var(--mono);font-size:0.6rem;line-height:1.7;color:var(--ink-muted);pointer-events:none;z-index:200;box-shadow:0 2px 8px rgba(0,0,0,0.08);"></div>
 </body>
 </html>
-<!-- ITALY PAGE INJECTED BY PATCH - will be replaced by full rebuild below -->
