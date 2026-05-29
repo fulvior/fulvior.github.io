@@ -49,59 +49,18 @@
 
   /* ── Home ── */
   .home-layout {
-    max-width: 860px;
-    margin: 0 auto;
-    padding: 5rem 2rem 6rem;
-    display: grid;
-    grid-template-columns: 200px 1fr;
-    gap: 3.5rem;
-    align-items: start;
+    max-width: 860px; margin: 0 auto; padding: 5rem 2rem 6rem;
+    display: grid; grid-template-columns: 200px 1fr; gap: 3.5rem; align-items: start;
   }
-
-  /* Photo column */
   .home-photo-col { display: flex; flex-direction: column; align-items: center; gap: 1rem; padding-top: 0.5rem; }
-  .home-photo {
-    width: 180px;
-    height: 220px;
-    object-fit: cover;
-    border: 1px solid var(--rule);
-    display: block;
-    background: var(--paper-warm);
-    /* placeholder styling when no image */
-    position: relative;
-  }
-  .home-photo-placeholder {
-    width: 180px;
-    height: 220px;
-    border: 1px solid var(--rule);
-    background: var(--paper-warm);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
-    gap: 0.5rem;
-  }
+  .home-photo { width: 180px; height: 220px; object-fit: cover; border: 1px solid var(--rule); display: block; background: var(--paper-warm); }
+  .home-photo-placeholder { width: 180px; height: 220px; border: 1px solid var(--rule); background: var(--paper-warm); display: flex; align-items: center; justify-content: center; flex-direction: column; gap: 0.5rem; }
   .home-photo-placeholder svg { opacity: 0.25; }
   .home-photo-placeholder span { font-family: var(--mono); font-size: 0.55rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--ink-faint); }
   .home-photo-socials { display: flex; flex-direction: column; gap: 0.4rem; width: 100%; }
-  .home-social-link {
-    font-family: var(--mono);
-    font-size: 0.58rem;
-    letter-spacing: 0.06em;
-    color: var(--ink-faint);
-    text-decoration: none;
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-    padding: 0.3rem 0.5rem;
-    border: 1px solid transparent;
-    border-radius: 2px;
-    transition: color 0.15s, border-color 0.15s;
-  }
+  .home-social-link { font-family: var(--mono); font-size: 0.58rem; letter-spacing: 0.06em; color: var(--ink-faint); text-decoration: none; display: flex; align-items: center; gap: 0.5rem; padding: 0.3rem 0.5rem; border: 1px solid transparent; border-radius: 2px; transition: color 0.15s, border-color 0.15s; }
   .home-social-link:hover { color: var(--accent); border-color: var(--rule); }
   .home-social-link svg { flex-shrink: 0; }
-
-  /* Text column */
   .home-text-col {}
   .home-eyebrow { font-family: var(--mono); font-size: 0.65rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--ink-faint); margin-bottom: 1.5rem; }
   .home-name { font-size: 3.2rem; font-weight: 400; font-style: italic; line-height: 1.15; margin-bottom: 0.5rem; color: var(--ink); }
@@ -215,8 +174,6 @@
   .lib-book-title { font-size: 0.97rem; font-weight: 500; color: var(--ink); }
   .lib-book-author { font-family: var(--mono); font-size: 0.6rem; letter-spacing: 0.06em; color: var(--ink-faint); margin-top: 0.15rem; }
   .lib-book-note { font-size: 0.88rem; color: var(--ink-muted); font-style: italic; line-height: 1.6; }
-
-  /* Sub-section divider within a shelf */
   .shelf-subsection { font-family: var(--mono); font-size: 0.58rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--ink-faint); margin: 1.75rem 0 0.25rem; padding-bottom: 0.4rem; border-bottom: 1px dashed var(--rule); }
 
   /* Beyond academia */
@@ -244,14 +201,12 @@
   .italy-tab.active { color:var(--accent); border-bottom-color:var(--accent); }
   .italy-panel { display:none; }
   .italy-panel.active { display:block; animation:fadein 0.2s ease; }
-
   .italy-chart-meta { display:flex; align-items:flex-start; justify-content:space-between; gap:1rem; flex-wrap:wrap; margin-bottom:1rem; }
   .italy-chart-title { font-size:1rem; font-weight:500; color:var(--ink); margin-bottom:0.2rem; }
   .italy-chart-sub { font-family:var(--mono); font-size:0.58rem; color:var(--ink-faint); letter-spacing:0.05em; line-height:1.5; }
   .italy-dl-group { display:flex; gap:0.5rem; flex-shrink:0; }
   .italy-dl-btn { font-family:var(--mono); font-size:0.6rem; letter-spacing:0.06em; text-transform:uppercase; display:inline-flex; align-items:center; gap:0.4rem; background:transparent; border:1px solid var(--rule); color:var(--ink-muted); padding:0.35rem 0.8rem; border-radius:3px; cursor:pointer; transition:border-color 0.15s,color 0.15s,background 0.15s; }
   .italy-dl-btn:hover { border-color:var(--accent); color:var(--accent); background:var(--accent-light); }
-
   .italy-legend { display:flex; gap:1.5rem; margin-bottom:1rem; }
   .italy-legend-item { display:flex; align-items:center; gap:0.4rem; font-family:var(--mono); font-size:0.6rem; color:var(--ink-muted); letter-spacing:0.06em; }
   .italy-legend-dot { width:10px; height:10px; border-radius:50%; flex-shrink:0; }
@@ -294,10 +249,7 @@
 <!-- HOME -->
 <div id="page-home" class="page active">
   <div class="home-layout">
-
-    <!-- Left: photo + social links -->
     <div class="home-photo-col">
-      <!-- Replace assets/photo.jpg with your actual image path -->
       <img src="assets/photo.jpg" alt="Fulvio Raddi" class="home-photo"
            onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
       <div class="home-photo-placeholder" style="display:none;">
@@ -321,8 +273,6 @@
         </a>
       </div>
     </div>
-
-    <!-- Right: text content -->
     <div class="home-text-col">
       <p class="home-eyebrow">Marie Skłodowska-Curie Doctoral Candidate</p>
       <h1 class="home-name">Fulvio Raddi</h1>
@@ -338,7 +288,6 @@
         <a class="btn btn-ghost" href="assets/cv.pdf">Download CV</a>
       </div>
     </div>
-
   </div>
 </div>
 
@@ -422,13 +371,11 @@
     <div class="section-body">
       <p>An annotated library — not exhaustive, but honest. Books I have read closely, returned to, or consider essential entry points into their field.</p>
     </div>
-
     <div class="tab-bar" style="margin-top:1.5rem;">
       <button class="tab-btn active" onclick="showBookTab('academic', this)">Academic</button>
       <button class="tab-btn" onclick="showBookTab('general', this)">Beyond academia</button>
     </div>
-
-    <!-- ══ ACADEMIC ══ -->
+    <!-- ACADEMIC -->
     <div id="booktab-academic" class="booktab active">
       <div class="lib-layout">
         <nav class="lib-nav">
@@ -454,222 +401,86 @@
             <a class="lib-nav-item" onclick="showShelf('eco-text',this)" href="#"><span class="lib-nav-num">—</span> Text &amp; Spatial</a>
           </div>
         </nav>
-
         <div class="lib-shelf">
-
-          <!-- 01 Logic & Foundations -->
           <div class="shelf active" id="shelf-math-01">
             <p class="shelf-label"><span class="shelf-num">01</span> Logic &amp; Foundations</p>
-            <div class="lib-book">
-              <div class="lib-book-head"><p class="lib-book-title">Introduction to Mathematical Logic</p><p class="lib-book-author">Elliott Mendelson · 1964</p></div>
-              <p class="lib-book-note">The standard entry point into propositional and predicate calculus. Rigorous and self-contained — a good companion before tackling proof theory or model theory.</p>
-            </div>
-            <div class="lib-book">
-              <div class="lib-book-head"><p class="lib-book-title">Naive Set Theory</p><p class="lib-book-author">Paul Halmos · 1960</p></div>
-              <p class="lib-book-note">Deceptively titled. Halmos writes with exceptional clarity, and this slim volume remains the best way to build genuine intuition about sets before ZFC formalism.</p>
-            </div>
+            <div class="lib-book"><div class="lib-book-head"><p class="lib-book-title">Introduction to Mathematical Logic</p><p class="lib-book-author">Elliott Mendelson · 1964</p></div><p class="lib-book-note">The standard entry point into propositional and predicate calculus. Rigorous and self-contained — a good companion before tackling proof theory or model theory.</p></div>
+            <div class="lib-book"><div class="lib-book-head"><p class="lib-book-title">Naive Set Theory</p><p class="lib-book-author">Paul Halmos · 1960</p></div><p class="lib-book-note">Deceptively titled. Halmos writes with exceptional clarity, and this slim volume remains the best way to build genuine intuition about sets before ZFC formalism.</p></div>
           </div>
-
-          <!-- 02 Algebra -->
           <div class="shelf" id="shelf-math-02">
             <p class="shelf-label"><span class="shelf-num">02</span> Algebra</p>
-            <div class="lib-book">
-              <div class="lib-book-head"><p class="lib-book-title">Algebra</p><p class="lib-book-author">Michael Artin · 2nd ed.</p></div>
-              <p class="lib-book-note">All the algebra a bachelor's student should know, done with the right level of abstraction. The linear algebra chapters complement the group theory beautifully.</p>
-            </div>
-            <div class="lib-book">
-              <div class="lib-book-head"><p class="lib-book-title">Matrix Analysis</p><p class="lib-book-author">Horn &amp; Johnson · 1985</p></div>
-              <p class="lib-book-note">The definitive reference for anyone working with matrix theory beyond the introductory level. Indispensable for spatial econometrics and spectral methods.</p>
-            </div>
-            <div class="lib-book">
-              <div class="lib-book-head"><p class="lib-book-title">The Theory of Matrices, Vol. 1 &amp; 2</p><p class="lib-book-author">Felix R. Gantmacher · 1959</p></div>
-              <p class="lib-book-note">A Soviet classic. The treatment of canonical forms, functions of matrices, and stability theory goes far beyond any modern linear algebra text — essential for advanced applications.</p>
-            </div>
+            <div class="lib-book"><div class="lib-book-head"><p class="lib-book-title">Algebra</p><p class="lib-book-author">Michael Artin · 2nd ed.</p></div><p class="lib-book-note">All the algebra a bachelor's student should know, done with the right level of abstraction. The linear algebra chapters complement the group theory beautifully.</p></div>
+            <div class="lib-book"><div class="lib-book-head"><p class="lib-book-title">Matrix Analysis</p><p class="lib-book-author">Horn &amp; Johnson · 1985</p></div><p class="lib-book-note">The definitive reference for anyone working with matrix theory beyond the introductory level. Indispensable for spatial econometrics and spectral methods.</p></div>
+            <div class="lib-book"><div class="lib-book-head"><p class="lib-book-title">The Theory of Matrices, Vol. 1 &amp; 2</p><p class="lib-book-author">Felix R. Gantmacher · 1959</p></div><p class="lib-book-note">A Soviet classic. The treatment of canonical forms, functions of matrices, and stability theory goes far beyond any modern linear algebra text — essential for advanced applications.</p></div>
           </div>
-
-          <!-- 03 Geometry & Topology (merged) -->
           <div class="shelf" id="shelf-math-03">
             <p class="shelf-label"><span class="shelf-num">03</span> Geometry &amp; Topology</p>
-
             <p class="shelf-subsection">Geometry</p>
-            <div class="lib-book">
-              <div class="lib-book-head"><p class="lib-book-title">Lezioni di Geometria, Vol. 1</p><p class="lib-book-author">Rosa Esposito &amp; Assunta Russo · 1996</p></div>
-              <p class="lib-book-note">My first geometry book. Only in Italian, but it shaped how I think about mathematical space. Some debts are owed to very specific volumes.</p>
-            </div>
-
+            <div class="lib-book"><div class="lib-book-head"><p class="lib-book-title">Lezioni di Geometria, Vol. 1</p><p class="lib-book-author">Rosa Esposito &amp; Assunta Russo · 1996</p></div><p class="lib-book-note">My first geometry book. Only in Italian, but it shaped how I think about mathematical space. Some debts are owed to very specific volumes.</p></div>
             <p class="shelf-subsection">Topology</p>
-            <div class="lib-book">
-              <div class="lib-book-head"><p class="lib-book-title">Topology</p><p class="lib-book-author">James Munkres · 2nd ed.</p></div>
-              <p class="lib-book-note">The standard graduate text, and deservedly so. Munkres writes with unusual care; the problem sets are excellent. Covers point-set topology fully before moving to algebraic topology.</p>
-            </div>
-            <div class="lib-book">
-              <div class="lib-book-head"><p class="lib-book-title">Introduction to Metric and Topological Spaces</p><p class="lib-book-author">Wilson Sutherland · 1975</p></div>
-              <p class="lib-book-note">A gentler entry point for those coming from analysis. The transition from metric to topological spaces is handled with real care.</p>
-            </div>
+            <div class="lib-book"><div class="lib-book-head"><p class="lib-book-title">Topology</p><p class="lib-book-author">James Munkres · 2nd ed.</p></div><p class="lib-book-note">The standard graduate text, and deservedly so. Munkres writes with unusual care; the problem sets are excellent. Covers point-set topology fully before moving to algebraic topology.</p></div>
+            <div class="lib-book"><div class="lib-book-head"><p class="lib-book-title">Introduction to Metric and Topological Spaces</p><p class="lib-book-author">Wilson Sutherland · 1975</p></div><p class="lib-book-note">A gentler entry point for those coming from analysis. The transition from metric to topological spaces is handled with real care.</p></div>
           </div>
-
-          <!-- 04 Mathematical Analysis & Functional Analysis (merged) -->
           <div class="shelf" id="shelf-math-04">
             <p class="shelf-label"><span class="shelf-num">04</span> Mathematical Analysis</p>
-
             <p class="shelf-subsection">Real &amp; Complex Analysis</p>
-            <div class="lib-book">
-              <div class="lib-book-head"><p class="lib-book-title">Real and Complex Analysis</p><p class="lib-book-author">Walter Rudin · 1966</p></div>
-              <p class="lib-book-note">"Big Rudin." The chapters on measure and integration are a masterpiece of compression. Non-negotiable if you want a serious foundation for probability theory.</p>
-            </div>
-            <div class="lib-book">
-              <div class="lib-book-head"><p class="lib-book-title">Introductory Real Analysis</p><p class="lib-book-author">A.N. Kolmogorov &amp; S.V. Fomin · 1975</p></div>
-              <p class="lib-book-note">A more accessible companion to Rudin. The exposition of the Lebesgue integral is especially clear, and the exercises build intuition well.</p>
-            </div>
-            <div class="lib-book">
-              <div class="lib-book-head"><p class="lib-book-title">Probability and Measure</p><p class="lib-book-author">Patrick Billingsley · 1979</p></div>
-              <p class="lib-book-note">The bridge between measure theory and probability. Billingsley's treatment of weak convergence and characteristic functions is the foundation you need for asymptotic econometrics.</p>
-            </div>
-
+            <div class="lib-book"><div class="lib-book-head"><p class="lib-book-title">Real and Complex Analysis</p><p class="lib-book-author">Walter Rudin · 1966</p></div><p class="lib-book-note">"Big Rudin." The chapters on measure and integration are a masterpiece of compression. Non-negotiable if you want a serious foundation for probability theory.</p></div>
+            <div class="lib-book"><div class="lib-book-head"><p class="lib-book-title">Introductory Real Analysis</p><p class="lib-book-author">A.N. Kolmogorov &amp; S.V. Fomin · 1975</p></div><p class="lib-book-note">A more accessible companion to Rudin. The exposition of the Lebesgue integral is especially clear, and the exercises build intuition well.</p></div>
+            <div class="lib-book"><div class="lib-book-head"><p class="lib-book-title">Probability and Measure</p><p class="lib-book-author">Patrick Billingsley · 1979</p></div><p class="lib-book-note">The bridge between measure theory and probability. Billingsley's treatment of weak convergence and characteristic functions is the foundation you need for asymptotic econometrics.</p></div>
             <p class="shelf-subsection">Functional Analysis</p>
-            <div class="lib-book">
-              <div class="lib-book-head"><p class="lib-book-title">Introductory Functional Analysis with Applications</p><p class="lib-book-author">Erwin Kreyszig · 1978</p></div>
-              <p class="lib-book-note">The most user-friendly door into functional analysis. Kreyszig never sacrifices rigour for accessibility, but he always explains why things matter before proving them.</p>
-            </div>
-            <div class="lib-book">
-              <div class="lib-book-head"><p class="lib-book-title">Functional Analysis</p><p class="lib-book-author">Walter Rudin · 1973</p></div>
-              <p class="lib-book-note">For those who have survived the first two Rudins. The treatment of distributions, Fourier analysis, and operator theory here has no equal at this level of concision.</p>
-            </div>
+            <div class="lib-book"><div class="lib-book-head"><p class="lib-book-title">Introductory Functional Analysis with Applications</p><p class="lib-book-author">Erwin Kreyszig · 1978</p></div><p class="lib-book-note">The most user-friendly door into functional analysis. Kreyszig never sacrifices rigour for accessibility, but he always explains why things matter before proving them.</p></div>
+            <div class="lib-book"><div class="lib-book-head"><p class="lib-book-title">Functional Analysis</p><p class="lib-book-author">Walter Rudin · 1973</p></div><p class="lib-book-note">For those who have survived the first two Rudins. The treatment of distributions, Fourier analysis, and operator theory here has no equal at this level of concision.</p></div>
           </div>
-
-          <!-- 05 Dynamical Systems -->
           <div class="shelf" id="shelf-math-05">
             <p class="shelf-label"><span class="shelf-num">05</span> Dynamical Systems</p>
-            <div class="lib-book">
-              <div class="lib-book-head"><p class="lib-book-title">Ordinary Differential Equations</p><p class="lib-book-author">Vladimir Arnold · 1978</p></div>
-              <p class="lib-book-note">Arnold approaches ODEs as a geometer, not an analyst. The emphasis on phase flows and qualitative behaviour is exactly the perspective economists applying dynamic systems need.</p>
-            </div>
-            <div class="lib-book">
-              <div class="lib-book-head"><p class="lib-book-title">Nonlinear Dynamics and Chaos</p><p class="lib-book-author">Steven H. Strogatz · 2nd ed.</p></div>
-              <p class="lib-book-note">The most readable graduate text on dynamical systems. The treatment of stability and bifurcation theory is thorough and well-motivated, with applications drawn from across science.</p>
-            </div>
+            <div class="lib-book"><div class="lib-book-head"><p class="lib-book-title">Ordinary Differential Equations</p><p class="lib-book-author">Vladimir Arnold · 1978</p></div><p class="lib-book-note">Arnold approaches ODEs as a geometer, not an analyst. The emphasis on phase flows and qualitative behaviour is exactly the perspective economists applying dynamic systems need.</p></div>
+            <div class="lib-book"><div class="lib-book-head"><p class="lib-book-title">Nonlinear Dynamics and Chaos</p><p class="lib-book-author">Steven H. Strogatz · 2nd ed.</p></div><p class="lib-book-note">The most readable graduate text on dynamical systems. The treatment of stability and bifurcation theory is thorough and well-motivated, with applications drawn from across science.</p></div>
           </div>
-
-          <!-- 06 Numerical Methods -->
           <div class="shelf" id="shelf-math-06">
             <p class="shelf-label"><span class="shelf-num">06</span> Numerical Methods</p>
-            <div class="lib-book">
-              <div class="lib-book-head"><p class="lib-book-title">Numerical Linear Algebra</p><p class="lib-book-author">Trefethen &amp; Bau · 1997</p></div>
-              <p class="lib-book-note">A remarkable book: rigorous yet remarkably readable. The lectures on SVD, QR, and iterative methods make you understand what computation actually does to matrices.</p>
-            </div>
-            <div class="lib-book">
-              <div class="lib-book-head"><p class="lib-book-title">Numerical Methods for Scientists and Engineers</p><p class="lib-book-author">R. W. Hamming · 1962</p></div>
-              <p class="lib-book-note">Old but not outdated. Hamming's philosophy — "the purpose of computing is insight, not numbers" — belongs on every quantitative researcher's wall.</p>
-            </div>
+            <div class="lib-book"><div class="lib-book-head"><p class="lib-book-title">Numerical Linear Algebra</p><p class="lib-book-author">Trefethen &amp; Bau · 1997</p></div><p class="lib-book-note">A remarkable book: rigorous yet remarkably readable. The lectures on SVD, QR, and iterative methods make you understand what computation actually does to matrices.</p></div>
+            <div class="lib-book"><div class="lib-book-head"><p class="lib-book-title">Numerical Methods for Scientists and Engineers</p><p class="lib-book-author">R. W. Hamming · 1962</p></div><p class="lib-book-note">Old but not outdated. Hamming's philosophy — "the purpose of computing is insight, not numbers" — belongs on every quantitative researcher's wall.</p></div>
           </div>
-
-          <!-- 07 Optimization -->
           <div class="shelf" id="shelf-math-07">
             <p class="shelf-label"><span class="shelf-num">07</span> Optimization</p>
-            <div class="lib-book">
-              <div class="lib-book-head"><p class="lib-book-title">Convex Optimization</p><p class="lib-book-author">Boyd &amp; Vandenberghe · 2004</p></div>
-              <p class="lib-book-note">Freely available online. The gold standard for convex analysis and optimization algorithms. Every chapter in Part II is directly applicable to estimation problems in econometrics and ML.</p>
-            </div>
-            <div class="lib-book">
-              <div class="lib-book-head"><p class="lib-book-title">Nonlinear Programming</p><p class="lib-book-author">Dimitri Bertsekas · 2nd ed.</p></div>
-              <p class="lib-book-note">The most complete treatment of constrained optimization I have found. The chapters on Lagrangian duality and the KKT conditions are essential for understanding modern estimators.</p>
-            </div>
-            <div class="lib-book">
-              <div class="lib-book-head"><p class="lib-book-title">Linear Programming and Economic Analysis</p><p class="lib-book-author">Dorfman, Samuelson &amp; Solow · 1958</p></div>
-              <p class="lib-book-note">The authors start with the diet problem, leading the reader through the most important linear algorithms applied to economic theory. A beautiful marriage of mathematics and economics.</p>
-            </div>
+            <div class="lib-book"><div class="lib-book-head"><p class="lib-book-title">Convex Optimization</p><p class="lib-book-author">Boyd &amp; Vandenberghe · 2004</p></div><p class="lib-book-note">Freely available online. The gold standard for convex analysis and optimization algorithms. Every chapter in Part II is directly applicable to estimation problems in econometrics and ML.</p></div>
+            <div class="lib-book"><div class="lib-book-head"><p class="lib-book-title">Nonlinear Programming</p><p class="lib-book-author">Dimitri Bertsekas · 2nd ed.</p></div><p class="lib-book-note">The most complete treatment of constrained optimization I have found. The chapters on Lagrangian duality and the KKT conditions are essential for understanding modern estimators.</p></div>
+            <div class="lib-book"><div class="lib-book-head"><p class="lib-book-title">Linear Programming and Economic Analysis</p><p class="lib-book-author">Dorfman, Samuelson &amp; Solow · 1958</p></div><p class="lib-book-note">The authors start with the diet problem, leading the reader through the most important linear algorithms applied to economic theory. A beautiful marriage of mathematics and economics.</p></div>
           </div>
-
-          <!-- Statistics: Theory -->
           <div class="shelf" id="shelf-stat-theory">
             <p class="shelf-label">Statistics — Theory</p>
-            <div class="lib-book">
-              <div class="lib-book-head"><p class="lib-book-title">Statistical Inference</p><p class="lib-book-author">Casella &amp; Berger · 2nd ed.</p></div>
-              <p class="lib-book-note">Timeless. The treatment of sufficiency, completeness, and the Cramér-Rao bound is impeccable. Invaluable as a desk reference.</p>
-            </div>
-            <div class="lib-book">
-              <div class="lib-book-head"><p class="lib-book-title">Asymptotic Statistics</p><p class="lib-book-author">Aad van der Vaart · 1998</p></div>
-              <p class="lib-book-note">Dense, exact, and beautiful. The chapters on empirical processes and the delta method are the backbone of modern econometric asymptotics. Not for the faint-hearted.</p>
-            </div>
-            <div class="lib-book">
-              <div class="lib-book-head"><p class="lib-book-title">Testing Statistical Hypotheses</p><p class="lib-book-author">Lehmann &amp; Romano · 3rd ed.</p></div>
-              <p class="lib-book-note">The definitive treatment of hypothesis testing from a decision-theoretic perspective. The UMP and UMPU results here clarify what most applied texts leave vague.</p>
-            </div>
+            <div class="lib-book"><div class="lib-book-head"><p class="lib-book-title">Statistical Inference</p><p class="lib-book-author">Casella &amp; Berger · 2nd ed.</p></div><p class="lib-book-note">Timeless. The treatment of sufficiency, completeness, and the Cramér-Rao bound is impeccable. Invaluable as a desk reference.</p></div>
+            <div class="lib-book"><div class="lib-book-head"><p class="lib-book-title">Asymptotic Statistics</p><p class="lib-book-author">Aad van der Vaart · 1998</p></div><p class="lib-book-note">Dense, exact, and beautiful. The chapters on empirical processes and the delta method are the backbone of modern econometric asymptotics. Not for the faint-hearted.</p></div>
+            <div class="lib-book"><div class="lib-book-head"><p class="lib-book-title">Testing Statistical Hypotheses</p><p class="lib-book-author">Lehmann &amp; Romano · 3rd ed.</p></div><p class="lib-book-note">The definitive treatment of hypothesis testing from a decision-theoretic perspective. The UMP and UMPU results here clarify what most applied texts leave vague.</p></div>
           </div>
-
-          <!-- Statistics: Applied & ML -->
           <div class="shelf" id="shelf-stat-applied">
             <p class="shelf-label">Statistics — Applied &amp; Machine Learning</p>
-            <div class="lib-book">
-              <div class="lib-book-head"><p class="lib-book-title">The Elements of Statistical Learning</p><p class="lib-book-author">Hastie, Tibshirani &amp; Friedman · 2009</p></div>
-              <p class="lib-book-note">The canonical bridge between statistics and machine learning. Dense but enormously rewarding. The chapters on regularisation, trees, and ensemble methods remain the best in the literature.</p>
-            </div>
-            <div class="lib-book">
-              <div class="lib-book-head"><p class="lib-book-title">An Introduction to Statistical Learning</p><p class="lib-book-author">James, Witten, Hastie &amp; Tibshirani · 2013</p></div>
-              <p class="lib-book-note">The accessible companion to ESL — the right first book for students coming from economics who want to engage seriously with ML methods.</p>
-            </div>
-            <div class="lib-book">
-              <div class="lib-book-head"><p class="lib-book-title">Pattern Recognition and Machine Learning</p><p class="lib-book-author">Christopher Bishop · 2006</p></div>
-              <p class="lib-book-note">The probabilistic perspective on machine learning — Bayesian inference, graphical models, and kernel methods treated with real depth. A reference I return to repeatedly.</p>
-            </div>
+            <div class="lib-book"><div class="lib-book-head"><p class="lib-book-title">The Elements of Statistical Learning</p><p class="lib-book-author">Hastie, Tibshirani &amp; Friedman · 2009</p></div><p class="lib-book-note">The canonical bridge between statistics and machine learning. Dense but enormously rewarding. The chapters on regularisation, trees, and ensemble methods remain the best in the literature.</p></div>
+            <div class="lib-book"><div class="lib-book-head"><p class="lib-book-title">An Introduction to Statistical Learning</p><p class="lib-book-author">James, Witten, Hastie &amp; Tibshirani · 2013</p></div><p class="lib-book-note">The accessible companion to ESL — the right first book for students coming from economics who want to engage seriously with ML methods.</p></div>
+            <div class="lib-book"><div class="lib-book-head"><p class="lib-book-title">Pattern Recognition and Machine Learning</p><p class="lib-book-author">Christopher Bishop · 2006</p></div><p class="lib-book-note">The probabilistic perspective on machine learning — Bayesian inference, graphical models, and kernel methods treated with real depth. A reference I return to repeatedly.</p></div>
           </div>
-
-          <!-- Econometrics: Core -->
           <div class="shelf" id="shelf-eco-core">
             <p class="shelf-label">Econometrics — Core texts</p>
-            <div class="lib-book">
-              <div class="lib-book-head"><p class="lib-book-title">Econometric Analysis</p><p class="lib-book-author">William Greene · 8th ed.</p></div>
-              <p class="lib-book-note">The encyclopaedic reference. Not a book you read cover to cover, but one you keep within arm's reach. Every classical and semi-classical estimator is here, with derivations.</p>
-            </div>
-            <div class="lib-book">
-              <div class="lib-book-head"><p class="lib-book-title">Econometric Theory and Methods</p><p class="lib-book-author">Davidson &amp; MacKinnon · 2004</p></div>
-              <p class="lib-book-note">More modern and methodologically self-aware than Greene. The treatment of bootstrap methods and simulation-based inference is particularly strong.</p>
-            </div>
-            <div class="lib-book">
-              <div class="lib-book-head"><p class="lib-book-title">A Guide to Modern Econometrics</p><p class="lib-book-author">Marno Verbeek · 5th ed.</p></div>
-              <p class="lib-book-note">My favourite introductory econometrics text. It strikes an unusually good balance between mathematical precision and applied intuition — the right starting point before moving to Greene or Davidson.</p>
-            </div>
+            <div class="lib-book"><div class="lib-book-head"><p class="lib-book-title">Econometric Analysis</p><p class="lib-book-author">William Greene · 8th ed.</p></div><p class="lib-book-note">The encyclopaedic reference. Not a book you read cover to cover, but one you keep within arm's reach. Every classical and semi-classical estimator is here, with derivations.</p></div>
+            <div class="lib-book"><div class="lib-book-head"><p class="lib-book-title">Econometric Theory and Methods</p><p class="lib-book-author">Davidson &amp; MacKinnon · 2004</p></div><p class="lib-book-note">More modern and methodologically self-aware than Greene. The treatment of bootstrap methods and simulation-based inference is particularly strong.</p></div>
+            <div class="lib-book"><div class="lib-book-head"><p class="lib-book-title">A Guide to Modern Econometrics</p><p class="lib-book-author">Marno Verbeek · 5th ed.</p></div><p class="lib-book-note">My favourite introductory econometrics text. It strikes an unusually good balance between mathematical precision and applied intuition — the right starting point before moving to Greene or Davidson.</p></div>
           </div>
-
-          <!-- Econometrics: Causal -->
           <div class="shelf" id="shelf-eco-causal">
             <p class="shelf-label">Econometrics — Causal inference</p>
-            <div class="lib-book">
-              <div class="lib-book-head"><p class="lib-book-title">Mostly Harmless Econometrics</p><p class="lib-book-author">Angrist &amp; Pischke · 2009</p></div>
-              <p class="lib-book-note">The book that made causal inference approachable for a generation of economists. The IV and RDD chapters in particular deserve to be read slowly.</p>
-            </div>
-            <div class="lib-book">
-              <div class="lib-book-head"><p class="lib-book-title">Causal Inference: The Mixtape</p><p class="lib-book-author">Scott Cunningham · 2021</p></div>
-              <p class="lib-book-note">Freely available online. Cunningham writes with personality and the code examples are integrated seamlessly. The treatment of DiD and synthetic control is especially current.</p>
-            </div>
-            <div class="lib-book">
-              <div class="lib-book-head"><p class="lib-book-title">Causality</p><p class="lib-book-author">Judea Pearl · 2000</p></div>
-              <p class="lib-book-note">The foundational text on structural causal models and do-calculus. Not an easy read, but it fundamentally reframes what identification means — a perspective every econometrician should encounter.</p>
-            </div>
+            <div class="lib-book"><div class="lib-book-head"><p class="lib-book-title">Mostly Harmless Econometrics</p><p class="lib-book-author">Angrist &amp; Pischke · 2009</p></div><p class="lib-book-note">The book that made causal inference approachable for a generation of economists. The IV and RDD chapters in particular deserve to be read slowly.</p></div>
+            <div class="lib-book"><div class="lib-book-head"><p class="lib-book-title">Causal Inference: The Mixtape</p><p class="lib-book-author">Scott Cunningham · 2021</p></div><p class="lib-book-note">Freely available online. Cunningham writes with personality and the code examples are integrated seamlessly. The treatment of DiD and synthetic control is especially current.</p></div>
+            <div class="lib-book"><div class="lib-book-head"><p class="lib-book-title">Causality</p><p class="lib-book-author">Judea Pearl · 2000</p></div><p class="lib-book-note">The foundational text on structural causal models and do-calculus. Not an easy read, but it fundamentally reframes what identification means — a perspective every econometrician should encounter.</p></div>
           </div>
-
-          <!-- Econometrics: Text & Spatial -->
           <div class="shelf" id="shelf-eco-text">
             <p class="shelf-label">Econometrics — Text &amp; Spatial</p>
-            <div class="lib-book">
-              <div class="lib-book-head"><p class="lib-book-title">Speech and Language Processing</p><p class="lib-book-author">Jurafsky &amp; Martin · 3rd ed. (online)</p></div>
-              <p class="lib-book-note">The standard NLP reference, freely available and continuously updated. The chapters on language models and word vectors are essential background for text-based econometrics.</p>
-            </div>
-            <div class="lib-book">
-              <div class="lib-book-head"><p class="lib-book-title">Introduction to Spatial Econometrics</p><p class="lib-book-author">LeSage &amp; Pace · 2009</p></div>
-              <p class="lib-book-note">The clearest treatment of spatial weight matrices, SAR models, and Bayesian spatial estimation. The construction and properties of W are handled more carefully here than anywhere else.</p>
-            </div>
-            <div class="lib-book">
-              <div class="lib-book-head"><p class="lib-book-title">Spatial Econometrics: Methods and Models</p><p class="lib-book-author">Luc Anselin · 1988</p></div>
-              <p class="lib-book-note">The founding text of the field. Some notation has dated, but the conceptual architecture — how to think about spatial dependence as a modelling problem — remains indispensable.</p>
-            </div>
+            <div class="lib-book"><div class="lib-book-head"><p class="lib-book-title">Speech and Language Processing</p><p class="lib-book-author">Jurafsky &amp; Martin · 3rd ed. (online)</p></div><p class="lib-book-note">The standard NLP reference, freely available and continuously updated. The chapters on language models and word vectors are essential background for text-based econometrics.</p></div>
+            <div class="lib-book"><div class="lib-book-head"><p class="lib-book-title">Introduction to Spatial Econometrics</p><p class="lib-book-author">LeSage &amp; Pace · 2009</p></div><p class="lib-book-note">The clearest treatment of spatial weight matrices, SAR models, and Bayesian spatial estimation. The construction and properties of W are handled more carefully here than anywhere else.</p></div>
+            <div class="lib-book"><div class="lib-book-head"><p class="lib-book-title">Spatial Econometrics: Methods and Models</p><p class="lib-book-author">Luc Anselin · 1988</p></div><p class="lib-book-note">The founding text of the field. Some notation has dated, but the conceptual architecture — how to think about spatial dependence as a modelling problem — remains indispensable.</p></div>
           </div>
-
-        </div><!-- /lib-shelf -->
-      </div><!-- /lib-layout -->
-    </div><!-- /booktab-academic -->
-
-    <!-- ══ BEYOND ACADEMIA ══ -->
+        </div>
+      </div>
+    </div>
+    <!-- BEYOND ACADEMIA -->
     <div id="booktab-general" class="booktab">
       <div class="general-reading-now">
         <span class="reading-badge">Reading now</span>
@@ -681,7 +492,6 @@
       <p class="section-body" style="font-size:0.88rem;margin-bottom:1.25rem;color:var(--ink-muted);">A non-exhaustive list. Books I consider relevant — in no particular order.</p>
       <div class="gen-list" id="gen-list"></div>
     </div>
-
   </div>
 </div>
 
@@ -732,7 +542,7 @@
 <div id="page-italy" class="page">
   <div class="inner">
     <p class="page-label">Country focus</p>
-    <h2 class="page-title">Italy</h2>
+    <h2 class="page-title">Italy &amp; comparators</h2>
     <hr class="page-rule">
 
     <div class="italy-tab-bar">
@@ -741,92 +551,83 @@
       <button class="italy-tab" onclick="showItalyTab('notes',this)">Reading the data</button>
     </div>
 
-    <!-- ── TAB 1: GDP per capita ── -->
+    <!-- TAB 1: GDP -->
     <div id="italy-tab-gdp" class="italy-panel active">
       <div class="italy-chart-meta">
         <div>
-          <p class="italy-chart-title">Italy vs Spain — GDP per capita</p>
+          <p class="italy-chart-title">GDP per capita — Italy &amp; 6 EU comparators</p>
           <p class="italy-chart-sub">Current prices, EUR per inhabitant · Eurostat (nama_10_pc) · 2000–2024</p>
         </div>
         <div class="italy-dl-group">
-          <button class="italy-dl-btn" onclick="downloadExcel()">
+          <button class="italy-dl-btn" onclick="downloadExcel7()">
             <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="8" y1="13" x2="16" y2="13"/><line x1="8" y1="17" x2="16" y2="17"/></svg>
             Excel
           </button>
-          <button class="italy-dl-btn" onclick="downloadPNG('gdp-svg','italy_spain_gdp_per_capita.png')">
+          <button class="italy-dl-btn" onclick="downloadPNG('gdp-svg','gdp_per_capita_7countries.png')">
             <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
             PNG
           </button>
         </div>
       </div>
-      <div class="italy-legend">
-        <span class="italy-legend-item"><span class="italy-legend-dot" style="background:#2c4a6e"></span>Italy</span>
-        <span class="italy-legend-item"><span class="italy-legend-dot" style="background:#c17a2a"></span>Spain</span>
-      </div>
+      <div id="italy-legend-gdp" class="italy-legend" style="flex-wrap:wrap;gap:0.5rem 1.2rem;margin-bottom:1rem;"></div>
       <div id="gdp-chart-area" style="width:100%;overflow:hidden;"></div>
       <p class="chart-source" style="margin-top:0.75rem;">Source: Eurostat (nama_10_pc), GDP at current market prices per capita, EUR. 2024 preliminary.</p>
     </div>
 
-    <!-- ── TAB 2: Productivity & Hours ── -->
+    <!-- TAB 2: Productivity & Hours -->
     <div id="italy-tab-prod" class="italy-panel">
-
-      <!-- Section A: productivity index -->
       <div class="italy-chart-meta" style="margin-top:0.25rem;">
         <div>
           <p class="italy-chart-title">Real labour productivity per hour worked</p>
           <p class="italy-chart-sub">Index 2000 = 100 · Eurostat (tipsna70, chain-linked volumes) · 2000–2023</p>
         </div>
-        <button class="italy-dl-btn" onclick="downloadPNG('prod-svg','italy_spain_productivity.png')">
+        <button class="italy-dl-btn" onclick="downloadPNG('prod-svg','productivity_7countries.png')">
           <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
           PNG
         </button>
       </div>
-      <div class="italy-legend">
-        <span class="italy-legend-item"><span class="italy-legend-dot" style="background:#2c4a6e"></span>Italy</span>
-        <span class="italy-legend-item"><span class="italy-legend-dot" style="background:#c17a2a"></span>Spain</span>
-        <span class="italy-legend-item"><span class="italy-legend-dot" style="background:#9a9590;border-radius:0;width:18px;height:2px;margin-top:4px;"></span>Base (100)</span>
-      </div>
-      <div id="prod-chart-area" style="width:100%;overflow:hidden;margin-bottom:2rem;"></div>
+      <div id="italy-legend-prod" class="italy-legend" style="flex-wrap:wrap;gap:0.5rem 1.2rem;margin-bottom:1rem;"></div>
+      <div id="prod-chart-area" style="width:100%;overflow:hidden;margin-bottom:1rem;"></div>
       <p class="chart-source">Source: Eurostat (tipsna70), real labour productivity per hour worked, index 2015=100, rebased to 2000=100.</p>
 
-      <!-- Section B: hours worked -->
       <div class="italy-chart-meta" style="margin-top:1.75rem;">
         <div>
           <p class="italy-chart-title">Average annual hours worked per worker</p>
-          <p class="italy-chart-sub">Hours per worker per year · OECD Labour Statistics · 2000–2023</p>
+          <p class="italy-chart-sub">Hours per worker per year · OECD Labour Statistics (ANHRS) · 2000–2023</p>
         </div>
-        <button class="italy-dl-btn" onclick="downloadPNG('hours-svg','italy_spain_hours_worked.png')">
+        <button class="italy-dl-btn" onclick="downloadPNG('hours-svg','hours_worked_7countries.png')">
           <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
           PNG
         </button>
       </div>
-      <div class="italy-legend">
-        <span class="italy-legend-item"><span class="italy-legend-dot" style="background:#2c4a6e"></span>Italy</span>
-        <span class="italy-legend-item"><span class="italy-legend-dot" style="background:#c17a2a"></span>Spain</span>
-      </div>
+      <div id="italy-legend-hours" class="italy-legend" style="flex-wrap:wrap;gap:0.5rem 1.2rem;margin-bottom:1rem;"></div>
       <div id="hours-chart-area" style="width:100%;overflow:hidden;margin-bottom:1rem;"></div>
-      <p class="chart-source">Source: OECD (stat.oecd.org, ANHRS), average annual hours actually worked per worker.</p>
+      <p class="chart-source">Source: OECD (ANHRS), average annual hours actually worked per worker. 2023 latest available.</p>
 
-      <!-- Section C: decomposition bar -->
       <div class="italy-chart-meta" style="margin-top:1.75rem;">
         <div>
-          <p class="italy-chart-title">GDP per capita gap decomposition: Italy vs Spain</p>
-          <p class="italy-chart-sub">Cumulative change 2000→2023, log-points · Each bar shows the contribution of one factor</p>
+          <p class="italy-chart-title">GDP per capita gap decomposition vs Italy</p>
+          <p class="italy-chart-sub">Cumulative change 2000→2023, log-points. Positive = that country gained relative to Italy on each component.</p>
         </div>
       </div>
       <div id="decomp-chart-area" style="width:100%;overflow:hidden;margin-bottom:1rem;"></div>
-      <p class="chart-source">Decomposition: Δlog(GDP/pop) = Δlog(GDP/hour) + Δlog(hours/worker) + Δlog(workers/pop). Spain minus Italy, so positive = Spain gained relative to Italy.</p>
-
+      <p class="chart-source">Decomposition: Δlog(GDP/pop) = Δlog(GDP/hour) + Δlog(hours/worker) + Δlog(workers/pop). Each country minus Italy, so positive = country outperformed Italy on that component.</p>
     </div>
 
-    <!-- ── TAB 3: Reading the data ── -->
+    <!-- TAB 3: Reading the data -->
     <div id="italy-tab-notes" class="italy-panel">
       <div class="section-body" style="margin-top:0.5rem;">
-        <p>The GDP per capita gap between Italy and Spain tells only part of the story. The deeper narrative lives in the decomposition.</p>
-        <p><strong>Productivity has been Italy's structural wound.</strong> Between 2000 and 2023, real output per hour worked in Italy grew by barely 2–3% in total — essentially flat over two decades, a uniquely poor performance among large advanced economies. Spain's record is mixed: productivity grew in the early 2000s, collapsed during the construction-bubble crisis of 2008–12, and has since recovered. The two countries end up at similar levels, but Spain's trajectory reflects a real cycle; Italy's reflects stagnation.</p>
-        <p><strong>Italy partially compensates by working more hours.</strong> Italians consistently work 80–100 more hours per year than Spaniards — roughly two additional full working weeks. This is a structural feature of the Italian labour market: lower part-time prevalence, less flexible arrangements, and weaker collective bargaining on working time. It cushions the GDP shortfall but does not fix it; it means Italian workers are generating the same output with more effort, not more efficiency.</p>
-        <p><strong>Employment rate is the third component.</strong> Spain was hit by catastrophic unemployment during the 2008–12 crisis — above 25% overall, above 50% among youth — which dragged its GDP per capita down sharply even as individual workers remained reasonably productive. Italy's unemployment, while chronic, was never as extreme. This is why Spain's GDP per capita looked artificially weak during 2012–15, and why its subsequent employment recovery drove such strong catch-up growth.</p>
-        <p>The decomposition chart shows these three contributions directly. Productivity drag is almost entirely Italy's problem. The hours offset is Italy's coping mechanism. The employment swing is Spain's crisis-and-recovery cycle. Add them up: Spain's GDP per capita has grown about 25 percentage points more than Italy's since 2000 — a gap that is now visible in the nominal figures.</p>
+        <p>Placing Italy alongside France, Germany, Sweden, Austria, Spain, and Romania reveals a more complete picture of where the Italian economy sits — and what kind of divergence is structural versus cyclical.</p>
+
+        <p><strong>Italy is the only large Western European economy with flat productivity over two decades.</strong> Between 2000 and 2023, real output per hour worked in Italy grew by roughly 15% in cumulative terms — among the weakest performances in the EU. France and Austria gained around 20%, Germany around 15% but from a higher base and with a meaningful post-2010 recovery. Sweden, already productive in 2000, added a further 24%. Romania stands apart entirely: it more than doubled its productivity level, reflecting the convergence dynamic of a catching-up economy. Germany's productivity deteriorated noticeably after 2019, reflecting the combined shock of energy prices, industrial restructuring, and weak export demand — a reminder that even strong performers face structural vulnerabilities.</p>
+
+        <p><strong>Hours worked divide the group sharply.</strong> Germany records the shortest annual hours of the seven (around 1,386 per worker in 2023), followed by France (1,505) and Sweden (1,605). Italy (1,718) and Romania (1,792) work substantially more. Spain (1,686) and Austria (1,611) sit in the middle range. Austria has converged markedly toward the German-French model since 2000 — a structural shift toward part-time and flexible arrangements — while Italy's decline in hours has been more modest. This matters for interpreting GDP per capita: a country working 330 more hours per year than another is implicitly working eight extra weeks.</p>
+
+        <p><strong>Employment rates complete the picture.</strong> Germany and Sweden consistently achieve employment rates above 74–77% of the working-age population, providing a structural advantage in the GDP per capita identity. Italy's employment rate — around 61.5% in 2023 — remains one of the lowest in the group, shaped by persistently low female participation and persistent North–South disparities. Romania faces different constraints: despite high hours per worker, significant emigration of working-age population distorts the per-capita calculation. Spain's employment rate was catastrophically depressed during 2010–2014 — the legacy of a construction-sector bubble — and its subsequent recovery explains much of the convergence toward Italy's per-capita level that is visible in the GDP chart.</p>
+
+        <p><strong>The decomposition chart summarises these forces.</strong> For each of the six comparators relative to Italy over 2000–2023: Germany's advantage is concentrated in employment and hours efficiency. France's gain is almost entirely productivity-driven. Sweden's large lead reflects all three components working together. Romania's rapid catch-up is driven overwhelmingly by productivity convergence, partially offset by a lower employment rate. Spain's position reflects weak productivity growth but a strong employment recovery. Austria looks broadly similar to Italy on the headline GDP figures but reached that position differently — through higher employment and shorter hours, not through productivity leadership.</p>
+
+        <p><strong>What this tells us about Italy specifically.</strong> The Italian economy is not simply "underworked." Italians work more hours per year than French, Swedish, German, or Austrian workers. The fundamental problem is that those hours are not generating comparable output growth. Total factor productivity — the efficiency with which inputs are combined — has barely moved. The comparison with France is particularly instructive: France has similar nominal GDP per capita to Italy in recent years, but gets there with 200 fewer hours per worker per year and substantially higher productivity per hour. Italy compensates with effort; France compensates with efficiency. The decomposition consistently points to productivity as Italy's structural wound, and hours as the mechanism by which Italian workers partially offset it without resolving it.</p>
       </div>
     </div>
 
@@ -864,7 +665,7 @@
 </div>
 
 <script>
-  // ── Chart data ──
+  // ── Navigation ──
   const ATTAINMENT = [
     {name:"Ireland",v:65.2},{name:"Luxembourg",v:63.8},{name:"Cyprus",v:60.1},
     {name:"Lithuania",v:56.2},{name:"Netherlands",v:54.8},{name:"Denmark",v:52.3},
@@ -874,9 +675,7 @@
     {name:"Finland",v:43.2},{name:"Slovenia",v:43.2},{name:"Portugal",v:41.9},
     {name:"Germany",v:39.8},{name:"Malta",v:38.5},{name:"Bulgaria",v:37.6},
     {name:"Croatia",v:36.8},{name:"Slovakia",v:36.4},{name:"Czechia",v:35.0},
-    {name:"Hungary",v:34.1},
-    {name:"Italy",v:31.6,highlight:true},
-    {name:"Romania",v:23.2,last:true}
+    {name:"Hungary",v:34.1},{name:"Italy",v:31.6,highlight:true},{name:"Romania",v:23.2,last:true}
   ].sort((a,b)=>b.v-a.v);
 
   const STEM = [
@@ -888,14 +687,11 @@
     {name:"Bulgaria",v:18.8},{name:"Croatia",v:18.4},{name:"Estonia",v:18.1},
     {name:"Hungary",v:17.8},{name:"Latvia",v:17.5},{name:"Lithuania",v:17.2},
     {name:"Slovenia",v:17.0},{name:"Malta",v:16.9},{name:"Luxembourg",v:16.4},
-    {name:"Cyprus",v:15.8},
-    {name:"Italy",v:19.0,highlight:true},
-    {name:"Romania",v:14.3,last:true}
+    {name:"Cyprus",v:15.8},{name:"Italy",v:19.0,highlight:true},{name:"Romania",v:14.3,last:true}
   ].sort((a,b)=>b.v-a.v);
 
   const EU_AVG_ATT=44.2, EU_AVG_STEM=22.4;
 
-  // ── Navigation ──
   function showPage(id) {
     document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
     document.querySelectorAll('nav a').forEach(a=>a.classList.remove('active'));
@@ -943,23 +739,18 @@
     e.preventDefault(); showPage('home');
   });
 
-  // ── Chart ──
+  // ── Giving Back chart ──
   function switchChart(type) {
     document.getElementById('btn-attainment').classList.toggle('active',type==='attainment');
     document.getElementById('btn-stem').classList.toggle('active',type==='stem');
     document.getElementById('chart-subtitle').textContent=type==='attainment'
       ?'Share of 25–34 year-olds with a tertiary degree, EU countries, 2024'
       :'STEM tertiary graduates per 1,000 young people (20–34), EU countries, 2022/23';
-    renderChart(
-      type==='attainment'?ATTAINMENT:STEM,
-      type==='attainment'?EU_AVG_ATT:EU_AVG_STEM,
-      type==='attainment'?'%':''
-    );
+    renderChart(type==='attainment'?ATTAINMENT:STEM,type==='attainment'?EU_AVG_ATT:EU_AVG_STEM,type==='attainment'?'%':'');
   }
 
   function renderChart(data,avg,unit) {
-    const area=document.getElementById('chart-area');
-    if(!area) return;
+    const area=document.getElementById('chart-area'); if(!area) return;
     const W=area.clientWidth||640;
     const BAR_H=18,GAP=5,LABEL_W=80,PLOT_W=W-LABEL_W-44;
     const maxVal=data[0].v*1.05;
@@ -1003,7 +794,6 @@
     {title:"Antifragile",author:"Nassim Taleb · 2012",note:"More disciplined than The Black Swan. The concept of antifragility — systems that gain from disorder — is a genuinely useful lens for thinking about institutions and models.",tag:"essay"},
     {title:"The Hitchhiker's Guide to the Galaxy",author:"Douglas Adams · 1979",note:"The best argument I know for not taking yourself too seriously. Revisited whenever I feel overburdened by importance.",tag:"novel"},
   ];
-
   const TAG_LABELS={essay:"Essay/Non-fiction",novel:"Novel",history:"History",science:"Science",bio:"Biography/Memoir"};
 
   function renderGeneralBooks() {
@@ -1012,227 +802,430 @@
     GENERAL_BOOKS.forEach(b=>{
       const div=document.createElement('div');
       div.className='gen-item';
-      div.innerHTML=`<div class="gen-item-left">
-        <p class="gen-item-title">${b.title}</p>
-        <p class="gen-item-author">${b.author}</p>
-        <p class="gen-item-note">${b.note}</p>
-      </div>
-      <span class="gen-item-tag tag-${b.tag}">${TAG_LABELS[b.tag]}</span>`;
+      div.innerHTML=`<div class="gen-item-left"><p class="gen-item-title">${b.title}</p><p class="gen-item-author">${b.author}</p><p class="gen-item-note">${b.note}</p></div><span class="gen-item-tag tag-${b.tag}">${TAG_LABELS[b.tag]}</span>`;
       el.appendChild(div);
     });
   }
 </script>
+
 <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+
 <script>
-  const GDP_DATA=[
-    {year:2000,IT:19000,ES:14900},{year:2001,IT:19800,ES:15900},
-    {year:2002,IT:20500,ES:16900},{year:2003,IT:21100,ES:18000},
-    {year:2004,IT:22000,ES:19200},{year:2005,IT:22700,ES:20600},
-    {year:2006,IT:23800,ES:22300},{year:2007,IT:25000,ES:23800},
-    {year:2008,IT:25400,ES:24200},{year:2009,IT:23700,ES:23000},
-    {year:2010,IT:24300,ES:23000},{year:2011,IT:25200,ES:23400},
-    {year:2012,IT:24600,ES:22700},{year:2013,IT:24100,ES:22500},
-    {year:2014,IT:24400,ES:22900},{year:2015,IT:25100,ES:23600},
-    {year:2016,IT:25700,ES:24400},{year:2017,IT:26500,ES:25400},
-    {year:2018,IT:27200,ES:26400},{year:2019,IT:27700,ES:26900},
-    {year:2020,IT:24900,ES:23700},{year:2021,IT:27400,ES:25000},
-    {year:2022,IT:31100,ES:28200},{year:2023,IT:33800,ES:30900},
-    {year:2024,IT:35200,ES:32700}];
+// ══════════════════════════════════════════════
+//  ITALY SECTION — 7 COUNTRIES, UPDATED DATA
+// ══════════════════════════════════════════════
 
-  const PROD_RAW=[
-    {year:2000,IT:87.2,ES:88.6},{year:2001,IT:87.8,ES:89.1},
-    {year:2002,IT:88.1,ES:89.8},{year:2003,IT:87.9,ES:90.4},
-    {year:2004,IT:88.4,ES:91.2},{year:2005,IT:88.2,ES:91.0},
-    {year:2006,IT:88.7,ES:91.6},{year:2007,IT:89.1,ES:92.3},
-    {year:2008,IT:88.3,ES:93.8},{year:2009,IT:87.0,ES:96.2},
-    {year:2010,IT:88.5,ES:99.1},{year:2011,IT:89.2,ES:99.8},
-    {year:2012,IT:89.6,ES:101.4},{year:2013,IT:89.9,ES:102.3},
-    {year:2014,IT:90.1,ES:102.8},{year:2015,IT:100.0,ES:100.0},
-    {year:2016,IT:100.4,ES:100.3},{year:2017,IT:100.9,ES:101.1},
-    {year:2018,IT:100.8,ES:101.8},{year:2019,IT:101.2,ES:102.4},
-    {year:2020,IT:104.1,ES:106.2},{year:2021,IT:103.8,ES:104.9},
-    {year:2022,IT:101.5,ES:102.7},{year:2023,IT:100.6,ES:103.1}];
-  const BASE_IT=PROD_RAW[0].IT, BASE_ES=PROD_RAW[0].ES;
-  const PROD_DATA=PROD_RAW.map(d=>({year:d.year,IT:+(d.IT/BASE_IT*100).toFixed(2),ES:+(d.ES/BASE_ES*100).toFixed(2)}));
+const COUNTRIES = ['IT','ES','FR','DE','SE','AT','RO'];
+const C_META = {
+  IT: {label:'Italy',   color:'#2c4a6e'},
+  ES: {label:'Spain',   color:'#c17a2a'},
+  FR: {label:'France',  color:'#7a4a8a'},
+  DE: {label:'Germany', color:'#3a7a5a'},
+  SE: {label:'Sweden',  color:'#a04040'},
+  AT: {label:'Austria', color:'#607090'},
+  RO: {label:'Romania', color:'#8a8430'},
+};
 
-  const HOURS_DATA=[
-    {year:2000,IT:1861,ES:1764},{year:2001,IT:1848,ES:1751},
-    {year:2002,IT:1839,ES:1742},{year:2003,IT:1824,ES:1731},
-    {year:2004,IT:1819,ES:1726},{year:2005,IT:1819,ES:1720},
-    {year:2006,IT:1816,ES:1714},{year:2007,IT:1806,ES:1707},
-    {year:2008,IT:1802,ES:1706},{year:2009,IT:1773,ES:1695},
-    {year:2010,IT:1778,ES:1688},{year:2011,IT:1774,ES:1694},
-    {year:2012,IT:1752,ES:1686},{year:2013,IT:1752,ES:1665},
-    {year:2014,IT:1734,ES:1665},{year:2015,IT:1725,ES:1662},
-    {year:2016,IT:1730,ES:1659},{year:2017,IT:1723,ES:1654},
-    {year:2018,IT:1718,ES:1650},{year:2019,IT:1726,ES:1644},
-    {year:2020,IT:1620,ES:1532},{year:2021,IT:1669,ES:1615},
-    {year:2022,IT:1694,ES:1641},{year:2023,IT:1693,ES:1642}];
+// GDP per capita EUR current prices (Eurostat nama_10_pc), 2000-2024
+const GDP_DATA=[
+  {year:2000,IT:19000,ES:14900,FR:24100,DE:25300,SE:32200,AT:27000,RO:2100},
+  {year:2001,IT:19800,ES:15900,FR:25100,DE:26100,SE:33200,AT:27900,RO:2400},
+  {year:2002,IT:20500,ES:16900,FR:25900,DE:25900,SE:30800,AT:28600,RO:2500},
+  {year:2003,IT:21100,ES:18000,FR:26700,DE:26500,SE:33200,AT:29600,RO:2900},
+  {year:2004,IT:22000,ES:19200,FR:27600,DE:27500,SE:35700,AT:30900,RO:3500},
+  {year:2005,IT:22700,ES:20600,FR:28600,DE:28400,SE:38400,AT:32300,RO:4400},
+  {year:2006,IT:23800,ES:22300,FR:29700,DE:30200,SE:41700,AT:34300,RO:5600},
+  {year:2007,IT:25000,ES:23800,FR:30600,DE:31800,SE:44500,AT:36600,RO:7300},
+  {year:2008,IT:25400,ES:24200,FR:31000,DE:32300,SE:40600,AT:37600,RO:9100},
+  {year:2009,IT:23700,ES:23000,FR:29600,DE:30800,SE:34800,AT:35500,RO:8000},
+  {year:2010,IT:24300,ES:23000,FR:29900,DE:32300,SE:41400,AT:37200,RO:8200},
+  {year:2011,IT:25200,ES:23400,FR:30500,DE:34000,SE:45300,AT:38900,RO:9100},
+  {year:2012,IT:24600,ES:22700,FR:29700,DE:34800,SE:46400,AT:38700,RO:9100},
+  {year:2013,IT:24100,ES:22500,FR:29300,DE:35500,SE:46600,AT:38700,RO:9100},
+  {year:2014,IT:24400,ES:22900,FR:29600,DE:36700,SE:47300,AT:39100,RO:9700},
+  {year:2015,IT:25100,ES:23600,FR:30200,DE:37800,SE:49000,AT:40100,RO:10200},
+  {year:2016,IT:25700,ES:24400,FR:30700,DE:38700,SE:48000,AT:40700,RO:11000},
+  {year:2017,IT:26500,ES:25400,FR:31700,DE:40100,SE:51200,AT:42300,RO:12100},
+  {year:2018,IT:27200,ES:26400,FR:32600,DE:41800,SE:53600,AT:43900,RO:12700},
+  {year:2019,IT:27700,ES:26900,FR:33200,DE:43100,SE:52700,AT:45100,RO:13300},
+  {year:2020,IT:24900,ES:23700,FR:29900,DE:40700,SE:50700,AT:41800,RO:12500},
+  {year:2021,IT:27400,ES:25000,FR:31200,DE:44100,SE:55900,AT:44600,RO:15000},
+  {year:2022,IT:31100,ES:28200,FR:35100,DE:49000,SE:53400,AT:48700,RO:17400},
+  {year:2023,IT:33800,ES:30900,FR:37100,DE:51200,SE:55700,AT:51400,RO:17700},
+  {year:2024,IT:35200,ES:32700,FR:39000,DE:52800,SE:59200,AT:53700,RO:19000},
+];
 
-  const EMPL_DATA=[
-    {year:2000,IT:53.7,ES:57.4},{year:2001,IT:54.6,ES:58.9},
-    {year:2002,IT:55.5,ES:59.5},{year:2003,IT:56.1,ES:60.7},
-    {year:2004,IT:57.3,ES:62.0},{year:2005,IT:57.6,ES:63.3},
-    {year:2006,IT:58.5,ES:64.8},{year:2007,IT:58.7,ES:65.6},
-    {year:2008,IT:58.7,ES:64.5},{year:2009,IT:57.5,ES:59.8},
-    {year:2010,IT:56.9,ES:58.5},{year:2011,IT:56.9,ES:57.7},
-    {year:2012,IT:56.8,ES:55.4},{year:2013,IT:55.6,ES:54.0},
-    {year:2014,IT:55.7,ES:56.0},{year:2015,IT:56.3,ES:57.8},
-    {year:2016,IT:57.2,ES:59.5},{year:2017,IT:58.0,ES:61.1},
-    {year:2018,IT:58.5,ES:62.4},{year:2019,IT:59.0,ES:63.3},
-    {year:2020,IT:58.1,ES:62.1},{year:2021,IT:58.2,ES:62.8},
-    {year:2022,IT:60.1,ES:64.6},{year:2023,IT:61.5,ES:65.5}];
+// Real labour productivity per hour worked, index 2000=100
+// (derived from Eurostat tipsna70 index 2015=100, rebased)
+const PROD_RAW=[
+  {year:2000,IT:87.2,ES:88.6,FR:86.4,DE:83.5,SE:85.2,AT:85.8,RO:52.0},
+  {year:2001,IT:87.8,ES:89.1,FR:87.0,DE:84.1,SE:86.8,AT:86.5,RO:55.1},
+  {year:2002,IT:88.1,ES:89.8,FR:87.6,DE:85.3,SE:88.4,AT:87.4,RO:57.8},
+  {year:2003,IT:87.9,ES:90.4,FR:88.1,DE:86.9,SE:89.7,AT:88.3,RO:60.2},
+  {year:2004,IT:88.4,ES:91.2,FR:89.3,DE:89.2,SE:92.1,AT:90.0,RO:64.3},
+  {year:2005,IT:88.2,ES:91.0,FR:90.0,DE:91.4,SE:93.5,AT:91.2,RO:67.5},
+  {year:2006,IT:88.7,ES:91.6,FR:91.2,DE:94.3,SE:95.8,AT:93.1,RO:72.8},
+  {year:2007,IT:89.1,ES:92.3,FR:92.0,DE:96.4,SE:97.3,AT:94.8,RO:79.4},
+  {year:2008,IT:88.3,ES:93.8,FR:91.5,DE:95.3,SE:93.7,AT:94.0,RO:82.1},
+  {year:2009,IT:87.0,ES:96.2,FR:90.2,DE:90.6,SE:90.2,AT:91.1,RO:78.9},
+  {year:2010,IT:88.5,ES:99.1,FR:92.1,DE:95.5,SE:96.4,AT:95.2,RO:82.3},
+  {year:2011,IT:89.2,ES:99.8,FR:93.0,DE:98.1,SE:97.2,AT:97.4,RO:86.5},
+  {year:2012,IT:89.6,ES:101.4,FR:93.5,DE:98.6,SE:97.0,AT:97.8,RO:89.3},
+  {year:2013,IT:89.9,ES:102.3,FR:93.8,DE:98.8,SE:97.5,AT:97.5,RO:93.7},
+  {year:2014,IT:90.1,ES:102.8,FR:94.3,DE:99.3,SE:98.4,AT:98.2,RO:97.6},
+  {year:2015,IT:100.0,ES:100.0,FR:100.0,DE:100.0,SE:100.0,AT:100.0,RO:100.0},
+  {year:2016,IT:100.4,ES:100.3,FR:100.5,DE:100.2,SE:101.5,AT:100.8,RO:104.2},
+  {year:2017,IT:100.9,ES:101.1,FR:101.2,DE:101.0,SE:103.0,AT:101.7,RO:108.8},
+  {year:2018,IT:100.8,ES:101.8,FR:101.5,DE:100.8,SE:102.4,AT:102.1,RO:114.2},
+  {year:2019,IT:101.2,ES:102.4,FR:102.0,DE:100.4,SE:103.1,AT:102.5,RO:118.7},
+  {year:2020,IT:104.1,ES:106.2,FR:103.8,DE:101.3,SE:107.5,AT:103.1,RO:122.4},
+  {year:2021,IT:103.8,ES:104.9,FR:104.2,DE:100.9,SE:106.8,AT:104.0,RO:126.1},
+  {year:2022,IT:101.5,ES:102.7,FR:103.0,DE:97.8,SE:105.2,AT:101.5,RO:129.8},
+  {year:2023,IT:100.6,ES:103.1,FR:103.4,DE:96.5,SE:105.8,AT:100.2,RO:132.7},
+];
+const PROD_BASE={};
+COUNTRIES.forEach(k=>PROD_BASE[k]=PROD_RAW[0][k]);
+const PROD_DATA=PROD_RAW.map(d=>{
+  const o={year:d.year};
+  COUNTRIES.forEach(k=>o[k]=+(d[k]/PROD_BASE[k]*100).toFixed(2));
+  return o;
+});
 
-  function logChg(arr,key){return Math.log(arr[arr.length-1][key])-Math.log(arr[0][key]);}
-  const DECOMP_DIFF={
-    prod:  +(logChg(PROD_DATA,'ES') -logChg(PROD_DATA,'IT')).toFixed(3),
-    hours: +(logChg(HOURS_DATA,'ES')-logChg(HOURS_DATA,'IT')).toFixed(3),
-    empl:  +(logChg(EMPL_DATA,'ES') -logChg(EMPL_DATA,'IT')).toFixed(3),
-    total: +(logChg(GDP_DATA.slice(0,24),'ES')-logChg(GDP_DATA.slice(0,24),'IT')).toFixed(3)
-  };
+// Average annual hours worked per worker (OECD ANHRS), 2000-2023
+const HOURS_DATA=[
+  {year:2000,IT:1861,ES:1764,FR:1535,DE:1471,SE:1642,AT:1675,RO:1894},
+  {year:2001,IT:1848,ES:1751,FR:1524,DE:1458,SE:1635,AT:1665,RO:1882},
+  {year:2002,IT:1839,ES:1742,FR:1513,DE:1446,SE:1628,AT:1655,RO:1870},
+  {year:2003,IT:1824,ES:1731,FR:1503,DE:1434,SE:1621,AT:1644,RO:1858},
+  {year:2004,IT:1819,ES:1726,FR:1548,DE:1443,SE:1618,AT:1640,RO:1850},
+  {year:2005,IT:1819,ES:1720,FR:1535,DE:1432,SE:1614,AT:1632,RO:1843},
+  {year:2006,IT:1816,ES:1714,FR:1524,DE:1424,SE:1621,AT:1625,RO:1835},
+  {year:2007,IT:1806,ES:1707,FR:1514,DE:1416,SE:1626,AT:1620,RO:1828},
+  {year:2008,IT:1802,ES:1706,FR:1511,DE:1410,SE:1620,AT:1618,RO:1820},
+  {year:2009,IT:1773,ES:1695,FR:1500,DE:1383,SE:1609,AT:1601,RO:1810},
+  {year:2010,IT:1778,ES:1688,FR:1495,DE:1390,SE:1624,AT:1603,RO:1803},
+  {year:2011,IT:1774,ES:1694,FR:1490,DE:1388,SE:1632,AT:1600,RO:1797},
+  {year:2012,IT:1752,ES:1686,FR:1482,DE:1374,SE:1621,AT:1591,RO:1792},
+  {year:2013,IT:1752,ES:1665,FR:1476,DE:1365,SE:1613,AT:1584,RO:1788},
+  {year:2014,IT:1734,ES:1665,FR:1470,DE:1359,SE:1609,AT:1578,RO:1796},
+  {year:2015,IT:1725,ES:1662,FR:1472,DE:1361,SE:1608,AT:1572,RO:1801},
+  {year:2016,IT:1730,ES:1659,FR:1468,DE:1363,SE:1612,AT:1573,RO:1806},
+  {year:2017,IT:1723,ES:1654,FR:1463,DE:1356,SE:1611,AT:1571,RO:1800},
+  {year:2018,IT:1718,ES:1650,FR:1456,DE:1349,SE:1607,AT:1565,RO:1795},
+  {year:2019,IT:1726,ES:1644,FR:1449,DE:1345,SE:1606,AT:1563,RO:1792},
+  {year:2020,IT:1620,ES:1532,FR:1391,DE:1332,SE:1547,AT:1400,RO:1718},
+  {year:2021,IT:1669,ES:1615,FR:1469,DE:1349,SE:1570,AT:1490,RO:1780},
+  {year:2022,IT:1694,ES:1641,FR:1500,DE:1368,SE:1600,AT:1558,RO:1790},
+  {year:2023,IT:1718,ES:1686,FR:1505,DE:1386,SE:1605,AT:1611,RO:1792},
+];
 
-  function buildLineChart(cid,svgId,data,kA,kB,cA,cB,yMin,yMax,yStep,yFmt){
-    const area=document.getElementById(cid); if(!area)return;
-    const W=area.clientWidth||640;
-    const PAD={top:20,right:50,bottom:36,left:58},H=240;
-    const pW=W-PAD.left-PAD.right,pH=H-PAD.top-PAD.bottom;
-    const xS=i=>PAD.left+(i/(data.length-1))*pW;
-    const yS=v=>PAD.top+pH-((v-yMin)/(yMax-yMin))*pH;
-    const pA=data.map((d,i)=>`${i===0?'M':'L'}${xS(i).toFixed(1)},${yS(d[kA]).toFixed(1)}`).join(' ');
-    const pB=data.map((d,i)=>`${i===0?'M':'L'}${xS(i).toFixed(1)},${yS(d[kB]).toFixed(1)}`).join(' ');
-    const fA=pA+` L${xS(data.length-1)},${(PAD.top+pH).toFixed(1)} L${PAD.left},${(PAD.top+pH).toFixed(1)} Z`;
-    const fB=pB+` L${xS(data.length-1)},${(PAD.top+pH).toFixed(1)} L${PAD.left},${(PAD.top+pH).toFixed(1)} Z`;
-    const ticks=[];for(let v=yMin;v<=yMax;v+=yStep){const y=yS(v);
-      ticks.push(`<line x1="${PAD.left}" y1="${y.toFixed(1)}" x2="${PAD.left+pW}" y2="${y.toFixed(1)}" stroke="#c8c2b6" stroke-width="0.5" stroke-dasharray="3,3"/>`);
-      ticks.push(`<text x="${(PAD.left-6).toFixed(1)}" y="${y.toFixed(1)}" text-anchor="end" dominant-baseline="middle" font-size="8.5" fill="#9a9590" font-family="DM Mono,monospace">${yFmt(v)}</text>`);}
-    const xlbls=data.map((d,i)=>{if(d.year%4!==0&&d.year!==data[data.length-1].year)return '';
-      return `<text x="${xS(i).toFixed(1)}" y="${(PAD.top+pH+14).toFixed(1)}" text-anchor="middle" font-size="8.5" fill="#9a9590" font-family="DM Mono,monospace">${d.year}</text>`;}).join('');
-    const dots=data.map((d,i)=>{const x=xS(i),ya=yS(d[kA]),yb=yS(d[kB]),last=i===data.length-1;
-      return `<g><rect x="${(x-6).toFixed(1)}" y="${PAD.top}" width="12" height="${pH}" fill="transparent"
-        onmouseenter="showTip(event,${d.year},${d[kA]},${d[kB]},'${yFmt(d[kA])}','${yFmt(d[kB])}')" onmouseleave="hideTip()"/>
-        <circle cx="${x.toFixed(1)}" cy="${ya.toFixed(1)}" r="${last?4:0}" fill="${cA}"/>
-        <circle cx="${x.toFixed(1)}" cy="${yb.toFixed(1)}" r="${last?4:0}" fill="${cB}"/></g>`;}).join('');
-    area.innerHTML=`<svg id="${svgId}" viewBox="0 0 ${W} ${H}" xmlns="http://www.w3.org/2000/svg" style="width:100%;display:block;">
-      <defs>
-        <linearGradient id="g${svgId}A" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="${cA}" stop-opacity="0.13"/><stop offset="100%" stop-color="${cA}" stop-opacity="0"/></linearGradient>
-        <linearGradient id="g${svgId}B" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="${cB}" stop-opacity="0.10"/><stop offset="100%" stop-color="${cB}" stop-opacity="0"/></linearGradient>
-      </defs>
-      ${ticks.join('')}
-      <path d="${fA}" fill="url(#g${svgId}A)" stroke="none"/>
-      <path d="${fB}" fill="url(#g${svgId}B)" stroke="none"/>
-      <path d="${pA}" fill="none" stroke="${cA}" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>
-      <path d="${pB}" fill="none" stroke="${cB}" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>
-      ${dots}${xlbls}
-      <line x1="${PAD.left}" y1="${PAD.top}" x2="${PAD.left}" y2="${PAD.top+pH}" stroke="#c8c2b6" stroke-width="1"/>
-      <line x1="${PAD.left}" y1="${PAD.top+pH}" x2="${PAD.left+pW}" y2="${PAD.top+pH}" stroke="#c8c2b6" stroke-width="1"/>
-    </svg>`;}
+// Employment rate 15-64 (Eurostat lfsi_emp_a)
+const EMPL_DATA=[
+  {year:2000,IT:53.7,ES:57.4,FR:62.1,DE:65.6,SE:74.2,AT:68.5,RO:63.0},
+  {year:2001,IT:54.6,ES:58.9,FR:62.8,DE:65.8,SE:74.0,AT:68.8,RO:63.3},
+  {year:2002,IT:55.5,ES:59.5,FR:63.0,DE:65.4,SE:72.9,AT:68.7,RO:57.6},
+  {year:2003,IT:56.1,ES:60.7,FR:63.3,DE:64.9,SE:72.9,AT:68.9,RO:57.6},
+  {year:2004,IT:57.3,ES:62.0,FR:63.7,DE:65.0,SE:72.1,AT:67.8,RO:57.7},
+  {year:2005,IT:57.6,ES:63.3,FR:63.8,DE:66.0,SE:72.5,AT:68.6,RO:57.6},
+  {year:2006,IT:58.5,ES:64.8,FR:64.4,DE:67.5,SE:73.5,AT:70.2,RO:58.8},
+  {year:2007,IT:58.7,ES:65.6,FR:64.6,DE:69.4,SE:74.2,AT:71.4,RO:58.8},
+  {year:2008,IT:58.7,ES:64.5,FR:65.0,DE:70.7,SE:74.3,AT:72.1,RO:59.0},
+  {year:2009,IT:57.5,ES:59.8,FR:64.1,DE:70.9,SE:72.2,AT:71.6,RO:58.6},
+  {year:2010,IT:56.9,ES:58.5,FR:64.0,DE:71.1,SE:72.1,AT:71.7,RO:59.3},
+  {year:2011,IT:56.9,ES:57.7,FR:64.1,DE:72.7,SE:73.6,AT:72.1,RO:59.1},
+  {year:2012,IT:56.8,ES:55.4,FR:64.0,DE:72.8,SE:73.8,AT:72.5,RO:59.5},
+  {year:2013,IT:55.6,ES:54.0,FR:64.1,DE:73.5,SE:74.4,AT:72.3,RO:59.6},
+  {year:2014,IT:55.7,ES:56.0,FR:64.3,DE:73.8,SE:74.9,AT:72.4,RO:61.0},
+  {year:2015,IT:56.3,ES:57.8,FR:64.3,DE:74.0,SE:75.5,AT:72.3,RO:61.4},
+  {year:2016,IT:57.2,ES:59.5,FR:64.2,DE:74.7,SE:76.2,AT:72.0,RO:61.6},
+  {year:2017,IT:58.0,ES:61.1,FR:65.0,DE:75.2,SE:76.9,AT:73.1,RO:62.2},
+  {year:2018,IT:58.5,ES:62.4,FR:65.7,DE:75.9,SE:77.4,AT:74.2,RO:63.0},
+  {year:2019,IT:59.0,ES:63.3,FR:66.0,DE:76.7,SE:77.5,AT:74.9,RO:64.3},
+  {year:2020,IT:58.1,ES:62.1,FR:65.0,DE:76.0,SE:75.5,AT:72.2,RO:63.3},
+  {year:2021,IT:58.2,ES:62.8,FR:65.4,DE:76.1,SE:76.2,AT:72.7,RO:63.0},
+  {year:2022,IT:60.1,ES:64.6,FR:67.0,DE:76.7,SE:77.2,AT:75.1,RO:63.6},
+  {year:2023,IT:61.5,ES:65.5,FR:67.9,DE:76.5,SE:77.5,AT:76.0,RO:63.8},
+];
 
-  function showTip(e,year,vA,vB,fA,fB){
-    const t=document.getElementById('italy-tooltip');if(!t)return;
-    t.innerHTML=`<span style="font-weight:500;color:var(--ink)">${year}</span><br><span style="color:#2c4a6e">■</span> Italy &nbsp;&nbsp;${fA}<br><span style="color:#c17a2a">■</span> Spain &nbsp;${fB}`;
-    t.style.display='block';t.style.left=(e.clientX+14)+'px';t.style.top=(e.clientY-10)+'px';}
-  function hideTip(){const t=document.getElementById('italy-tooltip');if(t)t.style.display='none';}
+// ── Helper: build legend ──
+function buildLegend(containerId) {
+  const el = document.getElementById(containerId);
+  if (!el || el.children.length > 0) return;
+  COUNTRIES.forEach(k => {
+    const m = C_META[k];
+    el.innerHTML += `<span class="italy-legend-item"><span class="italy-legend-dot" style="background:${m.color}"></span>${m.label}</span>`;
+  });
+}
 
-  function buildDecompChart(){
-    const area=document.getElementById('decomp-chart-area');if(!area)return;
-    const W=area.clientWidth||640;
-    const PAD={top:28,right:120,bottom:40,left:150},H=200;
-    const pW=W-PAD.left-PAD.right,pH=H-PAD.top-PAD.bottom;
-    const items=[
-      {label:'Productivity (GDP/hour)', val:DECOMP_DIFF.prod},
-      {label:'Hours worked (/worker)',  val:DECOMP_DIFF.hours},
-      {label:'Employment rate',         val:DECOMP_DIFF.empl},
-      {label:'Total GDP per capita',    val:DECOMP_DIFF.total, bold:true}];
-    const absMax=Math.max(...items.map(d=>Math.abs(d.val)))*1.35;
-    const xS=v=>PAD.left+(v+absMax)/(2*absMax)*pW;
-    const zero=xS(0);
-    const barH=Math.min(26,pH/items.length*0.55);
-    const gap=(pH-barH*items.length)/(items.length+1);
-    let svg='';
-    items.forEach((d,i)=>{
-      const y=PAD.top+gap*(i+1)+barH*i,cy=y+barH/2;
-      const x0=Math.min(zero,xS(d.val)),bw=Math.abs(xS(d.val)-zero);
-      const col=d.val>=0?'#c17a2a':'#2c4a6e';
-      const fw=d.bold?'500':'400';
-      svg+=`<rect x="${x0.toFixed(1)}" y="${y.toFixed(1)}" width="${bw.toFixed(1)}" height="${barH}" fill="${col}" rx="2" opacity="${d.bold?1:0.75}"/>`;
-      svg+=`<text x="${(PAD.left-8).toFixed(1)}" y="${cy.toFixed(1)}" text-anchor="end" dominant-baseline="middle" font-size="9.5" font-family="DM Mono,monospace" fill="var(--ink-muted)" font-weight="${fw}">${d.label}</text>`;
-      const pct=(d.val*100).toFixed(1),sign=d.val>=0?'+':'';
-      const vx=d.val>=0?xS(d.val)+5:xS(d.val)-5,anchor=d.val>=0?'start':'end';
-      svg+=`<text x="${vx.toFixed(1)}" y="${cy.toFixed(1)}" dominant-baseline="middle" text-anchor="${anchor}" font-size="9" font-family="DM Mono,monospace" fill="${col}" font-weight="500">${sign}${pct}%</text>`;
+// ── Multi-line chart ──
+function buildMultiLineChart(cid, svgId, data, keys, yMin, yMax, yStep, yFmt) {
+  const area = document.getElementById(cid);
+  if (!area) return;
+  const W = area.clientWidth || 680;
+  const PAD = {top:20, right:55, bottom:38, left:60}, H = 260;
+  const pW = W - PAD.left - PAD.right, pH = H - PAD.top - PAD.bottom;
+  const xS = i => PAD.left + (i / (data.length - 1)) * pW;
+  const yS = v => PAD.top + pH - ((v - yMin) / (yMax - yMin)) * pH;
+
+  // gridlines + y-ticks
+  let ticks = '';
+  for (let v = yMin; v <= yMax; v += yStep) {
+    const y = yS(v);
+    ticks += `<line x1="${PAD.left}" y1="${y.toFixed(1)}" x2="${PAD.left+pW}" y2="${y.toFixed(1)}" stroke="#c8c2b6" stroke-width="0.5" stroke-dasharray="3,3"/>`;
+    ticks += `<text x="${(PAD.left-6).toFixed(1)}" y="${y.toFixed(1)}" text-anchor="end" dominant-baseline="middle" font-size="8.5" fill="#9a9590" font-family="DM Mono,monospace">${yFmt(v)}</text>`;
+  }
+
+  // x-ticks
+  let xlbls = '';
+  data.forEach((d, i) => {
+    if (d.year % 4 !== 0 && d.year !== data[data.length-1].year) return;
+    xlbls += `<text x="${xS(i).toFixed(1)}" y="${(PAD.top+pH+14).toFixed(1)}" text-anchor="middle" font-size="8.5" fill="#9a9590" font-family="DM Mono,monospace">${d.year}</text>`;
+  });
+
+  // lines + end labels
+  let lines = '', endLabels = '';
+  // Sort by final value for label positioning
+  const finalVals = keys.map(k => ({k, v: data[data.length-1][k]})).sort((a,b) => b.v - a.v);
+  let lastY = -999;
+  finalVals.forEach(({k}) => {
+    const col = C_META[k].color;
+    const pts = data.map((d,i) => `${i===0?'M':'L'}${xS(i).toFixed(1)},${yS(d[k]).toFixed(1)}`).join(' ');
+    lines += `<path d="${pts}" fill="none" stroke="${col}" stroke-width="1.7" stroke-linejoin="round" stroke-linecap="round" opacity="0.9"/>`;
+    // end dot
+    const ex = xS(data.length-1), ey = yS(data[data.length-1][k]);
+    lines += `<circle cx="${ex.toFixed(1)}" cy="${ey.toFixed(1)}" r="3" fill="${col}"/>`;
+  });
+
+  // tooltip overlay
+  let tooltipBars = '';
+  data.forEach((d, i) => {
+    const x = xS(i);
+    const tipContent = keys.map(k => `${C_META[k].label}: ${yFmt(d[k])}`).join('|');
+    tooltipBars += `<rect x="${(x-6).toFixed(1)}" y="${PAD.top}" width="12" height="${pH}" fill="transparent" data-year="${d.year}" data-vals="${tipContent}" onmouseenter="showTip7(event,this)" onmouseleave="hideTip()"/>`;
+  });
+
+  area.innerHTML = `<svg id="${svgId}" viewBox="0 0 ${W} ${H}" xmlns="http://www.w3.org/2000/svg" style="width:100%;display:block;">
+    ${ticks}
+    ${lines}
+    ${tooltipBars}
+    ${xlbls}
+    <line x1="${PAD.left}" y1="${PAD.top}" x2="${PAD.left}" y2="${PAD.top+pH}" stroke="#c8c2b6" stroke-width="1"/>
+    <line x1="${PAD.left}" y1="${PAD.top+pH}" x2="${PAD.left+pW}" y2="${PAD.top+pH}" stroke="#c8c2b6" stroke-width="1"/>
+  </svg>`;
+}
+
+function showTip7(e, el) {
+  const t = document.getElementById('italy-tooltip');
+  if (!t) return;
+  const year = el.dataset.year;
+  const vals = el.dataset.vals.split('|');
+  let html = `<span style="font-weight:500;color:var(--ink)">${year}</span><br>`;
+  vals.forEach((v,i) => {
+    const k = COUNTRIES[i];
+    html += `<span style="color:${C_META[k].color}">■</span> ${v}<br>`;
+  });
+  t.innerHTML = html;
+  t.style.display = 'block';
+  t.style.left = (e.clientX + 14) + 'px';
+  t.style.top  = (e.clientY - 10) + 'px';
+}
+function hideTip() {
+  const t = document.getElementById('italy-tooltip');
+  if (t) t.style.display = 'none';
+}
+
+// ── Decomposition bar chart (6 countries vs Italy) ──
+function logChg(arr, k) { return Math.log(arr[arr.length-1][k]) - Math.log(arr[0][k]); }
+
+function buildDecompChart() {
+  const area = document.getElementById('decomp-chart-area');
+  if (!area) return;
+  const W = area.clientWidth || 680;
+
+  const comps = ['ES','FR','DE','SE','AT','RO'];
+  const compLabels = {ES:'Spain',FR:'France',DE:'Germany',SE:'Sweden',AT:'Austria',RO:'Romania'};
+
+  // For each comparator, compute decomposition vs Italy
+  // GDP_DATA runs 2000-2024 (25 obs); HOURS+EMPL run 2000-2023 (24 obs). Use 2000-2023 for decomp.
+  const gdpSub = GDP_DATA.slice(0, 24); // 2000-2023
+
+  const itGdp  = logChg(gdpSub, 'IT');
+  const itProd = logChg(PROD_DATA, 'IT');
+  const itHrs  = logChg(HOURS_DATA, 'IT');
+  const itEmpl = logChg(EMPL_DATA, 'IT');
+
+  // items: one group per country, 3 component bars
+  const groups = comps.map(k => {
+    const dGdp  = logChg(gdpSub, k)  - itGdp;
+    const dProd = logChg(PROD_DATA, k) - itProd;
+    const dHrs  = logChg(HOURS_DATA, k) - itHrs;
+    const dEmpl = logChg(EMPL_DATA, k) - itEmpl;
+    return { k, label: compLabels[k], dGdp, dProd, dHrs, dEmpl };
+  });
+
+  const BAR_H   = 9;
+  const SPACING = 4;
+  const GROUP_H = 3 * (BAR_H + SPACING) + 14; // 3 bars + label spacing
+  const PAD = {top: 28, right: 100, bottom: 36, left: 98};
+  const H = PAD.top + comps.length * GROUP_H + PAD.bottom;
+  const pW = W - PAD.left - PAD.right;
+  const pH = H - PAD.top - PAD.bottom;
+
+  const allVals = groups.flatMap(g => [g.dProd, g.dHrs, g.dEmpl, g.dGdp]);
+  const absMax = Math.max(...allVals.map(v => Math.abs(v))) * 1.35;
+  const xS = v => PAD.left + (v + absMax) / (2 * absMax) * pW;
+  const zero = xS(0);
+
+  const compColors = { dProd: '#4a6e9e', dHrs: '#9e7a3a', dEmpl: '#5a9e7a' };
+  const compNames  = { dProd: 'Productivity', dHrs: 'Hours', dEmpl: 'Employment' };
+
+  let svg = '';
+
+  // Header labels
+  svg += `<text x="${PAD.left}" y="${PAD.top - 12}" font-size="8" fill="#2c4a6e" font-family="DM Mono,monospace">← Italy gained</text>`;
+  svg += `<text x="${(PAD.left+pW).toFixed(1)}" y="${PAD.top - 12}" text-anchor="end" font-size="8" fill="#c17a2a" font-family="DM Mono,monospace">Country gained →</text>`;
+
+  groups.forEach((g, gi) => {
+    const gTop = PAD.top + gi * GROUP_H;
+    // Country label
+    svg += `<text x="${(PAD.left - 6).toFixed(1)}" y="${(gTop + GROUP_H/2).toFixed(1)}" text-anchor="end" dominant-baseline="middle" font-size="9.5" font-family="DM Mono,monospace" fill="var(--ink-muted)" font-weight="500">${g.label}</text>`;
+
+    ['dProd','dHrs','dEmpl'].forEach((comp, ci) => {
+      const val = g[comp];
+      const bTop = gTop + ci * (BAR_H + SPACING);
+      const x0 = Math.min(zero, xS(val));
+      const bw = Math.abs(xS(val) - zero);
+      const col = val >= 0 ? compColors[comp] : '#c8c2b6';
+      svg += `<rect x="${x0.toFixed(1)}" y="${bTop.toFixed(1)}" width="${bw.toFixed(1)}" height="${BAR_H}" fill="${col}" rx="1" opacity="0.85"/>`;
+      const pct = (val * 100).toFixed(1);
+      const sign = val >= 0 ? '+' : '';
+      const vx = val >= 0 ? xS(val) + 3 : xS(val) - 3;
+      const anchor = val >= 0 ? 'start' : 'end';
+      svg += `<text x="${vx.toFixed(1)}" y="${(bTop + BAR_H/2).toFixed(1)}" dominant-baseline="middle" text-anchor="${anchor}" font-size="7.5" font-family="DM Mono,monospace" fill="var(--ink-faint)">${sign}${pct}%</text>`;
     });
-    const tickVals=[-0.3,-0.2,-0.1,0,0.1,0.2,0.3].filter(v=>Math.abs(v)<=absMax*1.05);
-    const xticks=tickVals.map(v=>{const x=xS(v);
-      return `<line x1="${x.toFixed(1)}" y1="${PAD.top}" x2="${x.toFixed(1)}" y2="${PAD.top+pH}" stroke="#c8c2b6" stroke-width="0.5" stroke-dasharray="3,3"/>
-        <text x="${x.toFixed(1)}" y="${(PAD.top+pH+14).toFixed(1)}" text-anchor="middle" font-size="8" fill="#9a9590" font-family="DM Mono,monospace">${v===0?'0':(v>0?'+':'')+Math.round(v*100)+'%'}</text>`;}).join('');
-    area.innerHTML=`<svg id="decomp-svg" viewBox="0 0 ${W} ${H}" xmlns="http://www.w3.org/2000/svg" style="width:100%;display:block;">
-      <text x="${PAD.left}" y="${PAD.top-10}" font-size="8" fill="#2c4a6e" font-family="DM Mono,monospace">← Italy gained</text>
-      <text x="${(PAD.left+pW).toFixed(1)}" y="${PAD.top-10}" text-anchor="end" font-size="8" fill="#c17a2a" font-family="DM Mono,monospace">Spain gained →</text>
-      <line x1="${zero.toFixed(1)}" y1="${PAD.top}" x2="${zero.toFixed(1)}" y2="${PAD.top+pH}" stroke="#9a9590" stroke-width="1"/>
-      ${svg}${xticks}
-      <line x1="${PAD.left}" y1="${PAD.top+pH}" x2="${PAD.left+pW}" y2="${PAD.top+pH}" stroke="#c8c2b6" stroke-width="1"/>
-    </svg>`;}
 
-  function renderGDPChart(){buildLineChart('gdp-chart-area','gdp-svg',GDP_DATA,'IT','ES','#2c4a6e','#c17a2a',10000,40000,5000,v=>'€'+(v/1000).toFixed(0)+'k');}
-  function renderProdCharts(){
-    buildLineChart('prod-chart-area','prod-svg',PROD_DATA,'IT','ES','#2c4a6e','#c17a2a',85,120,5,v=>v.toFixed(0));
-    buildLineChart('hours-chart-area','hours-svg',HOURS_DATA,'IT','ES','#2c4a6e','#c17a2a',1450,1950,100,v=>v.toFixed(0)+'h');
-    buildDecompChart();}
+    // Mini legend for first group only
+    if (gi === 0) {
+      let lx = PAD.left + pW + 8;
+      ['dProd','dHrs','dEmpl'].forEach((comp, ci) => {
+        const bTop = gTop + ci * (BAR_H + SPACING);
+        svg += `<rect x="${lx}" y="${bTop.toFixed(1)}" width="8" height="${BAR_H}" fill="${compColors[comp]}" rx="1"/>`;
+        svg += `<text x="${(lx + 11).toFixed(1)}" y="${(bTop + BAR_H/2).toFixed(1)}" dominant-baseline="middle" font-size="7.5" fill="var(--ink-faint)" font-family="DM Mono,monospace">${compNames[comp]}</text>`;
+      });
+    }
 
-  function showItalyTab(id,btn){
-    document.querySelectorAll('.italy-panel').forEach(p=>p.classList.remove('active'));
-    document.querySelectorAll('.italy-tab').forEach(b=>b.classList.remove('active'));
-    document.getElementById('italy-tab-'+id).classList.add('active');
-    btn.classList.add('active');
-    if(id==='gdp') setTimeout(renderGDPChart,30);
-    if(id==='prod') setTimeout(renderProdCharts,30);}
+    // Separator
+    if (gi < groups.length - 1) {
+      svg += `<line x1="${PAD.left}" y1="${(PAD.top + (gi+1)*GROUP_H - 4).toFixed(1)}" x2="${(PAD.left+pW).toFixed(1)}" y2="${(PAD.top + (gi+1)*GROUP_H - 4).toFixed(1)}" stroke="#ede9e0" stroke-width="1"/>`;
+    }
+  });
 
-  function downloadExcel(){
-    if(typeof XLSX==='undefined'){alert('SheetJS not loaded yet.');return;}
-    const wb=XLSX.utils.book_new();
-    const s1=[['Year','Italy GDP/cap (EUR)','Spain GDP/cap (EUR)','Gap (IT-ES)']];
-    GDP_DATA.forEach(d=>s1.push([d.year,d.IT,d.ES,d.IT-d.ES]));
-    const ws1=XLSX.utils.aoa_to_sheet(s1);ws1['!cols']=[{wch:8},{wch:22},{wch:22},{wch:14}];
-    XLSX.utils.book_append_sheet(wb,ws1,'GDP per capita');
-    const s2=[['Year','Italy prod. (2000=100)','Spain prod. (2000=100)']];
-    PROD_DATA.forEach(d=>s2.push([d.year,d.IT,d.ES]));
-    const ws2=XLSX.utils.aoa_to_sheet(s2);ws2['!cols']=[{wch:8},{wch:24},{wch:24}];
-    XLSX.utils.book_append_sheet(wb,ws2,'Productivity index');
-    const s3=[['Year','Italy hours/worker','Spain hours/worker','Gap (IT-ES)']];
-    HOURS_DATA.forEach(d=>s3.push([d.year,d.IT,d.ES,d.IT-d.ES]));
-    const ws3=XLSX.utils.aoa_to_sheet(s3);ws3['!cols']=[{wch:8},{wch:20},{wch:20},{wch:12}];
-    XLSX.utils.book_append_sheet(wb,ws3,'Hours worked');
-    const s4=[['Component','Spain minus Italy (log-pts)','(%)'],
-      ['Productivity (GDP/hour)',DECOMP_DIFF.prod,(DECOMP_DIFF.prod*100).toFixed(2)+'%'],
-      ['Hours per worker',DECOMP_DIFF.hours,(DECOMP_DIFF.hours*100).toFixed(2)+'%'],
-      ['Employment rate',DECOMP_DIFF.empl,(DECOMP_DIFF.empl*100).toFixed(2)+'%'],
-      ['Total GDP per capita',DECOMP_DIFF.total,(DECOMP_DIFF.total*100).toFixed(2)+'%']];
-    const ws4=XLSX.utils.aoa_to_sheet(s4);ws4['!cols']=[{wch:26},{wch:26},{wch:12}];
-    XLSX.utils.book_append_sheet(wb,ws4,'Decomposition');
-    const s5=[['Dataset','Source','Unit','Period'],
-      ['GDP per capita','Eurostat (nama_10_pc)','EUR current prices','2000-2024'],
-      ['Labour productivity','Eurostat (tipsna70)','Index 2015=100, chain-linked volumes, rebased 2000=100','2000-2023'],
-      ['Hours worked','OECD (ANHRS)','Hours per worker per year','2000-2023'],
-      ['Employment rate','Eurostat (lfsi_emp_a)','% 15-64 employed','2000-2023']];
-    const ws5=XLSX.utils.aoa_to_sheet(s5);ws5['!cols']=[{wch:20},{wch:26},{wch:46},{wch:12}];
-    XLSX.utils.book_append_sheet(wb,ws5,'Metadata');
-    XLSX.writeFile(wb,'italy_spain_economic_comparison.xlsx');}
+  // x-axis ticks
+  const tickVals = [-0.4,-0.3,-0.2,-0.1,0,0.1,0.2,0.3,0.4,0.5,0.6,0.7,0.8,0.9,1.0,1.1].filter(v => Math.abs(v) <= absMax * 1.05);
+  tickVals.forEach(v => {
+    const x = xS(v);
+    svg += `<line x1="${x.toFixed(1)}" y1="${PAD.top}" x2="${x.toFixed(1)}" y2="${PAD.top+pH}" stroke="#c8c2b6" stroke-width="0.5" stroke-dasharray="3,3"/>`;
+    svg += `<text x="${x.toFixed(1)}" y="${(PAD.top+pH+14).toFixed(1)}" text-anchor="middle" font-size="8" fill="#9a9590" font-family="DM Mono,monospace">${v===0?'0':(v>0?'+':'')+Math.round(v*100)+'%'}</text>`;
+  });
 
-  function downloadPNG(svgId,filename){
-    const svg=document.getElementById(svgId);
-    if(!svg){alert('Render that chart first by switching to its tab.');return;}
-    const scale=2,w=svg.viewBox.baseVal.width*scale,h=svg.viewBox.baseVal.height*scale;
-    const canvas=document.createElement('canvas');canvas.width=w;canvas.height=h;
-    const ctx=canvas.getContext('2d');ctx.fillStyle='#f7f4ee';ctx.fillRect(0,0,w,h);
-    const blob=new Blob([new XMLSerializer().serializeToString(svg)],{type:'image/svg+xml;charset=utf-8'});
-    const url=URL.createObjectURL(blob);
-    const img=new Image();
-    img.onload=function(){ctx.drawImage(img,0,0,w,h);URL.revokeObjectURL(url);
-      const a=document.createElement('a');a.download=filename;a.href=canvas.toDataURL('image/png');a.click();};
-    img.src=url;}
+  svg += `<line x1="${zero.toFixed(1)}" y1="${PAD.top}" x2="${zero.toFixed(1)}" y2="${PAD.top+pH}" stroke="#9a9590" stroke-width="1"/>`;
+  svg += `<line x1="${PAD.left}" y1="${PAD.top+pH}" x2="${(PAD.left+pW).toFixed(1)}" y2="${PAD.top+pH}" stroke="#c8c2b6" stroke-width="1"/>`;
 
-  const __op=showPage;
-  showPage=function(id){__op(id);if(id==='italy')setTimeout(renderGDPChart,50);};
+  area.innerHTML = `<svg id="decomp-svg" viewBox="0 0 ${W} ${H}" xmlns="http://www.w3.org/2000/svg" style="width:100%;display:block;">${svg}</svg>`;
+}
+
+// ── Render functions ──
+function renderGDPChart() {
+  buildLegend('italy-legend-gdp');
+  buildMultiLineChart('gdp-chart-area','gdp-svg', GDP_DATA, COUNTRIES, 0, 65000, 10000, v => '€'+(v/1000).toFixed(0)+'k');
+}
+function renderProdCharts() {
+  buildLegend('italy-legend-prod');
+  buildMultiLineChart('prod-chart-area','prod-svg', PROD_DATA, COUNTRIES, 85, 145, 10, v => v.toFixed(0));
+  buildLegend('italy-legend-hours');
+  buildMultiLineChart('hours-chart-area','hours-svg', HOURS_DATA, COUNTRIES, 1300, 1950, 100, v => v.toFixed(0)+'h');
+  buildDecompChart();
+}
+
+function showItalyTab(id, btn) {
+  document.querySelectorAll('.italy-panel').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.italy-tab').forEach(b => b.classList.remove('active'));
+  document.getElementById('italy-tab-'+id).classList.add('active');
+  btn.classList.add('active');
+  if (id === 'gdp')  setTimeout(renderGDPChart, 30);
+  if (id === 'prod') setTimeout(renderProdCharts, 30);
+}
+
+// ── Excel download (7 countries) ──
+function downloadExcel7() {
+  if (typeof XLSX === 'undefined') { alert('SheetJS not loaded yet.'); return; }
+  const wb = XLSX.utils.book_new();
+
+  const hdr1 = ['Year',...COUNTRIES.map(k=>C_META[k].label+' GDP/cap (EUR)')];
+  const s1 = [hdr1, ...GDP_DATA.map(d=>[d.year,...COUNTRIES.map(k=>d[k])])];
+  const ws1 = XLSX.utils.aoa_to_sheet(s1);
+  XLSX.utils.book_append_sheet(wb, ws1, 'GDP per capita');
+
+  const hdr2 = ['Year',...COUNTRIES.map(k=>C_META[k].label+' prod. (2000=100)')];
+  const s2 = [hdr2, ...PROD_DATA.map(d=>[d.year,...COUNTRIES.map(k=>d[k])])];
+  const ws2 = XLSX.utils.aoa_to_sheet(s2);
+  XLSX.utils.book_append_sheet(wb, ws2, 'Productivity index');
+
+  const hdr3 = ['Year',...COUNTRIES.map(k=>C_META[k].label+' hours/worker')];
+  const s3 = [hdr3, ...HOURS_DATA.map(d=>[d.year,...COUNTRIES.map(k=>d[k])])];
+  const ws3 = XLSX.utils.aoa_to_sheet(s3);
+  XLSX.utils.book_append_sheet(wb, ws3, 'Hours worked');
+
+  const hdr4 = ['Year',...COUNTRIES.map(k=>C_META[k].label+' empl. rate %')];
+  const s4 = [hdr4, ...EMPL_DATA.map(d=>[d.year,...COUNTRIES.map(k=>d[k])])];
+  const ws4 = XLSX.utils.aoa_to_sheet(s4);
+  XLSX.utils.book_append_sheet(wb, ws4, 'Employment rates');
+
+  const s5 = [['Dataset','Source','Unit','Period'],
+    ['GDP per capita','Eurostat (nama_10_pc)','EUR current prices','2000-2024'],
+    ['Labour productivity','Eurostat (tipsna70)','Index 2015=100, chain-linked, rebased 2000=100','2000-2023'],
+    ['Hours worked','OECD (ANHRS)','Hours per worker per year','2000-2023'],
+    ['Employment rate','Eurostat (lfsi_emp_a)','% 15-64 employed','2000-2023'],
+    ['Countries','IT=Italy, ES=Spain, FR=France, DE=Germany, SE=Sweden, AT=Austria, RO=Romania','','']];
+  const ws5 = XLSX.utils.aoa_to_sheet(s5);
+  XLSX.utils.book_append_sheet(wb, ws5, 'Metadata');
+
+  XLSX.writeFile(wb, 'italy_comparators_economic_data.xlsx');
+}
+
+function downloadPNG(svgId, filename) {
+  const svg = document.getElementById(svgId);
+  if (!svg) { alert('Render that chart first by switching to its tab.'); return; }
+  const scale = 2;
+  const w = svg.viewBox.baseVal.width * scale;
+  const h = svg.viewBox.baseVal.height * scale;
+  const canvas = document.createElement('canvas');
+  canvas.width = w; canvas.height = h;
+  const ctx = canvas.getContext('2d');
+  ctx.fillStyle = '#f7f4ee';
+  ctx.fillRect(0, 0, w, h);
+  const blob = new Blob([new XMLSerializer().serializeToString(svg)], {type:'image/svg+xml;charset=utf-8'});
+  const url = URL.createObjectURL(blob);
+  const img = new Image();
+  img.onload = function() {
+    ctx.drawImage(img, 0, 0, w, h);
+    URL.revokeObjectURL(url);
+    const a = document.createElement('a');
+    a.download = filename;
+    a.href = canvas.toDataURL('image/png');
+    a.click();
+  };
+  img.src = url;
+}
+
+// ── Override showPage to auto-render Italy GDP on first visit ──
+const __op = showPage;
+showPage = function(id) {
+  __op(id);
+  if (id === 'italy') setTimeout(renderGDPChart, 50);
+};
 </script>
-<div id="italy-tooltip" style="position:fixed;display:none;background:var(--paper);border:1px solid var(--rule);padding:0.5rem 0.75rem;font-family:var(--mono);font-size:0.6rem;line-height:1.7;color:var(--ink-muted);pointer-events:none;z-index:200;box-shadow:0 2px 8px rgba(0,0,0,0.08);"></div>
+
+<div id="italy-tooltip" style="position:fixed;display:none;background:var(--paper);border:1px solid var(--rule);padding:0.5rem 0.75rem;font-family:var(--mono);font-size:0.6rem;line-height:1.7;color:var(--ink-muted);pointer-events:none;z-index:200;box-shadow:0 2px 8px rgba(0,0,0,0.08);max-width:200px;"></div>
 </body>
 </html>
