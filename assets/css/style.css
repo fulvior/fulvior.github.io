@@ -1,0 +1,362 @@
+/* =========================================================================
+   STILE GRAFICO DEL SITO  (colori, font, spaziature, animazioni)
+   -------------------------------------------------------------------------
+   In genere NON serve toccare questo file.
+   Se vuoi cambiare i colori principali, modifica i valori qui sotto
+   nella sezione ":root" (es. --accent e' il blu usato per i link e i bottoni).
+   ========================================================================= */
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --ink: #1a1814;
+  --ink-muted: #5a554e;
+  --ink-faint: #9a9590;
+  --paper: #f7f4ee;
+  --paper-warm: #ede9e0;
+  --paper-deep: #e4dfd4;
+  --accent: #2c4a6e;
+  --accent-light: #d4e0ed;
+  --accent-warm: #7a3e2a;
+  --accent-warm-light: #f0e4de;
+  --rule: #c8c2b6;
+  --shadow: rgba(40, 36, 28, 0.08);
+  /* Sistema tipografico:
+     --serif → testi e titoli · --ui → interfaccia · --mono → numeri/dati */
+  --serif: 'EB Garamond', Georgia, serif;
+  --ui: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --mono: 'DM Mono', monospace;
+}
+
+/* ── Tema scuro (palette calda, sobria) ──
+   Si attiva con l'interruttore nell'header; la scelta viene ricordata. */
+:root[data-theme="dark"] {
+  --ink: #e9e4d8;
+  --ink-muted: #aaa498;
+  --ink-faint: #746f66;
+  --paper: #171511;
+  --paper-warm: #211e18;
+  --paper-deep: #2a2620;
+  --accent: #86abd6;
+  --accent-light: #233140;
+  --accent-warm: #d39a78;
+  --accent-warm-light: #322619;
+  --rule: #3a352c;
+  --shadow: rgba(0, 0, 0, 0.4);
+  color-scheme: dark;
+}
+
+html { font-size: 18px; scroll-behavior: smooth; }
+body {
+  font-family: var(--serif); background: var(--paper); color: var(--ink);
+  line-height: 1.75; min-height: 100vh;
+  -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale;
+  transition: background 0.3s ease, color 0.3s ease;
+}
+
+/* ── Barra di avanzamento lettura (in alto) ── */
+.scroll-progress { position: fixed; top: 0; left: 0; height: 3px; width: 0; background: var(--accent); z-index: 200; transition: width 0.05s linear; }
+
+/* ── Header ── */
+header {
+  position: sticky; top: 0; z-index: 100;
+  background: var(--paper); border-bottom: 1px solid var(--rule);
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 0.75rem 3rem; gap: 1.5rem;
+}
+.header-name { font-size: 1rem; font-weight: 500; letter-spacing: 0.01em; white-space: nowrap; cursor: pointer; text-decoration: none; color: var(--ink); }
+.header-email { font-family: var(--ui); font-size: 0.7rem; color: var(--ink-muted); text-decoration: none; letter-spacing: 0.02em; border: 1px solid var(--rule); padding: 0.25rem 0.75rem; border-radius: 2rem; transition: background 0.15s, color 0.15s; white-space: nowrap; }
+.header-email:hover { background: var(--accent); color: #fff; border-color: var(--accent); }
+nav { display: flex; gap: 0.15rem; flex-wrap: wrap; justify-content: center; }
+nav a { font-family: var(--ui); font-size: 0.62rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--ink-muted); text-decoration: none; padding: 0.3rem 0.6rem; border-radius: 3px; transition: color 0.15s, background 0.15s; }
+nav a:hover, nav a.active { color: var(--accent); background: var(--accent-light); }
+
+/* ── Bottone menu mobile (nascosto su desktop) ── */
+.menu-toggle { display: none; background: none; border: 1px solid var(--rule); border-radius: 4px; padding: 0.35rem 0.55rem; cursor: pointer; color: var(--ink-muted); }
+.menu-toggle svg { display: block; }
+
+/* ── Pages ── */
+.page { display: none; animation: fadein 0.25s ease; }
+.page.active { display: block; }
+@keyframes fadein { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: none; } }
+
+/* ── Home ── */
+.home-layout {
+  max-width: 860px; margin: 0 auto; padding: 5rem 2rem 6rem;
+  display: grid; grid-template-columns: 200px 1fr; gap: 3.5rem; align-items: start;
+}
+.home-photo-col { display: flex; flex-direction: column; align-items: center; gap: 1rem; padding-top: 0.5rem; }
+.home-photo { width: 180px; height: 220px; object-fit: cover; border: 1px solid var(--rule); display: block; background: var(--paper-warm); }
+.home-photo-placeholder { width: 180px; height: 220px; border: 1px solid var(--rule); background: var(--paper-warm); display: flex; align-items: center; justify-content: center; flex-direction: column; gap: 0.5rem; }
+.home-photo-placeholder svg { opacity: 0.25; }
+.home-photo-placeholder span { font-family: var(--mono); font-size: 0.55rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--ink-faint); }
+.home-photo-socials { display: flex; flex-direction: column; gap: 0.4rem; width: 100%; }
+.home-social-link { font-family: var(--mono); font-size: 0.58rem; letter-spacing: 0.06em; color: var(--ink-faint); text-decoration: none; display: flex; align-items: center; gap: 0.5rem; padding: 0.3rem 0.5rem; border: 1px solid transparent; border-radius: 2px; transition: color 0.15s, border-color 0.15s; }
+.home-social-link:hover { color: var(--accent); border-color: var(--rule); }
+.home-social-link svg { flex-shrink: 0; }
+.home-text-col {}
+.home-eyebrow { font-family: var(--mono); font-size: 0.65rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--ink-faint); margin-bottom: 1.5rem; }
+.home-name { font-size: 3.2rem; font-weight: 400; font-style: italic; line-height: 1.15; margin-bottom: 0.5rem; color: var(--ink); }
+.home-title { font-family: var(--mono); font-size: 0.75rem; color: var(--ink-muted); letter-spacing: 0.05em; margin-bottom: 2.5rem; }
+.home-rule { border: none; border-top: 1px solid var(--rule); margin-bottom: 2.5rem; }
+.home-bio { font-size: 1.1rem; color: var(--ink); max-width: 56ch; }
+.home-bio p + p { margin-top: 1rem; }
+.home-links { display: flex; gap: 1rem; margin-top: 3rem; flex-wrap: wrap; }
+.btn { font-family: var(--ui); font-size: 0.68rem; letter-spacing: 0.06em; text-transform: uppercase; padding: 0.6rem 1.2rem; border-radius: 3px; text-decoration: none; transition: 0.15s; cursor: pointer; border: none; display: inline-block; }
+.btn-primary { background: var(--accent); color: #fff; }
+.btn-primary:hover { background: #1d3550; }
+.btn-ghost { background: transparent; color: var(--ink-muted); border: 1px solid var(--rule); }
+.btn-ghost:hover { border-color: var(--accent); color: var(--accent); }
+
+/* ── Inner pages ── */
+.inner { max-width: 720px; margin: 0 auto; padding: 4rem 2rem 6rem; }
+.page-label { font-family: var(--mono); font-size: 0.62rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--ink-faint); margin-bottom: 0.75rem; }
+.page-title { font-size: 2.4rem; font-weight: 400; font-style: italic; margin-bottom: 0.25rem; }
+.page-rule { border: none; border-top: 1px solid var(--rule); margin: 2rem 0 2.5rem; }
+.section-body { font-size: 1rem; color: var(--ink); }
+.section-body p { margin-bottom: 1rem; }
+
+/* ── Tabs ── */
+.tab-bar { display: flex; gap: 0; border-bottom: 1px solid var(--rule); margin-bottom: 2.5rem; }
+.tab-btn { font-family: var(--ui); font-size: 0.62rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--ink-faint); background: none; border: none; border-bottom: 2px solid transparent; padding: 0.6rem 1.1rem; cursor: pointer; transition: color 0.15s, border-color 0.15s; margin-bottom: -1px; }
+.tab-btn:hover { color: var(--ink-muted); }
+.tab-btn.active { color: var(--accent); border-bottom-color: var(--accent); }
+.tab-panel { display: none; }
+.tab-panel.active { display: block; animation: fadein 0.2s ease; }
+
+/* Research */
+.research-areas { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 1px; background: var(--rule); border: 1px solid var(--rule); margin: 0 0 2rem; }
+.research-area { background: var(--paper); padding: 1.5rem 1.25rem; }
+.research-area-num { font-family: var(--mono); font-size: 0.6rem; color: var(--ink-faint); margin-bottom: 0.5rem; letter-spacing: 0.1em; }
+.research-area-name { font-size: 1rem; font-weight: 500; }
+
+/* Conferences */
+.conf-item { padding: 1.1rem 0; border-bottom: 1px solid var(--paper-warm); display: flex; gap: 1.5rem; align-items: baseline; }
+.conf-year { font-family: var(--mono); font-size: 0.65rem; color: var(--ink-faint); white-space: nowrap; min-width: 48px; }
+.conf-name { font-size: 0.95rem; font-weight: 500; }
+.conf-detail { font-size: 0.85rem; color: var(--ink-muted); font-style: italic; }
+
+/* Publications */
+.pub-year { font-family: var(--mono); font-size: 0.65rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--ink-faint); margin: 2.5rem 0 1rem; padding-bottom: 0.5rem; border-bottom: 1px solid var(--rule); }
+.pub-item { padding: 1.25rem 0; border-bottom: 1px solid var(--paper-warm); }
+.pub-title { font-size: 1.05rem; font-weight: 500; margin-bottom: 0.25rem; }
+.pub-venue { font-size: 0.85rem; color: var(--ink-muted); font-style: italic; }
+
+/* ── Projects ── */
+.project-card { border: 1px solid var(--rule); padding: 1.5rem 1.5rem 1.25rem; margin-bottom: 1.25rem; background: var(--paper); position: relative; transition: transform 0.15s, box-shadow 0.15s; }
+.project-card:hover { transform: translateY(-2px); box-shadow: 0 6px 18px rgba(0,0,0,0.06); }
+.project-card::before { content: ''; position: absolute; left: 0; top: 0; bottom: 0; width: 3px; background: var(--accent); }
+.project-title { font-size: 1.05rem; font-weight: 500; margin-bottom: 0.4rem; }
+.project-desc { font-size: 0.9rem; color: var(--ink-muted); }
+
+/* ── Teaching ── */
+.teaching-item { display: flex; align-items: baseline; gap: 1.5rem; padding: 1rem 0; border-bottom: 1px solid var(--paper-warm); }
+.teaching-term { font-family: var(--mono); font-size: 0.65rem; color: var(--ink-faint); white-space: nowrap; min-width: 80px; }
+.teaching-course { font-size: 0.95rem; }
+
+/* ── CV ── */
+.cv-download { display: inline-flex; align-items: center; gap: 0.75rem; background: var(--ink); color: var(--paper); padding: 1rem 2rem; text-decoration: none; font-family: var(--ui); font-size: 0.72rem; letter-spacing: 0.06em; text-transform: uppercase; border-radius: 3px; transition: background 0.15s; margin: 1.5rem 0; }
+.cv-download:hover { background: var(--accent); }
+
+/* ── Contact ── */
+.contact-grid { display: grid; gap: 1px; background: var(--rule); border: 1px solid var(--rule); margin-top: 1.5rem; }
+.contact-row { display: grid; grid-template-columns: 120px 1fr; background: var(--paper); }
+.contact-label { font-family: var(--mono); font-size: 0.65rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--ink-faint); padding: 1rem 1.25rem; border-right: 1px solid var(--rule); display: flex; align-items: center; }
+.contact-value { font-size: 0.9rem; padding: 1rem 1.25rem; display: flex; align-items: center; }
+.contact-value a { color: var(--accent); text-decoration: none; font-family: var(--mono); font-size: 0.8rem; }
+.contact-value a:hover { text-decoration: underline; }
+
+/* ── Giving Back ── */
+.pullquote { border-left: 3px solid var(--accent); margin: 2rem 0; padding: 0.5rem 0 0.5rem 1.5rem; font-size: 1.15rem; font-style: italic; color: var(--ink-muted); line-height: 1.6; }
+.pullquote cite { display: block; font-family: var(--mono); font-size: 0.62rem; font-style: normal; letter-spacing: 0.08em; text-transform: uppercase; color: var(--ink-faint); margin-top: 0.6rem; }
+.giving-initiative { border: 1px solid var(--rule); padding: 1.75rem 1.5rem 1.5rem; margin: 2rem 0; position: relative; background: var(--paper); }
+.giving-initiative::before { content: ''; position: absolute; left: 0; top: 0; bottom: 0; width: 3px; background: var(--accent-warm); }
+.initiative-tag { font-family: var(--mono); font-size: 0.58rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--accent-warm); background: var(--accent-warm-light); display: inline-block; padding: 0.2rem 0.6rem; border-radius: 2px; margin-bottom: 0.75rem; }
+.initiative-title { font-size: 1.1rem; font-weight: 500; margin-bottom: 0.5rem; }
+.initiative-body { font-size: 0.95rem; color: var(--ink-muted); }
+
+/* ── Chart ── */
+.chart-wrapper { margin: 2rem 0 1.5rem; border: 1px solid var(--rule); background: var(--paper); padding: 1.5rem 1.5rem 1rem; }
+.chart-header { display: flex; align-items: flex-start; justify-content: space-between; gap: 1rem; flex-wrap: wrap; margin-bottom: 1.25rem; }
+.chart-toggle { display: flex; gap: 2px; background: var(--paper-warm); border: 1px solid var(--rule); border-radius: 3px; padding: 2px; }
+.chart-toggle-btn { font-family: var(--ui); font-size: 0.58rem; letter-spacing: 0.07em; text-transform: uppercase; background: none; border: none; padding: 0.3rem 0.75rem; border-radius: 2px; cursor: pointer; color: var(--ink-faint); transition: background 0.15s, color 0.15s; }
+.chart-toggle-btn.active { background: var(--paper); color: var(--accent); box-shadow: 0 1px 3px rgba(0,0,0,0.08); }
+.chart-subtitle { font-family: var(--mono); font-size: 0.6rem; color: var(--ink-faint); letter-spacing: 0.06em; padding-top: 0.4rem; text-align: right; max-width: 280px; line-height: 1.5; }
+.chart-area { width: 100%; overflow: hidden; }
+.chart-source { font-family: var(--mono); font-size: 0.55rem; color: var(--ink-faint); letter-spacing: 0.04em; margin-top: 0.75rem; line-height: 1.5; }
+
+/* ── Books ── */
+.booktab { display: none; }
+.booktab.active { display: block; animation: fadein 0.2s ease; }
+.lib-layout { display: grid; grid-template-columns: 178px 1fr; gap: 0; border: 1px solid var(--rule); margin-top: 0; min-height: 520px; }
+.lib-nav { border-right: 1px solid var(--rule); background: var(--paper-warm); padding: 1.25rem 0 1.5rem; position: sticky; top: 56px; align-self: start; max-height: calc(100vh - 80px); overflow-y: auto; }
+.lib-nav-group { margin-bottom: 0.25rem; }
+.lib-nav-group-label { font-family: var(--mono); font-size: 0.55rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--ink-faint); padding: 0.75rem 1rem 0.3rem; display: block; }
+.lib-nav-item { display: flex; align-items: baseline; gap: 0.5rem; font-family: var(--mono); font-size: 0.62rem; color: var(--ink-muted); text-decoration: none; padding: 0.38rem 1rem; letter-spacing: 0.02em; transition: background 0.12s, color 0.12s; border-left: 2px solid transparent; line-height: 1.4; }
+.lib-nav-item:hover { color: var(--ink); background: var(--paper-deep); }
+.lib-nav-item.active { color: var(--accent); background: var(--accent-light); border-left-color: var(--accent); }
+.lib-nav-num { font-family: var(--mono); font-size: 0.55rem; color: var(--ink-faint); min-width: 18px; flex-shrink: 0; }
+.lib-nav-item.active .lib-nav-num { color: var(--accent); opacity: 0.7; }
+.lib-shelf { padding: 1.75rem 1.75rem 2rem; }
+.shelf { display: none; animation: fadein 0.18s ease; }
+.shelf.active { display: block; }
+.shelf-label { font-size: 1rem; font-weight: 500; margin-bottom: 1.5rem; color: var(--ink); display: flex; align-items: baseline; gap: 0.65rem; }
+.shelf-num { font-family: var(--mono); font-size: 0.6rem; color: var(--ink-faint); letter-spacing: 0.1em; background: var(--paper-warm); padding: 0.15rem 0.4rem; border-radius: 2px; }
+.lib-book { padding: 1rem 0; border-bottom: 1px solid var(--paper-warm); }
+.lib-book:last-child { border-bottom: none; }
+.lib-book-head { margin-bottom: 0.35rem; }
+.lib-book-title { font-size: 0.97rem; font-weight: 500; color: var(--ink); }
+.lib-book-author { font-family: var(--mono); font-size: 0.6rem; letter-spacing: 0.06em; color: var(--ink-faint); margin-top: 0.15rem; }
+.lib-book-note { font-size: 0.88rem; color: var(--ink-muted); font-style: italic; line-height: 1.6; }
+.shelf-subsection { font-family: var(--mono); font-size: 0.58rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--ink-faint); margin: 1.75rem 0 0.25rem; padding-bottom: 0.4rem; border-bottom: 1px dashed var(--rule); }
+
+/* Beyond academia */
+.reading-badge { display: inline-flex; align-items: center; gap: 0.35rem; font-family: var(--mono); font-size: 0.58rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--accent-warm); background: var(--accent-warm-light); padding: 0.2rem 0.55rem; border-radius: 2px; margin-bottom: 0.4rem; }
+.reading-badge::before { content: ''; width: 6px; height: 6px; border-radius: 50%; background: var(--accent-warm); animation: pulse 1.8s ease-in-out infinite; }
+@keyframes pulse { 0%, 100% { opacity: 1; transform: scale(1); } 50% { opacity: 0.4; transform: scale(0.7); } }
+.books-section-label { font-family: var(--mono); font-size: 0.6rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--ink-faint); margin: 2.5rem 0 1rem; padding-bottom: 0.5rem; border-bottom: 1px solid var(--rule); }
+.general-reading-now { border: 1px solid var(--rule); border-left: 3px solid var(--accent-warm); padding: 1.25rem 1.5rem; margin-top: 1.5rem; background: var(--paper); }
+.gen-list { display: flex; flex-direction: column; gap: 0; }
+.gen-item { display: grid; grid-template-columns: 1fr auto; gap: 0.75rem; padding: 0.85rem 0; border-bottom: 1px solid var(--paper-warm); align-items: baseline; }
+.gen-item-title { font-size: 0.95rem; font-weight: 500; color: var(--ink); }
+.gen-item-author { font-family: var(--mono); font-size: 0.6rem; color: var(--ink-faint); letter-spacing: 0.04em; margin-top: 0.1rem; }
+.gen-item-note { font-size: 0.85rem; color: var(--ink-muted); font-style: italic; margin-top: 0.25rem; line-height: 1.5; }
+.gen-item-tag { font-family: var(--mono); font-size: 0.55rem; letter-spacing: 0.08em; text-transform: uppercase; padding: 0.18rem 0.5rem; border-radius: 2px; white-space: nowrap; align-self: start; margin-top: 0.15rem; }
+.tag-essay   { background: #e8eef4; color: #3a5a7a; }
+.tag-novel   { background: #eef4e8; color: #3a5a2a; }
+.tag-history { background: #f4ece8; color: #7a3a2a; }
+.tag-science { background: #f0eaf4; color: #5a3a7a; }
+.tag-bio     { background: #f4f0e0; color: #6a5a20; }
+
+/* ── Italy page ── */
+.italy-tab-bar { display:flex; gap:0; border-bottom:1px solid var(--rule); margin-bottom:2rem; }
+.italy-tab { font-family:var(--ui); font-size:0.62rem; letter-spacing:0.1em; text-transform:uppercase; color:var(--ink-faint); background:none; border:none; border-bottom:2px solid transparent; padding:0.6rem 1.1rem; cursor:pointer; transition:color 0.15s,border-color 0.15s; margin-bottom:-1px; }
+.italy-tab:hover { color:var(--ink-muted); }
+.italy-tab.active { color:var(--accent); border-bottom-color:var(--accent); }
+.italy-panel { display:none; }
+.italy-panel.active { display:block; animation:fadein 0.2s ease; }
+.italy-chart-meta { display:flex; align-items:flex-start; justify-content:space-between; gap:1rem; flex-wrap:wrap; margin-bottom:1rem; }
+.italy-chart-title { font-size:1rem; font-weight:500; color:var(--ink); margin-bottom:0.2rem; }
+.italy-chart-sub { font-family:var(--mono); font-size:0.58rem; color:var(--ink-faint); letter-spacing:0.05em; line-height:1.5; }
+.italy-dl-group { display:flex; gap:0.5rem; flex-shrink:0; }
+.italy-dl-btn { font-family:var(--ui); font-size:0.6rem; letter-spacing:0.06em; text-transform:uppercase; display:inline-flex; align-items:center; gap:0.4rem; background:transparent; border:1px solid var(--rule); color:var(--ink-muted); padding:0.35rem 0.8rem; border-radius:3px; cursor:pointer; transition:border-color 0.15s,color 0.15s,background 0.15s; }
+.italy-dl-btn:hover { border-color:var(--accent); color:var(--accent); background:var(--accent-light); }
+.italy-legend { display:flex; gap:1.5rem; margin-bottom:1rem; }
+.italy-legend-item { display:flex; align-items:center; gap:0.4rem; font-family:var(--mono); font-size:0.6rem; color:var(--ink-muted); letter-spacing:0.06em; }
+.italy-legend-dot { width:10px; height:10px; border-radius:50%; flex-shrink:0; }
+
+/* ── Bottone "torna su" ── */
+.to-top { position: fixed; bottom: 1.5rem; right: 1.5rem; width: 42px; height: 42px; border-radius: 50%; background: var(--accent); color: #fff; border: none; cursor: pointer; display: flex; align-items: center; justify-content: center; opacity: 0; pointer-events: none; transform: translateY(10px); transition: opacity 0.2s, transform 0.2s; z-index: 150; box-shadow: 0 3px 10px rgba(0,0,0,0.15); }
+.to-top.visible { opacity: 1; pointer-events: auto; transform: none; }
+.to-top:hover { background: #1d3550; }
+
+/* ── Responsive ── */
+@media (max-width: 700px) {
+  header { padding: 0.75rem 1rem; flex-wrap: wrap; gap: 0.5rem; }
+  .menu-toggle { display: inline-flex; order: 3; }
+  .header-email { order: 2; }
+  nav { order: 4; flex-basis: 100%; display: none; flex-direction: column; align-items: stretch; gap: 0.1rem; }
+  body.nav-open nav { display: flex; }
+  nav a { padding: 0.6rem 0.5rem; font-size: 0.7rem; }
+  .home-layout { grid-template-columns: 1fr; gap: 2rem; padding: 3rem 1.25rem 4rem; }
+  .home-photo-col { flex-direction: row; align-items: flex-start; gap: 1.25rem; }
+  .home-photo, .home-photo-placeholder { width: 100px; height: 124px; }
+  .home-photo-socials { flex-direction: row; flex-wrap: wrap; }
+  .home-name { font-size: 2.2rem; }
+  .inner { padding: 2.5rem 1.25rem 4rem; }
+  .contact-row { grid-template-columns: 90px 1fr; }
+  .tab-btn { padding: 0.5rem 0.65rem; font-size: 0.58rem; }
+  .lib-layout { grid-template-columns: 1fr; }
+  .lib-nav { position: static; border-right: none; border-bottom: 1px solid var(--rule); max-height: 200px; overflow-y: auto; padding: 0.75rem 0; }
+  .lib-shelf { padding: 1.25rem 1rem 1.5rem; }
+}
+
+/* =========================================================================
+   RIFINITURE "PRO" (sobrie) — aggiunte ispirate a siti di ricercatori
+   (MIT / Stanford): link nei testi, campi di ricerca, news, pubblicazioni
+   in formato accademico, footer, stampa pulita.
+   ========================================================================= */
+
+/* ── Link dentro i paragrafi ── */
+.section-body a, .initiative-body a { color: var(--accent); text-decoration: none; border-bottom: 1px solid var(--accent-light); transition: border-color 0.15s; }
+.section-body a:hover, .initiative-body a:hover { border-bottom-color: var(--accent); }
+
+/* ── Accessibilità: contorno visibile navigando da tastiera ── */
+:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; border-radius: 2px; }
+
+/* ── Campi di ricerca in home (piccole "targhette") ── */
+.home-fields { display: flex; flex-wrap: wrap; gap: 0.4rem; margin-top: 1.75rem; }
+.home-field { font-family: var(--mono); font-size: 0.6rem; letter-spacing: 0.06em; text-transform: uppercase; color: var(--ink-muted); border: 1px solid var(--rule); border-radius: 2rem; padding: 0.3rem 0.8rem; }
+
+/* ── News / aggiornamenti recenti (timeline sobria) ── */
+.news-list { margin-top: 0.5rem; }
+.news-item { display: grid; grid-template-columns: 96px 1fr; gap: 1.25rem; padding: 0.9rem 0; border-bottom: 1px solid var(--paper-warm); align-items: baseline; }
+.news-date { font-family: var(--mono); font-size: 0.62rem; letter-spacing: 0.04em; color: var(--ink-faint); white-space: nowrap; }
+.news-text { font-size: 0.95rem; color: var(--ink); }
+.news-text a { color: var(--accent); text-decoration: none; border-bottom: 1px solid var(--accent-light); }
+
+/* ── Pubblicazioni in formato accademico ── */
+.pub-status { display: inline-block; font-family: var(--mono); font-size: 0.55rem; letter-spacing: 0.08em; text-transform: uppercase; padding: 0.15rem 0.5rem; border-radius: 2px; margin-bottom: 0.5rem; }
+.pub-status.published { background: var(--accent-light); color: var(--accent); }
+.pub-status.wp { background: var(--paper-warm); color: var(--ink-muted); }
+.pub-status.rr { background: var(--accent-warm-light); color: var(--accent-warm); }
+.pub-authors { font-size: 0.9rem; color: var(--ink); margin-bottom: 0.15rem; }
+.pub-authors strong { font-weight: 600; }
+.pub-links { display: flex; gap: 0.5rem; margin-top: 0.6rem; flex-wrap: wrap; }
+.pub-link { font-family: var(--ui); font-size: 0.58rem; letter-spacing: 0.06em; text-transform: uppercase; color: var(--ink-muted); text-decoration: none; border: 1px solid var(--rule); padding: 0.25rem 0.6rem; border-radius: 2px; transition: border-color 0.15s, color 0.15s, background 0.15s; }
+.pub-link:hover { border-color: var(--accent); color: var(--accent); background: var(--accent-light); }
+
+/* ── Footer ── */
+footer.site-footer { border-top: 1px solid var(--rule); padding: 2.5rem 2rem; margin-top: 1rem; background: var(--paper); }
+.footer-inner { max-width: 720px; margin: 0 auto; display: flex; flex-wrap: wrap; gap: 1.5rem 3rem; justify-content: space-between; align-items: flex-start; }
+.footer-brand { font-size: 1.05rem; font-style: italic; color: var(--ink); margin-bottom: 0.3rem; }
+.footer-affil { font-family: var(--mono); font-size: 0.62rem; color: var(--ink-muted); letter-spacing: 0.04em; }
+.footer-col-title { font-family: var(--mono); font-size: 0.58rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--ink-faint); margin-bottom: 0.6rem; }
+.footer-links { display: flex; flex-direction: column; gap: 0.3rem; }
+.footer-links a { font-size: 0.85rem; color: var(--ink-muted); text-decoration: none; }
+.footer-links a:hover { color: var(--accent); }
+.footer-meta { font-family: var(--mono); font-size: 0.58rem; color: var(--ink-faint); letter-spacing: 0.04em; line-height: 1.8; margin-top: 1.5rem; text-align: center; border-top: 1px solid var(--paper-warm); padding-top: 1.25rem; }
+
+/* ── Interruttore tema chiaro/scuro (nell'header) ── */
+.theme-toggle { background: none; border: 1px solid var(--rule); border-radius: 2rem; width: 30px; height: 30px; display: inline-flex; align-items: center; justify-content: center; cursor: pointer; color: var(--ink-muted); transition: color 0.15s, border-color 0.15s, background 0.15s; flex-shrink: 0; }
+.theme-toggle:hover { color: var(--accent); border-color: var(--accent); }
+.theme-toggle .icon-sun { display: none; }
+.theme-toggle .icon-moon { display: block; }
+:root[data-theme="dark"] .theme-toggle .icon-sun { display: block; }
+:root[data-theme="dark"] .theme-toggle .icon-moon { display: none; }
+
+/* ── KPI / Stat cards (dashboard) ── */
+.stat-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 1px; background: var(--rule); border: 1px solid var(--rule); border-radius: 6px; overflow: hidden; margin: 1.5rem 0; }
+.stat-card { background: var(--paper); padding: 1.25rem 1.25rem 1.1rem; display: flex; flex-direction: column; gap: 0.3rem; transition: background 0.15s; }
+.stat-card:hover { background: var(--paper-warm); }
+.stat-value { font-family: var(--mono); font-size: 1.65rem; font-weight: 500; color: var(--accent); line-height: 1; letter-spacing: -0.01em; }
+.stat-value.warm { color: var(--accent-warm); }
+.stat-label { font-family: var(--ui); font-size: 0.6rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--ink-faint); font-weight: 500; }
+.stat-note { font-size: 0.82rem; color: var(--ink-muted); line-height: 1.4; margin-top: 0.1rem; }
+
+/* ── Rifinitura dashboard (contenitori grafici) ── */
+.chart-wrapper { border-radius: 6px; box-shadow: 0 1px 3px var(--shadow); }
+.research-areas, .contact-grid { border-radius: 6px; overflow: hidden; }
+.lib-layout { border-radius: 6px; overflow: hidden; }
+
+/* ── Anteprima "Selected research" in home ── */
+.home-selected { margin-top: 2.5rem; }
+.home-selected-label { font-family: var(--ui); font-size: 0.6rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--ink-faint); margin-bottom: 0.85rem; }
+.home-sel-item { display: block; text-decoration: none; padding: 0.7rem 0; border-top: 1px solid var(--paper-warm); transition: padding 0.15s; }
+.home-sel-item:hover { padding-left: 0.4rem; }
+.home-sel-item:last-child { border-bottom: 1px solid var(--paper-warm); }
+.home-sel-title { font-size: 1rem; color: var(--ink); font-weight: 500; }
+.home-sel-meta { font-family: var(--ui); font-size: 0.62rem; letter-spacing: 0.04em; color: var(--ink-faint); margin-top: 0.1rem; }
+.home-sel-item:hover .home-sel-title { color: var(--accent); }
+
+/* ── Stampa pulita (per salvare in PDF) ── */
+@media print {
+  header, .menu-toggle, .to-top, .scroll-progress, footer.site-footer { display: none !important; }
+  body { background: #fff; color: #000; }
+  .inner, .home-layout { padding-top: 1rem; }
+}
+
+@media (max-width: 700px) {
+  .footer-inner { flex-direction: column; gap: 1.25rem; }
+  .news-item { grid-template-columns: 78px 1fr; gap: 0.9rem; }
+}

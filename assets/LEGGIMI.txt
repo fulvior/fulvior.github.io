@@ -1,0 +1,14 @@
+METTI QUI I TUOI FILE
+=====================
+
+In questa cartella "assets" vanno messi due file personali:
+
+1) photo.jpg   →  la tua foto (formato JPG). Compare nella pagina Home.
+                  Se manca, il sito mostra un riquadro segnaposto: nessun errore.
+
+2) cv.pdf      →  il tuo curriculum in PDF. Lo scaricano i bottoni "Download CV".
+
+I nomi devono essere ESATTAMENTE "photo.jpg" e "cv.pdf" (lettere minuscole).
+
+Le sottocartelle "css" e "js" contengono il motore del sito: non toccarle.
+Puoi cancellare questo file LEGGIMI.txt quando vuoi.
