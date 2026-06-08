@@ -35,8 +35,8 @@ function showPage(id) {
   }
 
   // Rendering specifico di alcune pagine
-  if (id === 'giving') setTimeout(() => renderChart(ATTAINMENT, EU_AVG_ATT, '%'), 50);
-  if (id === 'italy')  setTimeout(renderGDPChart, 50);
+  if (id === 'giving') setTimeout(() => { renderChart(ATTAINMENT, EU_AVG_ATT, '%'); fetchGivingData(); }, 50);
+  if (id === 'italy')  setTimeout(() => { renderGDPChart(); fetchItalyData(); }, 50);
   if (id === 'books') {
     setTimeout(() => {
       if (!document.querySelector('.shelf.active')) {
@@ -109,6 +109,12 @@ document.addEventListener('DOMContentLoaded', () => {
   showPage((location.hash || '').replace('#', '') || 'home');
   _navigating = false;
 
+  // Impedisce che i link dell'indice libri cambino l'hash dell'URL
+  // (href="#" svuoterebbe l'hash e il router tornerebbe alla home)
+  document.querySelectorAll('.lib-nav-item').forEach(a => {
+    a.addEventListener('click', e => e.preventDefault());
+  });
+
   // Barra di avanzamento + bottone "torna su"
   const bar = document.getElementById('scroll-progress');
   const toTop = document.getElementById('to-top');
@@ -128,11 +134,14 @@ function scrollToTop() {
 }
 
 /* =========================================================================
-   3) DATI — "GIVING BACK"  (istruzione universitaria in UE)
-   Per aggiornare i numeri, modifica i valori "v:" qui sotto.
+   3) DATI — "GIVING BACK"
+   Attainment: aggiornato live da Eurostat API (edat_lfse_03).
+   STEM: statico (richiederebbe cross-dataset population normalisation).
+   Se l'API non risponde, i grafici usano i dati statici di fallback.
    ========================================================================= */
 
-const ATTAINMENT = [
+// Attainment — let: viene sovrascritto dal fetch live
+let ATTAINMENT = [
   {name:"Ireland",v:65.2},{name:"Luxembourg",v:63.8},{name:"Cyprus",v:60.1},
   {name:"Lithuania",v:56.2},{name:"Netherlands",v:54.8},{name:"Denmark",v:52.3},
   {name:"Sweden",v:51.8},{name:"Belgium",v:50.9},{name:"Spain",v:50.2},
@@ -144,6 +153,7 @@ const ATTAINMENT = [
   {name:"Hungary",v:34.1},{name:"Italy",v:31.6,highlight:true},{name:"Romania",v:23.2,last:true}
 ].sort((a,b)=>b.v-a.v);
 
+// STEM — const: rimane statico
 const STEM = [
   {name:"Finland",v:28.5},{name:"Ireland",v:28.2},{name:"Germany",v:25.6},
   {name:"Sweden",v:24.8},{name:"Denmark",v:24.1},{name:"Portugal",v:23.1},
@@ -156,13 +166,108 @@ const STEM = [
   {name:"Cyprus",v:15.8},{name:"Italy",v:19.0,highlight:true},{name:"Romania",v:14.3,last:true}
 ].sort((a,b)=>b.v-a.v);
 
-const EU_AVG_ATT = 44.2, EU_AVG_STEM = 22.4;
+let EU_AVG_ATT  = 44.2;
+const EU_AVG_STEM = 22.4;
+let _attYear = '2024'; // aggiornato dal fetch
+let _givingFetched = false;
+
+// EU-27 codici Eurostat e nomi display
+const _EU27 = ['AT','BE','BG','CY','CZ','DE','DK','EE','EL','ES',
+               'FI','FR','HR','HU','IE','IT','LT','LU','LV','MT',
+               'NL','PL','PT','RO','SE','SI','SK'];
+const _CNAMES = {
+  AT:'Austria', BE:'Belgium', BG:'Bulgaria', CY:'Cyprus', CZ:'Czechia',
+  DE:'Germany', DK:'Denmark', EE:'Estonia', EL:'Greece', ES:'Spain',
+  FI:'Finland', FR:'France', HR:'Croatia', HU:'Hungary', IE:'Ireland',
+  IT:'Italy', LT:'Lithuania', LU:'Luxembourg', LV:'Latvia', MT:'Malta',
+  NL:'Netherlands', PL:'Poland', PT:'Portugal', RO:'Romania', SE:'Sweden',
+  SI:'Slovenia', SK:'Slovakia'
+};
+
+// Carica dati attainment live da Eurostat (chiamata una sola volta per page load)
+async function fetchGivingData() {
+  if (_givingFetched) return;
+  const url = 'https://ec.europa.eu/eurostat/api/dissemination/statistics/1.0/data'
+            + '/edat_lfse_03?format=JSON&lang=EN&age=Y25-34&sex=T&isced11=ED5-8&unit=PC';
+  try {
+    const res = await fetch(url);
+    if (!res.ok) throw new Error('HTTP ' + res.status);
+    const json = await res.json();
+
+    // Parsing JSON-stat: prende il valore più recente disponibile per ogni paese EU-27
+    const dims   = json.id, sizes = json.size;
+    const stride = dims.map((_, i) => sizes.slice(i + 1).reduce((a, b) => a * b, 1));
+    const geoCat = json.dimension.geo.category;
+    const timCat = json.dimension.time.category;
+    const years  = Object.keys(timCat.index).sort().reverse(); // più recente prima
+    let bestYear = null;
+    const raw = {};
+    Object.entries(geoCat.index).forEach(([geo, gi]) => {
+      if (!_EU27.includes(geo)) return;
+      for (const yr of years) {
+        const ti = timCat.index[yr];
+        let flat = 0;
+        dims.forEach((d, di) => { flat += (d === 'geo' ? gi : d === 'time' ? ti : 0) * stride[di]; });
+        const v = json.value[String(flat)];
+        if (v != null) {
+          raw[geo] = { v, yr };
+          if (!bestYear || yr > bestYear) bestYear = yr;
+          break;
+        }
+      }
+    });
+
+    // Costruisce array ordinato con i flag highlight/last
+    const newArr = Object.entries(raw)
+      .map(([geo, { v }]) => ({ name: _CNAMES[geo], v: +v.toFixed(1), highlight: geo === 'IT', last: false }))
+      .filter(d => d.name)
+      .sort((a, b) => b.v - a.v);
+    if (newArr.length) {
+      const lo = newArr[newArr.length - 1];
+      if (!lo.highlight) lo.last = true;
+    }
+    const newAvg = +(newArr.reduce((s, d) => s + d.v, 0) / newArr.length).toFixed(1);
+
+    // Aggiorna variabili globali
+    ATTAINMENT = newArr;
+    EU_AVG_ATT = newAvg;
+    _attYear   = bestYear || _attYear;
+    _givingFetched = true;
+
+    // Aggiorna KPI cards
+    const it   = newArr.find(d => d.highlight);
+    const rank = newArr.findIndex(d => d.highlight) + 1;
+    const $    = id => document.getElementById(id);
+    if ($('giving-stat-it'))      $('giving-stat-it').textContent      = it ? it.v + '%' : '—';
+    if ($('giving-stat-eu'))      $('giving-stat-eu').textContent      = newAvg + '%';
+    if ($('giving-stat-rank'))    $('giving-stat-rank').textContent    = rank + ' / ' + newArr.length;
+    if ($('giving-stat-it-note')) $('giving-stat-it-note').textContent = '25–34 year-olds with a degree (' + _attYear + ')';
+    if ($('giving-stat-eu-note')) $('giving-stat-eu-note').textContent =
+      (newAvg - (it ? it.v : 0)).toFixed(1) + ' points above Italy';
+
+    // Aggiorna source note
+    if ($('giving-source-note')) $('giving-source-note').innerHTML =
+      'Source: Eurostat ' +
+      '(<a href="https://ec.europa.eu/eurostat/databrowser/view/edat_lfse_03" target="_blank" rel="noopener">edat_lfse_03</a>; educ_uoe_grad04). ' +
+      'Attainment: <strong>' + _attYear + '</strong> (live). ' +
+      'STEM: per 1,000 young people (20–34), 2022/23 (static).';
+
+    // Ri-renderizza solo se il grafico attainment è quello visibile
+    const btnAtt = $('btn-attainment');
+    if (btnAtt && btnAtt.classList.contains('active')) {
+      renderChart(ATTAINMENT, EU_AVG_ATT, '%');
+    }
+  } catch (err) {
+    console.warn('[giving] Eurostat fetch failed – using static fallback data.', err);
+    // I dati statici sono già in ATTAINMENT, nessuna azione necessaria
+  }
+}
 
 function switchChart(type) {
   document.getElementById('btn-attainment').classList.toggle('active', type === 'attainment');
   document.getElementById('btn-stem').classList.toggle('active', type === 'stem');
   document.getElementById('chart-subtitle').textContent = type === 'attainment'
-    ? 'Share of 25–34 year-olds with a tertiary degree, EU countries, 2024'
+    ? 'Share of 25–34 year-olds with a tertiary degree, EU countries, ' + _attYear
     : 'STEM tertiary graduates per 1,000 young people (20–34), EU countries, 2022/23';
   renderChart(type === 'attainment' ? ATTAINMENT : STEM, type === 'attainment' ? EU_AVG_ATT : EU_AVG_STEM, type === 'attainment' ? '%' : '');
 }
@@ -212,7 +317,7 @@ const C_META = {
 };
 
 // GDP per capita EUR current prices (Eurostat nama_10_pc), 2000-2024
-const GDP_DATA=[
+let GDP_DATA=[
   {year:2000,IT:19000,ES:14900,FR:24100,DE:25300,SE:32200,AT:27000,RO:2100},
   {year:2001,IT:19800,ES:15900,FR:25100,DE:26100,SE:33200,AT:27900,RO:2400},
   {year:2002,IT:20500,ES:16900,FR:25900,DE:25900,SE:30800,AT:28600,RO:2500},
@@ -241,7 +346,7 @@ const GDP_DATA=[
 ];
 
 // Real labour productivity per hour worked, index 2000=100
-const PROD_RAW=[
+let PROD_RAW=[
   {year:2000,IT:87.2,ES:88.6,FR:86.4,DE:83.5,SE:85.2,AT:85.8,RO:52.0},
   {year:2001,IT:87.8,ES:89.1,FR:87.0,DE:84.1,SE:86.8,AT:86.5,RO:55.1},
   {year:2002,IT:88.1,ES:89.8,FR:87.6,DE:85.3,SE:88.4,AT:87.4,RO:57.8},
@@ -267,9 +372,9 @@ const PROD_RAW=[
   {year:2022,IT:101.5,ES:102.7,FR:103.0,DE:97.8,SE:105.2,AT:101.5,RO:129.8},
   {year:2023,IT:100.6,ES:103.1,FR:103.4,DE:96.5,SE:105.8,AT:100.2,RO:132.7},
 ];
-const PROD_BASE={};
+let PROD_BASE={};
 COUNTRIES.forEach(k=>PROD_BASE[k]=PROD_RAW[0][k]);
-const PROD_DATA=PROD_RAW.map(d=>{
+let PROD_DATA=PROD_RAW.map(d=>{
   const o={year:d.year};
   COUNTRIES.forEach(k=>o[k]=+(d[k]/PROD_BASE[k]*100).toFixed(2));
   return o;
@@ -304,7 +409,7 @@ const HOURS_DATA=[
 ];
 
 // Employment rate 15-64 (Eurostat lfsi_emp_a)
-const EMPL_DATA=[
+let EMPL_DATA=[
   {year:2000,IT:53.7,ES:57.4,FR:62.1,DE:65.6,SE:74.2,AT:68.5,RO:63.0},
   {year:2001,IT:54.6,ES:58.9,FR:62.8,DE:65.8,SE:74.0,AT:68.8,RO:63.3},
   {year:2002,IT:55.5,ES:59.5,FR:63.0,DE:65.4,SE:72.9,AT:68.7,RO:57.6},
@@ -331,13 +436,162 @@ const EMPL_DATA=[
   {year:2023,IT:61.5,ES:65.5,FR:67.9,DE:76.5,SE:77.5,AT:76.0,RO:63.8},
 ];
 
+// ── Fetch live Italy data from Eurostat ──
+let _italyFetched = false;
+
+// Parser generico Eurostat JSON-stat → [{year, IT, ES, ...}]
+// Funziona con qualsiasi dataset dove le dimensioni non-geo/non-time
+// sono filtrate a un singolo valore (contribuiscono 0 all'indice piatto).
+function _parseEurostatTS(json, keys) {
+  const dims   = json.id;
+  const sizes  = json.size;
+  const stride = dims.map((_, i) => sizes.slice(i + 1).reduce((a,b) => a * b, 1));
+  const geoCat  = json.dimension.geo.category;
+  const timeCat = json.dimension.time.category;
+  const geoPos  = dims.indexOf('geo');
+  const timPos  = dims.indexOf('time');
+  const years   = Object.keys(timeCat.index).sort();
+  const result  = [];
+  years.forEach(yr => {
+    const y = parseInt(yr);
+    if (y < 2000) return;
+    const row = { year: y };
+    const ti  = timeCat.index[yr];
+    let hasAny = false;
+    keys.forEach(geo => {
+      const gi = geoCat.index[geo];
+      if (gi == null) return;
+      const flat = gi * stride[geoPos] + ti * stride[timPos];
+      const v = json.value[String(flat)];
+      if (v != null) { row[geo] = v; hasAny = true; }
+    });
+    if (hasAny) result.push(row);
+  });
+  return result;
+}
+
+async function fetchItalyData() {
+  if (_italyFetched) return;
+  _italyFetched = true; // impedisce chiamate parallele / ri-fetch su stessa sessione
+  const GEO  = 'AT,DE,ES,FR,IT,RO,SE';
+  const BASE = 'https://ec.europa.eu/eurostat/api/dissemination/statistics/1.0/data';
+  const keys = COUNTRIES;
+
+  const [gdpRes, prodRes, emplRes] = await Promise.allSettled([
+    fetch(`${BASE}/nama_10_pc?format=JSON&lang=EN&unit=CP_EUR_HAB&na_item=B1GQ&geo=${GEO}`).then(r => r.json()),
+    fetch(`${BASE}/tipsna70?format=JSON&lang=EN&geo=${GEO}`).then(r => r.json()),
+    fetch(`${BASE}/lfsi_emp_a?format=JSON&lang=EN&unit=PC_POP&sex=T&age=Y15-64&indic_em=EMP_LFS&geo=${GEO}`).then(r => r.json()),
+  ]);
+
+  let anyOk = false;
+
+  // ── GDP ──
+  if (gdpRes.status === 'fulfilled') {
+    try {
+      const rows = _parseEurostatTS(gdpRes.value, keys);
+      if (rows.length > 0) {
+        GDP_DATA = rows.map(r => {
+          const o = { year: r.year };
+          keys.forEach(k => { if (r[k] != null) o[k] = Math.round(r[k]); });
+          return o;
+        });
+        anyOk = true;
+        // Aggiorna KPI cards
+        const latest = GDP_DATA[GDP_DATA.length - 1];
+        const first  = GDP_DATA.find(d => d.year === 2000) || GDP_DATA[0];
+        const $  = id => document.getElementById(id);
+        const it = latest.IT, de = latest.DE, it0 = first ? first.IT : null;
+        if ($('italy-kpi-it-gdp') && it)   $('italy-kpi-it-gdp').textContent = '\u20ac' + (it/1000).toFixed(1) + 'k';
+        if ($('italy-kpi-it-note'))         $('italy-kpi-it-note').textContent  = 'Current prices, ' + latest.year;
+        if ($('italy-kpi-de-gdp') && de)   $('italy-kpi-de-gdp').textContent = '\u20ac' + (de/1000).toFixed(1) + 'k';
+        if ($('italy-kpi-de-note') && it && de)
+          $('italy-kpi-de-note').textContent = '+' + Math.round((de/it - 1)*100) + '% vs Italy';
+        if (it && it0) {
+          const g = Math.round((it/it0 - 1)*100);
+          if ($('italy-kpi-growth'))      $('italy-kpi-growth').textContent = '+' + g + '%';
+          if ($('italy-kpi-growth-note')) $('italy-kpi-growth-note').textContent =
+            '\u20ac' + (it0/1000).toFixed(0) + 'k \u2192 \u20ac' + (it/1000).toFixed(0) + 'k (nominal, ' + latest.year + ')';
+        }
+      }
+    } catch(e) { console.warn('[italy] GDP parse error', e); }
+  }
+
+  // ── Productivity (tipsna70, index 2015=100 → rebased 2000=100) ──
+  if (prodRes.status === 'fulfilled') {
+    try {
+      const rows = _parseEurostatTS(prodRes.value, keys);
+      if (rows.length > 0) {
+        const base2000 = rows.find(r => r.year === 2000);
+        if (base2000) {
+          const pb = {};
+          keys.forEach(k => { pb[k] = base2000[k] || 100; });
+          PROD_DATA = rows.map(r => {
+            const o = { year: r.year };
+            keys.forEach(k => { if (r[k] != null) o[k] = +(r[k] / pb[k] * 100).toFixed(2); });
+            return o;
+          });
+          anyOk = true;
+        }
+      }
+    } catch(e) { console.warn('[italy] Productivity parse error', e); }
+  }
+
+  // ── Employment ──
+  if (emplRes.status === 'fulfilled') {
+    try {
+      const rows = _parseEurostatTS(emplRes.value, keys);
+      if (rows.length > 0) {
+        EMPL_DATA = rows.map(r => {
+          const o = { year: r.year };
+          keys.forEach(k => { if (r[k] != null) o[k] = +r[k].toFixed(1); });
+          return o;
+        });
+        anyOk = true;
+      }
+    } catch(e) { console.warn('[italy] Employment parse error', e); }
+  }
+
+  if (!anyOk) {
+    console.warn('[italy] All Eurostat fetches failed \u2013 using static fallback data.');
+    return;
+  }
+
+  // Ri-renderizza il tab Italy attivo
+  if (document.getElementById('italy-tab-gdp')?.classList.contains('active'))
+    renderGDPChart();
+  else if (document.getElementById('italy-tab-prod')?.classList.contains('active'))
+    renderProdCharts();
+}
+
+// Tiene traccia delle serie nascoste per svgId (sopravvive al re-render del grafico)
+const _hiddenKeys = {};
+
 // ── Helper: build legend ──
-function buildLegend(containerId) {
+// Se svgId è passato, i pallini diventano cliccabili per mostrare/nascondere la linea
+function buildLegend(containerId, svgId) {
   const el = document.getElementById(containerId);
   if (!el || el.children.length > 0) return;
   COUNTRIES.forEach(k => {
     const m = C_META[k];
-    el.innerHTML += `<span class="italy-legend-item"><span class="italy-legend-dot" style="background:${m.color}"></span>${m.label}</span>`;
+    const item = document.createElement('span');
+    item.className = 'italy-legend-item';
+    item.dataset.key = k;
+    item.innerHTML = `<span class="italy-legend-dot" style="background:${m.color}"></span>${m.label}`;
+    if (svgId) {
+      item.style.cursor = 'pointer';
+      item.title = 'Clicca per mostrare / nascondere';
+      item.addEventListener('click', () => {
+        const dimmed = item.classList.toggle('legend-dimmed');
+        if (!_hiddenKeys[svgId]) _hiddenKeys[svgId] = new Set();
+        if (dimmed) _hiddenKeys[svgId].add(k); else _hiddenKeys[svgId].delete(k);
+        const svgEl = document.getElementById(svgId);
+        if (!svgEl) return;
+        svgEl.querySelectorAll(`[data-key="${k}"]`).forEach(n => {
+          n.style.opacity = dimmed ? '0.07' : '';
+        });
+      });
+    }
+    el.appendChild(item);
   });
 }
 
@@ -369,9 +623,9 @@ function buildMultiLineChart(cid, svgId, data, keys, yMin, yMax, yStep, yFmt) {
   finalVals.forEach(({k}) => {
     const col = C_META[k].color;
     const pts = data.map((d,i) => `${i===0?'M':'L'}${xS(i).toFixed(1)},${yS(d[k]).toFixed(1)}`).join(' ');
-    lines += `<path d="${pts}" fill="none" stroke="${col}" stroke-width="1.7" stroke-linejoin="round" stroke-linecap="round" opacity="0.9"/>`;
+    lines += `<path data-key="${k}" d="${pts}" fill="none" stroke="${col}" stroke-width="1.7" stroke-linejoin="round" stroke-linecap="round" opacity="0.9"/>`;
     const ex = xS(data.length-1), ey = yS(data[data.length-1][k]);
-    lines += `<circle cx="${ex.toFixed(1)}" cy="${ey.toFixed(1)}" r="3" fill="${col}"/>`;
+    lines += `<circle data-key="${k}" cx="${ex.toFixed(1)}" cy="${ey.toFixed(1)}" r="3" fill="${col}"/>`;
   });
 
   let tooltipBars = '';
@@ -389,6 +643,12 @@ function buildMultiLineChart(cid, svgId, data, keys, yMin, yMax, yStep, yFmt) {
     <line x1="${PAD.left}" y1="${PAD.top}" x2="${PAD.left}" y2="${PAD.top+pH}" stroke="#c8c2b6" stroke-width="1"/>
     <line x1="${PAD.left}" y1="${PAD.top+pH}" x2="${PAD.left+pW}" y2="${PAD.top+pH}" stroke="#c8c2b6" stroke-width="1"/>
   </svg>`;
+  // Ripristina le serie nascoste se il grafico viene ri-renderizzato (es. cambio tab)
+  if (_hiddenKeys[svgId]) {
+    _hiddenKeys[svgId].forEach(k => {
+      area.querySelectorAll(`[data-key="${k}"]`).forEach(n => { n.style.opacity = '0.07'; });
+    });
+  }
 }
 
 function showTip7(e, el) {
@@ -410,9 +670,21 @@ function hideTip() {
   const t = document.getElementById('italy-tooltip');
   if (t) t.style.display = 'none';
 }
+function showDecompTip(e, text) {
+  const t = document.getElementById('italy-tooltip');
+  if (!t) return;
+  t.innerHTML = text;
+  t.style.display = 'block';
+  t.style.left = (e.clientX + 14) + 'px';
+  t.style.top  = (e.clientY - 10) + 'px';
+}
 
 // ── Decomposition bar chart (6 countries vs Italy) ──
 function logChg(arr, k) { return Math.log(arr[arr.length-1][k]) - Math.log(arr[0][k]); }
+
+// Stato toggle scala decomposizione
+let _decompClip = false;
+const DECOMP_CLIP_LIMIT = 0.55; // ±55 log-punti
 
 function buildDecompChart() {
   const area = document.getElementById('decomp-chart-area');
@@ -423,95 +695,132 @@ function buildDecompChart() {
   const compLabels = {ES:'Spain',FR:'France',DE:'Germany',SE:'Sweden',AT:'Austria',RO:'Romania'};
 
   const gdpSub = GDP_DATA.slice(0, 24); // 2000-2023
-
-  const itGdp  = logChg(gdpSub, 'IT');
   const itProd = logChg(PROD_DATA, 'IT');
   const itHrs  = logChg(HOURS_DATA, 'IT');
   const itEmpl = logChg(EMPL_DATA, 'IT');
 
   const groups = comps.map(k => {
-    const dGdp  = logChg(gdpSub, k)  - itGdp;
     const dProd = logChg(PROD_DATA, k) - itProd;
     const dHrs  = logChg(HOURS_DATA, k) - itHrs;
     const dEmpl = logChg(EMPL_DATA, k) - itEmpl;
-    return { k, label: compLabels[k], dGdp, dProd, dHrs, dEmpl };
+    return { k, label: compLabels[k], dProd, dHrs, dEmpl };
   });
 
-  const BAR_H   = 9;
-  const SPACING = 4;
-  const GROUP_H = 3 * (BAR_H + SPACING) + 14;
-  const PAD = {top: 28, right: 100, bottom: 36, left: 98};
+  const allVals = groups.flatMap(g => [g.dProd, g.dHrs, g.dEmpl]);
+  const fullMax = Math.max(...allVals.map(v => Math.abs(v)));
+  const absMax  = (_decompClip ? Math.min(fullMax, DECOMP_CLIP_LIMIT) : fullMax) * 1.12;
+
+  const BAR_H    = 16;
+  const SPACING  = 9;   // tra le barre dello stesso gruppo
+  const GRP_GAP  = 20;  // spazio extra tra gruppi-paese
+  const GROUP_H  = 3 * (BAR_H + SPACING) - SPACING + GRP_GAP;
+  const LEG_H    = 32;
+  const PAD = {top: LEG_H + 26, right: 10, bottom: 38, left: 90};
   const H = PAD.top + comps.length * GROUP_H + PAD.bottom;
   const pW = W - PAD.left - PAD.right;
   const pH = H - PAD.top - PAD.bottom;
 
-  const allVals = groups.flatMap(g => [g.dProd, g.dHrs, g.dEmpl, g.dGdp]);
-  const absMax = Math.max(...allVals.map(v => Math.abs(v))) * 1.35;
+  const zero = PAD.left + pW * 0.5;  // lo zero è sempre al centro
   const xS = v => PAD.left + (v + absMax) / (2 * absMax) * pW;
-  const zero = xS(0);
 
   const compColors = { dProd: '#4a6e9e', dHrs: '#9e7a3a', dEmpl: '#5a9e7a' };
   const compNames  = { dProd: 'Productivity', dHrs: 'Hours', dEmpl: 'Employment' };
 
   let svg = '';
 
-  svg += `<text x="${PAD.left}" y="${PAD.top - 12}" font-size="8" fill="#2c4a6e" font-family="DM Mono,monospace">← Italy gained</text>`;
-  svg += `<text x="${(PAD.left+pW).toFixed(1)}" y="${PAD.top - 12}" text-anchor="end" font-size="8" fill="#c17a2a" font-family="DM Mono,monospace">Country gained →</text>`;
+  // Legenda in cima
+  const lcols = Object.keys(compColors);
+  const legStep = Math.min(150, pW / lcols.length);
+  lcols.forEach((comp, ci) => {
+    const lx = PAD.left + ci * legStep;
+    svg += `<rect x="${lx}" y="8" width="12" height="12" fill="${compColors[comp]}" rx="2"/>`;
+    svg += `<text x="${(lx+17).toFixed(1)}" y="19" font-size="10.5" font-family="DM Mono,monospace" fill="var(--ink-muted)">${compNames[comp]}</text>`;
+  });
 
+  // Frecce direzione
+  svg += `<text x="${PAD.left}" y="${(PAD.top-8).toFixed(1)}" font-size="8.5" fill="#2c4a6e" font-family="DM Mono,monospace">← Italy gained</text>`;
+  svg += `<text x="${(PAD.left+pW).toFixed(1)}" y="${(PAD.top-8).toFixed(1)}" text-anchor="end" font-size="8.5" fill="#c17a2a" font-family="DM Mono,monospace">Country gained →</text>`;
+
+  // Griglia verticale + etichette asse X
+  const tickStep = absMax <= 0.3 ? 0.1 : absMax <= 0.65 ? 0.1 : 0.2;
+  const tMin = Math.ceil((-absMax) / tickStep) * tickStep;
+  const tMax = Math.floor(absMax / tickStep) * tickStep;
+  for (let v = tMin; v <= tMax + 1e-9; v += tickStep) {
+    const rv = Math.round(v * 1000) / 1000;
+    const x = xS(rv);
+    svg += `<line x1="${x.toFixed(1)}" y1="${PAD.top}" x2="${x.toFixed(1)}" y2="${(PAD.top+pH).toFixed(1)}" stroke="#c8c2b6" stroke-width="0.5" stroke-dasharray="3,3"/>`;
+    svg += `<text x="${x.toFixed(1)}" y="${(PAD.top+pH+14).toFixed(1)}" text-anchor="middle" font-size="8" fill="#9a9590" font-family="DM Mono,monospace">${rv===0?'0':(rv>0?'+':'')+Math.round(rv*100)+'%'}</text>`;
+  }
+
+  // Gruppi paese
   groups.forEach((g, gi) => {
     const gTop = PAD.top + gi * GROUP_H;
-    svg += `<text x="${(PAD.left - 6).toFixed(1)}" y="${(gTop + GROUP_H/2).toFixed(1)}" text-anchor="end" dominant-baseline="middle" font-size="9.5" font-family="DM Mono,monospace" fill="var(--ink-muted)" font-weight="500">${g.label}</text>`;
+    const barsH = 3 * (BAR_H + SPACING) - SPACING;
+    svg += `<text x="${(PAD.left-8).toFixed(1)}" y="${(gTop+barsH/2).toFixed(1)}" text-anchor="end" dominant-baseline="middle" font-size="10.5" font-family="DM Mono,monospace" fill="var(--ink-muted)" font-weight="500">${g.label}</text>`;
 
     ['dProd','dHrs','dEmpl'].forEach((comp, ci) => {
-      const val = g[comp];
+      const rawVal = g[comp];
+      const clipped = _decompClip && Math.abs(rawVal) > DECOMP_CLIP_LIMIT;
+      const dispVal = clipped ? Math.sign(rawVal) * DECOMP_CLIP_LIMIT : rawVal;
       const bTop = gTop + ci * (BAR_H + SPACING);
-      const x0 = Math.min(zero, xS(val));
-      const bw = Math.abs(xS(val) - zero);
-      const col = val >= 0 ? compColors[comp] : '#c8c2b6';
-      svg += `<rect x="${x0.toFixed(1)}" y="${bTop.toFixed(1)}" width="${bw.toFixed(1)}" height="${BAR_H}" fill="${col}" rx="1" opacity="0.85"/>`;
-      const pct = (val * 100).toFixed(1);
-      const sign = val >= 0 ? '+' : '';
-      const vx = val >= 0 ? xS(val) + 3 : xS(val) - 3;
-      const anchor = val >= 0 ? 'start' : 'end';
-      svg += `<text x="${vx.toFixed(1)}" y="${(bTop + BAR_H/2).toFixed(1)}" dominant-baseline="middle" text-anchor="${anchor}" font-size="7.5" font-family="DM Mono,monospace" fill="var(--ink-faint)">${sign}${pct}%</text>`;
+      const x0  = Math.min(zero, xS(dispVal));
+      const bw  = Math.max(Math.abs(xS(dispVal) - zero), 1);
+      const col = compColors[comp];
+      const pct = (rawVal * 100).toFixed(1);
+      const sign = rawVal >= 0 ? '+' : '';
+      const tip = `<strong>${g.label}</strong> · ${compNames[comp]}: <strong>${sign}${pct}%</strong>${clipped ? ' (scala tagliata)' : ''}`;
+
+      // Barra
+      svg += `<rect x="${x0.toFixed(1)}" y="${bTop.toFixed(1)}" width="${bw.toFixed(1)}" height="${BAR_H}" fill="${col}" rx="2" opacity="${rawVal >= 0 ? '0.85' : '0.45'}" onmouseenter="showDecompTip(event,\`${tip}\`)" onmouseleave="hideTip()" style="cursor:default"/>`;
+
+      // Indicatore clip (freccia bianca sul bordo destro/sinistro)
+      if (clipped) {
+        const ax = rawVal > 0 ? xS(dispVal) - 1 : xS(dispVal) + 1;
+        const pts = rawVal > 0
+          ? `${ax},${bTop+1} ${(ax+7).toFixed(1)},${(bTop+BAR_H/2).toFixed(1)} ${ax},${bTop+BAR_H-1}`
+          : `${ax},${bTop+1} ${(ax-7).toFixed(1)},${(bTop+BAR_H/2).toFixed(1)} ${ax},${bTop+BAR_H-1}`;
+        svg += `<polygon points="${pts}" fill="white" opacity="0.75" style="pointer-events:none"/>`;
+      }
+
+      // Etichetta valore
+      const vx = rawVal >= 0 ? xS(dispVal) + 5 : xS(dispVal) - 5;
+      const anchor = rawVal >= 0 ? 'start' : 'end';
+      svg += `<text x="${vx.toFixed(1)}" y="${(bTop+BAR_H/2+0.5).toFixed(1)}" dominant-baseline="middle" text-anchor="${anchor}" font-size="9" font-family="DM Mono,monospace" fill="var(--ink-faint)">${sign}${pct}%</text>`;
     });
 
-    if (gi === 0) {
-      let lx = PAD.left + pW + 8;
-      ['dProd','dHrs','dEmpl'].forEach((comp, ci) => {
-        const bTop = gTop + ci * (BAR_H + SPACING);
-        svg += `<rect x="${lx}" y="${bTop.toFixed(1)}" width="8" height="${BAR_H}" fill="${compColors[comp]}" rx="1"/>`;
-        svg += `<text x="${(lx + 11).toFixed(1)}" y="${(bTop + BAR_H/2).toFixed(1)}" dominant-baseline="middle" font-size="7.5" fill="var(--ink-faint)" font-family="DM Mono,monospace">${compNames[comp]}</text>`;
-      });
-    }
-
     if (gi < groups.length - 1) {
-      svg += `<line x1="${PAD.left}" y1="${(PAD.top + (gi+1)*GROUP_H - 4).toFixed(1)}" x2="${(PAD.left+pW).toFixed(1)}" y2="${(PAD.top + (gi+1)*GROUP_H - 4).toFixed(1)}" stroke="#ede9e0" stroke-width="1"/>`;
+      const sepY = PAD.top + (gi+1)*GROUP_H - GRP_GAP/2;
+      svg += `<line x1="${(PAD.left-78).toFixed(1)}" y1="${sepY.toFixed(1)}" x2="${(PAD.left+pW).toFixed(1)}" y2="${sepY.toFixed(1)}" stroke="#ede9e0" stroke-width="1"/>`;
     }
   });
 
-  const tickVals = [-0.4,-0.3,-0.2,-0.1,0,0.1,0.2,0.3,0.4,0.5,0.6,0.7,0.8,0.9,1.0,1.1].filter(v => Math.abs(v) <= absMax * 1.05);
-  tickVals.forEach(v => {
-    const x = xS(v);
-    svg += `<line x1="${x.toFixed(1)}" y1="${PAD.top}" x2="${x.toFixed(1)}" y2="${PAD.top+pH}" stroke="#c8c2b6" stroke-width="0.5" stroke-dasharray="3,3"/>`;
-    svg += `<text x="${x.toFixed(1)}" y="${(PAD.top+pH+14).toFixed(1)}" text-anchor="middle" font-size="8" fill="#9a9590" font-family="DM Mono,monospace">${v===0?'0':(v>0?'+':'')+Math.round(v*100)+'%'}</text>`;
-  });
+  // Linea zero e asse inferiore
+  svg += `<line x1="${zero.toFixed(1)}" y1="${PAD.top}" x2="${zero.toFixed(1)}" y2="${(PAD.top+pH).toFixed(1)}" stroke="#9a9590" stroke-width="1.5"/>`;
+  svg += `<line x1="${PAD.left}" y1="${(PAD.top+pH).toFixed(1)}" x2="${(PAD.left+pW).toFixed(1)}" y2="${(PAD.top+pH).toFixed(1)}" stroke="#c8c2b6" stroke-width="1"/>`;
 
-  svg += `<line x1="${zero.toFixed(1)}" y1="${PAD.top}" x2="${zero.toFixed(1)}" y2="${PAD.top+pH}" stroke="#9a9590" stroke-width="1"/>`;
-  svg += `<line x1="${PAD.left}" y1="${PAD.top+pH}" x2="${(PAD.left+pW).toFixed(1)}" y2="${PAD.top+pH}" stroke="#c8c2b6" stroke-width="1"/>`;
-
+  // Rendering finale
   area.innerHTML = `<svg id="decomp-svg" viewBox="0 0 ${W} ${H}" xmlns="http://www.w3.org/2000/svg" style="width:100%;display:block;">${svg}</svg>`;
+
+  // Bottone toggle scala
+  const btn = document.createElement('button');
+  btn.className = 'italy-dl-btn';
+  btn.style.cssText = 'margin-top:0.6rem;';
+  btn.textContent = _decompClip
+    ? 'Show full scale (include Romania)'
+    : 'Compress scale ±55% (more readable, exclude Romania)';
+  btn.onclick = () => { _decompClip = !_decompClip; buildDecompChart(); };
+  area.appendChild(btn);
 }
 
 // ── Render functions ──
 function renderGDPChart() {
-  buildLegend('italy-legend-gdp');
+  buildLegend('italy-legend-gdp', 'gdp-svg');
   buildMultiLineChart('gdp-chart-area','gdp-svg', GDP_DATA, COUNTRIES, 0, 65000, 10000, v => '€'+(v/1000).toFixed(0)+'k');
 }
 function renderProdCharts() {
-  buildLegend('italy-legend-prod');
+  buildLegend('italy-legend-prod', 'prod-svg');
   buildMultiLineChart('prod-chart-area','prod-svg', PROD_DATA, COUNTRIES, 85, 145, 10, v => v.toFixed(0));
-  buildLegend('italy-legend-hours');
+  buildLegend('italy-legend-hours', 'hours-svg');
   buildMultiLineChart('hours-chart-area','hours-svg', HOURS_DATA, COUNTRIES, 1300, 1950, 100, v => v.toFixed(0)+'h');
   buildDecompChart();
 }

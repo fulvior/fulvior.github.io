@@ -67,9 +67,7 @@
 
   <nav>
     <a href="#about"    onclick="showPage('about'); return false;"    id="nav-about">About</a>
-    <a href="#research" onclick="showPage('research'); return false;" id="nav-research">Research</a>
-    <a href="#projects" onclick="showPage('projects'); return false;" id="nav-projects">Projects</a>
-    <a href="#teaching" onclick="showPage('teaching'); return false;" id="nav-teaching">Teaching</a>
+    <a href="#research" onclick="showPage('research'); return false;" id="nav-research">Research &amp; Projects</a>
     <a href="#books"    onclick="showPage('books'); return false;"    id="nav-books">Books</a>
     <a href="#giving"   onclick="showPage('giving'); return false;"   id="nav-giving">Giving Back</a>
     <a href="#italy"    onclick="showPage('italy'); return false;"    id="nav-italy">Italy</a>
@@ -106,15 +104,15 @@
         <span>photo.jpg</span>
       </div>
       <div class="home-photo-socials">
-        <a class="home-social-link" href="https://scholar.google.com" target="_blank" rel="noopener">
-          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
-          Scholar
+        <a class="home-social-link" href="https://orcid.org/0009-0000-8503-5269" target="_blank" rel="noopener">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="10"/><path d="M8 12h8M12 8v8"/></svg>
+          ORCID
         </a>
-        <a class="home-social-link" href="https://github.com" target="_blank" rel="noopener">
+        <a class="home-social-link" href="https://github.com/fulvior" target="_blank" rel="noopener">
           <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
           GitHub
         </a>
-        <a class="home-social-link" href="https://linkedin.com" target="_blank" rel="noopener">
+        <a class="home-social-link" href="https://www.linkedin.com/in/fulvio-raddi-87893a193/" target="_blank" rel="noopener">
           <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
           LinkedIn
         </a>
@@ -205,6 +203,7 @@
       <button class="tab-btn active" onclick="showTab('topics', this)">Topics</button>
       <button class="tab-btn" onclick="showTab('conferences', this)">Conferences</button>
       <button class="tab-btn" onclick="showTab('publications', this)">Publications</button>
+      <button class="tab-btn" onclick="showTab('projects', this)">Projects</button>
     </div>
 
     <!-- Scheda 1: Topics -->
@@ -245,71 +244,40 @@
         </div>
       </div>
     </div>
-  </div>
-</div>
 
-
-<!-- ════════════════════════════════════════════════════════════════════
-     PAGINA: PROJECTS
-     Per aggiungere un progetto, copia un intero blocco
-     <div class="project-card"> ... </div> e cambia titolo e testo.
-     ════════════════════════════════════════════════════════════════════ -->
-<div id="page-projects" class="page">
-  <div class="inner">
-    <p class="page-label">Projects</p>
-    <h2 class="page-title">Projects</h2>
-    <hr class="page-rule">
-
-    <div class="project-card">
-      <p class="project-title">Digital Datathon 2026</p>
-      <p class="project-desc" style="font-family:var(--mono);font-size:0.65rem;letter-spacing:0.06em;text-transform:uppercase;color:var(--ink-faint);margin-bottom:0.6rem;">
-        From Data to Insight · DataSphere
-      </p>
-      <p class="project-desc">
-        I am working on the project <em>Digital Datathon 2026 — From Data to Insight: Exploring Economic, Structural, and Social Indicators through DataSphere</em>.
-        The project investigates how Kosovo’s economy is developing and seeks to identify the real structural triggers behind its growth trajectory.
-      </p>
-      <p class="project-desc" style="margin-top:0.6rem;">
-        A central part of the work focuses on gender disparities and the role of women in Kosovo’s economic and social development. Through data-driven analysis, we aim to understand how women participate in, contribute to, and are affected by Kosovo’s development process.
-      </p>
-    </div>
-
-    <div class="project-card">
-      <p class="project-title">Spatial Heterogeneity in Monetary Policy Transmission</p>
-      <p class="project-desc">
-        This project studies how monetary policy shocks affect euro area regions differently. Using spatial econometric methods, it examines whether changes in interest rates transmit unevenly across local economies through trade links, housing markets, labour mobility, and banking networks.
-      </p>
-      <p class="project-desc" style="margin-top:0.6rem;">
-        The goal is to better understand regional asymmetries in monetary policy transmission and identify where spillovers amplify or dampen policy effects.
-      </p>
-    </div>
-
-    <div class="project-card">
-      <p class="project-title">Text-Based Indicators of Inflation Expectations</p>
-      <p class="project-desc">
-        This project uses text and unstructured data to construct high-frequency measures of inflation expectations and price pressures. By applying natural language processing to sources such as news articles, corporate reports, earnings calls, and market commentary, it aims to capture changes in inflation narratives, cost concerns, and pricing intentions.
-      </p>
-      <p class="project-desc" style="margin-top:0.6rem;">
-        These indicators can complement traditional surveys and financial-market measures, improving real-time monitoring of inflation dynamics.
-      </p>
-    </div>
-
-  </div>
-</div>
-
-
-<!-- ════════════════════════════════════════════════════════════════════
-     PAGINA: TEACHING
-     Per aggiungere un corso, copia un blocco <div class="teaching-item">.
-     ════════════════════════════════════════════════════════════════════ -->
-<div id="page-teaching" class="page">
-  <div class="inner">
-    <p class="page-label">Teaching</p>
-    <h2 class="page-title">Teaching</h2>
-    <hr class="page-rule">
-    <div class="teaching-item">
-      <span class="teaching-term">Current</span>
-      <span class="teaching-course">Teaching assistant for Machine Learning</span>
+    <!-- Scheda 4: Projects -->
+    <div id="tab-projects" class="tab-panel">
+      <div class="project-card">
+        <p class="project-title">Digital Datathon 2026</p>
+        <p class="project-desc" style="font-family:var(--mono);font-size:0.65rem;letter-spacing:0.06em;text-transform:uppercase;color:var(--ink-faint);margin-bottom:0.6rem;">
+          From Data to Insight &middot; DataSphere
+        </p>
+        <p class="project-desc">
+          I am working on the project <em>Digital Datathon 2026 &mdash; From Data to Insight: Exploring Economic, Structural, and Social Indicators through DataSphere</em>.
+          The project investigates how Kosovo&#39;s economy is developing and seeks to identify the real structural triggers behind its growth trajectory.
+        </p>
+        <p class="project-desc" style="margin-top:0.6rem;">
+          A central part of the work focuses on gender disparities and the role of women in Kosovo&#39;s economic and social development.
+        </p>
+      </div>
+      <div class="project-card">
+        <p class="project-title">Spatial Heterogeneity in Monetary Policy Transmission</p>
+        <p class="project-desc">
+          This project studies how monetary policy shocks affect euro area regions differently. Using spatial econometric methods, it examines whether changes in interest rates transmit unevenly across local economies through trade links, housing markets, labour mobility, and banking networks.
+        </p>
+        <p class="project-desc" style="margin-top:0.6rem;">
+          The goal is to better understand regional asymmetries in monetary policy transmission and identify where spillovers amplify or dampen policy effects.
+        </p>
+      </div>
+      <div class="project-card">
+        <p class="project-title">Text-Based Indicators of Inflation Expectations</p>
+        <p class="project-desc">
+          This project uses text and unstructured data to construct high-frequency measures of inflation expectations and price pressures. By applying NLP to news articles, corporate reports, earnings calls, and market commentary, it aims to capture changes in inflation narratives and pricing intentions.
+        </p>
+        <p class="project-desc" style="margin-top:0.6rem;">
+          These indicators can complement traditional surveys and financial-market measures, improving real-time monitoring of inflation dynamics.
+        </p>
+      </div>
     </div>
   </div>
 </div>
@@ -503,17 +471,17 @@
          .stat-value e i testi in .stat-label / .stat-note. -->
     <div class="stat-grid">
       <div class="stat-card">
-        <span class="stat-value">31.6%</span>
+        <span class="stat-value" id="giving-stat-it">31.6%</span>
         <span class="stat-label">Italy · tertiary attainment</span>
-        <span class="stat-note">25–34 year-olds with a degree (2024)</span>
+        <span class="stat-note" id="giving-stat-it-note">25–34 year-olds with a degree (2024)</span>
       </div>
       <div class="stat-card">
-        <span class="stat-value">44.2%</span>
+        <span class="stat-value" id="giving-stat-eu">44.2%</span>
         <span class="stat-label">EU average</span>
-        <span class="stat-note">12.6 points above Italy</span>
+        <span class="stat-note" id="giving-stat-eu-note">12.6 points above Italy</span>
       </div>
       <div class="stat-card">
-        <span class="stat-value warm">26 / 27</span>
+        <span class="stat-value warm" id="giving-stat-rank">26 / 27</span>
         <span class="stat-label">Italy's EU rank</span>
         <span class="stat-note">Second-to-last, ahead only of Romania</span>
       </div>
@@ -528,7 +496,7 @@
         <p class="chart-subtitle" id="chart-subtitle">Share of 25–34 year-olds with a tertiary degree, EU countries, 2024</p>
       </div>
       <div class="chart-area" id="chart-area"></div>
-      <p class="chart-source">Source: Eurostat (edat_lfse_03; educ_uoe_grad04). STEM = science, mathematics, computing, engineering, manufacturing &amp; construction.</p>
+      <p class="chart-source" id="giving-source-note">Source: Eurostat (edat_lfse_03; educ_uoe_grad04). STEM = science, mathematics, computing, engineering, manufacturing &amp; construction.</p>
     </div>
     <div class="section-body" style="margin-top:0.5rem;">
       <p>The picture is stark. In 2024, only 31.6% of Italians aged 25–34 held a university degree — second-to-last in the EU, ahead only of Romania. The EU average stands at 44.2%. On STEM specifically, Italy produces around 19 graduates per 1,000 young people, while countries like Finland and Ireland produce more than 28. The gap is not narrowing fast enough.</p>
@@ -587,19 +555,19 @@
       <!-- KPI della pagina Italy (numeri chiave 2024). -->
       <div class="stat-grid">
         <div class="stat-card">
-          <span class="stat-value">€35.2k</span>
+          <span class="stat-value" id="italy-kpi-it-gdp">€35.2k</span>
           <span class="stat-label">Italy · GDP per capita</span>
-          <span class="stat-note">Current prices, 2024</span>
+          <span class="stat-note" id="italy-kpi-it-note">Current prices, 2024</span>
         </div>
         <div class="stat-card">
-          <span class="stat-value">€52.8k</span>
+          <span class="stat-value" id="italy-kpi-de-gdp">€52.8k</span>
           <span class="stat-label">Germany · GDP per capita</span>
-          <span class="stat-note">+50% vs Italy</span>
+          <span class="stat-note" id="italy-kpi-de-note">+50% vs Italy</span>
         </div>
         <div class="stat-card">
-          <span class="stat-value warm">+85%</span>
+          <span class="stat-value warm" id="italy-kpi-growth">+85%</span>
           <span class="stat-label">Italy growth since 2000</span>
-          <span class="stat-note">€19.0k → €35.2k (nominal)</span>
+          <span class="stat-note" id="italy-kpi-growth-note">€19.0k → €35.2k (nominal)</span>
         </div>
       </div>
     </div>
@@ -698,6 +666,18 @@
         <span class="contact-label">Affiliation</span>
         <span class="contact-value">Babeș-Bolyai University</span>
       </div>
+      <div class="contact-row">
+        <span class="contact-label">ORCID</span>
+        <span class="contact-value"><a href="https://orcid.org/0009-0000-8503-5269" target="_blank" rel="noopener">0009-0000-8503-5269</a></span>
+      </div>
+      <div class="contact-row">
+        <span class="contact-label">GitHub</span>
+        <span class="contact-value"><a href="https://github.com/fulvior" target="_blank" rel="noopener">github.com/fulvior</a></span>
+      </div>
+      <div class="contact-row">
+        <span class="contact-label">LinkedIn</span>
+        <span class="contact-value"><a href="https://www.linkedin.com/in/fulvio-raddi-87893a193/" target="_blank" rel="noopener">fulvio-raddi-87893a193</a></span>
+      </div>
     </div>
   </div>
 </div>
@@ -721,8 +701,7 @@
     <div>
       <p class="footer-col-title">Navigate</p>
       <div class="footer-links">
-        <a href="#research" onclick="showPage('research'); return false;">Research</a>
-        <a href="#projects" onclick="showPage('projects'); return false;">Projects</a>
+        <a href="#research" onclick="showPage('research'); return false;">Research &amp; Projects</a>
         <a href="#books" onclick="showPage('books'); return false;">Books</a>
         <a href="#cv" onclick="showPage('cv'); return false;">CV</a>
       </div>
@@ -731,9 +710,9 @@
       <p class="footer-col-title">Elsewhere</p>
       <div class="footer-links">
         <a href="mailto:fulvio.raddi@econ.ubbcluj.ro">Email</a>
-        <a href="https://scholar.google.com" target="_blank" rel="noopener">Google Scholar</a>
-        <a href="https://github.com" target="_blank" rel="noopener">GitHub</a>
-        <a href="https://linkedin.com" target="_blank" rel="noopener">LinkedIn</a>
+        <a href="https://orcid.org/0009-0000-8503-5269" target="_blank" rel="noopener">ORCID</a>
+        <a href="https://github.com/fulvior" target="_blank" rel="noopener">GitHub</a>
+        <a href="https://www.linkedin.com/in/fulvio-raddi-87893a193/" target="_blank" rel="noopener">LinkedIn</a>
       </div>
     </div>
   </div>
